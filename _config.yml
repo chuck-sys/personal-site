@@ -12,4 +12,4 @@ github_username:  cheukyin699
 markdown: redcarpet
 # Syntax highlighter
 highlighter: pygments
-ignore: node_modules/
+exclude: [node_modules/]
