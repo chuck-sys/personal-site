@@ -1,2 +1,8 @@
 _site
 .sass-cache
+
+# The gulpfile
+gulpfile.js
+
+# The node files
+node_modules/*
