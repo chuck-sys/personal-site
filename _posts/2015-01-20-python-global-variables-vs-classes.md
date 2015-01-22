@@ -3,7 +3,7 @@ layout: post
 title: Python global variables vs classes
 date: 2015-01-20 18:30
 categories: python testing
-tags: [python, testing]
+tags: [python, testing, question]
 ---
 
 In programming class, the guys sitting next to me found this amazing thing, where you could setup a

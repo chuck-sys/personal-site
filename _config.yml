@@ -13,3 +13,8 @@ markdown: redcarpet
 # Syntax highlighter
 highlighter: pygments
 exclude: [node_modules/]
+
+# Ruby gems
+gems:
+    - jekyll-sitemap
+    - jemoji

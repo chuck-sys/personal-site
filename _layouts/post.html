@@ -14,6 +14,22 @@ layout: default
     {{ content }}
   </article>
 
+  {% if site.related_posts.size >= 1 %}
+  <h2>Related Posts:</h2>
+  <ul class="post-list">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  
+
   <form action="http://pooleapp.com/stash/47dbbd5f-1d01-4a58-b76a-6965b261c545/" style="background:#EDEDED" method="post">
     <h2>Leave A Comment!</h2>
     <p>I appreciate feedback, and lots of it! If you want to, leave a comment down below!</p>
