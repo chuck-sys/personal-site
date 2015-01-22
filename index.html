@@ -18,6 +18,31 @@ layout: default
     {% endfor %}
   </ul>
 
+  <h1 class="page-heading">Random Posts</h1>
+  <script>
+      var usedindices = [];
+      var counter = 0;
+      var numofrandposts = 3;
+      while(counter < numofrandposts && counter < postsHREF.length)
+      {
+          var index = Math.floor(Math.random() * postsHREF.length);
+          var href;
+          var title;
+
+          if(usedindices.indexOf(index) == "-1")
+          {
+              href = postsHREF[index];
+              title = postsTitle[index];
+              document.write("<h2><a class=\"post-link\" href=\"" + href + "\">"+title+"</a></h2>");
+
+              // Push index to used array
+              usedindices.push(index);
+              // Increment counter
+              counter++;
+          }
+      }
+  </script>
+
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 </div>
