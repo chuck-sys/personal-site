@@ -34,8 +34,8 @@ layout: default
     <h2>Leave A Comment!</h2>
     <input type="hidden" name="redirect_to" value="/thanks.html" />
     <input type="hidden" name="path" value="{{ page.url }}" />
-    <input type="text" name="author" placeholder="Your Name..."/> <br>
-    <textarea name="comment" style="width:400px;height:150px;" placeholder="Your Comment..."></textarea> <br>
+    <input type="text" name="author" required="true" placeholder="Your Name..."/> <br>
+    <textarea name="comment" style="width:400px;height:150px;" required="true" placeholder="Your Comment..."></textarea> <br>
     <input type="submit" value="Submit!" /> <br>
   </form>
   <hr>
