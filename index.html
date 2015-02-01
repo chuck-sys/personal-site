@@ -4,6 +4,20 @@ layout: default
 
 <div class="home">
 
+    <script>
+        // A search thing powered by Google
+      (function() {
+        var cx = '009782655569711495279:bwutar_gm_q';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <gcse:search></gcse:search>
   <h1 class="page-heading">Posts</h1>
 
   <ul class="post-list">
