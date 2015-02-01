@@ -265,3 +265,36 @@
     display: inline;
 }
 
+.navlist ul {
+    display: inline;
+    text-align: left;
+    list-style: none;
+}
+
+.navlist ul li {
+    display: inline-block;
+    padding: 5px 5px 5px 5px;
+    background: #DDD;
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid;
+    border-radius: 3px;
+
+    background: -webkit-linear-gradient(#FFF, #DDD);
+    background: -o-linear-gradient(#FFF, #DDD);
+    background: -moz-linear-gradient(#FFF, #DDD);
+    background: linear-gradient(#FFF, #DDD);
+}
+
+.navlist ul li:hover {
+    background: -webkit-linear-gradient(#FFF, #BAC);
+    background: -o-linear-gradient(#FFF, #BAC);
+    background: -moz-linear-gradient(#FFF, #BAC);
+    background: linear-gradient(#FFF, #BAC);
+}
+
+.navlist a {
+    text-color: #000;
+    text-decoration: none;
+}

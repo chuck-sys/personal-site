@@ -7,7 +7,7 @@ tags: [tutorial,c++,ncurses,editor]
 ---
 
 
-**PART 1** | [**PART 2**][2]
+{% include ncurses-tut-nav.html %}
 
 Introduction
 ------------
@@ -224,10 +224,9 @@ A small explanation: `Editor::getMode()` returns a char representing a mode. The
 Exit mode exits the program by quitting the while loop. Normal mode lets you enter commands. Insert mode lets you type text and
 interact with the editor's internal buffer.
 
-Okay, we are done the basic skeleton of the TE! You are ready for part 2!
+Okay, we are done the basic skeleton of the TE! Over the course of the other tutorials, you will be filling in the gaps -
+implementing every function that was declared here. You are now ready for Part 2!
 
-**PART 1** | [**PART2**][2]
-
+{% include ncurses-tut-nav.html %}
 
 [1]: https://github.com/cheukyin699/ceditor-test/
-[2]: /404.html
