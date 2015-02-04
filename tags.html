@@ -10,7 +10,7 @@ permalink: /tags/
   {% assign alltags = site.tags | sort %}
   {% for tag in alltags %}
   <div class="category-list">
-  <h3><a name="{{ tag | first }}">{{ tag | first }}</a></h3>
+  <a name="{{ tag | first }}">{{ tag | first }}</a>
   <ul>
       {% for posts in tag %}
       {% for post in posts %}
