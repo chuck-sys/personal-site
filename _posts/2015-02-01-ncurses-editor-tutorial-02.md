@@ -11,6 +11,7 @@ tags: [tutorial,c++,ncurses,editor]
 
 Welcome Back
 ------------
+
 Last time, we finished the basic skeleton, and now it is time to implement some functions! Let's do some easy ones
 first.
 
