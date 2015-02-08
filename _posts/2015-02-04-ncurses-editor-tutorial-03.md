@@ -57,7 +57,7 @@ Editor::Editor(string fn)
     
     buff = new Buffer();
 
-    ifstream infile(fn);
+    ifstream infile(fn.c_str());
     if(infile.is_open())
     {
         while(!infile.eof())
@@ -203,7 +203,7 @@ void Editor::handleInput(int c)
         case 10:
             // The Enter key
             // Bring the rest of the line down
-            if(x < buff->lines[y].length() - 1)
+            if(x < buff->lines[y].length())
             {
                 // Put the rest of the line on a new line
                 buff->insertLine(buff->lines[y].substr(x, buff->lines[y].length() - x), y + 1);
@@ -214,6 +214,7 @@ void Editor::handleInput(int c)
             {
                 buff->insertLine("", y+1);
             }
+            x = 0;
             moveDown();
             break;
         case KEY_BTAB:
