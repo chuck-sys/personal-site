@@ -58,7 +58,7 @@ Editor::Editor(string fn)
     buff = new Buffer();
 
     ifstream infile(fn);
-    if(infile.open())
+    if(infile.is_open())
     {
         while(!infile.eof())
         {
