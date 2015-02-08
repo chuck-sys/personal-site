@@ -25,7 +25,7 @@ We are going to make a small text editor with basic saving, editing, and exiting
 Prerequisites
 -------------
 
-This tutorial assumes fluency in the C++ language, and a bit of understanding of the ncurses library.
+This tutorial assumes adequate fluency in the C++ language, and a bit of understanding of the ncurses library.
 
 
 So Let's Start, Shall We?
@@ -148,6 +148,8 @@ private:
 
     void deleteLine();                  // Deletes current line
     void deleteLine(int);               // Deletes line <int>
+
+    void saveFile();                    // Saves buffer into the file
 
 public:
     Editor();                           // Normal constructor
