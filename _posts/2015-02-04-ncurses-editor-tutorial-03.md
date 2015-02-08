@@ -152,7 +152,7 @@ void Editor::handleInput(int c)
             break;
         case 'i':
             // Press 'i' to enter insert mode
-            mode = 'i':
+            mode = 'i';
             break;
         case 's':
             // Press 's' to save the current file
@@ -196,7 +196,7 @@ void Editor::handleInput(int c)
             }
             else
             {
-                buff->lines.erase(x, 1);
+                buff->lines[y].erase(x, 1);
             }
             break;
         case KEY_ENTER:
