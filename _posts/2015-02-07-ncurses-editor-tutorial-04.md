@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "NCURSES Terminal Text Editor Tutorial Part 1"
+title: "NCURSES Terminal Text Editor Tutorial Part 4"
 date: "2015-02-07 15:50"
 categories: tutorial c++
 tags: [tutorial,c++,ncurses,editor]
