@@ -17,7 +17,7 @@ I am using vim right now, and a few days ago, I thought to myself:
 > If they can make a terminal text editor, why can't I try?
 
 So I set out to create a small TE that is just a proof-of-concept. I am here to share my findings with the Internet. You may find
-the complete source code (with all of the small-to-big bugs) [here][1].
+the complete source code (with all of the small-to-big bugs) [here][1]. You may find this tutorial's source code [here][2].
 
 We are going to make a small text editor with basic saving, editing, and exiting features. You may expand it however you like.
 
@@ -232,3 +232,4 @@ implementing every function that was declared here. You are now ready for Part 2
 {% include ncurses-tut-nav.html %}
 
 [1]: https://github.com/cheukyin699/ceditor-test/
+[2]: /res/tutorials/ncurses-ced-tut.tar.gz
