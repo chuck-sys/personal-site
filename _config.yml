@@ -8,6 +8,10 @@ url: "http://cheukyin699.github.io" # the base hostname & protocol for your site
 twitter_username: chucksys
 github_username:  cheukyin699
 
+# Pagination
+paginate: 5
+paginate_path: "/page:num"
+
 # Build settings
 markdown: redcarpet
 # Syntax highlighter
