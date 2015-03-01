@@ -3,6 +3,7 @@ layout: post
 title: "NCURSES Terminal Text Editor Tutorial Part 3"
 date: "2015-02-04 20:48"
 categories: tutorial c++
+comments: true
 tags: [tutorial,c++,ncurses,editor]
 ---
 

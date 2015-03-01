@@ -3,6 +3,7 @@ layout: post
 title: Python global variables vs classes
 date: "2015-01-20 18:30"
 categories: python testing
+comments: true
 tags: [python, testing, question]
 ---
 
