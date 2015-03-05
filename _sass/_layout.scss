@@ -334,3 +334,12 @@
     margin: 30%;
     background: #FEF;
 }
+
+.share-page {
+    text-decoration: none;
+    text-align: center;
+    background: -webkit-radial-gradient(#FFF, #DDD);
+    background: -o-radial-gradient(#FFF, #DDD);
+    background: -moz-radial-gradient(#FFF, #DDD);
+    background: radial-gradient(#FFF, #DDD);
+}
