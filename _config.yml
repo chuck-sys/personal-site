@@ -9,7 +9,7 @@ twitter_username: chucksys
 github_username:  cheukyin699
 
 # Pagination
-paginate: 5
+paginate: 10
 paginate_path: "/page:num"
 
 # Build settings
