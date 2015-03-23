@@ -1,6 +1,5 @@
 # Site settings
 title: Cheuk's Blog
-email: cheukyin699@yahoo.com
 description: > # This means to ignore newlines until "baseurl:"
   Basically, some things that I want to share with others, whether it be stuff I learnt, or some tutorials, updates, or whatever.
 baseurl: "" # The subpath of your site, e.g. /blog/
@@ -9,6 +8,7 @@ url: "http://cheukyin699.github.io" # The base hostname & protocol for your site
 # Usernames
 twitter_username: chucksys
 github_username:  cheukyin699
+email: cheukyin699@yahoo.com
 
 # Pagination
 paginate: 10
