@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<h1>Archive of posts from {{ page.date | date: "%Y" }}</h1>
+
+<ul class="posts">
+{% for post in page.posts %}
+  <p>
+    <a class="post-title-archive" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    <small class="text-muted">{{ post.date | date: "%d %b %Y" }}</small>
+  </p>
+{% endfor %}
+</ul>

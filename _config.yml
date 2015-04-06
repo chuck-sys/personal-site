@@ -18,9 +18,30 @@ paginate_path: "/page:num"
 markdown: redcarpet
 # Syntax highlighter
 highlighter: pygments
-exclude: [node_modules/]
+exclude: [Gemfile]
 
 # Ruby gems
 gems:
     - jekyll-sitemap
     - jemoji
+    - jekyll-archives
+
+
+# Jekyll archives gem
+jekyll-archives:
+    enabled:
+        - year
+        - month
+        - tags
+        - categories
+    layouts:
+        year: archive-year
+        month: archive-month
+        tag: archive-tag
+        category: archive-tag
+    permalinks:
+        year: '/archives/year/:year/'
+        month: '/archives/month/:year-:month/'
+        tag: '/archives/tag/:name/'
+        category: '/archives/category/:name/'
+
