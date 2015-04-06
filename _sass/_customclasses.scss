@@ -1,0 +1,99 @@
+.category-list ul {
+    display: inline;
+}
+
+@keyframes fade-in {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.category-list ul li {
+    animation: fade-out 0.4s forwards ease-out;
+    a { text-decoration: none; }
+}
+
+.category-list:hover ul li {
+    animation: fade-in 0.4s forwards ease-out;
+}
+
+.category-list:hover {
+    background: #EEE;
+}
+
+.navlist ul {
+    display: inline;
+    text-align: left;
+    list-style: none;
+}
+
+.navlist ul li {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+
+    display: inline-block;
+    padding: 5px 5px 5px 5px;
+    background: #DDD;
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid;
+    border-radius: 4em;
+
+    background: -webkit-linear-gradient(#FFF, #DDD);
+    background: -o-linear-gradient(#FFF, #DDD);
+    background: -moz-linear-gradient(#FFF, #DDD);
+    background: linear-gradient(#FFF, #DDD);
+}
+
+.navlist ul li:hover {
+    background: -webkit-linear-gradient(#FFF, #BAC);
+    background: -o-linear-gradient(#FFF, #BAC);
+    background: -moz-linear-gradient(#FFF, #BAC);
+    background: linear-gradient(#FFF, #BAC);
+}
+
+.navlist a {
+    text-color: $text-color;
+    text-decoration: none;
+}
+
+.next {
+    float: right;
+    background: #FEF;
+}
+
+.previous {
+    float: left;
+    background: #FEF;
+}
+
+.page_number {
+    margin: 30%;
+    background: #FEF;
+}
+
+.share-page {
+    text-decoration: none;
+    text-align: center;
+    background: -webkit-radial-gradient(#FFF, #DDD);
+    background: -o-radial-gradient(#FFF, #DDD);
+    background: -moz-radial-gradient(#FFF, #DDD);
+    background: radial-gradient(#FFF, #DDD);
+}
+
+.section-header-archive {
+    text-transform: uppercase;
+}
+
+.text-muted {
+    color: #777;
+}
+
