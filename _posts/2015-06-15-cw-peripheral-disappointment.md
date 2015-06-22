@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Writing] Peripheral Disappointment"
-date: "2016-06-15 17:56"
+date: "2015-06-15 17:56"
 comments: true
 categories: writing
 tags: [writing, father, gang, disappointment]
