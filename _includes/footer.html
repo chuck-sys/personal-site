@@ -29,9 +29,16 @@
           </li>
           {% endif %}
           <li>
-              <a href="mailto:{{ site.email }}">
-                  {% include icons/email.svg %}
-              </a>
+              <script language="javascript">
+                var usernom = "cheukyin699";
+                var hostnom = "yahoo";
+                var linktxt = usernom + "@" + hostnom + ".com";
+                document.write("<a href=\"mailto:" + linktxt + "\">");
+                </script>
+                {% include icons/email.svg %}
+                <script language="javascript">
+                    document.write("</a>");
+            </script>
           </li>
         </ul>
       </div>

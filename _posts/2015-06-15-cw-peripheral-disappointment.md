@@ -7,7 +7,6 @@ categories: writing
 tags: [writing, father, gang, disappointment]
 ---
 
-
 Teddy was walking down the lifeless wooden corridor to the pre-trial. It was paradoxical, really, that the hallway he was walking
 through glowed with strong ambient-yellow fluorescent lights; the passage was radiating coldness. He knew what he was going to do
 - hear them out, and plea for a non-guilty verdict. The trial would be held sometime else, but at least he wouldn't have to deal
