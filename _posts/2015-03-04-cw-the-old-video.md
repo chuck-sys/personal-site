@@ -7,9 +7,6 @@ tags: [writing, video, creepy]
 comments: true
 ---
 
-The Old Video
--------------
-
 "You'd think they'd know better than to ask ME to do it." Bob thought aloud. "If my dad just passed away, that would be like
 rubbing salt into a wound, except it is. But they want to see it, so I'll let it be." Bob opened up his computer and began
 traversing through directories, scanning for any pictures, videos that had his dad (and preferably him) in it and started putting

@@ -7,9 +7,6 @@ tags: [writing, squirrel]
 comments: true
 ---
 
-A Close Call
-------------
-
 I finished up my lunch.
 
 "Hurry up, Bob, you're late!"
