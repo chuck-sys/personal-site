@@ -59,29 +59,12 @@
     margin: 0 30%;
 }
 
-.page-link {
-    padding: 10px;
-    border-radius: 10px;
-    background: -webkit-linear-gradient(#AAABAA, #FFF);
-    background: -o-linear-gradient(#AAABAA, #FFF);
-    background: -moz-linear-gradient(#AAABAA, #FFF);
-    background: linear-gradient(#AAABAA, #FFF);
-}
-
-.page-link:hover {
-    background: -webkit-linear-gradient(#AAABAA, #EFEFEF);
-    background: -o-linear-gradient(#AAABAA, #EFEFEF);
-    background: -moz-linear-gradient(#AAABAA, #EFEFEF);
-    background: linear-gradient(#AAABAA, #EFEFEF);
-}
-
 .share-page {
-    text-decoration: none;
     text-align: center;
-    background: -webkit-radial-gradient(#FFF, #DDD);
-    background: -o-radial-gradient(#FFF, #DDD);
-    background: -moz-radial-gradient(#FFF, #DDD);
-    background: radial-gradient(#FFF, #DDD);
+
+    &:hover {
+       text-decoration: none;
+    }
 }
 
 .section-header-archive {
