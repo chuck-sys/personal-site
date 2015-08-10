@@ -23,4 +23,3 @@ exclude: [Gemfile]
 gems:
     - jekyll-sitemap
     - jemoji
-    - jekyll-archives
