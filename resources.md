@@ -18,10 +18,10 @@ Some links to useful resources.
 - ncurses Editor Tutorial
 <div class="navlist">
     <ul>
-        <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html"><b>PART 1</b></a></li>
-        <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html"><b>PART 2</b></a></li>
-        <li><a href="/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html"><b>PART 3</b></a></li>
-        <li><a href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html"><b>PART 4</b></a></li>
+        <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html">Part 1</a></li>
+        <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html">Part 2</a></li>
+        <li><a href="/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html">Part 3</a></li>
+        <li><a href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html">Part 4</a></li>
     </ul>
 </div>
 - Scrabble Tutorial

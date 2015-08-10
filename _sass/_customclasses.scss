@@ -12,19 +12,6 @@
     100% { opacity: 0; }
 }
 
-.category-list ul li {
-    animation: fade-out 0.4s forwards ease-out;
-    a { text-decoration: none; }
-}
-
-.category-list:hover ul li {
-    animation: fade-in 0.4s forwards ease-out;
-}
-
-.category-list:hover {
-    background: #EEE;
-}
-
 .navlist ul {
     display: inline;
     text-align: left;
@@ -38,30 +25,25 @@
     -o-transition: all 0.5s;
     transition: all 0.5s;
 
-    display: inline-block;
-    padding: 5px 5px 5px 5px;
-    background: #DDD;
-    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    display: inline-table;
+    margin: 0 5px 10px 0;
+    padding: 5px 22px;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border: 1px solid;
-    border-radius: 4em;
+    border: 0 none;
+    border-radius: 4px;
 
-    background: -webkit-linear-gradient(#FFF, #DDD);
-    background: -o-linear-gradient(#FFF, #DDD);
-    background: -moz-linear-gradient(#FFF, #DDD);
-    background: linear-gradient(#FFF, #DDD);
-}
+    background: #AAB;
 
-.navlist ul li:hover {
-    background: -webkit-linear-gradient(#FFF, #BAC);
-    background: -o-linear-gradient(#FFF, #BAC);
-    background: -moz-linear-gradient(#FFF, #BAC);
-    background: linear-gradient(#FFF, #BAC);
+    &:hover {
+        background: #778;
+    }
 }
 
 .navlist a {
-    text-color: $text-color;
+    color: #FFF;
+    font-weight: bold;
     text-decoration: none;
 }
 
