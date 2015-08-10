@@ -67,17 +67,14 @@
 
 .next {
     float: right;
-    background: #FEF;
 }
 
 .previous {
     float: left;
-    background: #FEF;
 }
 
-.page_number {
-    margin: 30%;
-    background: #FEF;
+.all_pages {
+    margin: 0 30%;
 }
 
 .page-link {
@@ -111,4 +108,8 @@
 
 .text-muted {
     color: #777;
+}
+
+.wpost p {
+    color: #AAA;
 }

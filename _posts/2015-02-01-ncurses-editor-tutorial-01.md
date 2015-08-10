@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ncurses-ed-tut-post
 title: "NCURSES Terminal Text Editor Tutorial Part 1"
 date: "2015-02-01 08:28"
 categories: tutorial c++
@@ -7,8 +7,6 @@ comments: true
 tags: [tutorial,c++,ncurses,editor]
 ---
 
-
-{% include ncurses-tut-nav.html %}
 
 Introduction
 ------------
@@ -229,8 +227,6 @@ interact with the editor's internal buffer.
 
 Okay, we are done the basic skeleton of the TE! Over the course of the other tutorials, you will be filling in the gaps -
 implementing every function that was declared here. You are now ready for Part 2!
-
-{% include ncurses-tut-nav.html %}
 
 [1]: https://github.com/cheukyin699/ceditor-test/
 [2]: /res/tutorials/ncurses-ced-tut.tar.gz

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ncurses-ed-tut-post
 title: "NCURSES Terminal Text Editor Tutorial Part 4"
 date: "2015-02-07 15:50"
 categories: tutorial c++
@@ -7,8 +7,6 @@ comments: true
 tags: [tutorial,c++,ncurses,editor]
 ---
 
-
-{% include ncurses-tut-nav.html %}
 
 Salutations!
 ------------
@@ -128,7 +126,3 @@ The sources to this **EXACT TUTORIAL** (as well as the Makefile) may be found in
 
 
 [1]: /res/tutorials/ncurses-ced-tut.tar.gz
-
-
-
-{% include ncurses-tut-nav.html %}

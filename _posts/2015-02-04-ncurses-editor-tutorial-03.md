@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ncurses-ed-tut-post
 title: "NCURSES Terminal Text Editor Tutorial Part 3"
 date: "2015-02-04 20:48"
 categories: tutorial c++
@@ -7,7 +7,6 @@ comments: true
 tags: [tutorial,c++,ncurses,editor]
 ---
 
-{% include ncurses-tut-nav.html %}
 
 Welcome Back
 ------------
@@ -294,6 +293,3 @@ Time to Wrap it up
 Ha! You thought that I would do all of this in only a three-parter :trollface: ? There are still more to implement, though we are past the
 half-way point already. We still need the most important function: `Editor::printBuff()`, which is the function that actually lets
 you see the buffered text! I hope I will see you in **Part 4**!
-
-
-{% include ncurses-tut-nav.html %}

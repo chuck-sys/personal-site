@@ -12,13 +12,8 @@
   <title>{{ site.title }}</title>
   <meta property="og:title" content="{{ site.title }}">
   {% endif %}
-  {% if page.description %}
-  <meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 }}">
-  <meta property="og:description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 }}">
-  {% else %}
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  {% endif %}
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="icon" type="image/x-icon" href="/res/images/favicon.ico"/>

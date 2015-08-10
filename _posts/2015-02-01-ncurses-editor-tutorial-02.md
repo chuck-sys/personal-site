@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ncurses-ed-tut-post
 title: "NCURSES Terminal Text Editor Tutorial Part 2"
 date: "2015-02-01 12:17"
 categories: tutorial c++
@@ -7,8 +7,6 @@ comments: true
 tags: [tutorial,c++,ncurses,editor]
 ---
 
-
-{% include ncurses-tut-nav.html %}
 
 Welcome Back
 ------------
@@ -71,6 +69,3 @@ An Abrupt End
 -------------
 
 And that's it till next time! You are ready for Part 3!
-
-
-{% include ncurses-tut-nav.html %}
