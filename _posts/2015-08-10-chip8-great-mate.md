@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Chip-8 is Great, Mate!"
-date: "2015-08-07 19:58"
+date: "2015-08-10 12:21"
 categories: status
 tags: [status,c++,chip8,assembler,emulator]
 comments: true
