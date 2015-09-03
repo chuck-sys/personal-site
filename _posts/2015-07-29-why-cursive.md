@@ -45,4 +45,4 @@ cursive in modern day, feel free to, er, tell me about it. In the comments.
 Right now.
 
 
-[1]: /res/images/cursive_land.jpg
+[1]: http://i.imgur.com/JL4hNkq.jpg?1

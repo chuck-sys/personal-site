@@ -74,7 +74,8 @@ But I'm getting sidetracked right now. What we have now is an
 epilepsy-enducing program that gets terminated only if you press any key.
 
 ![Screenshot 1][1]
+
 ![Screenshot 2][2]
 
-[1]: /res/images/qbasic-epilepsy1.png
-[2]: /res/images/qbasic-epilepsy2.png
+[1]: http://i.imgur.com/huy9h27.png?1
+[2]: http://i.imgur.com/gklGeDl.png?1

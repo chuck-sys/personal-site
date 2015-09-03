@@ -78,10 +78,10 @@ Just in general, avoid putting vowels next to bonus tiles, and know your
 [2-letter words][2-let-wd].
 
 
-[1.1]: /res/images/scrabble-tut/fig1-1.png
-[1.2]: /res/images/scrabble-tut/fig1-2.png
-[1.3]: /res/images/scrabble-tut/fig1-3.png
-[1.4]: /res/images/scrabble-tut/fig1-4.png
+[1.1]: http://i.imgur.com/c4x1jyd.png?1
+[1.2]: http://i.imgur.com/KDlbFLZ.png?1
+[1.3]: http://i.imgur.com/KEzQzAv.png?1
+[1.4]: http://i.imgur.com/ctSFVlR.png?1
 
 [block-strat]: #
 [2-let-wd]: /scrabble/2015/08/13/scrabble-2-letter-words.html
