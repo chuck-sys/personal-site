@@ -22,9 +22,10 @@ arm - no time to even say hello.
 Mom was in the kitchen, as always. I just wasn't prepared for what she was going
 to say.
 
-"Sweetie, you know that we ar moving..." she started. I opened my mouth and shut
-it, bracing the inevitable. "We can't have her around anymore," she continued. I
-looked down. An air of melancholy surrounded her; she didn't say a word.
+"Sweetie, you know that we are moving..." she started. I opened my mouth and
+shut it, bracing the inevitable. "We can't have her around anymore," she
+continued. I looked down. An air of melancholy surrounded her; she didn't say a
+word.
 
 "I... I.... Let me say my goodbyes." I knew this was coming, but maybe I just
 wanted to delay it, so that maybe it won't happen, like hiding under the covers
