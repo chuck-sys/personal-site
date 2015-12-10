@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="home">
+<div class="home container-fluid">
 
   <h1 class="page-heading">Posts</h1>
 
@@ -19,14 +19,16 @@ layout: default
     {% endfor %}
   </ul>
 
-  <div class="pagination">
+  <div class="row">
+      <div class="col-sm-4">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+    <a href="{{ paginator.previous_page_path }}">Previous</a>
   {% else %}
-    <span class="previous">Previous</span>
+    Previous
   {% endif %}
+  </div>
 
-  <span class="all_pages">
+  <div class="col-sm-4">
   {% for page in (1..paginator.total_pages) %}
     {% if page == paginator.page %}
       <em>{{ page }}</em>
@@ -36,13 +38,15 @@ layout: default
       <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
     {% endif %}
     {% endfor %}
-</span>
+  </div>
 
+    <div class='col-sm-4'>
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+    <a href="{{ paginator.next_page_path }}">Next</a>
   {% else %}
-    <span class="next">Next</span>
+    Next
   {% endif %}
+    </div>
   </div>
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
