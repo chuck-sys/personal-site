@@ -4,6 +4,8 @@ title: "NCURSES Terminal Text Editor Tutorial Part 3"
 date: "2015-02-04 20:48"
 categories: tutorial c++
 comments: true
+group: "ncurses-editor-tutorial"
+shortname: 'Part 3'
 tags: [tutorial,c++,ncurses,editor]
 ---
 
@@ -38,7 +40,7 @@ Editor::Editor()
     x=0;y=0;mode='n';
     status = "Normal Mode";
     filename = "untitled";
-    
+
     /* Initializes buffer and appends line to
         prevent seg. faults */
     buff = new Buffer();
@@ -54,7 +56,7 @@ Editor::Editor(string fn)
     x=0;y=0;mode='n';
     status = "Normal Mode";
     filename = fn;
-    
+
     buff = new Buffer();
 
     ifstream infile(fn.c_str());

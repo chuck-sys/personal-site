@@ -4,6 +4,8 @@ title: "Scrabble Tutorial: Prefixes and Suffixes - Bingos"
 date: "2015-08-20"
 comments: "true"
 categories: scrabble
+group: 'scrabble-tut'
+shortname: 'Bingos'
 tags: [scrabble,tutorial]
 ---
 

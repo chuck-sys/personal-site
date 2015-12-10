@@ -2,22 +2,17 @@
 layout: post
 ---
 
-<div class="navlist">
-    <ul>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html">Part 1</a></li>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html">Part 2</a></li>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html">Part 3</a></li>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html">Part 4</a></li>
-    </ul>
-</div>
+<ul class="nav nav-pills">
+    {% assign pages_list = site.posts %}
+    {% assign group = 'ncurses-editor-tutorial' %}
+    {% include page_list %}
+</ul>
+
 
 {{ content }}
 
-<div class="navlist">
-    <ul>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html">Part 1</a></li>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html">Part 2</a></li>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html">Part 3</a></li>
-        <li><a class='btn btn-default' href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html">Part 4</a></li>
-    </ul>
-</div>
+<ul class="nav nav-pills">
+    {% assign pages_list = site.posts %}
+    {% assign group = 'ncurses-editor-tutorial' %}
+    {% include page_list %}
+</ul>

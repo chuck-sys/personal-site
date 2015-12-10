@@ -2,24 +2,16 @@
 layout: post
 ---
 
-<div class="navlist">
-    <ul>
-        <li><a class='btn btn-default' href="/scrabble/2015/08/13/scrabble-2-letter-words.html">2-Letter Words</a></li>
-        <li><a class='btn btn-default' href="/scrabble/2015/08/17/scrabble-tile-placement-tut.html">Tile Placement</a></li>
-        <li><a class='btn btn-default' href="/scrabble/2015/08/20/scrabble-bingos.html">Prefixes and Suffixes - Bingos</a></li>
-        <li><a class='btn btn-default' href="/scrabble/2015/09/12/scrabble-strat-staircase.html">Strategies - The Staircase</a></li>
-        <li><a class='btn btn-default' href="#">Miscellaneous</a></li>
-    </ul>
-</div>
+<ul class="nav nav-pills">
+    {% assign pages_list = site.posts %}
+    {% assign group = 'scrabble-tut' %}
+    {% include page_list %}
+</ul>
 
 {{ content }}
 
-<div class="navlist">
-    <ul>
-        <li><a class='btn btn-default' href="/scrabble/2015/08/13/scrabble-2-letter-words.html">2-Letter Words</a></li>
-        <li><a class='btn btn-default' href="/scrabble/2015/08/17/scrabble-tile-placement-tut.html">Tile Placement</a></li>
-        <li><a class='btn btn-default' href="/scrabble/2015/08/20/scrabble-bingos.html">Prefixes and Suffixes - Bingos</a></li>
-        <li><a class='btn btn-default' href="/scrabble/2015/09/12/scrabble-strat-staircase.html">Strategies - The Staircase</a></li>
-        <li><a class='btn btn-default' href="#">Miscellaneous</a></li>
-    </ul>
-</div>
+<ul class="nav nav-pills">
+    {% assign pages_list = site.posts %}
+    {% assign group = 'scrabble-tut' %}
+    {% include page_list %}
+</ul>

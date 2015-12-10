@@ -4,6 +4,8 @@ title: "Scrabble Tutorial: 2-Letter Words"
 date: "2015-08-13 08:30"
 categories: scrabble
 tags: [scrabble,tutorial]
+group: 'scrabble-tut'
+shortname: '2-Letter Words'
 comments: true
 ---
 
@@ -43,4 +45,3 @@ xi xu
 ya ye yo yu
 za zo
 ```
-
