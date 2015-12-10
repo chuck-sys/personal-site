@@ -31,6 +31,15 @@ Some links to useful resources.
 </ul>
 
 
+## Series
+
+- Arch Linux Series
+<ul class="nav nav-pills">
+    {% assign pages_list = site.posts | reverse %}
+    {% assign group = 'arch-days' %}
+    {% include page_list %}
+</ul>
+
 
 
 
