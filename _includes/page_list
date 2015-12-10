@@ -1,4 +1,4 @@
-{% for node in pages_list reversed %}
+{% for node in pages_list %}
   {% if group == node.group %}
     {% if node.shortname == null %}
         {% assign ntitle = node.title %}

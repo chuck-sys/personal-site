@@ -3,7 +3,7 @@ layout: post
 ---
 
 <ul class="nav nav-pills">
-    {% assign pages_list = site.posts %}
+    {% assign pages_list = site.posts | reverse %}
     {% assign group = 'ncurses-editor-tutorial' %}
     {% include page_list %}
 </ul>
@@ -12,7 +12,7 @@ layout: post
 {{ content }}
 
 <ul class="nav nav-pills">
-    {% assign pages_list = site.posts %}
+    {% assign pages_list = site.posts | reverse %}
     {% assign group = 'ncurses-editor-tutorial' %}
     {% include page_list %}
 </ul>

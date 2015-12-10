@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Resources"
+group: 'navigation'
 permalink: /resources/
 ---
 
@@ -17,14 +18,14 @@ Some links to useful resources.
 
 - ncurses Editor Tutorial
 <ul class="nav nav-pills">
-    {% assign pages_list = site.posts %}
+    {% assign pages_list = site.posts | reverse %}
     {% assign group = 'ncurses-editor-tutorial' %}
     {% include page_list %}
 </ul>
 
 - Scrabble Tutorial
 <ul class='nav nav-pills'>
-    {% assign pages_list = site.posts %}
+    {% assign pages_list = site.posts | reverse %}
     {% assign group = 'scrabble-tut' %}
     {% include page_list %}
 </ul>
