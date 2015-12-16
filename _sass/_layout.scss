@@ -2,9 +2,8 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
     border-bottom: 1px solid $grey-color-light;
-    min-height: 56px;
+    padding: 10px;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -12,7 +11,6 @@
 
 .site-title {
     font-size: 26px;
-    line-height: 56px;
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
@@ -25,7 +23,6 @@
 
 .site-nav {
     float: right;
-    line-height: 56px;
 
     .menu-icon {
         display: none;
@@ -53,20 +50,10 @@
         .menu-icon {
             display: block;
             float: right;
-            width: 36px;
-            height: 26px;
             line-height: 0;
-            padding-top: 10px;
+            padding: 10px;
             text-align: center;
-
-            > svg {
-                width: 18px;
-                height: 15px;
-
-                path {
-                    fill: $grey-color-dark;
-                }
-            }
+            color: black;
         }
 
         .trigger {
@@ -75,7 +62,7 @@
         }
 
         &:hover .trigger {
-            display: block;
+            display: table;
             padding-bottom: 5px;
         }
 
@@ -104,7 +91,12 @@
 .contact-list,
 .social-media-list {
     list-style: none;
+    text-decoration: none;
+    float: left;
     margin-left: 0;
+    a {
+        color: black;
+    }
 }
 
 .footer-col-wrapper {

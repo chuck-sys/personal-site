@@ -4,8 +4,6 @@ layout: default
 
 <div class="home container-fluid">
 
-  <h1 class="page-heading">Posts</h1>
-
   <ul class="post-list">
     {% for post in paginator.posts %}
       <li class="wpost">
@@ -14,7 +12,7 @@ layout: default
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
-        {{ post.excerpt }}
+        <div class="text-muted">{{ post.excerpt }}</div>
       </li>
     {% endfor %}
   </ul>
