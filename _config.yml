@@ -16,10 +16,11 @@ paginate_path: "/page:num"
 # Build settings
 markdown: redcarpet
 # Syntax highlighter
-highlighter: pygments
+highlighter: rouge
 exclude: [Gemfile]
 
 # Ruby gems
 gems:
     - jekyll-sitemap
     - jemoji
+    - jekyll-paginate
