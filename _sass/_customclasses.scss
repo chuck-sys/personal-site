@@ -20,8 +20,67 @@
     text-transform: uppercase;
 }
 
-.wpost {
+.portfolio-head {
+    background: rgba($green-color, 0.3);
+    padding: 10px 0;
+}
+
+.full-image {
+    background-color: $grey-color-mid;
+    background-size: cover;
+    background-position: center;
+}
+
+@mixin overbg($color) {
+    background-color: rgba($color, 0.8);
+}
+
+.project {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    img {
+        width: 150px;
+    }
+
+    li {
+        display: inline;
+    }
+
     p {
-        color: #AAA;
+        padding: 1%;
+    }
+
+    .back {
+        position: relative !important;
+        height: 100% !important;
+        min-height: 100%;
+        padding: 1%;
+
+        h2, h2 a {
+            color: $aqua-color-pale;
+            text-decoration: none;
+        }
+    }
+
+    .grey-overbg {
+        @include overbg($grey-color-light);
+    }
+
+    .down-bt {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .btn {
+        transition: background-color 0.5s ease-in;
+        background-color: rgba(white, 0.4);
+        border: none;
+
+        &:hover {
+            background-color: rgba(white, 0.8);
+        }
     }
 }

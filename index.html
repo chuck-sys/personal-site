@@ -2,11 +2,11 @@
 layout: default
 ---
 
-<div class="home container-fluid">
+<div class="page-content wrapper container-fluid">
 
   <ul class="post-list">
     {% for post in paginator.posts %}
-      <li class="wpost">
+      <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
