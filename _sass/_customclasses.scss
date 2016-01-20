@@ -23,22 +23,25 @@
 .portfolio-head {
     background: rgba($green-color, 0.3);
     padding: 10px 0;
-}
-
-.full-image {
-    background-color: $grey-color-mid;
-    background-size: cover;
-    background-position: center;
+    h1 {
+        font-family: 'Bebas', monospace;
+        word-spacing: 0.25em;
+    }
 }
 
 @mixin overbg($color) {
-    background-color: rgba($color, 0.8);
+    background-color: rgba($color, 0.85);
 }
 
 .project {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    h2 {
+        font-family: 'Bebas', monospace;
+        word-spacing: 0.25em;
+    }
 
     img {
         width: 150px;
@@ -76,7 +79,7 @@
 
     .btn {
         transition: background-color 0.5s ease-in;
-        background-color: rgba(white, 0.4);
+        background-color: rgba(white, 0.1);
         border: none;
 
         &:hover {
