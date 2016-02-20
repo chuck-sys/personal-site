@@ -10,6 +10,8 @@ I am interested in programming, maths and sciences, and pretty much anything
 that I have been curious with. I like writing stuff in general, whether fiction
 or non-fiction, tutorials and whatnot. Hope you have hope!
 
+Click here for my [portfolio][portfolio]
+
 
 ### Blog Setup
 
@@ -23,6 +25,7 @@ I have now switched to [neovim][nvim]. I used to use vim, but I [switched][swch]
 in favour of the asynchronous function calling, meaning faster auto-complete,
 and all that good stuff.
 
+[portfolio]: /portfolio.html
 [jekyll]: https://www.github.com/jekyll/jekyll
 [disqus]: http://www.disqus.com
 [nvim]: https://neovim.io
