@@ -97,7 +97,7 @@ a {
     }
 
     &:hover {
-        color: $text-color;
+        // color: $text-color;
         text-decoration: underline;
     }
 }
@@ -201,4 +201,11 @@ pre {
             fill: $grey-color;
         }
     }
+}
+
+/**
+ * Styling for newlines
+ */
+br {
+    clear: both;
 }

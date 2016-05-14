@@ -33,8 +33,10 @@ $green-color-midl: #54aa54;
 $green-color-dark: #004400;
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 25%);
+$grey-color-ll:    #f0f0f0;
 $grey-color-mid:   #666666;
 $grey-color-dark:  darken($grey-color, 25%);
+$red-color-ll:     #ffecec;
 
 // Width of the content area
 $content-width:    1000px;
