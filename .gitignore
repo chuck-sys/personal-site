@@ -1,6 +1,5 @@
 _site
 .sass-cache
 
-_post_ideas.txt
 _build-n-deploy.sh
 _drafts
