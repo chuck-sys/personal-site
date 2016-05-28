@@ -20,17 +20,17 @@ layout: default
 
   <br>
 
-  {% for page in (1..paginator.total_pages) %}
-  <div class="page-counter">
-      {% if page == paginator.page %}
-      <em>{{ page }}</em>
-      {% elsif page == 1 %}
-      <a href="/index.html">{{ page }}</a>
-      {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-      {% endif %}
-  </div>
-  {% endfor %}
+  <ul class="pagination">
+      {% for page in (1..paginator.total_pages) %}
+      <li {% if page == paginator.page %} class="active" {% endif %}>
+          {% if page == 1 %}
+          <a href="/index.html">{{ page }}</a>
+          {% else %}
+          <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+      </li>
+      {% endfor %}
+  </ul>
 
   <br>
 
