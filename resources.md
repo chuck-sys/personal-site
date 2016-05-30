@@ -20,14 +20,14 @@ Some links to useful resources.
 <ul class="nav nav-pills">
     {% assign pages_list = site.posts | reverse %}
     {% assign group = 'ncurses-editor-tutorial' %}
-    {% include page_list %}
+    {% include page_list.html %}
 </ul>
 
 - Scrabble Tutorial
 <ul class='nav nav-pills'>
     {% assign pages_list = site.posts | reverse %}
     {% assign group = 'scrabble-tut' %}
-    {% include page_list %}
+    {% include page_list.html %}
 </ul>
 
 
@@ -37,7 +37,7 @@ Some links to useful resources.
 <ul class="nav nav-pills">
     {% assign pages_list = site.posts | reverse %}
     {% assign group = 'arch-days' %}
-    {% include page_list %}
+    {% include page_list.html %}
 </ul>
 
 

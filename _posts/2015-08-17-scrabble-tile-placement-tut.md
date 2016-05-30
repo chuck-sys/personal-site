@@ -1,5 +1,5 @@
 ---
-layout: scrabble-tut-post
+layout: series
 title: "Scrabble Tutorial: Tile Placement"
 date: "2015-08-17"
 categories: scrabble

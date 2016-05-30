@@ -1,43 +1,40 @@
 <footer class="site-footer">
 
-  <div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="contact-list">
+                    <li><h2 class="footer-heading"><i class="fa fa-laptop"></i> {{ site.title }}</h2></li>
+                </ul>
+            </div>
 
-    <div class="row">
-      <div class="col-sm-4">
-        <ul class="contact-list">
-          <li><h2 class="footer-heading"><i class="fa fa-laptop"></i> {{ site.title }}</h2></li>
-        </ul>
-      </div>
+            <div class="col-sm-4">
+                <ul class="social-media-list">
+                    {% if site.github_username %}
+                    <li>
+                        <a href="https://github.com/{{ site.github_username }}">
+                        <i class="fa fa-lg fa-github"></i> Github
+                        </a>
+                    </li>
+                    {% endif %}
 
-      <div class="col-sm-4">
-        <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            <a href="https://github.com/{{ site.github_username }}">
-            <i class="fa fa-lg fa-github"></i> Github
-            </a>
-          </li>
-          {% endif %}
+                    {% if site.twitter_username %}
+                    <li>
+                        <a href="https://twitter.com/{{ site.twitter_username }}">
+                        <i class="fa fa-lg fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
 
-          {% if site.twitter_username %}
-          <li>
-            <a href="https://twitter.com/{{ site.twitter_username }}">
-            <i class="fa fa-lg fa-twitter"></i> Twitter
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
+            <div class="col-sm-4">
+                <p>{{ site.description }}</p>
+            </div>
+        </div>
 
-      <div class="col-sm-4">
-        <p>{{ site.description }}</p>
-      </div>
+        <small>
+                &copy; <time datetime="{{ site.time | date_to_xmlscheme }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
+        </small>
     </div>
-
-  <small>
-      &copy; <time datetime="{{ site.time | date_to_xmlscheme }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
-  </small>
-
-  </div>
-
 </footer>

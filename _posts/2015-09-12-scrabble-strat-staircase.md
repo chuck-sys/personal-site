@@ -1,5 +1,5 @@
 ---
-layout: scrabble-tut-post
+layout: series
 title: "Scrabble Tutorial: Strategies - The Staircase"
 date: "2015-09-12"
 categories: scrabble

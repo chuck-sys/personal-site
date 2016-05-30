@@ -1,5 +1,5 @@
 ---
-layout: ncurses-ed-tut-post
+layout: series
 title: "NCURSES Terminal Text Editor Tutorial Part 4"
 date: "2015-02-07 15:50"
 categories: tutorial c++

@@ -1,5 +1,5 @@
 ---
-layout: scrabble-tut-post
+layout: series
 title: "Scrabble Tutorial: 2-Letter Words"
 date: "2015-08-13 08:30"
 categories: scrabble

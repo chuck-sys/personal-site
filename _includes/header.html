@@ -1,23 +1,23 @@
 <header class="site-header">
 
-  <div class="wrapper">
+    <div class="wrapper">
 
-    <a class="site-title" href="{{ site.baseurl }}/"><i class="fa fa-laptop"></i> {{ site.title }}</a>
+        <a class="site-title" href="{{ site.baseurl }}/"><i class="fa fa-laptop"></i> {{ site.title }}</a>
 
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <i class="fa fa-lg fa-bars"></i>
-      </a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+                <i class="fa fa-lg fa-bars"></i>
+            </a>
 
-      <div class="trigger">
-          <ul class='nav nav-pills'>
-              {% assign pages_list = site.pages %}
-              {% assign group = 'navigation' %}
-              {% include page_list %}
-          </ul>
-      </div>
-    </nav>
+            <div class="trigger">
+                    <ul class='nav nav-pills'>
+                        {% assign pages_list = site.pages %}
+                        {% assign group = 'navigation' %}
+                        {% include page_list.html %}
+                    </ul>
+            </div>
+        </nav>
 
-  </div>
+    </div>
 
 </header>

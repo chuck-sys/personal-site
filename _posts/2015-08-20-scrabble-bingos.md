@@ -1,5 +1,5 @@
 ---
-layout: scrabble-tut-post
+layout: series
 title: "Scrabble Tutorial: Prefixes and Suffixes - Bingos"
 date: "2015-08-20"
 comments: "true"
