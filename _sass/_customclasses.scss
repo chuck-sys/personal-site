@@ -131,3 +131,44 @@
 .timeline-content {
     overflow-y: scroll;
 }
+
+.moving-nav {
+    list-style: none;
+    position: absolute;
+
+    a {
+        text-decoration: none;
+    }
+
+    .hover-text {
+        position: relative;
+        bottom: 50px;
+        left: 5px;
+        color: rgba(255, 255, 255, 0);
+
+        transition: all 0.5s;
+    }
+
+    li:hover .hover-text {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    li, img {
+        float: left;
+        width: 200px;
+        height: 200px;
+    }
+
+    .img-overlay {
+        position: relative;
+        height: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+
+        transition: all 0.5s;
+    }
+
+    li:hover .img-overlay {
+        height: 200px;
+    }
+}
