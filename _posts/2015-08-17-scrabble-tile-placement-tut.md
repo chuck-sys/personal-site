@@ -13,9 +13,9 @@ comments: true
 
 I had to learn this myself: Scrabble move notation. Essentially, how it goes is:
 
-```
+~~~
 xy <WORD> <score>
-```
+~~~
 
 Where `x` is the column/row that the word sits/extends on, `y` is the column/row
 that is the second coordinate to the first letter, `<WORD>` is the word played,

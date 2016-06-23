@@ -15,8 +15,6 @@ paginate_path: "/page:num"
 
 # Build settings
 # Syntax highlighter
-markdown: redcarpet
-highlighter: rouge
 exclude: [Gemfile]
 
 # Ruby gems

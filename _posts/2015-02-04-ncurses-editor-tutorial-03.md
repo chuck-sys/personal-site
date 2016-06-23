@@ -22,19 +22,19 @@ Implementing the Editor class
 
 Create file `Editor.cpp`. Add some includes.
 
-``` c++
+~~~ cpp
 #include "Editor.h"
 
 #include <fstream>
 #include <iostream>
 #include <sstream>          // If you are not using C++11; We'll get to that later!
-```
+~~~
 
 Let's start off with the default constructor. For me, I want the default constructor to initialize the x and y coordinates, and
 also the mode to normal `'n'`. I will want the status to be `'Normal Mode'` and the filename to be `'untitled'`. I also need to
 initialize the `Buffer` variable.
 
-``` c++
+~~~ cpp
 Editor::Editor()
 {
     x=0;y=0;mode='n';
@@ -46,11 +46,11 @@ Editor::Editor()
     buff = new Buffer();
     buff->appendLine("");
 }
-```
+~~~
 
 If they give it a filename, read it into the buffer.
 
-``` c++
+~~~ cpp
 Editor::Editor(string fn)
 {
     x=0;y=0;mode='n';
@@ -75,11 +75,11 @@ Editor::Editor(string fn)
         buff->appendLine("");
     }
 }
-```
+~~~
 
 Now that we have done all that, it is time for us to get on with the core functions, starting with `Editor::updateStatus()`.
 
-``` c++
+~~~ cpp
 void Editor::updateStatus()
 {
     switch(mode)
@@ -99,20 +99,20 @@ void Editor::updateStatus()
     }
     status += "\tCOL: " + tos(x) + "\tROW: " + tos(y);
 }
-```
+~~~
 
 > Wait! We haven't defined `tos(int)` yet!!!
 
 Just use stringstream!
 
-``` c++
+~~~ cpp
 string Editor::tos(int i)
 {
     stringstream ss;
     ss << i;
     return ss.str();
 }
-```
+~~~
 
 Note that this isn't necessary if you have C++11 - you just use `std::to_string(int)`. My school doesn't have it so I had to
 compensate.
@@ -125,7 +125,7 @@ My input handler handles all inputs in normal mode as well as insert mode (but n
 program). This may be confusing because there are a bunch of switches, and you may be right. You could separate the input handler
 into two different functions - one for handling inputs in normal mode, the other handling inputs in insert mode.
 
-``` c++
+~~~ cpp
 void Editor::handleInput(int c)
 {
     switch(c)
@@ -237,15 +237,15 @@ void Editor::handleInput(int c)
         break;
     }
 }
-```
+~~~
 
-Whew! That sure was a lot of code! There is still a lot of stuff to implement! Let's do the move\<**Direction**\>() code first!
+Whew! That sure was a lot of code! There is still a lot of stuff to implement! Let's do the `move<Direction>()` code first!
 
 
 Moving it x2
 ------------
 
-``` c++
+~~~ cpp
 void Editor::moveLeft()
 {
     if(x-1 >= 0)
@@ -281,7 +281,7 @@ void Editor::moveDown()
         x = buff->lines[y].length();
     move(y, x);
 }
-```
+~~~
 
 Pretty straight forward, although I think I need to do a bit of explaining on the `if(x >= buff->lines[y].length())` part. You
 see, if it didn't have that, then when the user goes up or down, if the current line of text was longer than the one above/below
