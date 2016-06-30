@@ -153,10 +153,10 @@
     }
 
     .hover-text {
-        position: absolute;
-        bottom: 0;
+        position: relative;
+        top: -2em;
         color: rgba(255, 255, 255, 0);
-        height: 2em;
+        height: 1em;
         width: 100%;
         text-align: center;
 
