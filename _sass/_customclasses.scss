@@ -16,6 +16,12 @@
     }
 }
 
+.nav li a {
+    color: $heading-color;
+    font-family: FiraSans, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
 .section-header-archive {
     text-transform: uppercase;
 }
