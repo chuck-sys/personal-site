@@ -30,7 +30,7 @@
     background: rgba($green-color, 0.3);
     padding: 10px 0;
     h1 {
-        font-family: 'Bebas', monospace;
+        font-family: Bebas, Helvetica, sans-serif;
         word-spacing: 0.25em;
     }
 }
@@ -45,12 +45,13 @@
     background-repeat: no-repeat;
 
     h2 {
-        font-family: 'Bebas', monospace;
+        font-family: Bebas, Helvetica, sans-serif;
         word-spacing: 0.25em;
     }
 
     img {
         width: 150px;
+        height: 150px;
     }
 
     li {
@@ -67,7 +68,8 @@
         min-height: 100%;
         padding: 1%;
 
-        h2, h2 a {
+        h2,
+        h2 a {
             color: $aqua-color-pale;
             text-decoration: none;
         }
@@ -142,15 +144,23 @@
     list-style: none;
     position: absolute;
 
+    @include media-query($on-palm) {
+        visibility: hidden;
+    }
+
     a {
         text-decoration: none;
     }
 
     .hover-text {
-        position: relative;
-        bottom: 50px;
-        left: 5px;
+        position: absolute;
+        bottom: 0;
         color: rgba(255, 255, 255, 0);
+        height: 2em;
+        width: 100%;
+        text-align: center;
+
+        font-family: Bebas, Helvetica, sans-serif;
 
         transition: all 0.5s;
     }
@@ -159,7 +169,8 @@
         color: rgba(255, 255, 255, 1);
     }
 
-    li, img {
+    li,
+    img {
         float: left;
         width: 200px;
         height: 200px;
