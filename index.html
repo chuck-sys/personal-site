@@ -4,35 +4,35 @@ layout: default
 
 <div class="page-content wrapper container-fluid">
 
-    <ul class="post-list">
-        {% for post in paginator.posts %}
-        <li>
-            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  <ul class="post-list">
+    {% for post in paginator.posts %}
+    <li>
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 
-            <br>
+      <br>
 
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-            <div class="text-muted">{{ post.excerpt }}</div>
-        </li>
-        {% endfor %}
-    </ul>
+      <div class="text-muted">{{ post.excerpt }}</div>
+    </li>
+    {% endfor %}
+  </ul>
 
-    <br>
+  <br>
 
-    <ul class="pagination">
-        {% for page in (1..paginator.total_pages) %}
-        <li {% if page == paginator.page %} class="active" {% endif %}>
-                {% if page == 1 %}
-                <a href="/index.html">{{ page }}</a>
-                {% else %}
-                <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-                {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
+  <ul class="pagination">
+    {% for page in (1..paginator.total_pages) %}
+    <li {% if page == paginator.page %} class="active" {% endif %}>
+      {% if page == 1 %}
+        <a href="/index.html">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
 
-    <br>
+  <br>
 
-    <p class="rss-subscribe">subscribe via <a href="{{ "/feed.xml" | prepend: site.baseurl }}"><i class='fa fa-rss'></i></a></p>
+  <p class="rss-subscribe">subscribe via <a href="{{ "/feed.xml" | prepend: site.baseurl }}"><i class='fa fa-rss'></i></a></p>
 </div>

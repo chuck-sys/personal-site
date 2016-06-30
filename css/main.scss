@@ -8,6 +8,20 @@
     src: url('/fonts/Bebas.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'FiraSans';
+    src: url('/fonts/FiraSans-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FiraSans';
+    src: url('/fonts/FiraSans-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 // Our variables
 $base-font-family: Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
@@ -39,7 +53,7 @@ $grey-color-dark:  darken($grey-color, 25%);
 $red-color-ll:     #ffecec;
 
 // Width of the content area
-$content-width:    1000px;
+$content-width:    50em;
 
 $on-palm:          600px;
 $on-laptop:        800px;

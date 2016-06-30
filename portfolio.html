@@ -4,270 +4,270 @@ title: 'Portfolio'
 ---
 
 <div class="full-image" style="height: 100%">
-    <ul class='moving-nav'>
-        <li>
-            <img src="/res/images/portfolio/blinker.jpg">
-            <a href='#c8'>
-                <div class='img-overlay'>
-                    <div class='hover-text'>Chip-8 Toolset</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <img src="/res/images/portfolio/casmiley.png">
-            <a href='#ca'>
-                <div class='img-overlay'>
-                    <div class='hover-text'>Cellular Automata</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <img src="http://placehold.it/200">
-            <a href='#pypod'>
-                <div class='img-overlay'>
-                    <div class='hover-text'>pypodder</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <img src="/res/images/portfolio/td-sandbox.png">
-            <a href='#td'>
-                <div class='img-overlay'>
-                    <div class='hover-text'>Tower Defense</div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <img src="http://placehold.it/200">
-            <a href='#sites'>
-                <div class='img-overlay'>
-                    <div class='hover-text'>Websites Worked on</div>
-                </div>
-            </a>
-        </li>
-    </ul>
+  <ul class='moving-nav'>
+    <li>
+      <img src="/res/images/portfolio/blinker.jpg">
+      <a href='#c8'>
+        <div class='img-overlay'>
+          <div class='hover-text'>Chip-8 Toolset</div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <img src="/res/images/portfolio/casmiley.png">
+      <a href='#ca'>
+        <div class='img-overlay'>
+          <div class='hover-text'>Cellular Automata</div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <img src="http://placehold.it/200">
+      <a href='#pypod'>
+        <div class='img-overlay'>
+          <div class='hover-text'>pypodder</div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <img src="/res/images/portfolio/td-sandbox.png">
+      <a href='#td'>
+        <div class='img-overlay'>
+          <div class='hover-text'>Tower Defense</div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <img src="http://placehold.it/200">
+      <a href='#sites'>
+        <div class='img-overlay'>
+          <div class='hover-text'>Websites Worked on</div>
+        </div>
+      </a>
+    </li>
+  </ul>
 
-    <section class="text-center portfolio-head">
-        <h1>I am Cheuk</h1>
-        <h2>I love to code</h2>
-        <a href="#c8"><i class="fa fa-2x fa-arrow-down"></i></a>
-    </section>
+  <section class="text-center portfolio-head">
+    <h1>I am Cheuk</h1>
+    <h2>I love to code</h2>
+    <a href="#c8"><i class="fa fa-2x fa-arrow-down"></i></a>
+  </section>
 </div>
 
 <section class="project" id="c8" style="background-image:url('/res/images/portfolio/brix.jpg')">
-    <div class="page-content wrapper back grey-overbg">
-        <h2 class="text-center">
-            <a target="_blank" href="https://github.com/cheukyin699/chip-8-tools">Chip-8 Toolset <i class="fa fa-link"></i></a>
-        </h2>
+  <div class="page-content wrapper back grey-overbg">
+    <h2 class="text-center">
+      <a target="_blank" href="https://github.com/cheukyin699/chip-8-tools">Chip-8 Toolset <i class="fa fa-link"></i></a>
+    </h2>
 
-        <a href="/res/images/portfolio/blinker.jpg" class="fancybox">
-            <img src="/res/images/portfolio/blinker.jpg"
-                style="float:right;width:200px">
+    <a href="/res/images/portfolio/blinker.jpg" class="fancybox">
+      <img src="/res/images/portfolio/blinker.jpg"
+        style="float:right;width:200px">
+    </a>
+
+    <p>
+      I created the Chip-8 Toolset to learn more about emulation and
+      interpreting. Inside is an emulator that runs Chip-8 binaries, a
+      disassembler to disassemble binaries into assembler
+      code, and an assembler to build binaries yourself, if you so choose.
+    </p>
+    <p>
+      I built this program with C++ on top of SFML. The disassembler was
+      made because I wanted a reliable
+      way to debug the emulator. I didn't plan on making the assembler
+      because I thought that it was too complex, but
+      since at the time I had already built the disassembler, I thought
+      "why not", and went ahead doing it anyway.
+    </p>
+    <p>
+      In addition to being able to turn mnemonics into opcodes, the
+      assembler can also handle symbols/labels by storing their
+      positions and bringing them up if needed.
+    </p>
+
+    <ul>
+      <h3>Gallery</h3>
+      <li>
+        <a href="/res/images/portfolio/blinker.jpg" class="fancybox" rel="c8tools"
+            title="Blinker">
+          <img class="img-thumbnail" src="/res/images/portfolio/blinker.jpg">
         </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/tetris.png" class="fancybox" rel="c8tools"
+            title="Tetris">
+          <img class="img-thumbnail" src="/res/images/portfolio/tetris.png">
+        </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/pong.png" class="fancybox" rel="c8tools"
+            title="Pong">
+          <img class="img-thumbnail" src="/res/images/portfolio/pong.png">
+        </a>
+      </li>
+    </ul>
 
-        <p>
-            I created the Chip-8 Toolset to learn more about emulation and
-            interpreting. Inside is an emulator that runs Chip-8 binaries, a
-            disassembler to disassemble binaries into assembler
-            code, and an assembler to build binaries yourself, if you so choose.
-        </p>
-        <p>
-            I built this program with C++ on top of SFML. The disassembler was
-            made because I wanted a reliable
-            way to debug the emulator. I didn't plan on making the assembler
-            because I thought that it was too complex, but
-            since at the time I had already built the disassembler, I thought
-            "why not", and went ahead doing it anyway.
-        </p>
-        <p>
-            In addition to being able to turn mnemonics into opcodes, the
-            assembler can also handle symbols/labels by storing their
-            positions and bringing them up if needed.
-        </p>
-
-        <ul>
-            <h3>Gallery</h3>
-            <li>
-                <a href="/res/images/portfolio/blinker.jpg" class="fancybox" rel="c8tools"
-                        title="Blinker">
-                    <img class="img-thumbnail" src="/res/images/portfolio/blinker.jpg">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/tetris.png" class="fancybox" rel="c8tools"
-                        title="Tetris">
-                    <img class="img-thumbnail" src="/res/images/portfolio/tetris.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/pong.png" class="fancybox" rel="c8tools"
-                        title="Pong">
-                    <img class="img-thumbnail" src="/res/images/portfolio/pong.png">
-                </a>
-            </li>
-        </ul>
-
-        <div class="text-center down-bt">
-            <a href="#ca" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
-        </div>
+    <div class="text-center down-bt">
+      <a href="#ca" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
     </div>
+  </div>
 </section>
 <section class="project" id="ca" style="background-image:url('/res/images/portfolio/gol.jpg')">
-    <div class="page-content wrapper back grey-overbg">
-        <h2 class="text-center">
-            <a target="_blank" href="https://github.com/cheukyin699/Cellular_Automata">Cellular Automata <i class="fa fa-link"></i></a>
-        </h2>
+  <div class="page-content wrapper back grey-overbg">
+    <h2 class="text-center">
+      <a target="_blank" href="https://github.com/cheukyin699/Cellular_Automata">Cellular Automata <i class="fa fa-link"></i></a>
+    </h2>
 
-        <a href="/res/images/portfolio/casmiley.png" class="fancybox" title="Cellular Automata">
-            <img src="/res/images/portfolio/casmiley.png" style="float:left;width:200px">
+    <a href="/res/images/portfolio/casmiley.png" class="fancybox" title="Cellular Automata">
+      <img src="/res/images/portfolio/casmiley.png" style="float:left;width:200px">
+    </a>
+
+    <p>
+      Cellular Automata was originally started when my teacher asked me to
+      create a Game of Life game with Python and pyFLTK. So of course I wanted
+      to extend it. I actually made 2 - one in Python and another in C++
+      with FLTK and lua. This is the one in C++.
+    </p>
+    <p>
+      Cellular Automata allows you to play around with different types of
+      cellular automata, such as Game of Life, HighLife, Maze, etc.. You
+      can even make your own rules and experiment with them yourself.
+      It can save and load stamps, and even supports lua scripting to
+      make it easier to generate structures and configure preferences
+      and settings.
+    </p>
+    <p>
+      By cross compiling, I generated a Windows executable for windows
+      users so they can use it too.
+    </p>
+
+    <ul>
+      <h3>Gallery</h3>
+      <li>
+        <a href="/res/images/portfolio/casmiley.png" class="fancybox" rel="ca"
+            title="Smiley">
+          <img class="img-thumbnail" src="/res/images/portfolio/casmiley.png">
         </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/maze.png" class="fancybox" rel="ca"
+            title="Maze">
+          <img class="img-thumbnail" src="/res/images/portfolio/maze.png">
+        </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/lua.png" class="fancybox" rel="ca"
+            title="Lua Scripting">
+          <img class="img-thumbnail" src="/res/images/portfolio/lua.png">
+        </a>
+      </li>
+    </ul>
 
-        <p>
-            Cellular Automata was originally started when my teacher asked me to
-            create a Game of Life game with Python and pyFLTK. So of course I wanted
-            to extend it. I actually made 2 - one in Python and another in C++
-            with FLTK and lua. This is the one in C++.
-        </p>
-        <p>
-            Cellular Automata allows you to play around with different types of
-            cellular automata, such as Game of Life, HighLife, Maze, etc.. You
-            can even make your own rules and experiment with them yourself.
-            It can save and load stamps, and even supports lua scripting to
-            make it easier to generate structures and configure preferences
-            and settings.
-        </p>
-        <p>
-            By cross compiling, I generated a Windows executable for windows
-            users so they can use it too.
-        </p>
-
-        <ul>
-            <h3>Gallery</h3>
-            <li>
-                <a href="/res/images/portfolio/casmiley.png" class="fancybox" rel="ca"
-                        title="Smiley">
-                    <img class="img-thumbnail" src="/res/images/portfolio/casmiley.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/maze.png" class="fancybox" rel="ca"
-                        title="Maze">
-                    <img class="img-thumbnail" src="/res/images/portfolio/maze.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/lua.png" class="fancybox" rel="ca"
-                        title="Lua Scripting">
-                    <img class="img-thumbnail" src="/res/images/portfolio/lua.png">
-                </a>
-            </li>
-        </ul>
-
-        <div class="text-center down-bt">
-            <a href="#pypod" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
-        </div>
+    <div class="text-center down-bt">
+      <a href="#pypod" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
     </div>
+  </div>
 </section>
 <section class="project" id="pypod">
-    <div class="page-content wrapper back grey-overbg">
-        <h2 class="text-center">
-            <a target="_blank" href="https://github.com/cheukyin699/pypodder">pypodder <i class="fa fa-link"></i></a>
-        </h2>
+  <div class="page-content wrapper back grey-overbg">
+    <h2 class="text-center">
+      <a target="_blank" href="https://github.com/cheukyin699/pypodder">pypodder <i class="fa fa-link"></i></a>
+    </h2>
 
-        <p>
-            pypodder is a small library I made to help people download podcasts.
-            I made this because I found it annoying that RhythmBox couldn't
-            detect my old podcast files, and because RhythmBox was getting very
-            unreliable. pypodder is written
-            in Python, and mainly uses urllib to download RSS files.
-        </p>
-        <p>
-            pypodder also includes an example use case - a command line podcast
-            downloader.
-        </p>
+    <p>
+      pypodder is a small library I made to help people download podcasts.
+      I made this because I found it annoying that RhythmBox couldn't
+      detect my old podcast files, and because RhythmBox was getting very
+      unreliable. pypodder is written
+      in Python, and mainly uses urllib to download RSS files.
+    </p>
+    <p>
+      pypodder also includes an example use case - a command line podcast
+      downloader.
+    </p>
 
-        <div class="text-center down-bt">
-            <a href="#td" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
-        </div>
+    <div class="text-center down-bt">
+      <a href="#td" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
     </div>
+  </div>
 </section>
 <section class="project" id="td" style="background-image:url('/res/images/portfolio/grassBackground.jpg')">
-    <div class="page-content wrapper back grey-overbg">
-        <h2 class="text-center">
-            <a target="_blank" href="https://github.com/cheukyin699/tower-defence">Tower Defense <i class="fa fa-link"></i></a>
-        </h2>
+  <div class="page-content wrapper back grey-overbg">
+    <h2 class="text-center">
+      <a target="_blank" href="https://github.com/cheukyin699/tower-defence">Tower Defense <i class="fa fa-link"></i></a>
+    </h2>
 
-        <a href="/res/images/portfolio/td-sandbox.png" class="fancybox" title="Sandbox Mode">
-            <img src="/res/images/portfolio/td-sandbox.png" style="float:right;width:200px">
+    <a href="/res/images/portfolio/td-sandbox.png" class="fancybox" title="Sandbox Mode">
+      <img src="/res/images/portfolio/td-sandbox.png" style="float:right;width:200px">
+    </a>
+
+    <p>
+      Tower Defense is my attempt at cloning a modern tower defense game.
+      I made it as a kind of 'proof of concept', which is why most things
+      are implemented, but not extended. It is written in Python and pygame.
+    </p>
+    <p>
+      This game heavily relies on JSON configuration files for all of it's
+      sprites, enemy informations, and user preferences. I wrote it with
+      modularity in mind, so that you could easily extend on game features
+      such as enemies, towers, sprites, and even maps.
+    </p>
+    <p>
+      One of the things I had to do was to implement an event handling
+      system because of buttons. The implementation ended up looking a lot
+      like pyFLTK's.
+    </p>
+
+    <ul>
+      <h3>Gallery</h3>
+      <li>
+        <a href="/res/images/portfolio/td-menu.png" class="fancybox" rel="td"
+            title="Main Menu">
+          <img class="img-thumbnail" src="/res/images/portfolio/td-menu.png">
         </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/td-sandbox.png" class="fancybox" rel="td"
+            title="Sandbox Mode">
+          <img class="img-thumbnail" src="/res/images/portfolio/td-sandbox.png">
+        </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/td-sandboxplay1.png" class="fancybox" rel="td"
+            title="Sandbox Mode">
+          <img class="img-thumbnail" src="/res/images/portfolio/td-sandboxplay1.png">
+        </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/td-sandboxplay2.png" class="fancybox" rel="td"
+            title="Sandbox Mode">
+          <img class="img-thumbnail" src="/res/images/portfolio/td-sandboxplay2.png">
+        </a>
+      </li>
+      <li>
+        <a href="/res/images/portfolio/td-fpplaying.png" class="fancybox" rel="td"
+            title="Freeplay Mode">
+          <img class="img-thumbnail" src="/res/images/portfolio/td-fpplaying.png">
+        </a>
+      </li>
+    </ul>
 
-        <p>
-            Tower Defense is my attempt at cloning a modern tower defense game.
-            I made it as a kind of 'proof of concept', which is why most things
-            are implemented, but not extended. It is written in Python and pygame.
-        </p>
-        <p>
-            This game heavily relies on JSON configuration files for all of it's
-            sprites, enemy informations, and user preferences. I wrote it with
-            modularity in mind, so that you could easily extend on game features
-            such as enemies, towers, sprites, and even maps.
-        </p>
-        <p>
-            One of the things I had to do was to implement an event handling
-            system because of buttons. The implementation ended up looking a lot
-            like pyFLTK's.
-        </p>
-
-        <ul>
-            <h3>Gallery</h3>
-            <li>
-                <a href="/res/images/portfolio/td-menu.png" class="fancybox" rel="td"
-                        title="Main Menu">
-                    <img class="img-thumbnail" src="/res/images/portfolio/td-menu.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/td-sandbox.png" class="fancybox" rel="td"
-                        title="Sandbox Mode">
-                    <img class="img-thumbnail" src="/res/images/portfolio/td-sandbox.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/td-sandboxplay1.png" class="fancybox" rel="td"
-                        title="Sandbox Mode">
-                    <img class="img-thumbnail" src="/res/images/portfolio/td-sandboxplay1.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/td-sandboxplay2.png" class="fancybox" rel="td"
-                        title="Sandbox Mode">
-                    <img class="img-thumbnail" src="/res/images/portfolio/td-sandboxplay2.png">
-                </a>
-            </li>
-            <li>
-                <a href="/res/images/portfolio/td-fpplaying.png" class="fancybox" rel="td"
-                        title="Freeplay Mode">
-                    <img class="img-thumbnail" src="/res/images/portfolio/td-fpplaying.png">
-                </a>
-            </li>
-        </ul>
-
-        <div class="text-center down-bt">
-            <a href="#sites" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
-        </div>
+    <div class="text-center down-bt">
+      <a href="#sites" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
     </div>
+  </div>
 </section>
 <section class="project" id="sites">
-    <div class="page-content wrapper back">
-        <h2 class="text-center">Websites I've Worked on</h2>
+  <div class="page-content wrapper back">
+    <h2 class="text-center">Websites I've Worked on</h2>
 
-        <h3>WordPress</h3>
+    <h3>WordPress</h3>
 
-        <ul class="nav nav-pills" style="float:left">
-            <li><a target="_blank" href="http://elrayesfoundation.org/">El-Rayes Foundation</a></li>
-            <li><a target="_blank" href="http://mentalwellnessbc.ca/">H.R. Mental Wellness Center</a></li>
-        </ul>
-    </div>
+    <ul class="nav nav-pills" style="float:left">
+      <li><a target="_blank" href="http://elrayesfoundation.org/">El-Rayes Foundation</a></li>
+      <li><a target="_blank" href="http://mentalwellnessbc.ca/">H.R. Mental Wellness Center</a></li>
+    </ul>
+  </div>
 </section>
 
 <script src="/js/portfolio.js"></script>

@@ -105,7 +105,8 @@ a.site-title {
  * Page content
  */
 .page-content {
-    padding: $spacing-unit 0;
+    padding-top: $spacing-unit;
+    padding-bottom: $spacing-unit;
 }
 
 .page-heading {
@@ -121,10 +122,11 @@ a.site-title {
         margin: 0.25em;
         display: block;
 
-        width: 10em;
+        width: 30%;
         height: 15em;
         float: left;
         overflow-y: hidden;
+        hyphens: auto;
 
         @include media-query($on-palm) {
             width: 100%;
