@@ -116,9 +116,14 @@ blockquote {
     font-size: 18px;
     letter-spacing: -1px;
     font-style: italic;
+    font-family: 'Open Sans', sans-serif;
 
     > :last-child {
         margin-bottom: 0;
+    }
+
+    a {
+        color: $grey-color-dark;
     }
 }
 
