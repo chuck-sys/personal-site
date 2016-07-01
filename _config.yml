@@ -15,6 +15,12 @@ paginate_path: "/page:num"
 
 # Build settings
 # Syntax highlighter
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+    input: GFM
+    syntax_highlighter: rouge
 exclude: [Gemfile]
 
 # Ruby gems
