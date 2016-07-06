@@ -120,4 +120,4 @@ Well, I did say I wasn't going into the code... much.
     task.)
 
 
-[p0]: #
+[p0]: /huffman/2016/07/05/huffman-tutorial-00.html

@@ -97,11 +97,11 @@ wasn't optimizing **that** much. We'll go into this more in [part 2][p2].
 
 
 
-[p1]: #
-[p2]: #
-[p3]: #
-[p4]: #
-[p5]: #
+[p1]: /huffman/2016/07/05/huffman-tutorial-01.html
+[p2]: /huffman/2016/07/05/huffman-tutorial-02.html
+[p3]: /huffman/2016/07/05/huffman-tutorial-03.html
+[p4]: /huffman/2016/07/05/huffman-tutorial-04.html
+[p5]: /huffman/2016/07/05/huffman-tutorial-05.html
 
 [huffwiki]: https://en.wikipedia.org/wiki/Huffman_coding
 [huffvideo]: https://www.youtube.com/watch?v=ZdooBTdW5bM
