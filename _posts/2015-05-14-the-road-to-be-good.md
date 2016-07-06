@@ -2,9 +2,8 @@
 layout: post
 title: "[Journal] The Road to be Good"
 date: "2015-05-14 18:54"
-categories: writing
+category: writing
 tags: [journal,writing,spoilers]
-comments: true
 description: "TOPIC: Assef is good. He was possessed by something, making him do evil things"
 ---
 

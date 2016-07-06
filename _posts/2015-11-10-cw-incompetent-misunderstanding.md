@@ -2,8 +2,7 @@
 layout: post
 title: "[Writing] An Incompetent Misunderstanding"
 date: "2015-11-10"
-comments: true
-categories: writing
+category: writing
 tags: [writing, incompetence, misunderstanding, waiter, sandwich, cold]
 excerpt: "A small paragraph with dialogue in the style of Amy Tan."
 ---

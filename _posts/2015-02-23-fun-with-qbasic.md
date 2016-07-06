@@ -2,8 +2,7 @@
 layout: post
 title: "Fun with QBasic"
 date: "2015-02-23 19:43"
-categories: qbasic
-comments: true
+category: qbasic
 tags: [qbasic, fun, dosbox, music]
 ---
 

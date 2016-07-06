@@ -2,8 +2,7 @@
 layout: post
 title: "My way of Overcoming Procrastination"
 date: "2015-01-19 16:00"
-categories: procrastination
-comments: true
+category: procrastination
 tags: [overcome, procrastination]
 ---
 

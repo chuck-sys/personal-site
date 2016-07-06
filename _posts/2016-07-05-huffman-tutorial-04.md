@@ -3,8 +3,7 @@ layout: series
 title: Huffman Tutorial Part 4
 date: "2016-07-05 20:44"
 excerpt: Bit manipulation and writing to file
-comments: true
-categories: Huffman
+category: Huffman
 group: huffman-tutorial
 shortname: Part 4
 tags: [c++,Huffman,encoder,compression,bits]

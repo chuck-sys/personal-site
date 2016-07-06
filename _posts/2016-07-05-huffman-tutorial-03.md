@@ -3,8 +3,7 @@ layout: series
 title: Huffman Tutorial Part 3
 date: "2016-07-05 20:43"
 excerpt: Making custom Huffman headers and data formats
-comments: true
-categories: Huffman
+category: Huffman
 group: huffman-tutorial
 shortname: Part 3
 tags: [c++,Huffman,encoder,compression,headers,data]

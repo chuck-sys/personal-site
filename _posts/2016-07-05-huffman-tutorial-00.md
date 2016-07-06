@@ -3,8 +3,7 @@ layout: series
 title: Huffman Tutorial Part 0
 date: "2016-07-05 20:40"
 excerpt: The goals and flow for the Huffman project.
-comments: true
-categories: Huffman
+category: Huffman
 group: huffman-tutorial
 shortname: Part 0
 tags: [c++,Huffman,encoder,decoder,compression]

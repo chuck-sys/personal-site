@@ -3,8 +3,7 @@ layout: series
 title: Huffman Tutorial Part 1
 date: "2016-07-05 20:41"
 excerpt: Basic setup, user stories (what we want it to do), and file reading.
-comments: true
-categories: Huffman
+category: Huffman
 group: huffman-tutorial
 shortname: Part 1
 tags: [c++,Huffman,encoder,compression,io]

@@ -2,11 +2,10 @@
 layout: series
 title: "Scrabble Tutorial: 2-Letter Words"
 date: "2015-08-13 08:30"
-categories: scrabble
+category: scrabble
 tags: [scrabble,tutorial]
 group: 'scrabble-tut'
 shortname: '2-Letter Words'
-comments: true
 ---
 
 If you know about the 2 letter words, move on. If you don't, ___MEMORIZE THEM

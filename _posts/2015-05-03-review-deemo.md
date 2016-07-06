@@ -2,9 +2,8 @@
 layout: post
 title: "[Review] But I though it was a Deemo!"
 date: "2015-05-03 20:49"
-categories: review
+category: review
 tags: [review,deemo,apps,games]
-comments: true
 ---
 
 ![](http://www.rayark.com/g/deemo/res/img/index_pic.png)

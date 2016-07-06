@@ -2,9 +2,8 @@
 layout: post
 title: "[Review] The Kite Runner (Movie) - A Mistake?"
 date: "2015-05-30 21:14"
-categories: review
+category: review
 tags: [review,tkr,movie]
-comments: true
 ---
 
 ## WARNING: The Kite Runner SPOILERS BELOW.

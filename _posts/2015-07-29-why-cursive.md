@@ -2,9 +2,8 @@
 layout: post
 title: "Why Cursive?"
 date: "2015-07-29 08:11"
-categories: cursive
+category: cursive
 tags: [cursive]
-comments: true
 ---
 
 So, why am I talking about all that cursive stuff that you probably have

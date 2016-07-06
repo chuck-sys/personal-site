@@ -2,8 +2,7 @@
 layout: post
 title: "The End of School"
 date: "2015-06-22 13:48"
-comments: true
-categories: updates
+category: updates
 tags: [updates,status,school]
 ---
 

@@ -2,9 +2,8 @@
 layout: post
 title: "Chip-8 is Great, Mate!"
 date: "2015-08-10 12:21"
-categories: status
+category: status
 tags: [status,c++,chip8,assembler,emulator]
-comments: true
 ---
 
 Rhyming scheme aside, I'm finally somewhat finished the Chip-8 emulator package

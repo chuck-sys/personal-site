@@ -2,11 +2,10 @@
 layout: series
 title: "Scrabble Tutorial: Strategies - The Staircase"
 date: "2015-09-12"
-categories: scrabble
+category: scrabble
 tags: [scrabble,tutorial]
 group: 'scrabble-tut'
 shortname: 'Strategies - The Staircase'
-comments: true
 ---
 
 ### Introduction

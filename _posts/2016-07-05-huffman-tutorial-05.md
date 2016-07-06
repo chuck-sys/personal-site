@@ -4,8 +4,7 @@ title: Huffman Tutorial Part 5
 date: "2016-07-05 20:45"
 excerpt: >
     A quickie on the decoder part. And some final words. Those are important.
-comments: true
-categories: Huffman
+category: Huffman
 group: huffman-tutorial
 shortname: Part 5
 tags: [c++,Huffman,decoder,decompression]

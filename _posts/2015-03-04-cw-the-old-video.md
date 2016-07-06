@@ -2,9 +2,8 @@
 layout: post
 title: "[Writing] The Old Video"
 date: "2015-03-04 17:32"
-categories: writing
+category: writing
 tags: [writing, video, creepy]
-comments: true
 ---
 
 "You'd think they'd know better than to ask ME to do it." Bob thought aloud. "If my dad just passed away, that would be like

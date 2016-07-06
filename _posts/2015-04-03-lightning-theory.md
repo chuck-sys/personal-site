@@ -2,9 +2,8 @@
 layout: post
 title: "Basic Lightning Theory"
 date: "2015-04-03 14:38"
-categories: theory
+category: theory
 tags: [lightning,theory,visual,python,pygame]
-comments: true
 ---
 
 Introduction

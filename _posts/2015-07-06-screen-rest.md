@@ -2,8 +2,7 @@
 layout: post
 title: "screen_rest: The Simplest Passive Program to Get Off the Computer"
 date: "2015-07-06 15:44"
-comments: true
-categories: c++
+category: c++
 tags: [c++,computer,rest]
 ---
 

@@ -2,8 +2,7 @@
 layout: post
 title: "[Writing] Peripheral Disappointment"
 date: "2015-06-15 17:56"
-comments: true
-categories: writing
+category: writing
 tags: [writing, father, gang, disappointment]
 ---
 
@@ -85,4 +84,3 @@ pounding of his heart-beats in his ears. His legs had a slight tremble to them, 
 Teddy could see the jury starting to leave. The judge made a silent display of shaking his head in resignation. "You could
 have had it," he whispered in Teddy's direction. He might as well have not whispered at all, for Teddy had just caught a glimpse
 of his father leaving the courtroom, and he had not looked back once.
-

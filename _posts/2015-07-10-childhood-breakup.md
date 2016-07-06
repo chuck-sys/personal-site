@@ -2,9 +2,8 @@
 layout: post
 title: "[Writing] Childhood Breakup"
 date: "2015-07-10 09:22"
-categories: writing
+category: writing
 tags: [writing,breakup,childhood]
-comments: true
 ---
 
 "Hey dearest, come here for a second," my mom beckoned me. Honestly, I was

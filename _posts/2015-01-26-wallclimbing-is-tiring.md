@@ -3,7 +3,6 @@ layout: post
 title: "Wallclimbing is tiring"
 date: "2015-01-26 20:25"
 category: exercise
-comments: true
 tags: [wallclimbing, exercise]
 ---
 

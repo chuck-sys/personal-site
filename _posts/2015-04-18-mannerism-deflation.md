@@ -2,9 +2,8 @@
 layout: post
 title: "Mannerism Deflation"
 date: "2015-04-18 13:40"
-categories: manners
+category: manners
 tags: [manners, deflation]
-comments: true
 ---
 
 Having good manners is important to leading a successful social life, and to not be a sociopath. You say your amounts of "thanks"

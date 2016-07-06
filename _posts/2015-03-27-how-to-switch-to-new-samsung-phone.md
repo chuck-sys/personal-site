@@ -2,8 +2,7 @@
 layout: post
 title: "How to Switch From one Samsung Phone to Another"
 date: "2015-03-27 12:11"
-categories: how-to
-comments: true
+category: how-to
 tags: [how-to,phone]
 ---
 

@@ -2,9 +2,8 @@
 layout: post
 title: "[Writing] A Close Call"
 date: "2015-03-22 20:51"
-categories: writing
+category: writing
 tags: [writing, squirrel]
-comments: true
 ---
 
 I finished up my lunch.
@@ -25,7 +24,7 @@ life. There is a stack of wood right beside me and I routinely feed them into th
 wood when it happened.
 
 I threw the wood into the feed tube. Unfortunately for me, my sleeve got squished between the wood and the inside of the tube.
-It pulled me in towards the spinning blades that they told me not to touch. 
+It pulled me in towards the spinning blades that they told me not to touch.
 
 "Help! Help!" I cried.
 

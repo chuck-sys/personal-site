@@ -3,9 +3,8 @@ layout: post
 title: "[Writing] Minor Miracle"
 date: "2015-10-08"
 excerpt: "DISCLAIMER: this story is based off of 4 sentences (zig-zag)"
-categories: writing
+category: writing
 tags: [writing,plane]
-comments: true
 ---
 
 "Pah!" He spat the mouthful of food out with such momentum that it hit the seat

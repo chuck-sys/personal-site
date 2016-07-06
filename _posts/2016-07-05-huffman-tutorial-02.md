@@ -3,8 +3,7 @@ layout: series
 title: Huffman Tutorial Part 2
 date: "2016-07-05 20:42"
 excerpt: Huffman tree creation with character frequencies
-comments: true
-categories: Huffman
+category: Huffman
 group: huffman-tutorial
 shortname: Part 2
 tags: [c++,Huffman,encoder,decoder,compression]
