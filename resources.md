@@ -18,15 +18,19 @@ Some links to useful resources.
 
 - ncurses Editor Tutorial
 <ul class="nav nav-pills">
-    {% assign pages_list = site.posts | reverse %}
     {% assign group = 'ncurses-editor-tutorial' %}
     {% include page_list.html %}
 </ul>
 
 - Scrabble Tutorial
 <ul class='nav nav-pills'>
-    {% assign pages_list = site.posts | reverse %}
     {% assign group = 'scrabble-tut' %}
+    {% include page_list.html %}
+</ul>
+
+- Huffman Tutorial
+<ul class='nav nav-pills'>
+    {% assign group = 'huffman-tutorial' %}
     {% include page_list.html %}
 </ul>
 

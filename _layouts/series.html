@@ -5,13 +5,11 @@ layout: post
 {% assign group = page.group %}
 
 <ul class="nav nav-pills">
-  {% assign pages_list = site.posts | reverse %}
   {% include page_list.html %}
 </ul>
 
 {{ content }}
 
 <ul class="nav nav-pills">
-  {% assign pages_list = site.posts | reverse %}
   {% include page_list.html %}
 </ul>

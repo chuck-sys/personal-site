@@ -1,4 +1,4 @@
-{% for node in pages_list %}
+{% for node in site.posts reversed %}
   {% if group == node.group %}
     {% if node.shortname == null %}
       {% assign ntitle = node.title %}
@@ -7,11 +7,9 @@
     {% endif %}
 
     {% if page.url == node.url %}
-      <li class="active"><a href="{{ node.url }}">{{ntitle}}</a></li>
+      <li class="active"><a href="{{ node.url }}">{{ ntitle }}</a></li>
     {% else %}
-      <li><a href="{{node.url}}">{{ntitle}}</a></li>
+      <li><a href="{{ node.url }}">{{ ntitle }}</a></li>
     {% endif %}
   {% endif %}
 {% endfor %}
-
-{% assign pages_list = nil %}
