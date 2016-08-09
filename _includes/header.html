@@ -1,29 +1,25 @@
-<header class="site-header">
-
+<nav class="navbar navbar-default">
   <div class="container">
+    <button class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
 
-    <a class="site-title" href="{{ site.baseurl }}/"><i class="fa fa-laptop"></i> {{ site.title }}</a>
-
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <i class="fa fa-lg fa-bars"></i>
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand site-title">
+        <i class="fa fa-laptop"></i> {{ site.title }}
       </a>
+    </div>
 
-      <div class="trigger">
-        <ul class='nav nav-pills'>
-          {% for node in site.pages %}
-            {% if node.group == "navigation" %}
-              {% if page.url == node.url %}
-                <li class="active"><a href="{{ node.url }}">{{ node.title }}</a></li>
-              {% else %}
-                <li><a href="{{ node.url }}">{{ node.title }}</a></li>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-    </nav>
-
+    <ul class="collapse navbar-collapse nav navbar-nav navbar-right" id="navbar">
+      {% for node in site.pages %}
+        {% if node.group == "navigation" %}
+          <li class="{% if page.url == node.url %}active{% endif %}">
+            <a href="{{ node.url }}">{{ node.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
   </div>
-
-</header>
+</nav>
