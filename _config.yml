@@ -21,7 +21,7 @@ highlighter: rouge
 kramdown:
     input: GFM
     syntax_highlighter: rouge
-exclude: [Gemfile]
+exclude: ['Gemfile', 'config.ru', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
 
 # Ruby gems
 gems:
