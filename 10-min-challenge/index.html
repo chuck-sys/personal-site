@@ -1,0 +1,30 @@
+---
+title: "10 Minute Story Challenge"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head >
+  {% include head.html %}
+  <script src="/js/angular.min.js"></script>
+  <script src="/js/storyapp.js"></script>
+</head>
+<body ng-app="story_challenge">
+
+  {% include header.html %}
+
+  <div class="page-content wrapper" ng-controller="indexController">
+    <h2>Story #// current // / // no_stories //</h2>
+    <span style="color: red;">// error //</span>
+    <div ng-bind-html="story"></div>
+
+    <button ng-click="goto(previous)">Previous</button>
+    <button ng-click="goto(-1)">Random</button>
+    <button ng-click="goto(next)">Next</button>
+  </div>
+
+  {% include footer.html %}
+
+
+</body>
+</html>
