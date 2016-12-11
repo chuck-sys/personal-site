@@ -43,6 +43,13 @@ Some links to useful resources.
     {% assign group = 'arch-days' %}
     {% include page_list.html %}
 </ul>
+- [10 Minute Story Challenge][10chal] -
+I did this because I was getting stressed out preparing for exams and such.
+I was enjoying my resting times too much, and couldn't control myself as well.
+With this 10 minute story challenge, I am to come up with a story in 10
+minutes, written up. Since I enjoy writing, this isn't considered too
+stressful, but actually relaxing. It also helps me learn to write under
+pressure, which is a very useful skill to have in exams.
 
 
 
@@ -50,3 +57,4 @@ Some links to useful resources.
 [hs]: http://www.seas.upenn.edu/~cis194/
 [clj]: http://iloveponies.github.io/120-hour-epic-sax-marathon/index.html
 [ml]: http://www.cs.princeton.edu/courses/archive/fall14/cos326/
+[10chal]: /10-min-challenge/
