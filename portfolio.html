@@ -14,6 +14,13 @@ group: 'navigation'
       </a>
     </li>
     <li>
+      <img src="/res/images/portfolio/tbasic_pmpt.png">
+      <a href='#tbasic'>
+        <div class='img-overlay'></div>
+        <p class='hover-text'>tinybasic</p>
+      </a>
+    </li>
+    <li>
       <img src="/res/images/portfolio/casmiley.png">
       <a href='#ca'>
         <div class='img-overlay'></div>
@@ -101,6 +108,44 @@ group: 'navigation'
           <img class="img-thumbnail" src="/res/images/portfolio/pong.png">
         </a>
       </li>
+    </ul>
+
+    <div class="text-center down-bt">
+      <a href="#tbasic" class="btn" style="width:100%"><i class="fa fa-2x fa-arrow-down"></i></a>
+    </div>
+  </div>
+</section>
+<section class="project" id="tbasic">
+  <div class="page-content wrapper back grey-overbg">
+    <h2 class="text-center">
+      <a target="_blank" href="https://github.com/cheukyin699/tinybasic">tinybasic <i class="fa fa-link"></i></a>
+    </h2>
+
+    <a href="/res/images/portfolio/tbasic_pmpt.png" class="fancybox">
+      <img src="/res/images/portfolio/tbasic_pmpt.png"
+        style="float:right">
+    </a>
+
+    <p>
+      tinybasic was made because I wanted to learn a bit about parsing. I didn't
+      use lexing libraries for obvious reasons. I wanted to get a better feel of
+      how interpreters (and compilers) work under the hood. I chose the
+      (arguably) easiest language to implement, and just read up a bit on
+      parsing.
+    </p>
+    <p>
+      The idea is to use recursion to turn a string into a list of tokens,
+      parse through the list of tokens and turn that into an abstract syntax
+      tree, and execute it.
+    </p>
+    <p>
+      I have to admit that it isn't perfect, and that it sometimes seg. faults
+      while running (probably need more tests). But it runs most of the time,
+      and that's what counts. And besides, this was just a teaching tool.
+    </p>
+
+    <ul>
+      <h3>Gallery</h3>
     </ul>
 
     <div class="text-center down-bt">
