@@ -39,7 +39,7 @@ layout: default
       title="// c.user.login //" class="avatar" />
       <strong class="author">// c.user.login //</strong>
       <br>
-      <p class="text">// c.body //</p>
+      <div class="text" ng-bind-html="trustAsHtml(c.body_html)"></div>
     </div>
   </div>
   {% else %}
