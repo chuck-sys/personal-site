@@ -13,7 +13,7 @@ tags: [c++,Huffman,decoder,decompression]
 If you have arrived at this point, it is assumed that you have slaved through
 the parts previous to this one in the series. You may have spent a lot of time -
 ranging from a week to half a month - on this (rather large) endeavor. And if
-you have made it through, :confetti_ball: **CONGRADULATIONS** :confetti_ball:!
+you have made it through, :confetti_ball: **CONGRATULATIONS** :confetti_ball:!
 Good work. Now, here is a way to test that your encoder works: by decoding it!
 
 
