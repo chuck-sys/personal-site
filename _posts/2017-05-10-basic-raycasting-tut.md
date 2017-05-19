@@ -4,6 +4,8 @@ title: Basic Ray Casting Tutorial
 date: 2017-05-10 21:28
 excerpt: "A light ray casting tutorial for the enthusiast"
 category: tutorial
+commentID: 1
+angularJS: true
 tags: [tutorial,c++,ray casting,graphics]
 ---
 

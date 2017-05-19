@@ -193,3 +193,23 @@ ul.nav {
         height: 200px;
     }
 }
+
+.comment {
+    border-bottom: 2px solid #84f684;
+    padding-top: 1em;
+
+    .avatar {
+        border-radius: 0.5em;
+        float: left;
+    }
+
+    .author {
+        float: left;
+        padding: 4px;
+        padding-left: 1em;
+    }
+
+    .text {
+        padding: 1em;
+    }
+}

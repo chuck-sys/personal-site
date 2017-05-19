@@ -27,17 +27,22 @@ layout: default
   </ul>
   {% endif %}
 
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = 'cheuksblog';
-
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  <h2>Comments</h2>
+  {% if page.commentID %}
+  <div ng-app="CommentsApp" ng-init="getComments({{ page.commentID }})"
+    ng-controller="CommentsCtrl">
+    <span>To leave a comment, please go to
+      <a href="{{ site.issues }}/{{ page.commentID }}">the issues page</a>
+    </span>
+    <div ng-repeat="c in comments" class="comment">
+      <img src="// c.user.avatar_url //" width="30" height="30"
+      title="// c.user.login //" class="avatar" />
+      <strong class="author">// c.user.login //</strong>
+      <br>
+      <p class="text">// c.body //</p>
+    </div>
+  </div>
+  {% else %}
+  <p>Looks like there are no comments :(</p>
+  {% endif %}
 </div>
