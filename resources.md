@@ -7,12 +7,6 @@ permalink: /resources/
 
 Some links to useful resources.
 
-## Courses
-
-- [Introduction to Haskell (CIS 194)][hs]
-- [Functional Programming in Clojure][clj]
-- [Functional Programming with OCaml (COS 326)][ml]
-
 
 ## Tutorials
 

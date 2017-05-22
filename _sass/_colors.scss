@@ -1,0 +1,21 @@
+$orange-color-pale:#aa6c39;
+$orange-color:     #ee6c00;
+$aqua-color-pale:  #226666;
+$aqua-color:       #4ac6c6;
+$yellow-color:     #e6dc17;
+$green-color:      #2d882d;
+$green-color-light:#87cc87;
+$green-color-midd: #116611;
+$green-color-midl: #54aa54;
+$green-color-dark: #004400;
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 25%);
+$grey-color-ll:    #f0f0f0;
+$grey-color-mid:   #666666;
+$grey-color-dark:  darken($grey-color, 25%);
+$red-color-ll:     #ffecec;
+
+@mixin overbg($color) {
+    background-color: rgba($color, 0.95);
+}
+

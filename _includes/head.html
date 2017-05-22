@@ -20,12 +20,12 @@
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
 <!-- JQuery -->
-<script async src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <!-- Scripts -->
 {% if page.fancyBox %}
 <link rel="stylesheet" href="/fancyBox/jquery.fancybox.css" type="text/css" media="screen">
-<script src="/fancyBox/jquery.fancybox.pack.js"></script>
+<script async src="/fancyBox/jquery.fancybox.pack.js"></script>
 {% endif %}
 
 <!-- AngularJS -->
@@ -40,7 +40,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/main.css">
-<script src="/js/main.js"></script>
+
+<!-- Custom stylesheets -->
+{% if page.portfolio %}
+<link rel="stylesheet" href="/css/portfolio.css">
+{% endif %}
+{% if page.timeline %}
+<link rel="stylesheet" href="/css/timeline.css">
+{% endif %}
+<!-- Curently, this script is used to fetch comments -->
+{% if page.commentID %}
+<script src="/js/comments.js"></script>
+{% endif %}
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

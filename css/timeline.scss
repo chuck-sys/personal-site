@@ -1,0 +1,50 @@
+---
+---
+
+@import "colors";
+
+.timeline {
+    list-style: none;
+    position: relative;
+    border-left: thick solid $grey-color-light;
+    background: linear-gradient(white, lighten(red, 40%));
+
+    li {
+        transition: all 0.5s ease-in;
+        padding: 40px 0;
+        margin-left: -34px;
+
+        span {
+            transition: all 0.5s ease-in;
+            width: 100%;
+            padding: 1em;
+            border-radius: 1em;
+        }
+
+        .fa {
+            transition: all 0.5s ease-in;
+            padding: 5px;
+            border: 1px solid $grey-color;
+            border-radius: 15px;
+            background: $grey-color;
+        }
+    }
+
+    .selected {
+        transition: all 0.5s ease-in;
+        span {
+            background: lighten(red, 40%);;
+        }
+
+        i {
+            border: 1px solid $yellow-color;
+            background: $yellow-color;
+        }
+    }
+}
+
+.timeline-content {
+    overflow-y: scroll;
+}
+
+

@@ -81,7 +81,7 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
-    font-family: 'FiraSans', Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     color: $heading-color;
 }
 
@@ -116,7 +116,7 @@ blockquote {
     font-size: 18px;
     letter-spacing: -1px;
     font-style: italic;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Courier New', sans-serif;
 
     > :last-child {
         margin-bottom: 0;
