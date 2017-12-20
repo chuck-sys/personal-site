@@ -30,7 +30,7 @@ kramdown:
 exclude: ['Gemfile', 'config.ru', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
 
 # Ruby gems
-gems:
+plugins:
     - jekyll-sitemap
     - jemoji
     - jekyll-paginate
