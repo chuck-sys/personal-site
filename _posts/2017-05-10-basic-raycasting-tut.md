@@ -5,7 +5,6 @@ date: 2017-05-10 21:28
 excerpt: "A light ray casting tutorial for the enthusiast"
 category: tutorial
 commentID: 1
-angularJS: true
 tags: [tutorial,c++,ray casting,graphics]
 ---
 
@@ -49,7 +48,7 @@ Let's start off with the basics.
 
 ### Basic Setup
 
-~~~ cpp
+``` cpp
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -74,7 +73,7 @@ int main() {
         w.display();
     }
 }
-~~~
+```
 
 This is just, you know, your standard main loop. We will be working with
 [SFML][sfml].
@@ -85,11 +84,11 @@ tutorials][thattut].
 Let's add a feature where circles will appear on click, so that we could add
 objects dynamically. Right after `Event evt`, initialize the following:
 
-~~~ cpp
+``` cpp
 CircleShape c;
 bool hasDrawn = false;
 std::vector<decltype(Mouse::getPosition())> cpos;
-~~~
+```
 
 We will be using the same `CircleShape` for drawing onto the window. The
 `std::vector` is for saving all the cursor positions, again, for drawing onto
@@ -97,11 +96,11 @@ the window. Don't forget to include it!
 
 Add another case in the `switch`.
 
-~~~ cpp
+``` cpp
 case Event::MouseButtonReleased:
     cpos.push_back(Mouse::getPosition() - w.getPosition());
     break;
-~~~
+```
 
 The reason why we have to subtract the window position from the mouse position
 is that the mouse position is relative to the monitor/screen, and not the
@@ -110,20 +109,20 @@ canvas.
 Now, in-between the `w.clear()` and `w.display()`, we are gonna start drawing
 the circles.
 
-~~~ cpp
+``` cpp
 for (auto p : cpos) {
     c.setPosition(p.x, p.y);
     w.draw(c);
 }
-~~~
+```
 
 Remember to initialize the `CircleShape`, lest you won't be able to actually see
 it, even if you click a whole bunch.
 
-~~~ cpp
+``` cpp
 c.setFillColor(Color::White);
 c.setRadius(10);
-~~~
+```
 
 For more documentation on what aspects of the circle you can change, [consult
 the documentation][circledocs].
@@ -145,7 +144,7 @@ add unit vectors to our current starting position, we will need to know when we
 hit the circles. The most pixel-perfect way to do it would be to use an array
 look-up.
 
-~~~ cpp
+``` cpp
 // Draw line with raycasting
 VertexArray vs(Lines, 2);
 vs[0].position = start;
@@ -155,22 +154,22 @@ vs[1].position = raycast(start,
 vs[0].color = Color::Red;
 vs[1].color = Color::Red;
 w.draw(vs);
-~~~
+```
 
 Let's actually create the `raycast` function.
 
-~~~ cpp
+``` cpp
 Vector2f raycast(Vector2f start, Vector2f mouse, Image img) {
 }
-~~~
+```
 
 First, we will get the vector that goes from the start to the mouse, and
 normalize it.
 
-~~~ cpp
+``` cpp
 Vector2f u = mouse - start;
 u /= v2fNorm(u);
-~~~
+```
 
 The function `float v2fNorm(Vector2f)` grabs the norm of the vector, and will
 be left as an exercise to the reader (this is sounding like one of them
@@ -179,7 +178,7 @@ textbooks already).
 We will use `sf::Rect<float>` to check if the point (and the points after it)
 is within the bounds of the canvas.
 
-~~~ cpp
+``` cpp
 Rect<float> r(Vector2f(0, 0), (Vector2f) img.getSize());
 while (r.contains(start.x, start.y)) {
     if (img.getPixel(start.x, start.y) != Color::Black &&
@@ -190,7 +189,7 @@ while (r.contains(start.x, start.y)) {
 
     start += u;
 }
-~~~
+```
 
 The code above checks to see if the pixel is neither black nor red. In this
 example, the canvas has a black background, and the line is drawn in red, hence
@@ -211,18 +210,18 @@ Obtaining the entire image buffer of the canvas can be extremely time-consuming;
 it is proportionate to the size of the canvas. Let's add a few more variables
 to the start of `int main()`.
 
-~~~ cpp
+``` cpp
 Texture wt;
 Image img;
-~~~
+```
 
 And we initialize them.
 
-~~~ cpp
+``` cpp
 wt.create(w.getSize().x, w.getSize().y);
 wt.update(w);
 img = wt.copyToImage();
-~~~
+```
 
 This is just how they do things in SFML. First, you create an `sf::Texture` to
 hold the graphics displayed on the canvas. Then, you convert the texture to an

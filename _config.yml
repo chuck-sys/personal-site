@@ -5,7 +5,6 @@ description: > # This means to ignore newlines until "baseurl:"
   learnt, or some tutorials, updates, or whatever.
 baseurl: "" # The subpath of your site, e.g. /blog/
 url: "http://cheukyin699.github.io" # The base hostname & protocol for your site
-issues: "https://github.com/cheukyin699/cheukyin699.github.io/issues"
 
 # Usernames
 twitter_username: chucksys
@@ -14,10 +13,6 @@ github_username:  cheukyin699
 # SASS
 sass:
     style: compressed
-
-# Pagination
-paginate: 9
-paginate_path: "/page:num"
 
 # Build settings
 # Syntax highlighter
@@ -33,4 +28,5 @@ exclude: ['Gemfile', 'config.ru', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefil
 plugins:
     - jekyll-sitemap
     - jemoji
-    - jekyll-paginate
+    - jekyll-seo-tag
+    - jekyll-coffeescript

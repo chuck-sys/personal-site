@@ -17,7 +17,7 @@ board, and gain a few extra points. It can wreck people who don't know them
 
 Here are all 124 of them. Remember them by heart!
 
-~~~
+```
 aa ab ad ae ag ah ai al am an ar as at aw ax ay
 ba be bi bo by
 ch
@@ -43,4 +43,4 @@ we wo
 xi xu
 ya ye yo yu
 za zo
-~~~
+```

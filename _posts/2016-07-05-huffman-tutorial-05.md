@@ -68,7 +68,7 @@ endianness - the differences between big and little endian. Some systems (like
 mine) used little endian, meaning that some data-types (such as words) are
 stored with the least significant byte in the smallest address:
 
-~~~
+```
 Original Data: 0xABCDEF
 
 LITTLE ENDIAN
@@ -80,7 +80,7 @@ BIG ENDIAN
 ----------
 Address: 0000 | 0001 | 0002
 Data:      AB |   CD |   EF
-~~~
+```
 
 Hmmm... this sounds interesting. It is something that I know about, that I have
 a little experience in. Looks like an idea for the next tutorial/walkthrough....

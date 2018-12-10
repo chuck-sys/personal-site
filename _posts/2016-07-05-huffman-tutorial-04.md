@@ -107,13 +107,13 @@ Now, the question becomes *how* can you do that. You shift the `1` by whatever
 the counter is. ***Note that you may have to tinker around with how much you
 shift by.***
 
-~~~ cpp
+``` cpp
 string bs = "01001100";
 char byte = 0;
 for (unsigned i = 0; i < 8; i++) {
     if (bs[i] == '1') byte |= 1 << i;
 }
-~~~
+```
 
 That was a small snippet of how it is done. I didn't use `std::string`, and
 instead opted to use a vector of bits (`bool`). For some systems, a

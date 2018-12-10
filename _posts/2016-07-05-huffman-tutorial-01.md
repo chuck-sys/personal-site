@@ -15,7 +15,7 @@ Let's start off with a basic setup, which includes a nice directory structure
 and a neat `Makefile`. *What are you looking at me for?* Alright, here is my
 setup:
 
-~~~ sh
+``` sh
 huffman/                        # Root directory
 ├── dec/                        # Source for decoder
 ├── enc/                        # Source for encoder
@@ -24,7 +24,7 @@ huffman/                        # Root directory
     └── t8.shakespeare.txt      # Shakespeare :)
 ├── Makefile
 ├── README.md
-~~~
+```
 
 Pretty straight-forward. Just make it easier for yourself.
 
@@ -44,7 +44,7 @@ Here are some user stories for the project:
 
 You know that that's one of the prerequisites, right? Here is the gist of it.
 
-~~~ cpp
+``` cpp
 #include <fstream>
 
 using namespace std;
@@ -62,7 +62,7 @@ int main() {
     ifile.close();
     return 0;
 }
-~~~
+```
 
 > Disclaimer: The above code is just a snippet, and is not guaranteed to work.
 

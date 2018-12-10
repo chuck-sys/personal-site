@@ -14,13 +14,13 @@ useful. Say you are currently saving `ING`. This makes it so that you only need
 to make a 4-letter word with the rest of your tiles instead of a 7 letter word.
 Common beginnings/endings that are easy to make words with are:
 
-~~~
+```
 -ING
 -ERS
 -IER
 DE-
 RE-
-~~~
+```
 
 The most common one that you would actually run into is `-ERS`. You can see why
 it is so useful: If you can't place it on the board, simply rearrange the `ER`

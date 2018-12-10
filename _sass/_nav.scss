@@ -1,0 +1,30 @@
+nav {
+    width: auto;
+    height: $title-font-size;
+    padding: 1em 4em;
+    font-size: $title-font-size;
+    letter-spacing: 1px;
+    background: $nav-bg;
+
+    a.nav-title {
+        float: left;
+        color: $heading-color;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+
+    a.nav-links {
+        float: right;
+        color: $heading-color;
+        padding: 0 0.5em;
+        margin: 0 0.5em;
+        text-decoration: none;
+        border-radius: 3px;
+
+        transition: color 0.3s;
+    }
+
+    a.nav-links:hover {
+        color: $green-color;
+    }
+}

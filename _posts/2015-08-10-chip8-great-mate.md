@@ -19,7 +19,7 @@ interpreter's.
 
 This is how I structure the interpreter:
 
-~~~
+```
 +------------+          +--------------+            +------------------+
 |            |          |   GET AND    |            |                  |
 |  READ FILE |  ______\ |   INTERPRET  |  ______\   |  UPDATE TIMERS   |
@@ -35,19 +35,19 @@ This is how I structure the interpreter:
                                                     |  ACCORDINGLY      |
                                                     |                   |
                                                     +-------------------+
-~~~
+```
 
 Nice ASCII, huh?
 
 This is how I structure the assembler:
 
-~~~
+```
 +------------+          +----------------------+           +------------------+
 |            |          |   GET AND            |           |  GENERATE OPCODES|
 |  OPEN FILE |  ______\ |   PARSE CHARACTERS   |  ______\  | BASED ON THE     |
 |            |        / |   INTO TOKENS        |        /  |    TOKENS        |
 +------------+          +----------------------+           +------------------+
-~~~
+```
 
 The disassembler is basically the interpreter, but rather than execute commands,
 it just prints out the mnemonics.

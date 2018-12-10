@@ -124,5 +124,5 @@ tasks to the group better, and learn to trust them more.
 
 [github]: https://github.com/cheukyin699/operation-omega
 [teaser]: https://youtu.be/LoFFHOdB3xo
-[graph1]: https://imgur.com/m3iFb9t.jpg
-[graph2]: https://imgur.com/y75tESB.jpg
+[graph1]: /res/images/time-week.png
+[graph2]: /res/images/total-spent.png

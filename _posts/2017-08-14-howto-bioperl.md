@@ -14,7 +14,7 @@ Say for instance you want to get the entire nucleotide sequence of a particular
 organism, but it must be split up because you only want to deal with the
 proteins, and not the entire organism. So less like this:
 
-~~~ fasta
+``` fasta
 >NC_002695.1 Escherichia coli O157:H7 str. Sakai, complete genome
 AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTCTCTGACAGCAGC
 TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
@@ -36,11 +36,11 @@ GCTTTCCTACTTCGGCGCTAAAGTTCTTCACCCCCGCACCATTACCCCCATCGCCCAGTTCCAGATCCCT
 TGCCTGATTAAAAATACCGGAAATCCTCAAGCTCCAGGTACGCTCATTGGTGCCAGTCGTGATGAAGACG
 
 ...
-~~~
+```
 
 And more like this:
 
-~~~ fasta
+``` fasta
 >SDY_PA01
 ATGTCTGAATTAGTTGTGTTTAAAGCAAATGAATTAGCAGTAAGCCGTTATGATCTAACTGAACATGAAA
 CCAAGCTAATTCTGTTTTGCGTTGCAAAGTTGAACCCTACAATTGAAAACCCAACAAGGGATGAATTAAC
@@ -68,7 +68,7 @@ GCTGTCCCCCTTTGACGTGGTGATATGGATGACGGATGGCTGGCCGCTGTATGAATCCCGCCTGAAGGGA
 AAGCTGCACGTAATCAGCAAGCGATATACGCAGCGAATTGAGCGGCATAACCTGAATCTGAGGCAGCACC
 TGGCACGGCTGGGACGGAAGTCGCTGTCGTTCTCAAAATCGGTGGAGCTGCATGACAAAGTCATCGGGCA
 TTATCTGAACATAAAACACTATCAATAA
-~~~
+```
 
 As you may or may not notice, these are 2 completely different organisms, but
 you get the drift.
@@ -86,7 +86,7 @@ I also don't do Biology.
 
 Start your file with the basics:
 
-~~~ perl
+``` perl
 #!/usr/bin/env perl
 use strict;
 use warnings;
@@ -94,22 +94,22 @@ use warnings;
 # We'll be getting nucleotides from GenBank database (NCBI)
 use Bio::DB::GenBank;
 use Bio::DB::Query::GenBank;
-~~~
+```
 
 To specify the specific sequence you want to get, BioPerl recommends creating
 a query object.
 
-~~~ perl
+``` perl
 my $query = "NC_002695 [ACCN] OR NC_002127 [ACCN] OR NC_002128 [ACCN]";
 my $query_obj = Bio::DB:Query::GenBank->new(-db =>    'nucleotide',
                                             -query => $query);
-~~~
+```
 
 I will be using accesion numbers to get the specific sequences. Note that the
 binary operators `OR` (other binary operators include `AND`) must be in
 uppercase. For a complete list of query fields, see [this][qfields].
 
-~~~ perl
+``` perl
 # Start querying
 my $gb = Bio::DB:GenBank->new;
 my $seq_objs = $gb->get_Stream_by_query($query_obj);
@@ -128,12 +128,12 @@ while (my $seq_obj = $seq_objs->next_seq) {
         }
     }
 }
-~~~
+```
 
 To explain the above code a bit more in depth, here is the raw text of a
 GenBank file, copied straight off of the NCBI database, features only:
 
-~~~ genbank
+``` genbank
 FEATURES             Location/Qualifiers
      source          1..5498450
                      /organism="Escherichia coli O157:H7 str. Sakai"
@@ -164,7 +164,7 @@ FEATURES             Location/Qualifiers
                      /gene="thrA"
                      /locus_tag="ECs0002"
                      /db_xref="GeneID:913388"
-~~~
+```
 
 There seems to be only one method of distinguishing genes that are proteins
 from genes that have nothing to do with the proteins: in the CDS, there is one

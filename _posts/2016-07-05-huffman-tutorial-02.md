@@ -30,7 +30,7 @@ will still have to write a custom sorting function.
 
 The `tree` that I'm talking about is actually a node with 2 children:
 
-~~~ cpp
+``` cpp
 #include <string>
 
 struct tree {
@@ -40,7 +40,7 @@ struct tree {
     tree* lhs;
     tree* rhs;
 };
-~~~
+```
 
 More specifically, a binary tree. Because of the nature of the Huffman tree,
 either both of its children will be `nullptr`, or neither. That is because we

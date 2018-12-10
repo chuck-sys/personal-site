@@ -37,7 +37,7 @@ We are just going to have a while-loop accepting keyboard input and then updatin
 
 Keeping that in mind, lets start with the most important file: `Main.cpp`
 
-~~~ cpp
+``` cpp
 #include <ncurses.h>
 #include <string>
 
@@ -65,14 +65,14 @@ int main(int argc, char* argv[])
     endwin();                       // End ncurses mode
     return 0;
 }
-~~~
+```
 
 To compile, do:
 
-~~~ sh
+``` sh
 g++ -c Main.c -o Main.o
 g++ Main.o -lncurses -o editor
-~~~
+```
 
 Or just put it in a `Makefile`.
 
@@ -85,7 +85,7 @@ The Buffer Class
 The Buffer class is going to represent a buffer of text. I'm going to use a vector of strings. It provides easy methods to insert,
 append, as well as delete lines. One string is a line of text. Create `Buffer.h`.
 
-~~~ cpp
+``` cpp
 #ifndef BUFFER_H
 #define BUFFER_H
 
@@ -112,7 +112,7 @@ public:
 };
 
 #endif
-~~~
+```
 
 
 The Editor Class
@@ -121,7 +121,7 @@ The Editor Class
 I don't like to put too many things in my `Main.cpp` file, so I put everything in other files. Create your `Editor.h`. It will be used to
 handle the keyboard inputs that we send it. It is also there to refresh the display. It will also contain a buffer.
 
-~~~ cpp
+``` cpp
 #ifndef EDITOR_H
 #define EDITOR_H
 
@@ -164,7 +164,7 @@ public:
 };
 
 #endif
-~~~
+```
 
 The `int x, y;` is just for the x and y positions on screen. The `string status` will be displayed at the bottom (or that is our
 goal).
@@ -178,19 +178,19 @@ changes.
 
 First, include the necessary header file.
 
-~~~ cpp
+``` cpp
 #include "Editor.h"
-~~~
+```
 
 Then, add this to the start of your `main` function.
 
-~~~ cpp
+``` cpp
 Editor ed;
-~~~
+```
 
 Remember the if-statements that we use to check for a filename?
 
-~~~ cpp
+``` cpp
 if(argc > 1)
 {
     fn = string(argv[1]);
@@ -200,13 +200,13 @@ else
 {
     ed = Editor();
 }
-~~~
+```
 
 We will later implement the constructors. For now, that will do.
 
 Now lets add the main while-loop. After `curses_init()`, add this.
 
-~~~ cpp
+``` cpp
 while(ed.getMode() != 'x')
 {
     ed.updateStatus();
@@ -215,7 +215,7 @@ while(ed.getMode() != 'x')
     int input = getch();                // Blocking until input
     ed.handleInput(input);
 }
-~~~
+```
 
 A small explanation: `Editor::getMode()` returns a char representing a mode. There are (currently) 3 modes.
 

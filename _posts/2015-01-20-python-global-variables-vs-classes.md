@@ -10,7 +10,7 @@ In programming class, the guys sitting next to me found this amazing thing, wher
 static class, put variables into it, and treat it as a normal variables, so that in functions, you
 do not need to call it via `global` keyword. Example:
 
-~~~ python
+``` python
 # The 'global' class
 class glo:
     val = 0
@@ -20,18 +20,18 @@ def addone(): return glo.val+1
 glo.val = addone()
 
 print glo.val
-~~~
+```
 
 Outputs:
 
-~~~
+```
 1
-~~~
+```
 
 I decided to test to see if using the static class as a 'global variable' really was more efficient
 than using global variables in functions.
 
-~~~ python
+``` python
 import time
 
 # Static 'global' class
@@ -76,14 +76,14 @@ for trys in xrange(trytimes):
 # Print results
 print "Class Test: ave: %fs, total: %fs" % (classacctime/trytimes, classacctime)
 print "Variables Test: ave: %fs, total: %fs" % (gloacctime/trytimes, gloacctime)
-~~~
+```
 
 The above code gave me the output:
 
-~~~ sh
+``` sh
 Class Test: ave: 0.009418s, total: 0.941771s
 Variables Test: ave: 0.007923s, total: 0.792300s
-~~~
+```
 
 ### Conclusion
 

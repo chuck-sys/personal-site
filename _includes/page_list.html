@@ -1,15 +1,5 @@
-{% for node in site.posts reversed %}
-  {% if group == node.group %}
-    {% if node.shortname == null %}
-      {% assign ntitle = node.title %}
-    {% else %}
-      {% assign ntitle = node.shortname %}
-    {% endif %}
-
-    {% if page.url == node.url %}
-      <li class="active"><a href="{{ node.url }}">{{ ntitle }}</a></li>
-    {% else %}
-      <li><a href="{{ node.url }}">{{ ntitle }}</a></li>
-    {% endif %}
+{% for post in site.posts reversed %}
+  {% if group == post.group %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
   {% endif %}
 {% endfor %}
