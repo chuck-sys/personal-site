@@ -6,9 +6,10 @@ categories: python testing
 tags: [python, testing, question]
 ---
 
-In programming class, the guys sitting next to me found this amazing thing, where you could setup a
-static class, put variables into it, and treat it as a normal variables, so that in functions, you
-do not need to call it via `global` keyword. Example:
+In programming class, the guys sitting next to me found this amazing thing,
+where you could setup a static class, put variables into it, and treat it as a
+normal variables, so that in functions, you do not need to call it via `global`
+keyword. Example:
 
 ``` python
 # The 'global' class
@@ -28,8 +29,8 @@ Outputs:
 1
 ```
 
-I decided to test to see if using the static class as a 'global variable' really was more efficient
-than using global variables in functions.
+I decided to test to see if using the static class as a 'global variable' really
+was more efficient than using global variables in functions.
 
 ``` python
 import time

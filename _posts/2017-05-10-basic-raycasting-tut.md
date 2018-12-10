@@ -250,11 +250,9 @@ Anyways, that's it! Think about all the other things you can do with it! If you
 can draw one line, why not draw tons of lines, and have the source `start` start
 moving?
 
-
-
 [sfml]: https://www.sfml-dev.org/
 [thattut]: https://www.sfml-dev.org/tutorials/2.4/
 [circledocs]: https://www.sfml-dev.org/documentation/2.4.2/classsf_1_1CircleShape.php
-[r01]: http://i.imgur.com/4lWQepE.png
-[r02]: http://i.imgur.com/x1OZ6u8.png
+[r01]: /res/images/raycasting-1.png
+[r02]: /res/images/raycasting-2.png
 [code]: https://github.com/cheukyin699/raycasting-tutorial1

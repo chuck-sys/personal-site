@@ -12,7 +12,6 @@ tags: [c++,Huffman,encoder,compression,headers,data]
 In this part, we'll figure out how to sketch headers for **your** Huffman
 program!
 
-
 ## Huffman Headers
 
 > Ha! Alliteration!
@@ -35,12 +34,10 @@ For the headers, you won't want them to be too big - they are already big
 enough and take up 70-80% of small, compressed files. You also don't want them
 to be too small - it would limit you. Which is why I chose option #1.
 
-
 ### Header Format
 
 Here is the header format that I use:
 
-{:.table .table-hover}
 Name | Size         | Note
 -----|--------------|----------------------------
 Size | 2 bytes      | The total size of the remaining header
@@ -48,14 +45,12 @@ Data | ????         | The character and frequencies
 
 Here is the format for an entry in the data:
 
-{:.table .table-hover}
 Name | Size (bytes) | Note
 -----|--------------|----------------------------
 Character | 1       |
 Frequency | 4       | The number of times a character appears
 
 The total size of one entry is 5 bytes.
-
 
 #### Limitations
 

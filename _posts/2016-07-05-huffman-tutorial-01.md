@@ -28,7 +28,6 @@ huffman/                        # Root directory
 
 Pretty straight-forward. Just make it easier for yourself.
 
-
 ## Features
 
 Here are some user stories for the project:
@@ -38,7 +37,6 @@ Here are some user stories for the project:
 - the user can compress and decompress files of large sizes (not unlimited)
 - the compression and decompression process should be reasonably quick
 - compression and decompression is split into 2 binary executables
-
 
 ## File Reading
 
@@ -65,7 +63,6 @@ int main() {
 ```
 
 > Disclaimer: The above code is just a snippet, and is not guaranteed to work.
-
 
 ## Assignment for This Part
 

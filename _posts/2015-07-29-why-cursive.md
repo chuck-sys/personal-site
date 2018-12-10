@@ -17,7 +17,6 @@ it or not, as long as they can read it. Let that sink in and let's move on....
 
 I'm here to tell you about some of the applications of this long lost art form.
 
-
 ### Pretty Note Taking
 
 When you have a notebook in your lap with no satisfactory flat writing surface
@@ -28,7 +27,6 @@ With cursive, well, you only lift your pen ___after___ you have finished writing
 a whole word (dotting the 'i's and crossing the 't's aren't too detrimental to
 overall writing tidiness). _And_ it would still look somewhat neat.
 
-
 ### Rough Drafts Like This One
 
 ![The Rough Draft of this very blog post][1]
@@ -36,12 +34,10 @@ overall writing tidiness). _And_ it would still look somewhat neat.
 Cursive is fun. As you can see, I now use it for most of my drafts. It's a bit
 all over the place, but whatever, it's a draft.
 
-
 ## Concluding Sentence
 
 So yeah, cursive still has it's uses. If you have any suggestions on the uses of
 cursive in modern day, feel free to, er, tell me about it. In the comments.
 Right now.
 
-
-[1]: http://i.imgur.com/JL4hNkq.jpg?1
+[1]: /res/images/cursive.jpg

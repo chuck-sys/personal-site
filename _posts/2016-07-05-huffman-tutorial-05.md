@@ -16,7 +16,6 @@ ranging from a week to half a month - on this (rather large) endeavor. And if
 you have made it through, :confetti_ball: **CONGRATULATIONS** :confetti_ball:!
 Good work. Now, here is a way to test that your encoder works: by decoding it!
 
-
 ## Quick Run-Down of How it Works
 
 Should be rather straightforward:
@@ -35,7 +34,6 @@ should reuse the code you wrote in your Huffman compression program (in
 `C/C++`'s case, use `#include` or something - try to avoid copying and
 pasting). This goes for (most likely) steps #3-4.
 
-
 ## Testing
 
 Should also be quite self-explanatory: you want to see if your Huffman
@@ -46,7 +44,6 @@ plain-text file you produced is the same with the original file.
 
 `valgrind` is your friend.
 
-
 ## Assignment for This Part
 
 - :star: create Huffman decompresser with code reuse
@@ -54,7 +51,6 @@ plain-text file you produced is the same with the original file.
 
 (:star: denotes a challenging task. :star2: denotes an even more challenging
   task.)
-
 
 ## Final Words
 
@@ -88,11 +84,5 @@ a little experience in. Looks like an idea for the next tutorial/walkthrough....
 Anyways, I hope you had as much fun making this project as I did! Hopefully,
 your teacher would award you properly, or, if not applicable, *you* would
 reward yourself with a nice healthy burst of dopamine. *~Niiiiiicce*.
-
-
-
-
-
-
 
 [c8]: https://github.com/cheukyin699/chip-8-tools

@@ -60,7 +60,6 @@ Opponent's move: 7F ZAP 35 (FIG. 1-4)
 Much better. That is much easier to recover from. What, you thought the player
 was going to miraculously get the upper hand? Of course not!
 
-
 ### Blocking
 
 So maybe your opponent has fumbled and left some bonus tiles for your taking. So
@@ -68,21 +67,14 @@ what? You can't do anything decent with the all-vowels rack that you have!
 That's when blocking comes into play: To anticipate and block moves with your
 own. This shouldn't need an example. Period.
 
-This is very useful when you know or have guessed that your opponent has a
-bingo, and you stop it from being placed. This makes for some very interesting
-[strategies][block-strat].
-
-
 ## Conclusion
 
 Just in general, avoid putting vowels next to bonus tiles, and know your
 [2-letter words][2-let-wd].
 
+[1.1]: /res/images/scrabble-1.1.png
+[1.2]: /res/images/scrabble-1.2.png
+[1.3]: /res/images/scrabble-1.3.png
+[1.4]: /res/images/scrabble-1.4.png
 
-[1.1]: http://i.imgur.com/c4x1jyd.png?1
-[1.2]: http://i.imgur.com/KDlbFLZ.png?1
-[1.3]: http://i.imgur.com/KEzQzAv.png?1
-[1.4]: http://i.imgur.com/ctSFVlR.png?1
-
-[block-strat]: #
 [2-let-wd]: /scrabble/2015/08/13/scrabble-2-letter-words.html

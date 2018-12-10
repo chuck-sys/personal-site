@@ -34,6 +34,4 @@ they cross reference that with all 7-letter words (that were also sorted in
 alphabetical order). I honestly don't have that much time for memorizing them,
 so I do this instead.
 
-
-
 [br]: #

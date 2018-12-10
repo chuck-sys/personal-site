@@ -57,11 +57,9 @@ attempt of me writing an "emulator" as well as an assembler/"compiler".
 
 I am currently working on my second emulation project: The Game Boy. It has
 significantly more instructions than the Chip-8 (8-bit instruction set compared
-to 2-bit fixed size opcode). I am still working on the LR35902 CPU (because it is the
-most straight-forward of them all). Tutorials on the subject of general
+to 2-bit fixed size opcode). I am still working on the LR35902 CPU (because it
+is the most straight-forward of them all). Tutorials on the subject of general
 emulation may come out at a later date, most likely when I finish the
 implementation of major functions of the Game Boy (probable, but unlikely).
-
-
 
 [0]: http://github.com/cheukyin699/chip-8-tools/

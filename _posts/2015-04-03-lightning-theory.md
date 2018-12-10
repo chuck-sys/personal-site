@@ -9,9 +9,8 @@ tags: [lightning,theory,visual,python,pygame]
 Introduction
 ============
 
-Every good game needs good visual effects. Here is how to do basic lightning. This only covers 2D lightning, but you could easily
-extend this to 3D.
-
+Every good game needs good visual effects. Here is how to do basic lightning.
+This only covers 2D lightning, but you could easily extend this to 3D.
 
 The Good Stuff
 ==============
@@ -68,14 +67,15 @@ Add a displacement to the coordinates of M (should be random), then link AM and 
     Sorry, your browser does not support inline SVG.
 </svg>
 
-
 Are You Done?
 =============
 
-Congratulations! You've got the basics! Now, just rinse and repeat with your new lines AM' and M'B! Recursion works wonders,
-doesn't it! Here is an implementation of this basic lightning thingy in Python and pygame!
+Congratulations! You've got the basics! Now, just rinse and repeat with your new
+lines AM' and M'B! Recursion works wonders, doesn't it! Here is an
+implementation of this basic lightning thingy in Python and pygame!
 
 <script src="https://gist.github.com/cheukyin699/f73c0bf96304ffb18d38.js"></script>
 
-This little thing has the lightning originate from the middle of the window and arc out to attack your cursor if you click on the
-screen. I made this to test the lightning concept for a tower defense game that I was inspired to create.
+This little thing has the lightning originate from the middle of the window and
+arc out to attack your cursor if you click on the screen. I made this to test
+the lightning concept for a tower defense game that I was inspired to create.

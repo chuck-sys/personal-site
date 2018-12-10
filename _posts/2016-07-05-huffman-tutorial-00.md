@@ -26,7 +26,6 @@ examples; they are based off of my original project. If this disclaimer doesn't
 discourage you, and you are still reading this, well, we're getting to the good
 part.
 
-
 ## What We'll be Building
 
 This tutorial is designed to guide you in the right direction - through my
@@ -37,14 +36,12 @@ Obviously, it is completely optional, but it does help the process of
 understanding. And of course, you have to write one if your teacher gives this
 to you as an assignment.
 
-
 ## Prerequisites
 
 An understanding of C++ syntax would be helpful in understanding the snippets
 of code presented. An understanding of linked lists and trees are also helpful.
 What this means is that you could probably get the gist of how trees work by
 reading the tutorial, but there is no guarantee. **You can skip those parts.**
-
 
 ## Flow
 
@@ -60,7 +57,6 @@ Here is what parts of the project we'll be focusing on in the next few parts:
 #### Huffman Decoder
 
 1. [code reuse and final words][p5]
-
 
 ## How Huffman Compression Works
 
@@ -86,7 +82,6 @@ about where I should put the number. I can just append the character to the
 character frequencies part of my header. It takes up slightly more space, but I
 wasn't optimizing **that** much. We'll go into this more in [part 2][p2].
 
-
 ## Assignment for This Part
 
 - know how huffman compression/decompression works
@@ -94,8 +89,6 @@ wasn't optimizing **that** much. We'll go into this more in [part 2][p2].
 
 (:star: denotes a challenging task. :star2: denotes an even more challenging
     task.)
-
-
 
 [p1]: /huffman/2016/07/05/huffman-tutorial-01.html
 [p2]: /huffman/2016/07/05/huffman-tutorial-02.html

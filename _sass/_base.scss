@@ -192,6 +192,21 @@ pre {
 }
 
 
+/**
+ * Table
+ */
+table {
+    margin: auto;
+    margin-bottom: 0.5em;
+    border-collapse: collapse;
+
+    th, td {
+        border: 1px solid $grey-color-dark;
+        padding: 0.5em 1em;
+    }
+}
+
+
 
 /**
  * Icons

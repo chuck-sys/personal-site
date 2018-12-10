@@ -14,7 +14,6 @@ convert all of it into an easily traversable tree to look things up quickly.
 Then, we are going to go through the whole tree, and construct a map to map
 every character to a string of binary digits.
 
-
 ## Character Frequencies
 
 There are 2 ways we can go about this. There are little differences between the
@@ -46,7 +45,6 @@ More specifically, a binary tree. Because of the nature of the Huffman tree,
 either both of its children will be `nullptr`, or neither. That is because we
 will be adding them by pairing them up.
 
-
 ### End of File
 
 As mentioned in [Part 0][p0], there are 2 solutions that I know of to denote
@@ -62,7 +60,6 @@ ASCII only, did I? For a more elegant solution, I suggest having a set of all
 ASCII characters used in file subtracted from a set of all ASCII characters .
 That way, you will be sure that the character the program chooses has to be
 unique.
-
 
 ## Tree Creation
 
@@ -81,7 +78,6 @@ overview of how you should do it:
 By keeping the vector sorted by character frequency, you make it easier to take
 the 2 smallest items from the vector (normally, just the first 2, depending on
 which way you sort it). Inserting is also easy with a quick insertion sort.
-
 
 ## Map Construction
 
@@ -105,7 +101,6 @@ a tad more difficult. Here is the algorithm that I've come up with:
 
 Well, I did say I wasn't going into the code... much.
 
-
 ## Assignment for This Part
 
 - take the character frequencies of characters in file and store them
@@ -118,6 +113,5 @@ Well, I did say I wasn't going into the code... much.
 
 (:star: denotes a challenging task. :star2: denotes an even more challenging
     task.)
-
 
 [p0]: /huffman/2016/07/05/huffman-tutorial-00.html

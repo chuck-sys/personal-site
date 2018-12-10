@@ -8,7 +8,6 @@ shortname: 'Part 1'
 tags: [tutorial,c++,ncurses,editor]
 ---
 
-
 Introduction
 ------------
 
@@ -16,24 +15,27 @@ I am using vim right now, and a few days ago, I thought to myself:
 
 > If they can make a terminal text editor, why can't I try?
 
-So I set out to create a small TE that is just a proof-of-concept. I am here to share my findings with the Internet. You may find
-the complete source code (with all of the small-to-big bugs) [here][1]. You may find this tutorial's source code [here][2].
+So I set out to create a small TE that is just a proof-of-concept. I am here to
+share my findings with the Internet. You may find the complete source code (with
+all of the small-to-big bugs) [here][1]. You may find this tutorial's source
+code [here][2].
 
-We are going to make a small text editor with basic saving, editing, and exiting features. You may expand it however you like.
-
+We are going to make a small text editor with basic saving, editing, and exiting
+features. You may expand it however you like.
 
 Prerequisites
 -------------
 
-This tutorial assumes adequate fluency in the C++ language, and a bit of understanding of the ncurses library.
-
+This tutorial assumes adequate fluency in the C++ language, and a bit of
+understanding of the ncurses library.
 
 So Let's Start, Shall We?
 -------------------------
 
 Let's start with how the text editor is structured.
 
-We are just going to have a while-loop accepting keyboard input and then updating the screen accordingly.
+We are just going to have a while-loop accepting keyboard input and then
+updating the screen accordingly.
 
 Keeping that in mind, lets start with the most important file: `Main.cpp`
 
@@ -78,12 +80,12 @@ Or just put it in a `Makefile`.
 
 We are going to add other things to this file later so don't lose it.
 
-
 The Buffer Class
 ----------------
 
-The Buffer class is going to represent a buffer of text. I'm going to use a vector of strings. It provides easy methods to insert,
-append, as well as delete lines. One string is a line of text. Create `Buffer.h`.
+The Buffer class is going to represent a buffer of text. I'm going to use a
+vector of strings. It provides easy methods to insert, append, as well as delete
+lines. One string is a line of text. Create `Buffer.h`.
 
 ``` cpp
 #ifndef BUFFER_H
@@ -114,12 +116,13 @@ public:
 #endif
 ```
 
-
 The Editor Class
 ----------------
 
-I don't like to put too many things in my `Main.cpp` file, so I put everything in other files. Create your `Editor.h`. It will be used to
-handle the keyboard inputs that we send it. It is also there to refresh the display. It will also contain a buffer.
+I don't like to put too many things in my `Main.cpp` file, so I put everything
+in other files. Create your `Editor.h`. It will be used to handle the keyboard
+inputs that we send it. It is also there to refresh the display. It will also
+contain a buffer.
 
 ``` cpp
 #ifndef EDITOR_H
@@ -166,15 +169,14 @@ public:
 #endif
 ```
 
-The `int x, y;` is just for the x and y positions on screen. The `string status` will be displayed at the bottom (or that is our
-goal).
-
+The `int x, y;` is just for the x and y positions on screen. The `string status`
+will be displayed at the bottom (or that is our goal).
 
 Putting Things Together
 -----------------------
 
-Now, after all this prototyping, and even though we haven't implemented anything (much), lets edit our `Main.cpp` to reflect the
-changes.
+Now, after all this prototyping, and even though we haven't implemented anything
+(much), lets edit our `Main.cpp` to reflect the changes.
 
 First, include the necessary header file.
 
@@ -217,17 +219,20 @@ while(ed.getMode() != 'x')
 }
 ```
 
-A small explanation: `Editor::getMode()` returns a char representing a mode. There are (currently) 3 modes.
+A small explanation: `Editor::getMode()` returns a char representing a mode.
+There are (currently) 3 modes.
 
 - `x`: Exit mode
 - `n`: Normal mode
 - `i`: Insert mode
 
-Exit mode exits the program by quitting the while loop. Normal mode lets you enter commands. Insert mode lets you type text and
-interact with the editor's internal buffer.
+Exit mode exits the program by quitting the while loop. Normal mode lets you
+enter commands. Insert mode lets you type text and interact with the editor's
+internal buffer.
 
-Okay, we are done the basic skeleton of the TE! Over the course of the other tutorials, you will be filling in the gaps -
-implementing every function that was declared here. You are now ready for Part 2!
+Okay, we are done the basic skeleton of the TE! Over the course of the other
+tutorials, you will be filling in the gaps - implementing every function that
+was declared here. You are now ready for Part 2!
 
 [1]: https://github.com/cheukyin699/ceditor-test/
 [2]: /res/tutorials/ncurses-ced-tut.tar.gz

@@ -8,13 +8,11 @@ shortname: 'Part 3'
 tags: [tutorial,c++,ncurses,editor]
 ---
 
-
 Welcome Back
 ------------
 
-Last time we left off, we finished the `Buffer` class. Here comes the fun stuff: Doing the functions for the `Editor` class! What
-fun! We will start immediately!
-
+Last time we left off, we finished the `Buffer` class. Here comes the fun stuff:
+Doing the functions for the `Editor` class! What fun! We will start immediately!
 
 Implementing the Editor class
 -----------------------------
@@ -29,9 +27,10 @@ Create file `Editor.cpp`. Add some includes.
 #include <sstream>          // If you are not using C++11; We'll get to that later!
 ```
 
-Let's start off with the default constructor. For me, I want the default constructor to initialize the x and y coordinates, and
-also the mode to normal `'n'`. I will want the status to be `'Normal Mode'` and the filename to be `'untitled'`. I also need to
-initialize the `Buffer` variable.
+Let's start off with the default constructor. For me, I want the default
+constructor to initialize the x and y coordinates, and also the mode to normal
+`'n'`. I will want the status to be `'Normal Mode'` and the filename to be
+`'untitled'`. I also need to initialize the `Buffer` variable.
 
 ``` cpp
 Editor::Editor()
@@ -76,7 +75,8 @@ Editor::Editor(string fn)
 }
 ```
 
-Now that we have done all that, it is time for us to get on with the core functions, starting with `Editor::updateStatus()`.
+Now that we have done all that, it is time for us to get on with the core
+functions, starting with `Editor::updateStatus()`.
 
 ``` cpp
 void Editor::updateStatus()
@@ -113,16 +113,17 @@ string Editor::tos(int i)
 }
 ```
 
-Note that this isn't necessary if you have C++11 - you just use `std::to_string(int)`. My school doesn't have it so I had to
-compensate.
-
+Note that this isn't necessary if you have C++11 - you just use
+`std::to_string(int)`. My school doesn't have it so I had to compensate.
 
 Basic Input Handling
 --------------------
 
-My input handler handles all inputs in normal mode as well as insert mode (but not exit mode, because you are exiting the
-program). This may be confusing because there are a bunch of switches, and you may be right. You could separate the input handler
-into two different functions - one for handling inputs in normal mode, the other handling inputs in insert mode.
+My input handler handles all inputs in normal mode as well as insert mode (but
+not exit mode, because you are exiting the program). This may be confusing
+because there are a bunch of switches, and you may be right. You could separate
+the input handler into two different functions - one for handling inputs in
+normal mode, the other handling inputs in insert mode.
 
 ``` cpp
 void Editor::handleInput(int c)
@@ -238,8 +239,8 @@ void Editor::handleInput(int c)
 }
 ```
 
-Whew! That sure was a lot of code! There is still a lot of stuff to implement! Let's do the `move<Direction>()` code first!
-
+Whew! That sure was a lot of code! There is still a lot of stuff to implement!
+Let's do the `move<Direction>()` code first!
 
 Moving it x2
 ------------
@@ -282,15 +283,18 @@ void Editor::moveDown()
 }
 ```
 
-Pretty straight forward, although I think I need to do a bit of explaining on the `if(x >= buff->lines[y].length())` part. You
-see, if it didn't have that, then when the user goes up or down, if the current line of text was longer than the one above/below
-it, then the cursor would be 'dangling in midair', so to speak. This little if-statement snaps the cursor to the end of the
-next/previous line if it were to be shorter than the current one.
-
+Pretty straight forward, although I think I need to do a bit of explaining on
+the `if(x >= buff->lines[y].length())` part. You see, if it didn't have that,
+then when the user goes up or down, if the current line of text was longer than
+the one above/below it, then the cursor would be 'dangling in midair', so to
+speak. This little if-statement snaps the cursor to the end of the next/previous
+line if it were to be shorter than the current one.
 
 Time to Wrap it up
 ------------------
 
-Ha! You thought that I would do all of this in only a three-parter :trollface: ? There are still more to implement, though we are past the
-half-way point already. We still need the most important function: `Editor::printBuff()`, which is the function that actually lets
-you see the buffered text! I hope I will see you in **Part 4**!
+Ha! You thought that I would do all of this in only a three-parter :trollface: ?
+There are still more to implement, though we are past the half-way point
+already. We still need the most important function: `Editor::printBuff()`, which
+is the function that actually lets you see the buffered text! I hope I will see
+you in **Part 4**!

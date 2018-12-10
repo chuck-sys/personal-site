@@ -42,7 +42,6 @@ There are a few basic bitwise operators you need to know: `AND`, `OR`, `NOT`,
 An `AND` gate only outputs `1` if all of it's inputs are `1`. Otherwise, it
 outputs `0`. Here is a truth table:
 
-{:.table}
 a | b | out
 --|---|----
 0 | 0 | 0
@@ -59,7 +58,6 @@ same for all the other ones, so it won't be brought up again.
 
 An `OR` gate outputs `1` if at least 1 of the inputs are `1`.
 
-{:.table}
 a | b | out
 --|---|----
 0 | 0 | 0
