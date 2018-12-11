@@ -42,11 +42,6 @@ While looking around at other people's projects, I found a ~400 line python Tiny
 BASIC interpretor that also can compile the source into C code. That would be
 nice to have, but we'll see when we finish the interpretor, first.
 
-## Walk-through
-
-My plan is this: First, get a list of tokens for evtesten start interpreting the
-trees and run the code.
-
 ## Highlights and Thoughts
 
 The tokenizer sometimes relies on spaces and commas to delimit different tokens.
