@@ -4,122 +4,15 @@
 @import "colors",
         "devices";
 
-.portfolio-head {
-    background: rgba(black, 0.7);
-    h1 {
-        font-family: Helvetica, sans-serif;
-        color: white;
-        padding: 1em;
-    }
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 4em;
+    color: #5fa7aa;
 }
 
-.project {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+h1 {
+    font-size: 2em;
 
-    h2 {
-        font-family: Helvetica, sans-serif;
-        letter-spacing: 1px;
-        font-variant: small-caps;
-    }
-
-    img {
-        width: 150px;
-        height: 150px;
-    }
-
-    li {
-        display: inline;
-    }
-
-    p {
-        padding: 1%;
-    }
-
-    .back {
-        position: relative !important;
-        height: 100% !important;
-        min-height: 100%;
-        padding: 1%;
-
-        h2,
-        h2 a {
-            color: $aqua-color-pale;
-            text-decoration: none;
-        }
-    }
-
-    .grey-overbg {
-        @include overbg($grey-color-light);
-    }
-
-    .down-bt {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
-
-    .btn {
-        transition: background-color 0.5s ease-in;
-        background-color: rgba(white, 0.1);
-        border: none;
-
-        &:hover {
-            background-color: rgba(white, 0.8);
-        }
+    &:first-child {
+        margin-top: 0;
     }
 }
-
-.moving-nav {
-    list-style: none;
-    position: absolute;
-
-    @include media-query($on-palm) {
-        visibility: hidden;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .hover-text {
-        position: relative;
-        top: -2em;
-        color: rgba(255, 255, 255, 0);
-        height: 1em;
-        width: 100%;
-        text-align: center;
-
-        font-family: Helvetica, sans-serif;
-        font-variant: small-caps;
-        letter-spacing: 1px;
-
-        transition: all 0.5s;
-    }
-
-    li:hover .hover-text {
-        color: rgba(255, 255, 255, 1);
-    }
-
-    li,
-    img {
-        float: left;
-        width: 200px;
-        height: 200px;
-    }
-
-    .img-overlay {
-        position: relative;
-        height: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.9);
-
-        transition: all 0.5s;
-    }
-
-    li:hover .img-overlay {
-        height: 200px;
-    }
-}
-
