@@ -6,6 +6,47 @@ portfolio: true
 notitle: true
 ---
 
+# Rocket2
+
+[![Github][r2-gh-img]][r2-gh]
+[![Build Status][r2-travis-img]][r2-travis]
+[![codecov][r2-codecov-img]][r2-codecov]
+
+[![Documentation Status][r2-rtd-img]][r2-rtd]
+[![Deployed with Inertia][r2-inertia-img]][r2-inertia]
+
+Rocket2 is a slack bot management utility used for dealing with UBC Launch Pad.
+This project was a group effort by a team of people over a few months of the
+school year. We have spent <span id="rocket2-months"></span> on it. It basically
+functions as an all-in-one command line that relays commands directed at our
+slack bot to our servers.
+
+I helped in designing and implementing our database backend, creating and
+automating documentation deployment, automating testing on our database, and
+just helping around whereever I could.
+
+For this project, I made sure to include as much documentation as possible, and
+the end result was a docs page that was nice to look at.
+
+Technologies used:
+
+- Python 3.7 with pipenv
+- Amazon DynamoDB
+- Slack
+- Docker
+- Inertia, an in-house continuous deployment system by UBC Launch Pad
+
+[r2-gh-img]: https://img.shields.io/badge/github-rocket2-green.svg?style=for-the-badge
+[r2-gh]: https://github.com/ubclaunchpad/rocket2/
+[r2-travis-img]: https://img.shields.io/travis/ubclaunchpad/rocket2.svg?style=for-the-badge
+[r2-travis]: https://travis-ci.org/ubclaunchpad/rocket2
+[r2-codecov-img]: https://img.shields.io/codecov/c/github/ubclaunchpad/rocket2.svg?style=for-the-badge
+[r2-codecov]: https://codecov.io/gh/ubclaunchpad/rocket2
+[r2-inertia-img]: https://img.shields.io/badge/deploying%20with-inertia-blue.svg?style=for-the-badge
+[r2-inertia]: https://github.com/ubclaunchpad/inertia
+[r2-rtd-img]: https://img.shields.io/readthedocs/rocket20.svg?style=for-the-badge
+[r2-rtd]: https://rocket20.readthedocs.io/en/latest/?badge=latest
+
 # Chip-8 Toolset
 
 [![Github][c8-gh-img]][c8-gh]
