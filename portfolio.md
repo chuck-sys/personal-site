@@ -17,9 +17,9 @@ notitle: true
 
 Rocket2 is a slack bot management utility used for dealing with UBC Launch Pad.
 This project was a group effort by a team of people over a few months of the
-school year. We have spent <span id="rocket2-months"></span> on it. It basically
-functions as an all-in-one command line that relays commands directed at our
-slack bot to our servers.
+school year. We have spent <span id="rocket2-months"></span> months on it. It
+basically functions as an all-in-one command line that relays commands directed
+at our slack bot to our servers.
 
 I helped in designing and implementing our database backend, creating and
 automating documentation deployment, automating testing on our database, and
