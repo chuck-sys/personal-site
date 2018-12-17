@@ -22,7 +22,16 @@ highlighter: rouge
 kramdown:
     input: GFM
     syntax_highlighter: rouge
-exclude: ['Gemfile', 'config.ru', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
+
+# Files to exclude
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - config.ru
+    - vendor
+    - Procfile
+    - Rakefile
+    - scripts/
 
 # Ruby gems
 plugins:
