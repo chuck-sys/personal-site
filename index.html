@@ -1,17 +1,17 @@
 ---
 layout: default
+metafeed: true
 ---
 
-<div class="page-content wrapper">
+<div class="wrapper">
 
-  <p class="rss-subscribe">subscribe via
-  <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
-    <i class='fa fa-rss'></i>
-  </a></p>
+  <p>
+    subscribe via <a href="/feed.xml">atom feed</a>
+  </p>
 
   {% for post in site.posts %}
-  <div class="post">
-    <small class="post-meta">{{ post.date | date_to_string }}</small>
+  <div class="apost">
+    <small class="meta">{{ post.date | date_to_string }}</small>
     <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
   </div>
   {% endfor %}

@@ -1,123 +1,36 @@
 /**
- * Site header
+ * Page and posts
  */
-.site-nav {
-    float: right;
+.post,
+.page {
+    margin: $spacing-unit 0;
 
-    .menu-icon {
-        display: none;
-    }
+    .title {
+        font-size: 42px;
+        letter-spacing: -1px;
+        line-height: 1.2;
 
-    .page-link {
-        color: $text-color;
-        line-height: $base-line-height;
-
-        // Gaps between nav items, but not on the first one
-        &:not(:first-child) {
-            margin-left: 20px;
+        @include media-query($on-laptop) {
+            font-size: 36px;
         }
     }
 
-    @include media-query($on-palm) {
-        position: absolute;
-        top: 9px;
-        right: 30px;
-        background-color: $background-color;
-        border: 1px solid $grey-color-light;
-        border-radius: 5px;
-        text-align: right;
-
-        .menu-icon {
-            display: block;
-            float: right;
-            line-height: 0;
-            padding: 10px;
-            text-align: center;
-            color: black;
-        }
-
-        .trigger {
-            clear: both;
-            display: none;
-        }
-
-        &:hover .trigger {
-            display: table;
-            padding-bottom: 5px;
-        }
-
-        .page-link {
-            display: block;
-            padding: 5px 10px;
-        }
-    }
-}
-
-
-
-/**
- * Site footer
- */
-.site-footer {
-    background: $nav-bg;
-    padding: $spacing-unit 0;
-}
-
-.footer-heading {
-    font-size: 18px;
-    margin-bottom: $spacing-unit / 2;
-}
-
-.contact-list,
-.social-media-list {
-    list-style: none;
-    text-decoration: none;
-    // float: left;
-    // margin-left: 0;
-    a {
-        color: black;
-    }
-}
-
-
-/**
- * Page content
- */
-.page-content {
-    padding-top: $spacing-unit;
-    padding-bottom: $spacing-unit;
-}
-
-.page-heading {
-    font-size: 20px;
-}
-
-.post {
-    margin-bottom: 0.5em;
-    .post-meta {
+    .meta {
         margin-right: 1em;
         font-variant: small-caps;
         color: $grey-color;
     }
+
 }
 
 /**
- * Posts
+ * Post entries
  */
-.post-header {
-    margin-bottom: $spacing-unit;
-}
+.apost {
+    margin: 0.3em 0;
+    letter-spacing: 1px;
 
-.post-title {
-    font-size: 42px;
-    letter-spacing: -1px;
-    line-height: 1.2;
-
-    @include media-query($on-laptop) {
-        font-size: 36px;
+    .meta {
+        font-variant: small-caps;
     }
-}
-
-.post-content {
-    margin-bottom: $spacing-unit;
 }

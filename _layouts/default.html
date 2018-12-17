@@ -4,6 +4,10 @@
   <head>
     {% include head.html %}
     {% seo %}
+
+    {% if page.metafeed %}
+    {% feed_meta %}
+    {% endif %}
   <head>
 
   <body>
