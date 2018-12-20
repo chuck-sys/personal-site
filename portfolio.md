@@ -47,6 +47,38 @@ Technologies used:
 [r2-rtd-img]: https://img.shields.io/readthedocs/rocket20.svg?style=for-the-badge
 [r2-rtd]: https://rocket20.readthedocs.io/en/latest/?badge=latest
 
+# Y86 Disassembler
+
+[![Github][y86-gh-img]][y86-gh]
+
+This Y86 disassembler was created for the sole purpose of making [one of my labs
+more readable][cpsc121-lab]. Y86 is a super-simple CPU with a set of
+super-simple instructions that you could probably easily(ish) implement as a
+student with "basic(ish)" logic gates. Since reading machine code (even in
+hexadecimal format) is extremely tedious, I created this disassembler to help
+turn them all into slightly better abstractions.
+
+This was written in Rust because I didn't want many students to be able to mooch
+off of my work.
+
+Output for sample file:
+
+```
+00: MOV rf & r2 <= 00000001
+06: MOV rf & r1 <= 00000005
+0c: MOV rf & r0 <= 00000000
+12: AND r1, r1
+14: JLE 00000022
+19: ADD r1, r0
+1b: SUB r2, r1
+1d: JMP 00000012
+22: HALT
+```
+
+[y86-gh-img]: https://img.shields.io/badge/github-cpsc121--decomp-green.svg?style=for-the-badge
+[y86-gh]: https://github.com/cheukyin699/cpsc121-decomp
+[cpsc121-lab]: https://www.ugrad.cs.ubc.ca/~cs121/2018W1/Labs/Lab%209/lab9.pdf
+
 # Chip-8 Toolset
 
 [![Github][c8-gh-img]][c8-gh]
