@@ -44,8 +44,8 @@ Technologies used:
 [r2-codecov]: https://codecov.io/gh/ubclaunchpad/rocket2
 [r2-inertia-img]: https://img.shields.io/badge/deploying%20with-inertia-blue.svg?style=for-the-badge
 [r2-inertia]: https://github.com/ubclaunchpad/inertia
-[r2-rtd-img]: https://img.shields.io/readthedocs/rocket20.svg?style=for-the-badge
-[r2-rtd]: https://rocket20.readthedocs.io/en/latest/?badge=latest
+[r2-rtd-img]: https://img.shields.io/readthedocs/rocket2.svg?style=for-the-badge
+[r2-rtd]: https://rocket2.readthedocs.io/en/latest/?badge=latest
 
 # Y86 Disassembler
 
