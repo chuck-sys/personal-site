@@ -8,12 +8,12 @@ notitle: true
 
 # Rocket2
 
+[![Build Status][r2-ghactions-img]][r2-gh]
 [![Github][r2-gh-img]][r2-gh]
-[![Build Status][r2-travis-img]][r2-travis]
 [![codecov][r2-codecov-img]][r2-codecov]
 
 [![Documentation Status][r2-rtd-img]][r2-rtd]
-[![Deployed with Inertia][r2-inertia-img]][r2-inertia]
+[![Website is online?][r2-online-img]][r2-online]
 
 Rocket2 is a slack bot management utility used for dealing with UBC Launch Pad.
 This project was a group effort by a team of people over a few months of the
@@ -25,6 +25,11 @@ I helped in designing and implementing our database backend, creating and
 automating documentation deployment, automating testing on our database, and
 just helping around whereever I could.
 
+I also had the pleasure of deploying the project for our club's use, which gave
+me a bit of experience in the things that happen when you deploy a project,
+such as finding bugs that you would never expect to find, and trying to fix
+the broken things as quickly as possible.
+
 For this project, I made sure to include as much documentation as possible, and
 the end result was a docs page that was nice to look at.
 
@@ -32,52 +37,57 @@ Technologies used:
 
 - Python 3.7 with pipenv
 - Amazon DynamoDB
-- Slack
-- Docker
-- Inertia, an in-house continuous deployment system by UBC Launch Pad
+- Slack and Github libraries
+- Lots of linting and `mypy`, a static type checker
 
 [r2-gh-img]: https://img.shields.io/badge/github-rocket2-green.svg?style=for-the-badge
 [r2-gh]: https://github.com/ubclaunchpad/rocket2/
-[r2-travis-img]: https://img.shields.io/travis/ubclaunchpad/rocket2.svg?style=for-the-badge
-[r2-travis]: https://travis-ci.org/ubclaunchpad/rocket2
+[r2-ghactions-img]: https://github.com/ubclaunchpad/rocket2/workflows/Python%20build%20and%20test/badge.svg
 [r2-codecov-img]: https://img.shields.io/codecov/c/github/ubclaunchpad/rocket2.svg?style=for-the-badge
 [r2-codecov]: https://codecov.io/gh/ubclaunchpad/rocket2
 [r2-inertia-img]: https://img.shields.io/badge/deploying%20with-inertia-blue.svg?style=for-the-badge
 [r2-inertia]: https://github.com/ubclaunchpad/inertia
 [r2-rtd-img]: https://img.shields.io/readthedocs/rocket2.svg?style=for-the-badge
 [r2-rtd]: https://rocket2.readthedocs.io/en/latest/?badge=latest
+[r2-online-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fubclp-rocket2.herokuapp.com%2F
+[r2-online]: https://ubclp-rocket2.herokuapp.com/
 
-# Y86 Disassembler
+# Tom's Parable
 
-[![Github][y86-gh-img]][y86-gh]
+[![Github][tp-gh-img]][tp-gh]
+[![Youtube trailer][tp-trailer-img]][tp-trailer]
 
-This Y86 disassembler was created for the sole purpose of making [one of my labs
-more readable][cpsc121-lab]. Y86 is a super-simple CPU with a set of
-super-simple instructions that you could probably easily(ish) implement as a
-student with "basic(ish)" logic gates. Since reading machine code (even in
-hexadecimal format) is extremely tedious, I created this disassembler to help
-turn them all into slightly better abstractions.
+This is, to this point, the only group programming project consisting of 4
+people that I'm proud of. Tom's Parable is a game where you investigate a
+murder mystery within a university similar to Trinity Western. The game was
+made almost completely from scratch in Unity (apart from a JSON deserializer
+from the internet). I was the only programmer in the project, and thus designed
+the architecture, mechanics, and most of the experience.
 
-This was written in Rust because I didn't want many students to be able to mooch
-off of my work.
+This project is fairly modular in that all the dialog is handled with JSON
+files. This means that you can easily change the story by adding or subtracting
+dialog from the corresponding JSON files. A basic control system is also
+implemented with the JSON, so one could add new rooms and the dialog for the
+rooms separately.
 
-Output for sample file:
+Feel free to [download][tp-downloadexe] the latest (and only usable) release
+and play around with it a little. Windows only.
 
-```
-00: MOV rf & r2 <= 00000001
-06: MOV rf & r1 <= 00000005
-0c: MOV rf & r0 <= 00000000
-12: AND r1, r1
-14: JLE 00000022
-19: ADD r1, r0
-1b: SUB r2, r1
-1d: JMP 00000012
-22: HALT
-```
+[![Tom's Parable title screen][tp-title-thumb]][tp-title-img]
+[![Tom's Parable title screen][tp-room-thumb]][tp-room-img]
+[![Tom's Parable title screen][tp-dead-thumb]][tp-dead-img]
 
-[y86-gh-img]: https://img.shields.io/badge/github-cpsc121--decomp-green.svg?style=for-the-badge
-[y86-gh]: https://github.com/cheukyin699/cpsc121-decomp
-[cpsc121-lab]: https://www.ugrad.cs.ubc.ca/~cs121/2018W1/Labs/Lab%209/lab9.pdf
+[tp-gh-img]: https://img.shields.io/badge/github-operation--omega-green.svg?style=for-the-badge
+[tp-gh]: https://github.com/cheukyin699/operation-omega/
+[tp-trailer-img]: https://img.shields.io/badge/trailer-youtube-red?style=for-the-badge
+[tp-trailer]: https://youtu.be/LoFFHOdB3xo
+[tp-downloadexe]: https://github.com/cheukyin699/operation-omega/releases/tag/v1.0.0
+[tp-title-thumb]: /res/images/portfolio/thumb/tp-titlescreen.png
+[tp-room-thumb]: /res/images/portfolio/thumb/tp-room.png
+[tp-dead-thumb]: /res/images/portfolio/thumb/tp-dead.png
+[tp-title-img]: /res/images/portfolio/tp-titlescreen.png
+[tp-room-img]: /res/images/portfolio/tp-room.png
+[tp-dead-img]: /res/images/portfolio/tp-dead.png
 
 # Chip-8 Toolset
 
