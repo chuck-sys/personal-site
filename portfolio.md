@@ -12,6 +12,7 @@ notitle: true
 [![Github][r2-gh-img]][r2-gh]
 [![codecov][r2-codecov-img]][r2-codecov]
 
+[![Inertia][r2-inertia-img]][r2-inertia]
 [![Documentation Status][r2-rtd-img]][r2-rtd]
 [![Website is online?][r2-online-img]][r2-online]
 
@@ -30,7 +31,7 @@ me a bit of experience in the things that happen when you deploy a project,
 such as finding bugs that you would never expect to find, and trying to fix
 the broken things as quickly as possible.
 
-For this project, I made sure to include as much documentation as possible, and
+For this project, we made sure to include as much documentation as possible, and
 the end result was a docs page that was nice to look at.
 
 Technologies used:
@@ -39,18 +40,21 @@ Technologies used:
 - Amazon DynamoDB
 - Slack and Github libraries
 - Lots of linting and `mypy`, a static type checker
+- Inertia
+- Docker and Docker compose
 
 [r2-gh-img]: https://img.shields.io/badge/github-rocket2-green.svg?style=for-the-badge
 [r2-gh]: https://github.com/ubclaunchpad/rocket2/
 [r2-ghactions-img]: https://github.com/ubclaunchpad/rocket2/workflows/Python%20build%20and%20test/badge.svg
+[r2-ghactions]: https://github.com/ubclaunchpad/rocket2/actions
 [r2-codecov-img]: https://img.shields.io/codecov/c/github/ubclaunchpad/rocket2.svg?style=for-the-badge
 [r2-codecov]: https://codecov.io/gh/ubclaunchpad/rocket2
 [r2-inertia-img]: https://img.shields.io/badge/deploying%20with-inertia-blue.svg?style=for-the-badge
 [r2-inertia]: https://github.com/ubclaunchpad/inertia
 [r2-rtd-img]: https://img.shields.io/readthedocs/rocket2.svg?style=for-the-badge
 [r2-rtd]: https://rocket2.readthedocs.io/en/latest/?badge=latest
-[r2-online-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fubclp-rocket2.herokuapp.com%2F
-[r2-online]: https://ubclp-rocket2.herokuapp.com/
+[r2-online-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Frocket2.ubclaunchpad.com%2F
+[r2-online]: https://rocket2.ubclaunchpad.com/
 
 # Tom's Parable
 
