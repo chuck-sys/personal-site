@@ -12,7 +12,7 @@ metafeed: true
   {% for post in site.posts %}
   <div class="apost">
     <small class="meta">{{ post.date | date_to_string }}</small>
-    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    <a href="{{ post.url }}">{{ post.title }}</a>
   </div>
   {% endfor %}
 
