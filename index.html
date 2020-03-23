@@ -5,10 +5,6 @@ metafeed: true
 
 <div class="wrapper">
 
-  <p>
-    subscribe via <a href="/feed.xml">atom feed</a>
-  </p>
-
   {% for post in site.posts %}
   <div class="apost">
     <small class="meta">{{ post.date | date_to_string }}</small>
