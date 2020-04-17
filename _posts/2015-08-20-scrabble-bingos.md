@@ -25,13 +25,11 @@ RE-
 The most common one that you would actually run into is `-ERS`. You can see why
 it is so useful: If you can't place it on the board, simply rearrange the `ER`
 to the `RE-`. There are, of course, times where you should save your letters,
-and times where it simply isn't worth your trouble. If you have a [balanced
-rack][br], you should probably save them. If you have an imbalanced rack, well,
+and times where it simply isn't worth your trouble. If you have a balanced
+rack, you should probably save them. If you have an imbalanced rack, well,
 just use up as many tiles as you can and don't try to save them.
 
 Experts don't do just that - they sort their tiles in alphabetical order, then,
 they cross reference that with all 7-letter words (that were also sorted in
 alphabetical order). I honestly don't have that much time for memorizing them,
 so I do this instead.
-
-[br]: #

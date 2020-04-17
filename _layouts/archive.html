@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<div class="wrapper">
+
+  <article class="page">
+    <h1>Archive of posts with {{ page.type }} '{{ page.title }}'</h1>
+
+    {% assign posts = page.posts %}
+    {% include post_list.html %}
+  </article>
+</div>

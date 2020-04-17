@@ -3,7 +3,16 @@ title: Cheuk's Blog
 tagline: Student • Programmer • Writer
 description: Student • Programmer • Writer
 baseurl: "" # The subpath of your site, e.g. /blog/
-url: "http://cheukyin699.github.io" # The base hostname & protocol for your site
+# url: "http://cheukyin699.github.io" # The base hostname & protocol for your site
+
+# Ruby gems
+plugins:
+    - jekyll-feed
+    - jekyll-seo-tag
+    - jekyll-sitemap
+    - jekyll-paginate
+    - jekyll-archives
+    - jemoji
 
 # Usernames
 twitter_username: chucksys
@@ -22,6 +31,12 @@ kramdown:
     input: GFM
     syntax_highlighter: rouge
 
+paginate: 15
+
+jekyll-archives:
+    enabled: [tags]
+    slug_mode: none
+
 # Files to exclude
 exclude:
     - Gemfile
@@ -30,12 +45,5 @@ exclude:
     - vendor
     - Procfile
     - Rakefile
+    - .travis.yml
     - scripts/
-
-# Ruby gems
-plugins:
-    - jekyll-coffeescript
-    - jekyll-feed
-    - jekyll-seo-tag
-    - jekyll-sitemap
-    - jemoji

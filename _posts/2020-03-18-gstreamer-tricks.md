@@ -68,7 +68,7 @@ gst-launch-0.10 souphttpsrc location="http://<URL>/audio.wav" is-live=true !
 ## Streaming audio from PulseAudio device to computer
 
 For the cases where everyone tells you to use
-[meet.google.com](meet.google.com) for meetings and you have a USB microphone
+[meet.google.com](https://meet.google.com) for meetings and you have a USB microphone
 and want to join but for some reason Google doesn't recognize your USB
 microphone but for some other reason recognizes the sounds your device makes
 (system monitor) **even though** other sites that test microphone have no

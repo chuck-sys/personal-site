@@ -6,8 +6,6 @@ category: review
 tags: [review,deemo,apps,games]
 ---
 
-![](http://www.rayark.com/g/deemo/res/img/index_pic.png)
-
 > Never left without saying goodbye
 
 __Deemo__, the rhythm-tapping mobile game, with a unorthodox storyline:
