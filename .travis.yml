@@ -1,26 +1,22 @@
 language: ruby
 rvm:
-    - 2.6.5
-
+- 2.6.5
 script: scripts/cibuild.sh
-
 deploy:
-    local-dir: './_site'
-    provider: pages
-    skip_cleanup: true
-    github_token: "$GITHUB_TOKEN"
-    keep_history: true
-    on:
-        branch: master
-
+  local-dir: "./_site"
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  keep_history: true
+  on:
+    branch: master
 env:
-    global:
-        - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
-
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: ZYkHTJZloRT8dxl143H44EUedFV9T77RyteyE5g3yDsX7gHac0cO22Eu2G0SUxjyRUr+KdFL9pSEmqOpPWGEyIndVX9YDr10tFYudtOYX/8Y22ff+H9iI53oOJlcfz0Rkap4K2HlJ4a5c4QiTCpbuKhstQO/WUTVp0bd2flG0R6P9L72ikmD4h7YJ0Wb9SS8Su/he7YqWpLFz9OfmyQ4hgJUyngR+deLpMihcs3eyfImjZgFWwbkmXozCuaMdKjMSZvnmTibVljC1hmGFgkSn2yuD9k+7KG8udpTtFmDlr01by8Zk2Twrrz9oUYx8zwmZEkiGdyeaqTasN9OV+7qlDNWpVoAvSolUK4YadrHzmYxLG/EhetjJxW8NtW2NhQqTttc86in+RvZ3lVJj3d37sncUs2/GKH6GyX2bzf878gacwss+E2HcNAlgWKqevUyqfyjXlccusQ7XBS0Pi0bq8O1AAdiug6GDjydITlqAbUKQJNtLHo+mxRDQVDFk/A0IgVmCs1q6e1GEUAYYqy0SiCG1TRDEsrP61M85toiyNpHEqO01lW9/65Hc9YtbzLN90cYyZKuW5nB0++C71LnnxDVHEU7dNbu0a/7XiNGNEtHsJqRrCswtldbcsMddAexyB2GYdXon8PrrLWDaPIiDmMS3693mx9Ghqb+BeQYD2M=
 addons:
-    apt:
-        packages:
-            - libcurl4-openssl-dev
-        sudo: false # route your build to the container-based infrastructure for a faster build
-        cache: bundler # caching bundler gem packages will speed up build
-
+  apt:
+    packages:
+    - libcurl4-openssl-dev
+    sudo: false
+    cache: bundler
