@@ -55,6 +55,42 @@ Technologies used:
 [r2-online-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Frocket2.ubclaunchpad.com%2F
 [r2-online]: https://rocket2.ubclaunchpad.com/
 
+# Graph Visualizer
+
+[![Github][gv-gh-img]][gv-gh]
+[![Website][gv-web-img]][gv-web]
+
+A small project that spiralled to a medium-sized project. Spawned from the idea
+of trying to draw the mutual friendships between my Facebook friends. Seeing
+that there were no good and free online graphing tools available, I decided to
+make my own.
+
+This project makes use of 2 libraries: p5js to draw the graphs, and matterjs
+for physics. I chose to strap a physics engine to this project because it made
+allocating space and handling collision for the nodes and edges of a graph
+trivial.
+
+The minor amount of DOM manipulation is done with pure JavaScript instead of
+other external libraries to decrease bloat.
+
+I experimented with UX by adding tutorials that trigger when you do certain
+actions. For example, a tutorial would trigger when you delete a node, telling
+you how to delete edges; the tutorial won't trigger if you have already deleted
+an edge.
+
+[![A small graph][gv-small-thumb]][gv-small-img]
+[![A bigger graph][gv-big-thumb]][gv-big-img]
+
+[gv-gh-img]: https://img.shields.io/badge/github-graph--visualizer-green.svg?style=for-the-badge
+[gv-gh]: https://github.com/cheukyin699/graph-viz-js
+[gv-web-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2f%2Fgraphviz.cheuksblog.ca
+[gv-web]: https://graphviz.cheuksblog.ca
+
+[gv-small-thumb]: /res/images/portfolio/thumb/gv-small.png
+[gv-small-img]: /res/images/portfolio/gv-small.png
+[gv-big-thumb]: /res/images/portfolio/thumb/gv-big.png
+[gv-big-img]: /res/images/portfolio/gv-big.png
+
 # Tom's Parable
 
 [![Github][tp-gh-img]][tp-gh]
@@ -156,37 +192,6 @@ what counts. And besides, this was just a teaching tool.
 [tb-gal-t1]: /res/images/portfolio/thumb/tbasic_pmpt.jpg
 [tb-gal-1]: /res/images/portfolio/tbasic_pmpt.jpg
 
-# Cellular Automata
-
-[![Github][ca-gh-img]][ca-gh]
-
-Cellular Automata was originally started when my teacher asked me to create a
-Game of Life game with Python and pyFLTK. So of course I wanted to extend it. I
-actually made 2 - one in Python and another in C++ with FLTK and lua. This is
-the one in C++.
-
-Cellular Automata allows you to play around with different types of cellular
-automata, such as Game of Life, HighLife, Maze, etc.. You can even make your own
-rules and experiment with them yourself.  It can save and load stamps, and even
-supports lua scripting to make it easier to generate structures and configure
-preferences and settings.
-
-By cross compiling, I generated a Windows executable for windows users so they
-can use it too.
-
-[![Smiley Face][ca-gal-t1]][ca-gal-1]
-[![Maze][ca-gal-t2]][ca-gal-2]
-[![Lua Scripting][ca-gal-t3]][ca-gal-3]
-
-[ca-gh-img]: https://img.shields.io/badge/github-Cellular_Automata-green.svg?style=for-the-badge
-[ca-gh]: https://github.com/cheukyin699/Cellular_Automata
-[ca-gal-t1]: /res/images/portfolio/thumb/casmiley.png
-[ca-gal-t2]: /res/images/portfolio/thumb/maze.png
-[ca-gal-t3]: /res/images/portfolio/thumb/lua.png
-[ca-gal-1]: /res/images/portfolio/casmiley.png
-[ca-gal-2]: /res/images/portfolio/maze.png
-[ca-gal-3]: /res/images/portfolio/lua.png
-
 # Tower Defense
 
 [![Github][td-gh-img]][td-gh]
@@ -222,11 +227,3 @@ like pyFLTK's.
 [td-gal-3]: /res/images/portfolio/td-sandboxplay1.jpg
 [td-gal-4]: /res/images/portfolio/td-sandboxplay2.jpg
 [td-gal-5]: /res/images/portfolio/td-fpplaying.jpg
-
-# Websites I've Worked on
-
-- [El-Rayes Foundation][web-erf]
-- [H.R. Mental Wellness Center][web-hrmwc]
-
-[web-erf]: http://elrayesfoundation.org/
-[web-hrmwc]: http://mentalwellnessbc.ca/
