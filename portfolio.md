@@ -5,6 +5,16 @@ permalink: /portfolio/
 notitle: true
 ---
 
+<style>
+h1 {
+	margin-top: 50vh;
+}
+
+h1:first-of-type {
+	margin-top: 0;
+}
+</style>
+
 # Rocket2
 
 [![Build Status][r2-ghactions-img]][r2-gh]
@@ -42,6 +52,8 @@ Technologies used:
 - Inertia
 - Docker and Docker compose
 
+[Link to in-depth article on the project][r2-medium].
+
 [r2-gh-img]: https://img.shields.io/badge/github-rocket2-green.svg?style=for-the-badge
 [r2-gh]: https://github.com/ubclaunchpad/rocket2/
 [r2-ghactions-img]: https://github.com/ubclaunchpad/rocket2/workflows/Python%20build%20and%20test/badge.svg
@@ -54,6 +66,7 @@ Technologies used:
 [r2-rtd]: https://rocket2.readthedocs.io/en/latest/?badge=latest
 [r2-online-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Frocket2.ubclaunchpad.com%2F
 [r2-online]: https://rocket2.ubclaunchpad.com/
+[r2-medium]: https://medium.com/ubc-launch-pad-software-engineering-blog/rocket-2-and-the-importance-of-good-software-development-practices-documentation-and-testing-fe6b7236fce0
 
 # Graph Visualizer
 
