@@ -68,6 +68,38 @@ Technologies used:
 [r2-online]: https://rocket2.ubclaunchpad.com/
 [r2-medium]: https://medium.com/ubc-launch-pad-software-engineering-blog/rocket-2-and-the-importance-of-good-software-development-practices-documentation-and-testing-fe6b7236fce0
 
+# Jeopardy
+
+[![Gitlab][jpd-gl-img]][jpd-gl]
+[![Website][jpd-web-img]][jpd-web]
+[![Youtube][jpd-yt-img]][jpd-yt]
+
+During COVID-19 quarantine, we played games with friends/fellowship over Zoom.
+I had my first game of Jeopardy over Zoom. It went adequately well, and the
+game was presented over PowerPoint. But that got me thinking: what if there was
+a more efficient way to create, share, and present Jeopardy-style games? And
+that's how this little project was born. Seeing that there was no good Jeopardy
+editor/player, I decided to make my own.
+
+Technologies used:
+
+- VueJS
+- Typescript
+
+I wanted the tool to be simple and cross-platform so that everyone could easily
+use it, which is why I made it a web-based serverless app. I placed heavy
+emphasis on the user experience, which is why I took strides to have a few
+people (who have also made Jeopardy games) test it out without help and gather
+feedback. The feedback proved to be extremely valuable in improving the
+ease-of-use of the app.
+
+[jpd-gl-img]: https://img.shields.io/badge/gitlab-graph--visualizer-green.svg?style=for-the-badge
+[jpd-gl]: https://gitlab.com/chucksys/jeopardy-vue
+[jpd-web-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2f%2Fjeopardy.cheuksblog.ca
+[jpd-web]: https://jeopardy.cheuksblog.ca
+[jpd-yt-img]: https://img.shields.io/badge/video-youtube-red?style=for-the-badge
+[jpd-yt]: https://youtu.be/RnRrs5neEMo
+
 # Graph Visualizer
 
 [![Github][gv-gh-img]][gv-gh]
