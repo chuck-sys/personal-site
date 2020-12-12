@@ -18,7 +18,6 @@ body {
     font-size: $base-font-size;
     line-height: $base-line-height;
     font-weight: 300;
-    text-align: justify;
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -81,7 +80,6 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
     font-family: Helvetica, sans-serif;
     color: $heading-color;
 }

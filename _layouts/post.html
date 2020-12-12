@@ -1,25 +1,34 @@
 ---
 layout: default
 ---
-<div class="wrapper">
-
-  <article class="post">
-    <h1 class="title">{{ page.title }}</h1>
-    <p class="meta">
-
-    {{ page.date | date_to_string }}
-
-    </p>
-
-    <p>
+<article class="post">
+  <h1 class="title">{{ page.title }}</h1>
+  <span>
+    <span>
     Tags:
     {% for tag in page.tags %}
     <a href="/tag/{{ tag | downcase }}">
       {{ tag }}
     </a>
     {% endfor %}
-    </p>
+    </span>
+    <span class="meta">{{ page.date | date_to_string }}</span>
+  </span>
 
-    {{ content }}
-  </article>
-</div>
+  {{ content }}
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  {% if page.previous %}
+    <span>Prev</span>
+    <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+  {% endif %}
+  </span>
+  <span class="next">
+  {% if page.next %}
+    <span>Next</span>
+    <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+  {% endif %}
+  </span>
+</footer>

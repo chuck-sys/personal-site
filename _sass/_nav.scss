@@ -1,12 +1,10 @@
 nav {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
     height: $title-font-size;
 	margin: auto;
-    padding: 1em 4em;
+    padding: 1em 0;
     font-size: $title-font-size;
     letter-spacing: 1px;
-    background: $nav-bg;
+	border-bottom: 1px solid $grey-color-light;
 
     a.nav-title {
         float: left;
@@ -22,8 +20,8 @@ nav {
     a.nav-links {
         float: right;
         color: $heading-color;
-        padding: 0 0.5em;
-        margin: 0 0.5em;
+        padding: 0 0 0 0.5em;
+        margin: 0 0 0 0.5em;
         text-decoration: none;
         border-radius: 3px;
 

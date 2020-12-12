@@ -45,7 +45,7 @@ the end result was a docs page that was nice to look at.
 
 Technologies used:
 
-- Python 3.7 with pipenv
+- Python 3.8 with pipenv
 - Amazon DynamoDB
 - Slack and Github libraries
 - Lots of linting and `mypy`, a static type checker

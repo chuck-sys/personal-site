@@ -21,6 +21,33 @@
         color: $grey-color;
     }
 
+	> span {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 4rem;
+	}
+}
+
+.post-foot {
+	padding: 1em 0;
+	border-top: 1px solid $grey-color-light;
+	display: flex;
+	justify-content: space-between;
+
+	.prev, .next {
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+
+		span {
+			color: $grey-color;
+			font-variant: small-caps;
+		}
+	}
+
+	.next {
+		text-align: right;
+	}
 }
 
 /**
@@ -29,21 +56,13 @@
 .apost {
     margin: 1.5em 0;
 
-    .meta {
-		color: $grey-color;
-		font-weight: normal;
-        font-variant: small-caps;
-    }
+	> span {
+		display: grid;
+		grid-template-columns: 0.1fr 1fr;
 
-	h3 {
-		letter-spacing: 1px;
-		margin-bottom: 0.3em;
-	}
-
-	p {
-		margin-bottom: 0.3em;
-		font-size: $small-font-size !important;
-		font-weight: normal !important;
+		span {
+			color: $grey-color;
+		}
 	}
 }
 
