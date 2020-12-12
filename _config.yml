@@ -1,9 +1,5 @@
 # Site settings
 title: Cheuk's Blog
-tagline: Student • Programmer • Writer
-description: Student • Programmer • Writer
-baseurl: "" # The subpath of your site, e.g. /blog/
-# url: "http://cheukyin699.github.io" # The base hostname & protocol for your site
 
 # Ruby gems
 plugins:
@@ -21,15 +17,6 @@ github_username:  cheukyin699
 # SASS
 sass:
     style: compressed
-
-# Build settings
-# Syntax highlighter
-markdown: kramdown
-highlighter: rouge
-
-kramdown:
-    input: GFM
-    syntax_highlighter: rouge
 
 paginate: 15
 
