@@ -1,15 +1,18 @@
+$nav-a-hover:           $fg-orange;
+
 nav {
     height: $title-font-size;
 	margin: auto;
     padding: 1em 0;
     font-size: $title-font-size;
     letter-spacing: 1px;
-	border-bottom: 1px solid $grey-color-light;
+	border-bottom: 1px solid $border-color;
 
     a.nav-title {
         float: left;
         color: $heading-color;
         text-decoration: none;
+        transition: color 0.1s;
         border-radius: 3px;
 
 		@include media-query($on-palm) {
@@ -25,11 +28,10 @@ nav {
         text-decoration: none;
         border-radius: 3px;
 
-        transition: color 0.3s;
-
+        transition: color 0.1s;
     }
 
-    a.nav-links:hover {
-        color: $green-color;
+    a:hover {
+        color: $nav-a-hover;
     }
 }

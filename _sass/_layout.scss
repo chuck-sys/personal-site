@@ -18,7 +18,7 @@
     .meta {
         margin-right: 1em;
         font-variant: small-caps;
-        color: $grey-color;
+        color: $fg4;
     }
 
 	> span {
@@ -30,7 +30,7 @@
 
 .post-foot {
 	padding: 1em 0;
-	border-top: 1px solid $grey-color-light;
+	border-top: 1px solid $border-color;
 	display: flex;
 	justify-content: space-between;
 
@@ -40,7 +40,7 @@
 		width: 30%;
 
 		span {
-			color: $grey-color;
+			color: $fg4;
 			font-variant: small-caps;
 		}
 	}
@@ -61,7 +61,7 @@
 		grid-template-columns: 0.1fr 1fr;
 
 		span {
-			color: $grey-color;
+			color: $fg4;
 		}
 	}
 }
@@ -73,7 +73,7 @@
 	text-align: center;
 
 	span.disabled {
-		color: $grey-color-light
+		color: $fg4;
 	}
 
 	> * {

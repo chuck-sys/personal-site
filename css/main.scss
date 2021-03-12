@@ -2,6 +2,7 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
+@import "colors";
 
 // Our variables
 $base-font-family: Helvetica, Arial, sans-serif;
@@ -12,21 +13,24 @@ $base-line-height: 1.6;
 
 $spacing-unit:     30px;
 
-$text-color:       #444;
-$heading-color:    #222;
-$background-color: #fdfdfd;
-$nav-bg:           #efefef;
-$brand-color:      #2a7ae2;
-
 // Width of the content area
 $content-width:    50em;
 
+$text-color:        $fg1;
+$heading-color:     $fg0;
+$background-color:  $bg0;
+$anchor-color:      $fg-blue;
+
+$blockquote-color:  $fg-green;
+$border-color:      $fg4;
+$code-bg:           $bg1;
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-    "colors",
     "devices",
     "base",
     "nav",
     "layout",
-    "syntax-highlighting/default"
+    "syntax-highlighting/gruvbox"
 ;
+

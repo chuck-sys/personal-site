@@ -90,15 +90,15 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: $anchor-color;
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: darken($anchor-color, 15%);
     }
 
     &:hover {
-        //color: $text-color;
+        color: darken($anchor-color, 15%);
         text-decoration: underline;
     }
 }
@@ -109,8 +109,8 @@ a {
  * Blockquotes
  */
 blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
+    color: $blockquote-color;
+    border-left: 4px solid $border-color;
     padding-left: $spacing-unit / 2;
     font-size: 18px;
     letter-spacing: -1px;
@@ -119,10 +119,6 @@ blockquote {
 
     > :last-child {
         margin-bottom: 0;
-    }
-
-    a {
-        color: $grey-color-dark;
     }
 }
 
@@ -134,8 +130,6 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
 }
 
 code {
@@ -177,7 +171,7 @@ table {
     border-collapse: collapse;
 
     th, td {
-        border: 1px solid $grey-color-dark;
+        border: 1px solid $border-color;
         padding: 0.5em 1em;
     }
 }
