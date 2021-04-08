@@ -113,9 +113,9 @@ blockquote {
     border-left: 4px solid $border-color;
     padding-left: $spacing-unit / 2;
     font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
-    font-family: 'Courier New', sans-serif;
+    // letter-spacing: -1px;
+    // font-style: italic;
+    // font-family: 'Courier New', sans-serif;
 
     > :last-child {
         margin-bottom: 0;
