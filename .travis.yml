@@ -11,7 +11,6 @@ script: scripts/cibuild.sh
 deploy:
     local_dir: _site/
     provider: pages
-    cleanup: true
     token: "$GITHUB_TOKEN"
     keep_history: true
     on:
