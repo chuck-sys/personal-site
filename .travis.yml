@@ -1,14 +1,17 @@
+os: linux
+dist: xenial
 language: ruby
 rvm:
     - 2.6.5
 cache: bundler
+strategy: git
 
 script: scripts/cibuild.sh
 
 deploy:
     local_dir: _site/
     provider: pages
-    skip_cleanup: true
+    cleanup: false
     token: "$GITHUB_TOKEN"
     keep_history: true
     on:
