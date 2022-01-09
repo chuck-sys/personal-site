@@ -5,9 +5,9 @@ group: 'navigation'
 permalink: /about/
 ---
 
-Call me **Chuck**. I am a Computer Science student. I am interested in programming, maths and sciences,
-and pretty much anything that I have been curious with. I like writing stuff in general, whether it be
-fiction or non-fiction, tutorials and whatnot.
+Call me **Chuck**. I am interested in programming, maths and sciences, and pretty much anything that I
+have been curious with. I like writing stuff in general, whether it be fiction or non-fiction, tutorials
+and whatnot.
 
 Click here for my [portfolio][portfolio].
 
