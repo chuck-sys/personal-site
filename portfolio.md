@@ -15,17 +15,63 @@ h1:first-of-type {
 }
 </style>
 
-# Rocket2
+# Jump To
 
-[![Build Status][r2-ghactions-img]][r2-gh]
+[![Github][mygh-img]][mygh]
+[![Gitlab][mygl-img]][mygl]
+[![Sourcerer.io][mysc-img]][mysc]
+
+[![Linkedin][myld-img]][myld]
+
+In reverse chronological order:
+
+- [2Pic Gallery](#2pic-gallery)
+- [Rocket 2](#rocket-2)
+- [Jeopardy](#jeopardy)
+- [Graph Visualizer](#graph-visualizer)
+- [Tom's Parable](#toms-parable)
+- [Chip-8 Toolset](#chip-8-toolset)
+- [Tinybasic](#tinybasic)
+- [Tower Defense](#tower-defense)
+
+[mygh-img]: https://img.shields.io/badge/github-cheukyin699-lightgrey.svg?style=for-the-badge
+[mygl-img]: https://img.shields.io/badge/gitlab-chucksys-orange.svg?style=for-the-badge
+[mysc-img]: https://img.shields.io/badge/sourcerer-cheukyin699-green.svg?style=for-the-badge
+[myld-img]: https://img.shields.io/badge/linkedin-cheukyin-blue.svg?style=for-the-badge
+
+[mygh]: https://github.com/cheukyin699
+[mygl]: https://gitlab.com/chucksys
+[myld]: https://www.linkedin.com/in/cheukyin
+[mysc]: https://sourcerer.io/cheukyin699
+
+# 2Pic Gallery
+
+[![Github][2g-gh-img]][2g-gh]
+
+Or what was previously known as the *Vaccine Passport* app. A simple Android app that toggles between 2
+images when you tap the image (or the volume button, whichever is more convenient). Created so that I
+would just need to open an app to show my ID and vaccine passport, instead of opening the gallery and
+scrolling a bunch. Uses Java.
+
+Decently popular with friends. Apparently they are quite lazy as well.
+
+<a href='https://play.google.com/store/apps/details?id=ca.cheuksblog.twopicgallery&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+<img height="80" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+</a>
+
+[2g-gh-img]: https://img.shields.io/badge/github-2pic_gallery-green.svg?style=for-the-badge
+
+[2g-gh]: https://github.com/cheukyin699/2pic-gallery
+
+# Rocket 2
+
 [![Github][r2-gh-img]][r2-gh]
 [![codecov][r2-codecov-img]][r2-codecov]
 
 [![Inertia][r2-inertia-img]][r2-inertia]
 [![Documentation Status][r2-rtd-img]][r2-rtd]
-[![Website is online?][r2-online-img]][r2-online]
 
-Rocket2 is a slack bot management utility used for dealing with UBC Launch Pad.
+Rocket 2 is a slack bot management utility used for dealing with UBC Launch Pad.
 This project was a group effort by a team of people over a few months of the
 school year. We have spent 18 months on it. It basically functions as an
 all-in-one command line that relays commands directed at our slack bot to our
@@ -54,7 +100,7 @@ Technologies used:
 
 [Link to in-depth article on the project][r2-medium].
 
-[r2-gh-img]: https://img.shields.io/badge/github-rocket2-green.svg?style=for-the-badge
+[r2-gh-img]: https://img.shields.io/badge/github-rocket_2-green.svg?style=for-the-badge
 [r2-gh]: https://github.com/ubclaunchpad/rocket2/
 [r2-ghactions-img]: https://github.com/ubclaunchpad/rocket2/workflows/Python%20build%20and%20test/badge.svg
 [r2-ghactions]: https://github.com/ubclaunchpad/rocket2/actions
@@ -64,8 +110,6 @@ Technologies used:
 [r2-inertia]: https://github.com/ubclaunchpad/inertia
 [r2-rtd-img]: https://img.shields.io/readthedocs/rocket2.svg?style=for-the-badge
 [r2-rtd]: https://rocket2.readthedocs.io/en/latest/?badge=latest
-[r2-online-img]: https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Frocket2.ubclaunchpad.com%2F
-[r2-online]: https://rocket2.ubclaunchpad.com/
 [r2-medium]: https://medium.com/ubc-launch-pad-software-engineering-blog/rocket-2-and-the-importance-of-good-software-development-practices-documentation-and-testing-fe6b7236fce0
 
 # Jeopardy
