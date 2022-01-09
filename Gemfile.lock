@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/jekyll/jekyll-archives.git
+  remote: https://github.com/jekyll/jekyll-archives.git
   revision: 9d3d3cb0bca5c3c169699676200278c4159091d1
   specs:
     jekyll-archives (2.2.1)
@@ -119,8 +119,5 @@ DEPENDENCIES
   rack-jekyll
   rake
 
-RUBY VERSION
-   ruby 2.6.5p114
-
 BUNDLED WITH
-   1.17.3
+   2.1.2
