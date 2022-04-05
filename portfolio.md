@@ -55,10 +55,6 @@ scrolling a bunch. Uses Java.
 
 Decently popular with friends. Apparently they are quite lazy as well.
 
-<a href='https://play.google.com/store/apps/details?id=ca.cheuksblog.twopicgallery&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-<img height="80" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
-</a>
-
 [2g-gh-img]: https://img.shields.io/badge/github-2pic_gallery-green.svg?style=for-the-badge
 
 [2g-gh]: https://github.com/cheukyin699/2pic-gallery
