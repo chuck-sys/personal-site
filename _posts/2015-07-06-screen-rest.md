@@ -24,4 +24,4 @@ This program uses the `sleep` function in SFML, so it doesn't use that much CPU
 power. I originally had it play not music, but a sine wave, which got irritating
 after testing it for 3 times. Music, is a whole lot better.
 
-[1]: http://github.com/cheukyin699/screen-rest
+[1]: https://github.com/cheukyin699/screen-rest

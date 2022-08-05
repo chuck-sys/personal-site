@@ -62,4 +62,4 @@ is the most straight-forward of them all). Tutorials on the subject of general
 emulation may come out at a later date, most likely when I finish the
 implementation of major functions of the Game Boy (probable, but unlikely).
 
-[0]: http://github.com/cheukyin699/chip-8-tools/
+[0]: https://github.com/cheukyin699/chip-8-tools/

@@ -142,4 +142,4 @@ iterate through all of them and write them all to a file.
 
 [p3]: /huffman/2016/07/05/huffman-tutorial-03.html
 
-[^1]: http://en.cppreference.com/w/cpp/container/vector_bool
+[^1]: https://en.cppreference.com/w/cpp/container/vector_bool

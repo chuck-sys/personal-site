@@ -31,7 +31,7 @@ normal black ones and the yellow ones. This gentle learning curve allows you to
 start playing songs and pieces without remembering a bunch of different kinds of
 notes and how to press them. You just tap the black ones and slide your finger
 across the yellow ones (You'll get it when you [get
-it](http://www.rayark.com/g/deemo/)). It was easier for me to just start playing
+it](https://www.rayark.com/g/deemo/)). It was easier for me to just start playing
 and quickly move on to the harder ones. All songs come in 3 difficulties: Easy,
 Normal, and Hard. To make it easier for the user to differentiate, the
 developers have quantified the difficulties with different levels (1-10). There

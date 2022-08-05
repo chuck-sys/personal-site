@@ -53,5 +53,5 @@ temporarily). This helps me as I can then find more places to put my
 [bingos][bingos].
 
 [tl]: /scrabble/2015/08/13/scrabble-2-letter-words.html
-[sl]: http://i1276.photobucket.com/albums/y478/1aandy/Screenshots/scrabble-ladder_zpse501d870.jpg
+[sl]: https://i1276.photobucket.com/albums/y478/1aandy/Screenshots/scrabble-ladder_zpse501d870.jpg
 [bingos]: /scrabble/2015/08/20/scrabble-bingos.html
