@@ -5,8 +5,7 @@ group: 'navigation'
 permalink: /resources/
 ---
 
-Some links to useful resources.
-
+- [Custom music arrangements](/music-arrangements/)
 - ncurses Editor Tutorial
     <ul>
         {% assign group = 'ncurses-editor-tutorial' %}
