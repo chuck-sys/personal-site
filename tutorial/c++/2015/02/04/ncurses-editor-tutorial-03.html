@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>NCURSES Terminal Text Editor Tutorial Part 3 | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="NCURSES Terminal Text Editor Tutorial Part 3" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Welcome Back" />
+<meta property="og:description" content="Welcome Back" />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-02-04T20:48:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="NCURSES Terminal Text Editor Tutorial Part 3" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html"},"description":"Welcome Back","url":"/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html","@type":"BlogPosting","headline":"NCURSES Terminal Text Editor Tutorial Part 3","dateModified":"2015-02-04T20:48:00+00:00","datePublished":"2015-02-04T20:48:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">NCURSES Terminal Text Editor Tutorial Part 3</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/tutorial">
+      tutorial
+    </a>
+    
+    <a href="/tag/c++">
+      c++
+    </a>
+    
+    <a href="/tag/ncurses">
+      ncurses
+    </a>
+    
+    <a href="/tag/editor">
+      editor
+    </a>
+    
+    </span>
+    <span class="meta">04 Feb 2015</span>
+  </span>
+
+  
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html">NCURSES Terminal Text Editor Tutorial Part 1</a></li>
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html">NCURSES Terminal Text Editor Tutorial Part 2</a></li>
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html">NCURSES Terminal Text Editor Tutorial Part 3</a></li>
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html">NCURSES Terminal Text Editor Tutorial Part 4</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+<h2 id="welcome-back">Welcome Back</h2>
+
+<p>Last time we left off, we finished the <code class="language-plaintext highlighter-rouge">Buffer</code> class. Here comes the fun stuff:
+Doing the functions for the <code class="language-plaintext highlighter-rouge">Editor</code> class! What fun! We will start immediately!</p>
+
+<h2 id="implementing-the-editor-class">Implementing the Editor class</h2>
+
+<p>Create file <code class="language-plaintext highlighter-rouge">Editor.cpp</code>. Add some includes.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "Editor.h"
+</span>
+<span class="cp">#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;          // If you are not using C++11; We'll get to that later!
+</span></code></pre></div></div>
+
+<p>Let’s start off with the default constructor. For me, I want the default
+constructor to initialize the x and y coordinates, and also the mode to normal
+<code class="language-plaintext highlighter-rouge">'n'</code>. I will want the status to be <code class="language-plaintext highlighter-rouge">'Normal Mode'</code> and the filename to be
+<code class="language-plaintext highlighter-rouge">'untitled'</code>. I also need to initialize the <code class="language-plaintext highlighter-rouge">Buffer</code> variable.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Editor</span><span class="o">::</span><span class="n">Editor</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">mode</span><span class="o">=</span><span class="sc">'n'</span><span class="p">;</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s">"Normal Mode"</span><span class="p">;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s">"untitled"</span><span class="p">;</span>
+
+    <span class="cm">/* Initializes buffer and appends line to
+        prevent seg. faults */</span>
+    <span class="n">buff</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Buffer</span><span class="p">();</span>
+    <span class="n">buff</span><span class="o">-&gt;</span><span class="n">appendLine</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If they give it a filename, read it into the buffer.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Editor</span><span class="o">::</span><span class="n">Editor</span><span class="p">(</span><span class="n">string</span> <span class="n">fn</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">mode</span><span class="o">=</span><span class="sc">'n'</span><span class="p">;</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s">"Normal Mode"</span><span class="p">;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">fn</span><span class="p">;</span>
+
+    <span class="n">buff</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Buffer</span><span class="p">();</span>
+
+    <span class="n">ifstream</span> <span class="n">infile</span><span class="p">(</span><span class="n">fn</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">infile</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">infile</span><span class="p">.</span><span class="n">eof</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">string</span> <span class="n">temp</span><span class="p">;</span>
+            <span class="n">getline</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+            <span class="n">buff</span><span class="o">-&gt;</span><span class="n">appendLine</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Cannot open file: '"</span> <span class="o">&lt;&lt;</span> <span class="n">fn</span> <span class="o">&lt;&lt;</span> <span class="s">"'</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="n">buff</span><span class="o">-&gt;</span><span class="n">appendLine</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now that we have done all that, it is time for us to get on with the core
+functions, starting with <code class="language-plaintext highlighter-rouge">Editor::updateStatus()</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Editor</span><span class="o">::</span><span class="n">updateStatus</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="sc">'n'</span><span class="p">:</span>
+        <span class="c1">// Normal mode</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s">"Normal Mode"</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="sc">'i'</span><span class="p">:</span>
+        <span class="c1">// Insert mode</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s">"Insert Mode"</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="sc">'x'</span><span class="p">:</span>
+        <span class="c1">// Exiting</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s">"Exiting"</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">status</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\t</span><span class="s">COL: "</span> <span class="o">+</span> <span class="n">tos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\t</span><span class="s">ROW: "</span> <span class="o">+</span> <span class="n">tos</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Wait! We haven’t defined <code class="language-plaintext highlighter-rouge">tos(int)</code> yet!!!</p>
+</blockquote>
+
+<p>Just use stringstream!</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="n">Editor</span><span class="o">::</span><span class="n">tos</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+    <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that this isn’t necessary if you have C++11 - you just use
+<code class="language-plaintext highlighter-rouge">std::to_string(int)</code>. My school doesn’t have it so I had to compensate.</p>
+
+<h2 id="basic-input-handling">Basic Input Handling</h2>
+
+<p>My input handler handles all inputs in normal mode as well as insert mode (but
+not exit mode, because you are exiting the program). This may be confusing
+because there are a bunch of switches, and you may be right. You could separate
+the input handler into two different functions - one for handling inputs in
+normal mode, the other handling inputs in insert mode.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Editor</span><span class="o">::</span><span class="n">handleInput</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="n">KEY_LEFT</span><span class="p">:</span>
+        <span class="n">moveLeft</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">KEY_RIGHT</span><span class="p">:</span>
+        <span class="n">moveRight</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">KEY_UP</span><span class="p">:</span>
+        <span class="n">moveUp</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">KEY_DOWN</span><span class="p">:</span>
+        <span class="n">moveDown</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="sc">'n'</span><span class="p">:</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="k">case</span> <span class="sc">'x'</span><span class="p">:</span>
+            <span class="c1">// Press 'x' to exit</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="sc">'x'</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'i'</span><span class="p">:</span>
+            <span class="c1">// Press 'i' to enter insert mode</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="sc">'i'</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'s'</span><span class="p">:</span>
+            <span class="c1">// Press 's' to save the current file</span>
+            <span class="n">saveFile</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="sc">'i'</span><span class="p">:</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">27</span><span class="p">:</span>
+            <span class="c1">// The Escape/Alt key</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="sc">'n'</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">127</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">KEY_BACKSPACE</span><span class="p">:</span>
+            <span class="c1">// The Backspace key</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">length</span><span class="p">();</span>
+                <span class="c1">// Bring the line down</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+                <span class="c1">// Delete the current line</span>
+                <span class="n">deleteLine</span><span class="p">();</span>
+                <span class="n">moveUp</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="c1">// Removes a character</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">erase</span><span class="p">(</span><span class="o">--</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">KEY_DC</span><span class="p">:</span>
+            <span class="c1">// The Delete key</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">!=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// Bring the line down</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+                <span class="c1">// Delete the line</span>
+                <span class="n">deleteLine</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">erase</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">KEY_ENTER</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="c1">// The Enter key</span>
+            <span class="c1">// Bring the rest of the line down</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="c1">// Put the rest of the line on a new line</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">insertLine</span><span class="p">(</span><span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">substr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="p">),</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="c1">// Remove that part of the line</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">erase</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">buff</span><span class="o">-&gt;</span><span class="n">insertLine</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">moveDown</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="n">KEY_BTAB</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">KEY_CTAB</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">KEY_STAB</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">KEY_CATAB</span><span class="p">:</span>
+        <span class="k">case</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="c1">// The Tab key</span>
+            <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="sc">' '</span><span class="p">);</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="nl">default:</span>
+            <span class="c1">// Any other character</span>
+            <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kt">char</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+            <span class="n">x</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Whew! That sure was a lot of code! There is still a lot of stuff to implement!
+Let’s do the <code class="language-plaintext highlighter-rouge">move&lt;Direction&gt;()</code> code first!</p>
+
+<h2 id="moving-it-x2">Moving it x2</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">Editor</span><span class="o">::</span><span class="n">moveLeft</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">x</span><span class="o">--</span><span class="p">;</span>
+        <span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Editor</span><span class="o">::</span><span class="n">moveRight</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">COLS</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">x</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Editor</span><span class="o">::</span><span class="n">moveUp</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">();</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Editor</span><span class="o">::</span><span class="n">moveDown</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">LINES</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+        <span class="n">y</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">buff</span><span class="o">-&gt;</span><span class="n">lines</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">length</span><span class="p">();</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Pretty straight forward, although I think I need to do a bit of explaining on
+the <code class="language-plaintext highlighter-rouge">if(x &gt;= buff-&gt;lines[y].length())</code> part. You see, if it didn’t have that,
+then when the user goes up or down, if the current line of text was longer than
+the one above/below it, then the cursor would be ‘dangling in midair’, so to
+speak. This little if-statement snaps the cursor to the end of the next/previous
+line if it were to be shorter than the current one.</p>
+
+<h2 id="time-to-wrap-it-up">Time to Wrap it up</h2>
+
+<p>Ha! You thought that I would do all of this in only a three-parter <img class="emoji" title=":trollface:" alt=":trollface:" src="https://github.githubassets.com/images/icons/emoji/trollface.png" height="20" width="20"> ?
+There are still more to implement, though we are past the half-way point
+already. We still need the most important function: <code class="language-plaintext highlighter-rouge">Editor::printBuff()</code>, which
+is the function that actually lets you see the buffered text! I hope I will see
+you in <strong>Part 4</strong>!</p>
+
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-01.html">NCURSES Terminal Text Editor Tutorial Part 1</a></li>
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html">NCURSES Terminal Text Editor Tutorial Part 2</a></li>
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/04/ncurses-editor-tutorial-03.html">NCURSES Terminal Text Editor Tutorial Part 3</a></li>
+  
+
+  
+      <li><a href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html">NCURSES Terminal Text Editor Tutorial Part 4</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/tutorial/c++/2015/02/01/ncurses-editor-tutorial-02.html">NCURSES Terminal Text Editor Tutorial Part 2</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/tutorial/c++/2015/02/07/ncurses-editor-tutorial-04.html">NCURSES Terminal Text Editor Tutorial Part 4</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Huffman Tutorial Part 4 | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Huffman Tutorial Part 4" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Bit manipulation and writing to file" />
+<meta property="og:description" content="Bit manipulation and writing to file" />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-07-05T20:44:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Huffman Tutorial Part 4" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/huffman/2016/07/05/huffman-tutorial-04.html"},"description":"Bit manipulation and writing to file","url":"/huffman/2016/07/05/huffman-tutorial-04.html","@type":"BlogPosting","headline":"Huffman Tutorial Part 4","dateModified":"2016-07-05T20:44:00+00:00","datePublished":"2016-07-05T20:44:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Huffman Tutorial Part 4</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/c++">
+      c++
+    </a>
+    
+    <a href="/tag/huffman">
+      Huffman
+    </a>
+    
+    <a href="/tag/encoder">
+      encoder
+    </a>
+    
+    <a href="/tag/compression">
+      compression
+    </a>
+    
+    <a href="/tag/bits">
+      bits
+    </a>
+    
+    </span>
+    <span class="meta">05 Jul 2016</span>
+  </span>
+
+  
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-00.html">Huffman Tutorial Part 0</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-01.html">Huffman Tutorial Part 1</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-02.html">Huffman Tutorial Part 2</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-03.html">Huffman Tutorial Part 3</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-04.html">Huffman Tutorial Part 4</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-05.html">Huffman Tutorial Part 5</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+<p>Ah! Here is the fun part! Actually writing each individual bit into a file! So,
+how does one go about doing it?</p>
+
+<h4 id="you-dont">You Don’t</h4>
+
+<p>As mentioned before, you can’t do that.</p>
+
+<h2 id="bit-manipulation">Bit Manipulation</h2>
+
+<p>That’s why you need to manipulate the bits inside a byte! What you have to do
+is this: push every 8 bits into a byte (<code class="language-plaintext highlighter-rouge">char</code>), and write said byte into a
+file.</p>
+
+<p>If you are very familiar with bitwise operators, you can just
+<a href="#skipper">go right ahead</a>. For those who aren’t, here is a refresher.</p>
+
+<p>Note that I’ll refer to logic gates as ‘gates’, and bitwise operators as
+‘operators’. Gates typically have 2 inputs and 1 output (either <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>,
+which is 1 bit). Operators are just gates, only they are for bytes. They apply
+the gate to each individual bit in the byte.</p>
+
+<p>There are a few basic bitwise operators you need to know: <code class="language-plaintext highlighter-rouge">AND</code>, <code class="language-plaintext highlighter-rouge">OR</code>, <code class="language-plaintext highlighter-rouge">NOT</code>,
+<code class="language-plaintext highlighter-rouge">XOR</code> come into mind.</p>
+
+<hr>
+
+<h3 id="and">AND</h3>
+
+<p>An <code class="language-plaintext highlighter-rouge">AND</code> gate only outputs <code class="language-plaintext highlighter-rouge">1</code> if all of it’s inputs are <code class="language-plaintext highlighter-rouge">1</code>. Otherwise, it
+outputs <code class="language-plaintext highlighter-rouge">0</code>. Here is a truth table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>a</th>
+      <th>b</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Similarly, the <code class="language-plaintext highlighter-rouge">AND</code> operator applies an <code class="language-plaintext highlighter-rouge">AND</code> gate to each individual bit of
+the inputs, and spitting it in it’s place in the output. This is exactly the
+same for all the other ones, so it won’t be brought up again.</p>
+
+<h3 id="or">OR</h3>
+
+<p>An <code class="language-plaintext highlighter-rouge">OR</code> gate outputs <code class="language-plaintext highlighter-rouge">1</code> if at least 1 of the inputs are <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>a</th>
+      <th>b</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="not">NOT</h3>
+
+<p>A <code class="language-plaintext highlighter-rouge">NOT</code> gate outputs a <code class="language-plaintext highlighter-rouge">1</code> if the input is a <code class="language-plaintext highlighter-rouge">0</code>, and vice versa.</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>a</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="xor">XOR</h3>
+
+<p>An <code class="language-plaintext highlighter-rouge">XOR</code> gate (exclusive <code class="language-plaintext highlighter-rouge">OR</code>) outputs <code class="language-plaintext highlighter-rouge">1</code> if 1 and only 1 of the inputs are
+<code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>a</th>
+      <th>b</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<p><a name="skipper"></a>
+Back to bit manipulation. Assuming you have a long <code class="language-plaintext highlighter-rouge">string</code> of binary ones and
+zeros, you will need to take every 8 bits, and shove them into a byte. Here is
+how it should go:</p>
+
+<ol>
+  <li>Iterate through all binary digits</li>
+  <li>Is digit a 1?
+    <ol>
+      <li>Use <code class="language-plaintext highlighter-rouge">OR</code> operation to place <code class="language-plaintext highlighter-rouge">1</code> into temporary variable (<code class="language-plaintext highlighter-rouge">byte</code>)</li>
+    </ol>
+  </li>
+  <li>Increment counter (for which bit you are in the temporary variable)</li>
+  <li>Repeat until all binary digits are exhausted</li>
+</ol>
+
+<p>Now, the question becomes <em>how</em> can you do that. You shift the <code class="language-plaintext highlighter-rouge">1</code> by whatever
+the counter is. <strong><em>Note that you may have to tinker around with how much you
+shift by.</em></strong></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="n">bs</span> <span class="o">=</span> <span class="s">"01001100"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">byte</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'1'</span><span class="p">)</span> <span class="n">byte</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That was a small snippet of how it is done. I didn’t use <code class="language-plaintext highlighter-rouge">std::string</code>, and
+instead opted to use a vector of bits (<code class="language-plaintext highlighter-rouge">bool</code>). For some systems, a
+<code class="language-plaintext highlighter-rouge">std::vector&lt;bool&gt;</code> is a “space efficient specialization of <code class="language-plaintext highlighter-rouge">std::vector</code>” <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
+
+<p>Technically, you didn’t need to know most of the gates written above. So yeah.
+Made you look.</p>
+
+<h2 id="writing-to-file">Writing to File</h2>
+
+<p>Well, that’s easy, now that you have an array/vector of bytes. You can just
+iterate through all of them and write them all to a file.</p>
+
+<h2 id="assignment-for-this-part">Assignment for This Part</h2>
+
+<ul>
+  <li>iterate through input file and convert the chars into bits with the
+map created in <a href="/huffman/2016/07/05/huffman-tutorial-03.html">the last part</a>
+</li>
+  <li>
+<img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> iterate through the bits and convert them into bytes</li>
+  <li>iterate through bytes and write them to file, after writing the header</li>
+  <li><em>close the file(s)</em></li>
+</ul>
+
+<p>(<img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> denotes a challenging task. <img class="emoji" title=":star2:" alt=":star2:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png" height="20" width="20"> denotes an even more challenging
+  task.)</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>https://en.cppreference.com/w/cpp/container/vector_bool <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-00.html">Huffman Tutorial Part 0</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-01.html">Huffman Tutorial Part 1</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-02.html">Huffman Tutorial Part 2</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-03.html">Huffman Tutorial Part 3</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-04.html">Huffman Tutorial Part 4</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-05.html">Huffman Tutorial Part 5</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/huffman/2016/07/05/huffman-tutorial-03.html">Huffman Tutorial Part 3</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/huffman/2016/07/05/huffman-tutorial-05.html">Huffman Tutorial Part 5</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

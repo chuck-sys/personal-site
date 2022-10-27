@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Google Test Basic Tutorial | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Google Test Basic Tutorial" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A google test tutorial/example." />
+<meta property="og:description" content="A google test tutorial/example." />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-19T15:50:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Google Test Basic Tutorial" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2017/12/19/googletest-tutorial.html"},"description":"A google test tutorial/example.","url":"/tutorial/2017/12/19/googletest-tutorial.html","@type":"BlogPosting","headline":"Google Test Basic Tutorial","dateModified":"2017-12-19T15:50:00+00:00","datePublished":"2017-12-19T15:50:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Google Test Basic Tutorial</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/tutorial">
+      tutorial
+    </a>
+    
+    <a href="/tag/c++">
+      c++
+    </a>
+    
+    <a href="/tag/testing">
+      testing
+    </a>
+    
+    </span>
+    <span class="meta">19 Dec 2017</span>
+  </span>
+
+  <h2 id="goal">Goal</h2>
+
+<p>The goal of this tutorial is to get you up and running with Google Test through
+the examples given. This will be more of a walkthrough integrating Google Test
+into your project.</p>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+
+<ul>
+  <li>Some basic proficiency in C++</li>
+  <li>Some basic understanding of CMake</li>
+  <li>Some understanding of <a href="https://git-scm.com/">git</a> and <a href="https://github.com/">github</a></li>
+</ul>
+
+<h2 id="google-test">Google Test</h2>
+
+<p><a href="https://github.com/google/googletest"><strong>Have this tab open for documentation</strong></a>. You’ll need it.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>We will want the following directory structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── CMakeLists.txt
+├── include
+│   └── inc.h
+├── libs
+│   ├── CMakeLists.txt
+│   └── googletest
+├── src
+│   ├── CMakeLists.txt
+│   └── lib.cc
+└── tests
+    ├── CMakeLists.txt
+    ├── Main.cc
+    └── TestAbs.cc
+</code></pre></div></div>
+
+<h3 id="populating-the-files">Populating the files</h3>
+
+<p>Create your directories <code class="language-plaintext highlighter-rouge">include</code>, <code class="language-plaintext highlighter-rouge">libs</code>, <code class="language-plaintext highlighter-rouge">src</code>, and <code class="language-plaintext highlighter-rouge">tests</code>. Then populate
+them with the following:</p>
+
+<p><code class="language-plaintext highlighter-rouge">CMakeLists.txt</code></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.1<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>simple-lib<span class="p">)</span>
+
+<span class="nb">enable_testing</span><span class="p">()</span>
+
+<span class="nb">add_subdirectory</span><span class="p">(</span>src<span class="p">)</span>
+</code></pre></div></div>
+
+<p>The library that we will be making with be very simple, consisting only of a
+single absolute value generic function. Because of good practice, we will
+enclose said function inside of an aptly named namespace.</p>
+
+<p><code class="language-plaintext highlighter-rouge">include/inc.h</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef INC_H
+#define INC_H
+</span>
+<span class="k">namespace</span> <span class="n">lib</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="n">T</span> <span class="n">abs</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">src/lib.cc</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "inc.h"
+</span>
+<span class="k">namespace</span> <span class="n">lib</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="n">T</span> <span class="n">abs</span> <span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">?</span> <span class="o">-</span><span class="n">v</span><span class="o">:</span> <span class="n">v</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">src/CMakeLists.txt</code></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>src
+    lib.cc<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">simple-lib_SOURCE_DIR</span><span class="si">}</span>/include<span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span>slib <span class="si">${</span><span class="nv">src</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now, let’s add Google Test as a git submodule. Change directory to <code class="language-plaintext highlighter-rouge">libs</code>, and
+execute the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add git@github.com:google/googletest.git googletest
+git submodule update <span class="nt">--init</span> <span class="nt">--recursive</span>
+</code></pre></div></div>
+
+<p>After adding it as a submodule, we will need to link it to our existing project.
+Add to your root CMakeLists.txt file:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>libs<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Insert the following into <code class="language-plaintext highlighter-rouge">libs/CMakeLists.txt</code>:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>googletest<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="writing-tests">Writing Tests</h2>
+
+<p>Let’s start with the <code class="language-plaintext highlighter-rouge">tests/CMakeLists.txt</code>:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>src
+    Main.cc
+    TestAbs.cc<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>slib_test <span class="si">${</span><span class="nv">src</span><span class="si">}</span><span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span><span class="s2">"</span><span class="si">${</span><span class="nv">simple-lib_SOURCE_DIR</span><span class="si">}</span><span class="s2">/include"</span><span class="p">)</span>
+
+<span class="c1"># Link with google test libraries as well as simple-lib</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>slib_test gtest<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>slib_test gtest_main<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>slib_test slib<span class="p">)</span>
+
+<span class="c1"># Your milage may vary with the COMMAND</span>
+<span class="nb">add_test</span><span class="p">(</span>
+    NAME atest
+    COMMAND build/tests/slib_test
+    WORKING_DIRECTORY <span class="si">${</span><span class="nv">simple-lib_SOURCE_DIR</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>For all this to work, we will need to use <code class="language-plaintext highlighter-rouge">add_subdirectory</code> in the
+main <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file, so make sure you do that.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>tests<span class="p">)</span>
+</code></pre></div></div>
+
+<p>For your <code class="language-plaintext highlighter-rouge">tests/Main.cc</code>, it will basically be the same, since we are using
+Google Test. According to the documentation, you should have the following in
+that file:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "gtest/gtest.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">InitGoogleTest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">RUN_ALL_TESTS</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To test the single function that this library provides, we create and populate
+<code class="language-plaintext highlighter-rouge">tests/TestAbs.cc</code> with the following:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "gtest/gtest.h"
+#include "inc.h"
+</span>
+<span class="k">using</span> <span class="n">lib</span><span class="o">::</span><span class="n">abs</span><span class="p">;</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">AbsFunction</span><span class="p">,</span> <span class="n">Functionality</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ASSERT_EQ</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="mi">50</span><span class="p">);</span>
+    <span class="n">ASSERT_EQ</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">),</span> <span class="mi">50</span><span class="p">);</span>
+    <span class="n">ASSERT_EQ</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Other tests are set as an exercise to the reader.</p>
+
+<h2 id="linking-and-compiling-and-running">Linking and Compiling and Running</h2>
+
+<p>CMake projects are easy to link, compile, and run, given you have done your
+<code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files correctly.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build
+<span class="nb">cd </span>build/
+
+cmake ..
+make
+make <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>And there you go! Since we are running the tests through CMake, it only shows up
+as one test. If one would wish to see more detailed results of tests, you would
+have to run the test executable directly.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>build/tests/slib_test
+</code></pre></div></div>
+
+<p>Which would (hopefully) give the output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[==========] Running 2 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 2 tests from AbsFunction
+[ RUN      ] AbsFunction.Functionality
+[       OK ] AbsFunction.Functionality (0 ms)
+[ RUN      ] AbsFunction.DifferentTypes
+[       OK ] AbsFunction.DifferentTypes (0 ms)
+[----------] 2 tests from AbsFunction (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test case ran. (0 ms total)
+[  PASSED  ] 2 tests.
+</code></pre></div></div>
+
+<p>Extra test added, of course.</p>
+
+<p>In my opinion, it gives much prettier output. Though, if you have other methods
+of testing, <code class="language-plaintext highlighter-rouge">make test</code> would work nicely as well.</p>
+
+<h2 id="ending">Ending</h2>
+
+<p><a href="https://github.com/cheukyin699/simple-library">Here</a> is a link to the tested project. Have a look!</p>
+
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/bioperl/2017/08/14/howto-bioperl.html">How to Obtain Cropped Nucleotide Sequences and More</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/project/2018/04/27/managing-a-group-project.html">On Managing a Group Project</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Huffman Tutorial Part 2 | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Huffman Tutorial Part 2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Huffman tree creation with character frequencies" />
+<meta property="og:description" content="Huffman tree creation with character frequencies" />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-07-05T20:42:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Huffman Tutorial Part 2" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/huffman/2016/07/05/huffman-tutorial-02.html"},"description":"Huffman tree creation with character frequencies","url":"/huffman/2016/07/05/huffman-tutorial-02.html","@type":"BlogPosting","headline":"Huffman Tutorial Part 2","dateModified":"2016-07-05T20:42:00+00:00","datePublished":"2016-07-05T20:42:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Huffman Tutorial Part 2</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/c++">
+      c++
+    </a>
+    
+    <a href="/tag/huffman">
+      Huffman
+    </a>
+    
+    <a href="/tag/encoder">
+      encoder
+    </a>
+    
+    <a href="/tag/decoder">
+      decoder
+    </a>
+    
+    <a href="/tag/compression">
+      compression
+    </a>
+    
+    </span>
+    <span class="meta">05 Jul 2016</span>
+  </span>
+
+  
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-00.html">Huffman Tutorial Part 0</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-01.html">Huffman Tutorial Part 1</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-02.html">Huffman Tutorial Part 2</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-03.html">Huffman Tutorial Part 3</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-04.html">Huffman Tutorial Part 4</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-05.html">Huffman Tutorial Part 5</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+<p>What we are trying to do, is to take the character frequencies of the file, and
+convert all of it into an easily traversable tree to look things up quickly.
+Then, we are going to go through the whole tree, and construct a map to map
+every character to a string of binary digits.</p>
+
+<h2 id="character-frequencies">Character Frequencies</h2>
+
+<p>There are 2 ways we can go about this. There are little differences between the
+two.</p>
+
+<ol>
+  <li>Have a vector of Huffman trees of depth 1 - just to help with the storage</li>
+  <li>Have a map mapping a character to a number - a literal character frequency
+map</li>
+</ol>
+
+<p>I went with choice 1 because I didn’t want to convert maps into vectors, sort
+said vectors, and start generating the tree. It is similar for both in that you
+will still have to write a custom sorting function.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">tree</code> that I’m talking about is actually a node with 2 children:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;string&gt;
+</span>
+<span class="k">struct</span> <span class="nc">tree</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">val</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">freq</span><span class="p">;</span>
+
+    <span class="n">tree</span><span class="o">*</span> <span class="n">lhs</span><span class="p">;</span>
+    <span class="n">tree</span><span class="o">*</span> <span class="n">rhs</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>More specifically, a binary tree. Because of the nature of the Huffman tree,
+either both of its children will be <code class="language-plaintext highlighter-rouge">nullptr</code>, or neither. That is because we
+will be adding them by pairing them up.</p>
+
+<h3 id="end-of-file">End of File</h3>
+
+<p>As mentioned in <a href="/huffman/2016/07/05/huffman-tutorial-00.html">Part 0</a>, there are 2 solutions that I know of to denote
+the end of file prematurely. Of course, if you don’t care about the program
+reading the extra bits and interpreting them as garbage data, then go ahead,
+don’t do anything. If not, read on….</p>
+
+<p>Of course, by putting it here, it means that it is for <strong>option #2</strong>, where you
+have the pseudo end-of-file character. Obviously, this is the part where you
+insert said character: after reading the file, and before creating the tree. For
+me, I used <code class="language-plaintext highlighter-rouge">char(254)</code>, literally hard-coding it. But I did say that it is for
+ASCII only, did I? For a more elegant solution, I suggest having a set of all
+ASCII characters used in file subtracted from a set of all ASCII characters .
+That way, you will be sure that the character the program chooses has to be
+unique.</p>
+
+<h2 id="tree-creation">Tree Creation</h2>
+
+<p>After sorting the character frequencies by one way or another, it will come time
+to start reducing that vector of character frequencies to a tree! Here is an nice
+overview of how you should do it:</p>
+
+<ol>
+  <li>Begin with vector of character frequencies (tree depth 1)</li>
+  <li>Is there only one item in the vector? <em>That item is the tree!</em>
+</li>
+  <li>Take the 2 smallest ones (smallest frequencies) and combine them</li>
+  <li>Erase the 2 smallest ones from the vector</li>
+  <li>Insert the combined one into the vector in the correct position such that the
+vector remains sorted</li>
+  <li>Go to step #2</li>
+</ol>
+
+<p>By keeping the vector sorted by character frequency, you make it easier to take
+the 2 smallest items from the vector (normally, just the first 2, depending on
+which way you sort it). Inserting is also easy with a quick insertion sort.</p>
+
+<h2 id="map-construction">Map Construction</h2>
+
+<p><img class="emoji" title=":confetti_ball:" alt=":confetti_ball:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f38a.png" height="20" width="20"> Congradulations! You now have a Huffman tree! <img class="emoji" title=":confetti_ball:" alt=":confetti_ball:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f38a.png" height="20" width="20"></p>
+
+<p>So. How much do you enjoy recursion?</p>
+
+<p>I remember my Computer Programming teacher teaching me about trees: the only
+way to traverse through them is by recursion.</p>
+
+<p>The task at hand is not just recursion, but recursion with an accumulator. Just
+a tad more difficult. Here is the algorithm that I’ve come up with:</p>
+
+<ol>
+  <li>Begin at root of the tree with a blank map and blank accumulator</li>
+  <li>Am I on a leaf node? If so…
+    <ol>
+      <li>Map the value of accumulator to the character on leaf</li>
+      <li>Return</li>
+    </ol>
+  </li>
+  <li>If not…
+    <ol>
+      <li>Recurse (step #2) onto left branch and add <code class="language-plaintext highlighter-rouge">0</code> to accumulator</li>
+      <li>Recurse (step #2) onto right branch and add <code class="language-plaintext highlighter-rouge">1</code> to accumulator</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Well, I did say I wasn’t going into the code… much.</p>
+
+<h2 id="assignment-for-this-part">Assignment for This Part</h2>
+
+<ul>
+  <li>take the character frequencies of characters in file and store them</li>
+  <li>make a way to sort said frequencies</li>
+  <li>append pseudo end-of-file character to character frequencies</li>
+  <li>make the tree structure</li>
+  <li>
+<img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> reduce the character frequencies into a single tree and store it</li>
+  <li>
+<img class="emoji" title=":star2:" alt=":star2:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png" height="20" width="20"> create a map associating specific characters with corresponding bit
+sequence</li>
+</ul>
+
+<p>(<img class="emoji" title=":star:" alt=":star:" src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png" height="20" width="20"> denotes a challenging task. <img class="emoji" title=":star2:" alt=":star2:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png" height="20" width="20"> denotes an even more challenging
+    task.)</p>
+
+
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-00.html">Huffman Tutorial Part 0</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-01.html">Huffman Tutorial Part 1</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-02.html">Huffman Tutorial Part 2</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-03.html">Huffman Tutorial Part 3</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-04.html">Huffman Tutorial Part 4</a></li>
+  
+
+  
+      <li><a href="/huffman/2016/07/05/huffman-tutorial-05.html">Huffman Tutorial Part 5</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/huffman/2016/07/05/huffman-tutorial-01.html">Huffman Tutorial Part 1</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/huffman/2016/07/05/huffman-tutorial-03.html">Huffman Tutorial Part 3</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

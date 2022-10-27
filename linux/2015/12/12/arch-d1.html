@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Arch Linux Day 1: Installation | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Arch Linux Day 1: Installation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The day that I successfully (I might add) install Arch Linux that dual-boots to Windows 10 partition." />
+<meta property="og:description" content="The day that I successfully (I might add) install Arch Linux that dual-boots to Windows 10 partition." />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-12-12T14:33:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Arch Linux Day 1: Installation" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"/linux/2015/12/12/arch-d1.html"},"description":"The day that I successfully (I might add) install Arch Linux that dual-boots to Windows 10 partition.","url":"/linux/2015/12/12/arch-d1.html","@type":"BlogPosting","headline":"Arch Linux Day 1: Installation","dateModified":"2015-12-12T14:33:00+00:00","datePublished":"2015-12-12T14:33:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Arch Linux Day 1: Installation</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/linux">
+      linux
+    </a>
+    
+    <a href="/tag/installation">
+      installation
+    </a>
+    
+    </span>
+    <span class="meta">12 Dec 2015</span>
+  </span>
+
+  
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a></li>
+  
+
+  
+      <li><a href="/linux/2016/01/15/arch-d4.html">Arch Linux Day 4: Switching Over to neovim</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+<h2 id="disclaimer">Disclaimer</h2>
+
+<p>This is by no means a tutorial or a guide to installing Arch Linux - it is just
+how I did my things. Everything that I do should be taken as (at the most)
+advice. Everything written here should be taken with a grain of salt, as I am
+going off of my memory of what I have done, and may have forgotten things, even
+if it was only a few days since I have actually done the deed. I don’t remember
+every command that I execute.</p>
+
+<h2 id="the-process">The Process</h2>
+
+<h3 id="the-installation-media">The Installation Media</h3>
+
+<p>You won’t believe me when I tell you that the most difficult part of this day
+was to burn the image to the disk. But let me tell you: it was.</p>
+
+<p>The main tool I used was ImgBurn on Windows 10. I downloaded the
+<a href="https://www.archlinux.org/download/">ISO image</a>, which was around 600MB. I then proceeded to insert a blank
+DVD into my disk drive, and started up ImgBurn. I finished burning the image
+onto my disk, but the problem came when ImgBurn started verifying my disk.
+At the 20% mark, verification errors began popping up for no reason. I know
+because I tried burning it on my Ubuntu laptop, and was successful (which is
+why I am using Arch right now). Some research showed me that it was not
+ImgBurn’s problem, but a combined problem between old hardware and new
+software/drivers. Mind you that my main laptop is almost 6 years old (as of
+writing this).</p>
+
+<h3 id="booting-up">Booting Up</h3>
+
+<p>After that fiasco, I booted my disk, and boy did it load up fast.</p>
+
+<h4 id="partitioning">Partitioning</h4>
+
+<p>The first thing I did was (re)partitioning my disk. Since I did not have
+multiple hard drives, I had to partition my disk. Unfortunately for me,
+Windows 10 has already partitioned my disk into 3 parts: the boot-loader,
+my main <code class="language-plaintext highlighter-rouge">C:\</code> drive, and a recovery partition, making 3 primary partitions. As
+you may or may not know, you can only have 4 partitions on 1 disk at the same
+time. I saw that my previous Fedora 20 distribution got around this by making
+a logical partition.</p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">cfdisk</code>, I deleted my Fedora partitions, then created a large logical
+partition (with the remaining space) and pushed my root, boot, swap, and home
+partitions on there. I gave every partition type ext4 (default) except swap
+(Linux swap/Solaris). I then saved and exited.</p>
+
+<h4 id="formatting-the-partitions">Formatting the Partitions</h4>
+
+<p>After all the partitioning, I used <code class="language-plaintext highlighter-rouge">fdisk -l</code> to list out all the available
+partitions. I then tried to format my swap partition with the commands:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkswap /dev/sda7
+swapon /dev/sda7
+</code></pre></div></div>
+
+<p>This failed miserably with an error. I then found out that my beloved Fedora 20
+installation formatted every partition it touched with lvm. I removed them all
+with <code class="language-plaintext highlighter-rouge">lvremove -r /dev/mapping/fedora</code> and tried formatting again. It worked.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkfs.ext4 /dev/sda5     <span class="c"># Root</span>
+mkfs.ext4 /dev/sda6     <span class="c"># Boot</span>
+mkfs.ext4 /dev/sda8     <span class="c"># Home (doesn't rhyme with 'oot')</span>
+</code></pre></div></div>
+
+<h4 id="installation-of-the-base-system">Installation of the Base System</h4>
+
+<p>With formatting done and out of the way, next comes installation of base
+packages. The instructions say that I have to install the packages to the
+root partition, and that’s what I did.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Mount everything</span>
+<span class="nb">mkdir</span> /mnt/home /mnt/boot
+mount /dev/sda5 /mnt
+mount /dev/sda6 /mnt/boot
+mount /dev/sda8 /mnt/home
+
+<span class="c"># Install the base package</span>
+pacstrap /mnt base
+</code></pre></div></div>
+
+<p>One thing that I need to do before chroot-ing into the new system is to generate
+an fstab file:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>genfstab <span class="nt">-p</span> /mnt <span class="o">&gt;&gt;</span> /mnt/etc/fstab
+arch-chroot /mnt    <span class="c"># Change root</span>
+</code></pre></div></div>
+
+<h4 id="configure-network">Configure Network</h4>
+
+<p>I wanted a working ethernet connection, so I did <code class="language-plaintext highlighter-rouge">systemctl enable
+dhcpcd@enp3s0.service</code> to enable the ethernet service for my machine. You may
+have a different device name, like <code class="language-plaintext highlighter-rouge">eth0</code>.</p>
+
+<h4 id="install-the-boot-loader">Install the Boot-Loader</h4>
+
+<p>I’ve been using GRUB before, and didn’t want to change, so I ran <code class="language-plaintext highlighter-rouge">pacman -S
+grub os-prober</code> to install GRUB and a module called <code class="language-plaintext highlighter-rouge">os-prober</code> that detects
+my Windows OS so that GRUB recognizes it and allows me to boot from that as
+well.</p>
+
+<p>To configure and install GRUB:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grub-mkconfig <span class="nt">-o</span> /boot/grub/grub.cfg    <span class="c"># Create config file</span>
+grub-install <span class="nt">--recheck</span> /dev/sda         <span class="c"># Install GRUB</span>
+</code></pre></div></div>
+
+<h4 id="setting-root-password">Setting root Password</h4>
+
+<p>One of the last things that you should do is to set the password for root user
+for the next/first time you login. A simple <code class="language-plaintext highlighter-rouge">passwd</code> does it.</p>
+
+<h4 id="exiting-and-rebooting">Exiting and Rebooting</h4>
+
+<p>I exited the chroot with exit (<kbd>Ctrl+D</kbd> also works). Afterwards, I
+unmounted all the mounted partitions with <code class="language-plaintext highlighter-rouge">unmount -R /mnt</code>, the <code class="language-plaintext highlighter-rouge">-R</code> being
+recursive to unmount everything recursively. Apparently, unmounting also
+checks for problems with <code class="language-plaintext highlighter-rouge">fuser</code>. I rebooted the machine with <code class="language-plaintext highlighter-rouge">reboot</code>.</p>
+
+<h3 id="first-login">First Login</h3>
+
+<p>At last, it was time for me to login for the first time! GRUB loaded correctly,
+and defaulted to Arch Linux. The loading-up was very fast, as I had nearly
+nothing to load. I successfully logged in with my root account, and was greeted
+with a very nice shell prompt.</p>
+
+<h3 id="creating-a-user">Creating a User</h3>
+
+<p>Creating a user is very essential - I don’t want to be logging in as the root
+user every time because if I screw something up, I lose everything.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>useradd <span class="nt">-m</span> cheukyin699  <span class="c"># Create the user</span>
+passwd cheukyin699      <span class="c"># Change the password</span>
+
+pacman <span class="nt">-S</span> <span class="nb">sudo</span>          <span class="c"># Install sudo</span>
+visudo                  <span class="c"># Edit sudoers file to add user</span>
+reboot
+</code></pre></div></div>
+
+<h2 id="a-whole-new-world">A Whole New World</h2>
+
+<p>After rebooting, it’s time to login a second time as a normal user and start
+installing stuff. But I thought that what I did was good enough for the day.</p>
+
+
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a></li>
+  
+
+  
+      <li><a href="/linux/2016/01/15/arch-d4.html">Arch Linux Day 4: Switching Over to neovim</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>
