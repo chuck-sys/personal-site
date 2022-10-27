@@ -5,6 +5,14 @@ group: 'navigation'
 permalink: /resources/
 ---
 
+**Websites**
+
+- Jeopardy ([https://jeopardy.cheuksblog.ca/](https://jeopardy.cheuksblog.ca/))
+- 倉頡碼字典 ([https://cangjie.cheuksblog.ca/](https://cangjie.cheuksblog.ca/))
+- Graph visualization tool ([https://graphviz.cheuksblog.ca](https://graphviz.cheuksblog.ca))
+
+**Things that are on this website**
+
 - [Custom music arrangements](/music-arrangements/)
 - ncurses Editor Tutorial
     <ul>
