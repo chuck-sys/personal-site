@@ -1,6 +1,4 @@
-_site
 .sass-cache
 .jekyll-cache
 
-_build-n-deploy.sh
 _drafts

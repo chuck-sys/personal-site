@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Where did he GO? - Inferno CTF | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Where did he GO? - Inferno CTF" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This was also one of the easier ones. As you can tell, I’m not that good at these things. I also have never scripted in go before. Here’s what happened." />
+<meta property="og:description" content="This was also one of the easier ones. As you can tell, I’m not that good at these things. I also have never scripted in go before. Here’s what happened." />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-31T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Where did he GO? - Inferno CTF" />
+<script type="application/ld+json">
+{"headline":"Where did he GO? - Inferno CTF","dateModified":"2019-12-31T00:00:00-08:00","datePublished":"2019-12-31T00:00:00-08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/writeup/2019/12/31/where-go-infernoctf.html"},"description":"This was also one of the easier ones. As you can tell, I’m not that good at these things. I also have never scripted in go before. Here’s what happened.","@type":"BlogPosting","url":"/writeup/2019/12/31/where-go-infernoctf.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Where did he GO? - Inferno CTF</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/ctf">
+      ctf
+    </a>
+    
+    <a href="/tag/writeup">
+      writeup
+    </a>
+    
+    <a href="/tag/go">
+      go
+    </a>
+    
+    </span>
+    <span class="meta">31 Dec 2019</span>
+  </span>
+
+  <p>This was also one of the easier ones. As you can tell, I’m not that good at
+these things. I also have never scripted in go before. Here’s what happened.</p>
+
+<p>The program asked for a password, and if the password was correct, we would get
+a nice success message. Looking into the program, we see that the input is
+checked against an obfuscated string of bytes. The input is run through 2
+functions:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="n">chars</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">rune</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="m">1</span> <span class="p">{</span>
+		<span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">chars</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">chars</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kt">string</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">mandir_wahi_banega</span><span class="p">(</span><span class="n">s</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="n">words</span> <span class="o">:=</span> <span class="n">strings</span><span class="o">.</span><span class="n">Fields</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="m">1</span> <span class="p">{</span>
+		<span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span> <span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">strings</span><span class="o">.</span><span class="n">Join</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="s">"_"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">mandir_wahi_banega</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">user_input</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Let’s see what would happen if we simply printed the encrypted bytes as a
+string:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">ency</span><span class="p">)</span>
+<span class="c">//!!tA3rG_s1_gn1MMaRg0rP_0g</span>
+</code></pre></div></div>
+
+<p>This looks awfully like some kind of flag. Let’s see what happens when we
+reverse it (using <code class="language-plaintext highlighter-rouge">jai_ram_ji_ki</code>):</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">jai_ram_ji_ki</span><span class="p">(</span><span class="n">ency</span><span class="p">))</span>
+<span class="c">//g0_Pr0gRaMM1ng_1s_Gr3At!!</span>
+</code></pre></div></div>
+
+<p>And whaddyaknow, that’s the flag!</p>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/writeup/2019/12/30/7110-otw-advent2019-ctf.html">7110 - OverTheWire Advent 2019 CTF</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/writeup/2020/01/08/the-prophet-tetctf.html">The Prophet - TetCTF</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

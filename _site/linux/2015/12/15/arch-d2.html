@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Arch Linux Day 2: Setting up GNOME | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Arch Linux Day 2: Setting up GNOME" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The day I successfully set up Xorg, along with GNOME display manager." />
+<meta property="og:description" content="The day I successfully set up Xorg, along with GNOME display manager." />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-12-15T17:28:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Arch Linux Day 2: Setting up GNOME" />
+<script type="application/ld+json">
+{"headline":"Arch Linux Day 2: Setting up GNOME","dateModified":"2015-12-15T17:28:00-08:00","datePublished":"2015-12-15T17:28:00-08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/linux/2015/12/15/arch-d2.html"},"description":"The day I successfully set up Xorg, along with GNOME display manager.","@type":"BlogPosting","url":"/linux/2015/12/15/arch-d2.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Arch Linux Day 2: Setting up GNOME</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/linux">
+      linux
+    </a>
+    
+    <a href="/tag/installation">
+      installation
+    </a>
+    
+    <a href="/tag/gnome">
+      GNOME
+    </a>
+    
+    <a href="/tag/xorg">
+      Xorg
+    </a>
+    
+    </span>
+    <span class="meta">15 Dec 2015</span>
+  </span>
+
+  
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a></li>
+  
+
+  
+      <li><a href="/linux/2016/01/15/arch-d4.html">Arch Linux Day 4: Switching Over to neovim</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+<p>For this day, I didn’t read up on any tutorials or guides. I just followed the
+instructions from this video: <a href="https://www.youtube.com/watch?v=DAmXKDJ3D7M">From Post Install to Xorg</a>. As a
+result, the rest of this post will mostly be me trying to transcribe the video
+into written (typed) words.</p>
+
+<h2 id="software-installations">Software Installations</h2>
+
+<p>To enable 64-bit libraries, I edited <code class="language-plaintext highlighter-rouge">/etc/pacman.conf</code> and uncommented the
+lines that were about <strong>multilib</strong>. To update the system, use <code class="language-plaintext highlighter-rouge">pacman -Syu</code>.</p>
+
+<p>To install the 64-bit development libraries, I did:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> multilib-devel fakeroot git wget jshon make pkg-config <span class="se">\</span>
+autoconf automake patch
+</code></pre></div></div>
+
+<h3 id="unmuting-alsa">Unmuting ALSA</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> alsa-utils
+alsamixer           <span class="c"># Unmute ALSA channels</span>
+speaker-test <span class="nt">-c</span> 2   <span class="c"># Test sound (2 speakers)</span>
+</code></pre></div></div>
+
+<h3 id="installing-xorg-base-packages">Installing Xorg Base Packages</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> xorg-server xorg-xinit xorg-server-utils mesa
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> xf86-video-vesa   <span class="c"># Video driver fall-back</span>
+</code></pre></div></div>
+
+<h3 id="testing-if-xorg-works">Testing if Xorg works</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> xorg-twm xorg-xclock xterm
+startx
+</code></pre></div></div>
+
+<p>A few terminals opened up, so that I knew that xorg was good.</p>
+
+<h3 id="installing-gnome">Installing GNOME</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> gnome gnome-extra
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>gdm.service
+</code></pre></div></div>
+
+<p>After this, I rebooted, and <em>voila</em>, one GNOME login screen was presented. I
+logged in, and everything was fine, so I began to personalize my setup.</p>
+
+
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a></li>
+  
+
+  
+      <li><a href="/linux/2016/01/15/arch-d4.html">Arch Linux Day 4: Switching Over to neovim</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

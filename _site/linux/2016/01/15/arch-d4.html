@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Arch Linux Day 4: Switching Over to neovim | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Arch Linux Day 4: Switching Over to neovim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The day in which I switch over to neovim and other things that I did." />
+<meta property="og:description" content="The day in which I switch over to neovim and other things that I did." />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-01-15T09:11:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Arch Linux Day 4: Switching Over to neovim" />
+<script type="application/ld+json">
+{"headline":"Arch Linux Day 4: Switching Over to neovim","dateModified":"2016-01-15T09:11:00-08:00","datePublished":"2016-01-15T09:11:00-08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/linux/2016/01/15/arch-d4.html"},"description":"The day in which I switch over to neovim and other things that I did.","@type":"BlogPosting","url":"/linux/2016/01/15/arch-d4.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Arch Linux Day 4: Switching Over to neovim</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/linux">
+      linux
+    </a>
+    
+    <a href="/tag/config">
+      config
+    </a>
+    
+    <a href="/tag/vim">
+      vim
+    </a>
+    
+    <a href="/tag/neovim">
+      neovim
+    </a>
+    
+    <a href="/tag/terminal">
+      terminal
+    </a>
+    
+    <a href="/tag/transparent">
+      transparent
+    </a>
+    
+    </span>
+    <span class="meta">15 Jan 2016</span>
+  </span>
+
+  
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a></li>
+  
+
+  
+      <li><a href="/linux/2016/01/15/arch-d4.html">Arch Linux Day 4: Switching Over to neovim</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+<p>As if changing over to i3 window manager wasn’t enough, I decided to change my
+default editor from <a href="https://www.vim.org/">vim</a> to <a href="https://neovim.io/">neovim</a>. Of course, some things may
+break (which they did).</p>
+
+<h2 id="installing-neovim">Installing neovim</h2>
+
+<p>To install neovim on Arch, you must build it yourself because it is not in the
+default repository - it is in the Arch Linux User Repository (AUR).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/build
+git clone https://aur.archlinux.org/neovim-git.git
+<span class="nb">cd </span>neovim-git
+
+makepkg <span class="nt">-sri</span>            <span class="c"># Build the package</span>
+</code></pre></div></div>
+
+<h2 id="vim-to-neovim">vim to neovim</h2>
+
+<p>Of course, things won’t work out-of-the-box with vim settings in neovim. After
+symbolically linking my <code class="language-plaintext highlighter-rouge">.vim/</code> and <code class="language-plaintext highlighter-rouge">.vimrc</code> files to my ‘.config/nvim/’ and
+<code class="language-plaintext highlighter-rouge">.config/nvim/init.vim</code> files, I started up neovim.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim
+</code></pre></div></div>
+
+<p>Immediately, I was told that my favourite autocomplete plugin, <code class="language-plaintext highlighter-rouge">YouCompleteMe</code>,
+doesn’t work with it and I needed to compile it with python2 support. After
+pressing enter to a bunch of different questions about my English spell
+checking dictionary, I was in. It looks exactly the same, feels exactly the
+same. I heard that, unlike vim, neovim has asynchronous callbacks instead of
+synchronous ones, making it faster. I searched online and saw that neovim
+doesn’t compile with python by default - I needed to enable it with <code class="language-plaintext highlighter-rouge">pip</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> python2-pip
+<span class="nb">sudo </span>pip2 <span class="nb">install </span>neovim
+</code></pre></div></div>
+
+<p>I reopened neovim, and <em>voila</em>, <code class="language-plaintext highlighter-rouge">YouCompleteMe</code> works!</p>
+
+<h2 id="vim-airline">vim-airline</h2>
+
+<p>I saw that other people’s vim/neovim screen shots had a very pretty status
+line. That’s why I wanted to install <code class="language-plaintext highlighter-rouge">vim-airline</code>.</p>
+
+<p><strong><em>NOTE: AFTER INSTALLING THE FONTS FOR VIM-AIRLINE, PLEASE RESTART. OTHERWISE,
+YOU WOULD SPEND AN HOUR TRYING TO FIGURE OUT WHY VIM-AIRLINE DOESN’T WORK.</em></strong></p>
+
+<p>An hour and a half later, I was done with it - vim-airline was successfully
+installed, along with the correct font file, and I was elated.</p>
+
+<h2 id="transparent-terminal">Transparent Terminal</h2>
+
+<blockquote>
+  <p>See what I did there? No?</p>
+</blockquote>
+
+<p>Another thing that bothered me since installing GNOME was that there was no
+option for an opaque background in the GNOME terminal. I remembered that I
+could do that in my Fedora distribution, so I googled it.</p>
+
+<p>Apparently, the Fedora distribution patched the GNOME terminal so that there
+would be an option for transparent background for the terminal. Of course, the
+main branch would not have that, which explains why my GNOME terminal doesn’t
+have this feature. To get around it, I had to install a patched version of the
+GNOME terminal through the AUR. Here we go again.</p>
+
+<p><strong><em>NOTE: THE BELOW COMMANDS WILL REPLACE YOUR DEFAULT gnome-terminal WITH THE
+PATCHED VERSION. JUST BE WEARY.</em></strong></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/build
+git clone https://aur.archlinux.org/gnome-terminal-fedora.git
+<span class="nb">cd </span>gnome-terminal-fedora
+
+makepkg <span class="nt">-sri</span>
+</code></pre></div></div>
+
+<p>It installs nicely, replacing my old terminal and some other things (vte), and
+works! Great!</p>
+
+
+
+<ul class="nav nav-pills">
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+      <li><a href="/arch-linux/2015/12/09/arch-d0.html">Arch Linux Day 0: Fact-Checking</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/12/arch-d1.html">Arch Linux Day 1: Installation</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/15/arch-d2.html">Arch Linux Day 2: Setting up GNOME</a></li>
+  
+
+  
+      <li><a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a></li>
+  
+
+  
+      <li><a href="/linux/2016/01/15/arch-d4.html">Arch Linux Day 4: Switching Over to neovim</a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</ul>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/linux/2015/12/28/arch-d3.html">Arch Linux Day 3: Switching Over to i3</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/c++/2016/04/17/tbasic-timeline.html">Tiny BASIC Development - Timeline</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

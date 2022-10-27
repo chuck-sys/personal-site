@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>gstreamer tips and tricks | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="gstreamer tips and tricks" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Some gstreamer tips and tricks for the soul" />
+<meta property="og:description" content="Some gstreamer tips and tricks for the soul" />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-18T14:45:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="gstreamer tips and tricks" />
+<script type="application/ld+json">
+{"headline":"gstreamer tips and tricks","dateModified":"2020-03-18T14:45:00-07:00","datePublished":"2020-03-18T14:45:00-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/gstreamer/2020/03/18/gstreamer-tricks.html"},"description":"Some gstreamer tips and tricks for the soul","@type":"BlogPosting","url":"/gstreamer/2020/03/18/gstreamer-tricks.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">gstreamer tips and tricks</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/gstreamer">
+      gstreamer
+    </a>
+    
+    <a href="/tag/linux">
+      linux
+    </a>
+    
+    <a href="/tag/command-line">
+      command-line
+    </a>
+    
+    </span>
+    <span class="meta">18 Mar 2020</span>
+  </span>
+
+  <h2 id="streaming-video-from-internet-to-devvideo0">Streaming video from internet to /dev/video0</h2>
+
+<p>For cases where you want to use your desktop to do face-to-face meetings with
+others but don’t want to go out and buy a webcam, this is for you.</p>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>A phone</li>
+  <li>A linux machine with v4l2loopback installed</li>
+  <li>gstreamer</li>
+</ul>
+
+<p>To start, install an app on your phone that streams video from the phone’s IP
+address (for Android users, there is IP Webcam). Start the server up. Pay
+attention to the URL that streams raw video (for IP Webcam, it is <code class="language-plaintext highlighter-rouge">/video</code>).</p>
+
+<p>To activate the v4l2loopback kernel module, run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>modprobe v4l2loopback
+</code></pre></div></div>
+
+<p>You may notice that it automatically creates a new loopback device (usually
+<code class="language-plaintext highlighter-rouge">/dev/video0</code> if you don’t have other webcams plugged in).</p>
+
+<p>Run gstreamer:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gst-launch-0.10 souphttpsrc <span class="nv">location</span><span class="o">=</span><span class="s2">"http://&lt;URL&gt;/video"</span> is-live<span class="o">=</span><span class="nb">true</span> <span class="o">!</span>
+	multidec <span class="o">!</span> decodebin <span class="o">!</span> v4l2sink <span class="nv">device</span><span class="o">=</span>/dev/video0
+</code></pre></div></div>
+
+<p><strong>Note:</strong> You can replace the video URL with any video you like and have that
+video stream into <code class="language-plaintext highlighter-rouge">/dev/video0</code>.</p>
+
+<h2 id="streaming-audio-from-internet-to-computer">Streaming audio from internet to computer</h2>
+
+<p>For cases where you don’t just want video from your phone, but audio as well,
+this is for you.</p>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>Everything above that concerns a phone and gstreamer</li>
+</ul>
+
+<p>This time you don’t need to use v4l2loopback since we are streaming the audio
+directly to our device. You will be able to hear the audio in your headphones.</p>
+
+<p>After setting up the server for your phone, pay attention to the URL for the
+audio streams (there are 2/3 for IP Webcam: <code class="language-plaintext highlighter-rouge">/audio.wav</code>, <code class="language-plaintext highlighter-rouge">/audio.opus</code>,
+<code class="language-plaintext highlighter-rouge">/audio.aac</code>, depending on if your device supports them; we will use
+<code class="language-plaintext highlighter-rouge">/audio.wav</code>).</p>
+
+<p>Run gstreamer:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gst-launch-0.10 souphttpsrc <span class="nv">location</span><span class="o">=</span><span class="s2">"http://&lt;URL&gt;/audio.wav"</span> is-live<span class="o">=</span><span class="nb">true</span> <span class="o">!</span>
+	decodebin <span class="o">!</span> autoaudiosink
+</code></pre></div></div>
+
+<h2 id="streaming-audio-from-pulseaudio-device-to-computer">Streaming audio from PulseAudio device to computer</h2>
+
+<p>For the cases where everyone tells you to use
+<a href="https://meet.google.com">meet.google.com</a> for meetings and you have a USB microphone
+and want to join but for some reason Google doesn’t recognize your USB
+microphone but for some other reason recognizes the sounds your device makes
+(system monitor) <strong>even though</strong> other sites that test microphone have no
+trouble recognizing both the system monitor and the USB microphone at the same
+time.</p>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>A USB microphone</li>
+  <li>PulseAudio system</li>
+  <li>gstreamer</li>
+</ul>
+
+<p>Plug in your microphone. We have to find the device’s name. Run the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pactl list | <span class="nb">grep</span> <span class="nt">-A2</span> <span class="s1">'Source #'</span> | <span class="nb">grep</span> <span class="s1">'Name: '</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">" "</span> <span class="nt">-f2</span>
+</code></pre></div></div>
+
+<p>You will see a couple of devices listed. Pick the one you think is correct.
+Usually the correct one is prefixed with <code class="language-plaintext highlighter-rouge">alsa_input</code>.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_SUGA_2019_11_14_29386-00.mono-fallback
+alsa_output.pci-0000_00_1b.0.analog-stereo.monitor
+</span></code></pre></div></div>
+
+<p>Copy the entire string and run the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gst-launch-0.10 pulsesrc <span class="nv">device</span><span class="o">=</span><span class="s2">"&lt;YOUR DEVICE NAME HERE&gt;"</span> <span class="o">!</span> autoaudiosink
+</code></pre></div></div>
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/writeup/2020/01/08/the-prophet-tetctf.html">The Prophet - TetCTF</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/writeup/2020/05/08/gradescope-hw-exploits.html">Taking advantage of output dumping for a Gradescope programming assignment</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- Custom stylesheets -->
+
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Basic Ray Casting Tutorial | Cheuk’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Basic Ray Casting Tutorial" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A light ray casting tutorial for the enthusiast" />
+<meta property="og:description" content="A light ray casting tutorial for the enthusiast" />
+<meta property="og:site_name" content="Cheuk’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-05-10T21:28:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Basic Ray Casting Tutorial" />
+<script type="application/ld+json">
+{"headline":"Basic Ray Casting Tutorial","dateModified":"2017-05-10T21:28:00-07:00","datePublished":"2017-05-10T21:28:00-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"/tutorial/2017/05/10/basic-raycasting-tut.html"},"description":"A light ray casting tutorial for the enthusiast","@type":"BlogPosting","url":"/tutorial/2017/05/10/basic-raycasting-tut.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    
+  <head>
+
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">
+    Cheuk's Blog
+  </a>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/resources/">Resources</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="nav-links" href="/about/">About</a>
+  
+  
+</nav>
+
+      
+      <article class="post">
+  <h1 class="title">Basic Ray Casting Tutorial</h1>
+  <span>
+    <span>
+    Tags:
+    
+    <a href="/tag/tutorial">
+      tutorial
+    </a>
+    
+    <a href="/tag/c++">
+      c++
+    </a>
+    
+    <a href="/tag/ray casting">
+      ray casting
+    </a>
+    
+    <a href="/tag/graphics">
+      graphics
+    </a>
+    
+    </span>
+    <span class="meta">10 May 2017</span>
+  </span>
+
+  <h2 id="goal">Goal</h2>
+
+<p>This tutorial’s goal is to get you acquainted with the idea of ray casting. We
+will focus on the most basic method for ray casting: using a combination of unit
+vectors, vector addition, and lots and lots of iteration. Sounds fun? Let’s dive
+in.</p>
+
+<p>If you wanna see the finished product, scroll all the way to the bottom of the
+screen, or press the <kbd>End</kbd> key on your keyboard.</p>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+
+<ul>
+  <li>Some proficiency in C++</li>
+  <li>Some knowledge of the event-driven paradigm (if you know what the term is, you
+are golden)</li>
+  <li>Some knowledge of what a vector is, in mathematical terms
+(not just <code class="language-plaintext highlighter-rouge">#include &lt;vector&gt;</code>)</li>
+</ul>
+
+<h2 id="general-idea">General Idea</h2>
+
+<p>In this tutorial, you will build a small program that projects a beam of light
+from the center of the canvas in the direction of your cursor. Any objects
+placed in the way of the beam will be blocked, just as light (in normal
+circumstances) is blocked when you place something in front of the source.</p>
+
+<p>The objects will be placed by a simple click on the canvas.</p>
+
+<p>The idea behind the ray casting is that we will first grab the vector going from
+the middle of the canvas towards the cursor, and change it into a unit vector.
+Then, we iteratively add the unit vectors onto the position vector of the middle
+of the canvas, until we come across an object. If we hit an object, we draw a
+line from the middle to the point it hit the object. If we don’t, we just draw a
+line from the middle to the edge of the screen.</p>
+
+<h2 id="the-code">The Code</h2>
+
+<p>Let’s start off with the basics.</p>
+
+<h3 id="basic-setup">Basic Setup</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;SFML/Graphics.hpp&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">sf</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">RenderWindow</span> <span class="n">w</span><span class="p">(</span><span class="n">VideoMode</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="s">"Raycast Thingy"</span><span class="p">,</span> <span class="n">Style</span><span class="o">::</span><span class="n">Close</span><span class="p">);</span>
+    <span class="n">Event</span> <span class="n">evt</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">isOpen</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">pollEvent</span><span class="p">(</span><span class="n">evt</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="n">Event</span><span class="o">::</span><span class="n">Closed</span><span class="p">:</span>
+                <span class="n">w</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="nl">default:</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">w</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+
+        <span class="n">w</span><span class="p">.</span><span class="n">display</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is just, you know, your standard main loop. We will be working with
+<a href="https://www.sfml-dev.org/">SFML</a>.</p>
+
+<p>If you are not sure how to compile this, please check out <a href="https://www.sfml-dev.org/tutorials/2.4/">these
+tutorials</a>.</p>
+
+<p>Let’s add a feature where circles will appear on click, so that we could add
+objects dynamically. Right after <code class="language-plaintext highlighter-rouge">Event evt</code>, initialize the following:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CircleShape</span> <span class="n">c</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">hasDrawn</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">Mouse</span><span class="o">::</span><span class="n">getPosition</span><span class="p">())</span><span class="o">&gt;</span> <span class="n">cpos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>We will be using the same <code class="language-plaintext highlighter-rouge">CircleShape</code> for drawing onto the window. The
+<code class="language-plaintext highlighter-rouge">std::vector</code> is for saving all the cursor positions, again, for drawing onto
+the window. Don’t forget to include it!</p>
+
+<p>Add another case in the <code class="language-plaintext highlighter-rouge">switch</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="n">Event</span><span class="o">::</span><span class="n">MouseButtonReleased</span><span class="p">:</span>
+    <span class="n">cpos</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Mouse</span><span class="o">::</span><span class="n">getPosition</span><span class="p">()</span> <span class="o">-</span> <span class="n">w</span><span class="p">.</span><span class="n">getPosition</span><span class="p">());</span>
+    <span class="k">break</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The reason why we have to subtract the window position from the mouse position
+is that the mouse position is relative to the monitor/screen, and not the
+canvas.</p>
+
+<p>Now, in-between the <code class="language-plaintext highlighter-rouge">w.clear()</code> and <code class="language-plaintext highlighter-rouge">w.display()</code>, we are gonna start drawing
+the circles.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">p</span> <span class="o">:</span> <span class="n">cpos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">setPosition</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">w</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Remember to initialize the <code class="language-plaintext highlighter-rouge">CircleShape</code>, lest you won’t be able to actually see
+it, even if you click a whole bunch.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="p">.</span><span class="n">setFillColor</span><span class="p">(</span><span class="n">Color</span><span class="o">::</span><span class="n">White</span><span class="p">);</span>
+<span class="n">c</span><span class="p">.</span><span class="n">setRadius</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>For more documentation on what aspects of the circle you can change, <a href="https://www.sfml-dev.org/documentation/2.4.2/classsf_1_1CircleShape.php">consult
+the documentation</a>.</p>
+
+<p>At this stage, you should be able to click on the canvas, and a circle should
+appear on the screen.</p>
+
+<h3 id="ray-casting-logic">Ray Casting Logic</h3>
+
+<p>Okay. You are done with all the basics. Now, how do we implement it? Let’s just
+have an <code class="language-plaintext highlighter-rouge">sf::VertexArray</code> that handles the 2 points. Our first vertex is
+<code class="language-plaintext highlighter-rouge">start</code>, the center of the canvas. The second point will involve ray casting.
+Since we need to know where to start, and what direction we should go, it makes
+sense that the <code class="language-plaintext highlighter-rouge">start</code> and mouse position should be parameters. But what’s
+<code class="language-plaintext highlighter-rouge">img</code>?</p>
+
+<p><code class="language-plaintext highlighter-rouge">img</code> is the entire canvas, as a buffered array of pixels. Since we will need to
+add unit vectors to our current starting position, we will need to know when we
+hit the circles. The most pixel-perfect way to do it would be to use an array
+look-up.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Draw line with raycasting</span>
+<span class="n">VertexArray</span> <span class="nf">vs</span><span class="p">(</span><span class="n">Lines</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">vs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
+<span class="n">vs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">position</span> <span class="o">=</span> <span class="n">raycast</span><span class="p">(</span><span class="n">start</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">Vector2f</span><span class="p">)</span> <span class="p">(</span><span class="n">Mouse</span><span class="o">::</span><span class="n">getPosition</span><span class="p">()</span> <span class="o">-</span> <span class="n">w</span><span class="p">.</span><span class="n">getPosition</span><span class="p">()),</span>
+                    <span class="n">img</span><span class="p">);</span>
+<span class="n">vs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">::</span><span class="n">Red</span><span class="p">;</span>
+<span class="n">vs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">::</span><span class="n">Red</span><span class="p">;</span>
+<span class="n">w</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">vs</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Let’s actually create the <code class="language-plaintext highlighter-rouge">raycast</code> function.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Vector2f</span> <span class="nf">raycast</span><span class="p">(</span><span class="n">Vector2f</span> <span class="n">start</span><span class="p">,</span> <span class="n">Vector2f</span> <span class="n">mouse</span><span class="p">,</span> <span class="n">Image</span> <span class="n">img</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>First, we will get the vector that goes from the start to the mouse, and
+normalize it.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Vector2f</span> <span class="n">u</span> <span class="o">=</span> <span class="n">mouse</span> <span class="o">-</span> <span class="n">start</span><span class="p">;</span>
+<span class="n">u</span> <span class="o">/=</span> <span class="n">v2fNorm</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The function <code class="language-plaintext highlighter-rouge">float v2fNorm(Vector2f)</code> grabs the norm of the vector, and will
+be left as an exercise to the reader (this is sounding like one of them
+textbooks already).</p>
+
+<p>We will use <code class="language-plaintext highlighter-rouge">sf::Rect&lt;float&gt;</code> to check if the point (and the points after it)
+is within the bounds of the canvas.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Rect</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">(</span><span class="n">Vector2f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">Vector2f</span><span class="p">)</span> <span class="n">img</span><span class="p">.</span><span class="n">getSize</span><span class="p">());</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">start</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">start</span><span class="p">.</span><span class="n">y</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">getPixel</span><span class="p">(</span><span class="n">start</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">start</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Color</span><span class="o">::</span><span class="n">Black</span> <span class="o">&amp;&amp;</span>
+        <span class="n">img</span><span class="p">.</span><span class="n">getPixel</span><span class="p">(</span><span class="n">start</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">start</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Color</span><span class="o">::</span><span class="n">Red</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// We've hit it!</span>
+        <span class="k">return</span> <span class="n">start</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">start</span> <span class="o">+=</span> <span class="n">u</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The code above checks to see if the pixel is neither black nor red. In this
+example, the canvas has a black background, and the line is drawn in red, hence
+anything that isn’t either of these colours should be an obstacle. We are using
+the vector <code class="language-plaintext highlighter-rouge">start</code> as a counter: every time we go through the loop, we add the
+unit vector to it again to update the counter.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">img.getPixel()</code> grabs the colour of the pixel at the specified x and y
+coordinates.</p>
+
+<p>We are almost done. What we need now, is to return the side if it doesn’t find
+anything. This is easy, since the while-loop terminates if <code class="language-plaintext highlighter-rouge">start</code> goes out of
+bounds; <code class="language-plaintext highlighter-rouge">start</code> keeps it’s value, and we can return that.</p>
+
+<h3 id="getting-the-image">Getting the Image</h3>
+
+<p>Obtaining the entire image buffer of the canvas can be extremely time-consuming;
+it is proportionate to the size of the canvas. Let’s add a few more variables
+to the start of <code class="language-plaintext highlighter-rouge">int main()</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Texture</span> <span class="n">wt</span><span class="p">;</span>
+<span class="n">Image</span> <span class="n">img</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>And we initialize them.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wt</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">getSize</span><span class="p">().</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">.</span><span class="n">getSize</span><span class="p">().</span><span class="n">y</span><span class="p">);</span>
+<span class="n">wt</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">wt</span><span class="p">.</span><span class="n">copyToImage</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>This is just how they do things in SFML. First, you create an <code class="language-plaintext highlighter-rouge">sf::Texture</code> to
+hold the graphics displayed on the canvas. Then, you convert the texture to an
+<code class="language-plaintext highlighter-rouge">sf::Image</code>. From the docs, this is an extremely time-consuming operation, which
+is why the texture is updated if and only if a new obstacle is placed on the
+canvas.</p>
+
+<p>Now, we just need code to update the texture and the image whenever an obstacle
+is placed onto the canvas. This task will be left as another exercise to the
+reader.</p>
+
+<h2 id="result">Result</h2>
+
+<p>And here are the results!</p>
+
+<p><img src="/res/images/raycasting-1.png" alt="raycast" /></p>
+
+<p><img src="/res/images/raycasting-2.png" alt="raycast" /></p>
+
+<h2 id="epilogue">Epilogue</h2>
+
+<p>If you are still a bit stuck, <a href="https://github.com/cheukyin699/raycasting-tutorial1">here</a> is my code. It’s just a single source
+file, coupled with a Makefile for easy compilation.</p>
+
+<p>Anyways, that’s it! Think about all the other things you can do with it! If you
+can draw one line, why not draw tons of lines, and have the source <code class="language-plaintext highlighter-rouge">start</code> start
+moving?</p>
+
+
+</article>
+
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/huffman/2016/07/05/huffman-tutorial-05.html">Huffman Tutorial Part 5</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/writing/2017/06/28/cw-fire.html">[Writing] Fire</a>
+  
+  </span>
+</footer>
+
+    </div>
+  </body>
+
+</html>
