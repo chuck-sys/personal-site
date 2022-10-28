@@ -12,13 +12,10 @@ Please forgive all inaccuracies.
 
 **Non-Worship**
 
-- **Running in the dark - MONKEY MAJIK** bass cover ([Musescore][ritd-mscz], [PDF][ritd-pdf]) This is the
-  shorter version (by half), corresponding to the [Youtube][ritd-yt] animation. You can probably figure
-  out the rest yourself.
+- **Running in the dark - MONKEY MAJIK** bass cover ([Musescore][ritd-mscz], [PDF][ritd-pdf])
 
 [ritd-mscz]: /res/sheets/Running_in_the_dark.mscz
 [ritd-pdf]: /res/sheets/Running_in_the_dark.pdf
-[ritd-yt]: https://youtu.be/jyoV5RBysXk
 
 **Worship**
 
