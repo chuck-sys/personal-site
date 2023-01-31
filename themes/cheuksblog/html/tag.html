@@ -1,0 +1,12 @@
+{% extends "/html/base.html" %}
+{% block subtitle %}: Posts Tagged &quot;{{name}}&quot;{% endblock %}
+{% block content %}
+{% for post in posts %}
+<div class="apost">
+  <span>
+    <span>{{post.date|date:"yyyy"}}</span>
+    <a href="{{post.uri}}">{{post.title}}</a>
+  </span>
+</div>
+{% endfor %}
+{% endblock %}

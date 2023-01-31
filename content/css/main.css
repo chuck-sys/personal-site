@@ -1,0 +1,265 @@
+/**
+ * Reset some basic elements
+ */
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Basic styling
+ */
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 300;
+  color: #ebdbb2;
+  background-color: #282828;
+  -webkit-text-size-adjust: 100%;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure {
+  margin-bottom: 15px;
+}
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: 14px;
+}
+
+/**
+ * Lists
+ */
+ul, ol {
+  margin-left: 30px;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+/**
+ * Headings
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Helvetica, sans-serif;
+  color: #fbf1c7;
+}
+
+/**
+ * Links
+ */
+a {
+  color: #83a598;
+  text-decoration: none;
+}
+a:visited {
+  color: #5c7f72;
+}
+a:hover {
+  color: #5c7f72;
+  text-decoration: underline;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: #b8bb26;
+  border-left: 4px solid #a89984;
+  padding-left: 15px;
+  font-size: 18px;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+  font-size: 15px;
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+}
+pre > code {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: -webkit-calc(50em - (30px * 2));
+  max-width: calc(50em - (30px * 2));
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+/**
+ * Table
+ */
+table {
+  margin: auto;
+  margin-bottom: 0.5em;
+  border-collapse: collapse;
+}
+table th, table td {
+  border: 1px solid #a89984;
+  padding: 0.5em 1em;
+}
+
+/**
+ * Styling for newlines
+ */
+br {
+  clear: both;
+}
+
+nav {
+  height: 20.8px;
+  margin: auto;
+  padding: 1em 0;
+  font-size: 20.8px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #a89984;
+}
+nav a.nav-title {
+  float: left;
+  color: #fbf1c7;
+  text-decoration: none;
+  transition: color 0.1s;
+  border-radius: 3px;
+}
+@media screen and (max-width: 600px) {
+  nav a.nav-title {
+    display: none;
+  }
+}
+nav a.nav-links {
+  float: right;
+  color: #fbf1c7;
+  padding: 0 0 0 0.5em;
+  margin: 0 0 0 0.5em;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: color 0.1s;
+}
+nav a:hover {
+  color: #fe8019;
+}
+
+/**
+ * Page and posts
+ */
+.post,
+.page {
+  margin: 30px 0;
+}
+.post .title,
+.page .title {
+  font-size: 42px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+@media screen and (max-width: 800px) {
+  .post .title,
+  .page .title {
+    font-size: 36px;
+  }
+}
+.post .meta,
+.page .meta {
+  margin-right: 1em;
+  font-variant: small-caps;
+  color: #a89984;
+}
+.post > span,
+.page > span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.post-foot {
+  padding: 1em 0;
+  border-top: 1px solid #a89984;
+  display: flex;
+  justify-content: space-between;
+}
+.post-foot .prev, .post-foot .next {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.post-foot .prev span, .post-foot .next span {
+  color: #a89984;
+  font-variant: small-caps;
+}
+.post-foot .next {
+  text-align: right;
+}
+
+/**
+ * Post entries
+ */
+.apost {
+  margin: 1.5em 0;
+}
+.apost > span {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr;
+}
+.apost > span span {
+  color: #a89984;
+}
+
+/**
+ * Pagination things
+ */
+.pagination {
+  text-align: center;
+}
+.pagination span.disabled {
+  color: #a89984;
+}
+.pagination > * {
+  margin: 0 1em;
+}
+
+/*# sourceMappingURL=main.css.map */

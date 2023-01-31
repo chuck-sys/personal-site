@@ -1,0 +1,83 @@
+/**
+ * Page and posts
+ */
+.post,
+.page {
+    margin: $spacing-unit 0;
+
+    .title {
+        font-size: 42px;
+        letter-spacing: -1px;
+        line-height: 1.2;
+
+        @include media-query($on-laptop) {
+            font-size: 36px;
+        }
+    }
+
+    .meta {
+        margin-right: 1em;
+        font-variant: small-caps;
+        color: $fg4;
+    }
+
+	> span {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 4rem;
+	}
+}
+
+.post-foot {
+	padding: 1em 0;
+	border-top: 1px solid $border-color;
+	display: flex;
+	justify-content: space-between;
+
+	.prev, .next {
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+
+		span {
+			color: $fg4;
+			font-variant: small-caps;
+		}
+	}
+
+	.next {
+		text-align: right;
+	}
+}
+
+/**
+ * Post entries
+ */
+.apost {
+    margin: 1.5em 0;
+
+	> span {
+		display: grid;
+		grid-template-columns: 0.1fr 1fr;
+
+		span {
+			color: $fg4;
+		}
+	}
+}
+
+/**
+ * Pagination things
+ */
+.pagination {
+	text-align: center;
+
+	span.disabled {
+		color: $fg4;
+	}
+
+	> * {
+		margin: 0 1em;
+	}
+}
+
