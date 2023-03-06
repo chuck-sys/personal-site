@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Google Test Basic Tutorial</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="GoalThe goal of this tutorial is to get you up and running with Google Test through
+the examples given. This will be more of a walkthrough integrating Google Test
+into your project.">
+
+<meta property="og:description" content="GoalThe goal of this tutorial is to get you up and running with Google Test through
+the examples given. This will be more of a walkthrough integrating Google Test
+into your project.">
+
+<meta property="og:url" content="https://cheuksblog.ca/2017-12-19-googletest-tutorial/" />
+<meta property="og:title" content="Google Test Basic Tutorial" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2017-12-19-googletest-tutorial/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">December 19, 2017</div>
+        
+    </div>
+    <h2>Google Test Basic Tutorial</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#goal">Goal</a></li><li><a href="#pre-requisites">Pre-requisites</a></li><li><a href="#google-test">Google Test</a></li><li><a href="#getting-started">Getting Started</a></li><ol><li><a href="#populating-the-files">Populating the files</a></li></ol><li><a href="#writing-tests">Writing Tests</a></li><li><a href="#linking-and-compiling-and-running">Linking and Compiling and Running</a></li><li><a href="#ending">Ending</a></li></ol>
+    <h2 id="goal">Goal</h2><p>The goal of this tutorial is to get you up and running with Google Test through
+the examples given. This will be more of a walkthrough integrating Google Test
+into your project.</p><h2 id="pre-requisites">Pre-requisites</h2><ul><li>Some basic proficiency in C++</li><li>Some basic understanding of CMake</li><li>Some understanding of <a href="https://git-scm.com/">git</a> and <a href="https://github.com/">github</a></li></ul><h2 id="google-test">Google Test</h2><p><a href="https://github.com/google/googletest"><strong>Have this tab open for documentation</strong></a>. You'll need it.</p><h2 id="getting-started">Getting Started</h2><p>We will want the following directory structure:</p><pre><code>.
+├── CMakeLists.txt
+├── include
+│   └── inc.h
+├── libs
+│   ├── CMakeLists.txt
+│   └── googletest
+├── src
+│   ├── CMakeLists.txt
+│   └── lib.cc
+└── tests
+    ├── CMakeLists.txt
+    ├── Main.cc
+    └── TestAbs.cc
+</code></pre><h3 id="populating-the-files">Populating the files</h3><p>Create your directories <code>include</code>, <code>libs</code>, <code>src</code>, and <code>tests</code>. Then populate
+them with the following:</p><p><code>CMakeLists.txt</code></p><pre><code class="cmake">cmake_minimum_required(VERSION 3.1)
+project(simple-lib)
+
+enable_testing()
+
+add_subdirectory(src)
+</code></pre><p>The library that we will be making with be very simple, consisting only of a
+single absolute value generic function. Because of good practice, we will
+enclose said function inside of an aptly named namespace.</p><p><code>include/inc.h</code></p><pre><code class="cpp">#ifndef INC_H
+#define INC_H
+
+namespace lib {
+    template&lt;typename T&gt;
+    T abs(T);
+}
+
+#endif
+</code></pre><p><code>src/lib.cc</code></p><pre><code class="cpp">#include "inc.h"
+
+namespace lib {
+    template&lt;typename T&gt;
+    T abs (T v) {
+        return v &lt; 0? -v: v;
+    }
+}
+</code></pre><p><code>src/CMakeLists.txt</code></p><pre><code class="cmake">set(src
+    lib.cc)
+
+include_directories(${simple-lib_SOURCE_DIR}/include)
+
+add_library(slib ${src})
+</code></pre><p>Now, let's add Google Test as a git submodule. Change directory to <code>libs</code>, and
+execute the following:</p><pre><code class="sh">git submodule add git@github.com:google/googletest.git googletest
+git submodule update --init --recursive
+</code></pre><p>After adding it as a submodule, we will need to link it to our existing project.
+Add to your root CMakeLists.txt file:</p><pre><code class="cmake">add_subdirectory(libs)
+</code></pre><p>Insert the following into <code>libs/CMakeLists.txt</code>:</p><pre><code class="cmake">add_subdirectory(googletest)
+</code></pre><h2 id="writing-tests">Writing Tests</h2><p>Let's start with the <code>tests/CMakeLists.txt</code>:</p><pre><code class="cmake">set(src
+    Main.cc
+    TestAbs.cc)
+
+add_executable(slib_test ${src})
+
+include_directories("${simple-lib_SOURCE_DIR}/include")
+
+# Link with google test libraries as well as simple-lib
+target_link_libraries(slib_test gtest)
+target_link_libraries(slib_test gtest_main)
+target_link_libraries(slib_test slib)
+
+# Your milage may vary with the COMMAND
+add_test(
+    NAME atest
+    COMMAND build/tests/slib_test
+    WORKING_DIRECTORY ${simple-lib_SOURCE_DIR})
+</code></pre><p>For all this to work, we will need to use <code>add_subdirectory</code> in the
+main <code>CMakeLists.txt</code> file, so make sure you do that.</p><pre><code class="cmake">add_subdirectory(tests)
+</code></pre><p>For your <code>tests/Main.cc</code>, it will basically be the same, since we are using
+Google Test. According to the documentation, you should have the following in
+that file:</p><pre><code class="cpp">#include "gtest/gtest.h"
+
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&amp;argc, argv);
+
+    return RUN_ALL_TESTS();
+}
+</code></pre><p>To test the single function that this library provides, we create and populate
+<code>tests/TestAbs.cc</code> with the following:</p><pre><code class="cpp">#include "gtest/gtest.h"
+#include "inc.h"
+
+using lib::abs;
+
+TEST(AbsFunction, Functionality) {
+    ASSERT_EQ(abs(50), 50);
+    ASSERT_EQ(abs(-50), 50);
+    ASSERT_EQ(abs(0), 0);
+}
+</code></pre><p>Other tests are set as an exercise to the reader.</p><h2 id="linking-and-compiling-and-running">Linking and Compiling and Running</h2><p>CMake projects are easy to link, compile, and run, given you have done your
+<code>CMakeLists.txt</code> files correctly.</p><pre><code class="sh">mkdir build
+cd build/
+
+cmake ..
+make
+make test
+</code></pre><p>And there you go! Since we are running the tests through CMake, it only shows up
+as one test. If one would wish to see more detailed results of tests, you would
+have to run the test executable directly.</p><pre><code class="sh">build/tests/slib_test
+</code></pre><p>Which would (hopefully) give the output:</p><pre><code>[==========] Running 2 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 2 tests from AbsFunction
+[ RUN      ] AbsFunction.Functionality
+[       OK ] AbsFunction.Functionality (0 ms)
+[ RUN      ] AbsFunction.DifferentTypes
+[       OK ] AbsFunction.DifferentTypes (0 ms)
+[----------] 2 tests from AbsFunction (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test case ran. (0 ms total)
+[  PASSED  ] 2 tests.
+</code></pre><p>Extra test added, of course.</p><p>In my opinion, it gives much prettier output. Though, if you have other methods
+of testing, <code>make test</code> would work nicely as well.</p><h2 id="ending">Ending</h2><p><a href="https://github.com/cheukyin699/simple-library">Here</a> is a link to the tested project. Have a look!</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/testing/">testing</a>
+    
+    <a href="/tutorial/">tutorial</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2018-04-27-managing-a-group-project/">On Managing a Group Project</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2017-08-14-howto-bioperl/">How to Obtain Cropped Nucleotide Sequences and More</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

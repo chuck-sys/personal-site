@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Huffman Tutorial Part 1</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="SetupLet&#39;s start off with a basic setup, which includes a nice directory structure
+and a neat Makefile. What are you looking at me for? Alright, here is my
+setup:">
+
+<meta property="og:description" content="SetupLet&#39;s start off with a basic setup, which includes a nice directory structure
+and a neat Makefile. What are you looking at me for? Alright, here is my
+setup:">
+
+<meta property="og:url" content="https://cheuksblog.ca/2016-07-05-huffman-tutorial-01/" />
+<meta property="og:title" content="Huffman Tutorial Part 1" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2016-07-05-huffman-tutorial-01/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">July 5, 2016</div>
+        
+    </div>
+    <h2>Huffman Tutorial Part 1</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#setup">Setup</a></li><li><a href="#features">Features</a></li><li><a href="#file-reading">File Reading</a></li><li><a href="#assignment-for-this-part">Assignment for This Part</a></li></ol>
+    <h2 id="setup">Setup</h2><p>Let's start off with a basic setup, which includes a nice directory structure
+and a neat <code>Makefile</code>. <em>What are you looking at me for?</em> Alright, here is my
+setup:</p><pre><code class="sh">huffman/                        # Root directory
+├── dec/                        # Source for decoder
+├── enc/                        # Source for encoder
+├── obj/                        # Object files
+└── texts/                      # Test files for encoding
+    └── t8.shakespeare.txt      # Shakespeare :)
+├── Makefile
+├── README.md
+</code></pre><p>Pretty straight-forward. Just make it easier for yourself.</p><h2 id="features">Features</h2><p>Here are some user stories for the project:</p><ul><li>the user can compress ASCII files into Huffman binaries</li><li>the user can decompress Huffman binaries into ASCII files</li><li>the user can compress and decompress files of large sizes (not unlimited)</li><li>the compression and decompression process should be reasonably quick</li><li>compression and decompression is split into 2 binary executables</li></ul><h2 id="file-reading">File Reading</h2><p>You know that that's one of the prerequisites, right? Here is the gist of it.</p><pre><code class="cpp">#include &lt;fstream&gt;
+
+using namespace std;
+
+int main() {
+    ifstream ifile("infile.txt");
+
+    if (ifile.good()) {
+        char tmp;
+        while (ifile.read(&amp;tmp, 1)) {
+            // Do something
+        }
+    }
+
+    ifile.close();
+    return 0;
+}
+</code></pre><blockquote><p>Disclaimer: The above code is just a snippet, and is not guaranteed to work.</p></blockquote><h2 id="assignment-for-this-part">Assignment for This Part</h2><ul><li>set up the file/directory structure for the project</li><li>set up appropriate Makefile/CMakeLists.txt/AutoTools/Command Line Kung Fu</li><li>set up the bare-bones, starting with the <code>main</code> function</li><li>set up the skeleton so that the project compiles</li></ul><p>(:star: denotes a challenging task. :star2: denotes an even more challenging
+task.)</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/compression/">compression</a>
+    
+    <a href="/Huffman/">Huffman</a>
+    
+    <a href="/encoder/">encoder</a>
+    
+    <a href="/bits/">bits</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2016-07-05-huffman-tutorial-02/">Huffman Tutorial Part 2</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2016-07-05-huffman-tutorial-04/">Huffman Tutorial Part 4</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Challenge #228 [Easy] Letters in Alphabetical Order</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="So from here on out, I&#39;m going to try and keep up with /r/dailyprogrammer
+and do the challenges (, and post solutions and explanations), in order to
+document my progress and increase my ability to communicate via writing.">
+
+<meta property="og:description" content="So from here on out, I&#39;m going to try and keep up with /r/dailyprogrammer
+and do the challenges (, and post solutions and explanations), in order to
+document my progress and increase my ability to communicate via writing.">
+
+<meta property="og:url" content="https://cheuksblog.ca/2015-08-23-challenge-e228/" />
+<meta property="og:title" content="Challenge #228 [Easy] Letters in Alphabetical Order" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2015-08-23-challenge-e228/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">August 23, 2015</div>
+        
+    </div>
+    <h2>Challenge #228 [Easy] Letters in Alphabetical Order</h2>
+</div>
+<div>
+    
+    <p>So from here on out, I'm going to try and keep up with <a href="https://www.reddit.com/r/dailyprogrammer">/r/dailyprogrammer</a>
+and do the challenges (, and post solutions and explanations), in order to
+document my progress and increase my ability to communicate via writing.</p><hr /><p><a href="https://www.reddit.com/r/dailyprogrammer/comments/3h9pde/20150817_challenge_228_easy_letters_in/">Original link</a></p><p>Here is the code I submitted.</p><pre><code class="ocaml">open Batteries
+
+let test = ["billowy";
+            "biopsy";
+            "chinos";
+            "defaced";
+            "chintz";
+            "sponged";
+            "bijoux";
+            "abhors";
+            "fiddle";
+            "begins";
+            "chimps";
+            "wronged"]
+
+let check (str:string) =
+    let word = String.to_list str in
+    let sorted = List.sort Char.compare word in
+    let reved = List.rev word in
+    if sorted = word then str ^ " IN ORDER\n" else if sorted = reved then
+        str ^ " REVERSED ORDER\n" else str ^ " NOT IN ORDER\n";;
+
+List.map print_string (List.map check test)
+</code></pre><p>The logic behind it is: there is a function <code>check</code> that checks if a word is in
+order or not (or reversed). It sorts the word (by character) and makes a reverse
+copy of it, then compares them. Note that <code>=</code> was used instead of <code>==</code>. Then I
+mapped it through the list, and printed them out one by one. The difficulty here
+for me was to convert a <code>string</code> into a <code>char list</code>, which wasn't support in
+core OCaml (which confuses me, because the majority of other languages support
+this).</p><p>After a bit of googling, I found that the <code>Batteries</code> library has that function,
+so off I went!</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/ocaml/">ocaml</a>
+    
+    <a href="/easy/">easy</a>
+    
+    <a href="/challenge/">challenge</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2015-09-12-scrabble-strat-staircase/">Scrabble Tutorial: Strategies - The Staircase</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2015-08-20-scrabble-bingos/">Scrabble Tutorial: Prefixes and Suffixes - Bingos</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

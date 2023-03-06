@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: gstreamer tips and tricks</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="Streaming video from internet to /dev/video0For cases where you want to use your desktop to do face-to-face meetings with
+others but don&#39;t want to go out and buy a webcam, this is for you.">
+
+<meta property="og:description" content="Streaming video from internet to /dev/video0For cases where you want to use your desktop to do face-to-face meetings with
+others but don&#39;t want to go out and buy a webcam, this is for you.">
+
+<meta property="og:url" content="https://cheuksblog.ca/2020-03-18-gstreamer-tricks/" />
+<meta property="og:title" content="gstreamer tips and tricks" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2020-03-18-gstreamer-tricks/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">March 18, 2020</div>
+        
+    </div>
+    <h2>gstreamer tips and tricks</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#streaming-video-from-internet-to-devvideo0">Streaming video from internet to /dev/video0</a></li><li><a href="#streaming-audio-from-internet-to-computer">Streaming audio from internet to computer</a></li><li><a href="#streaming-audio-from-pulseaudio-device-to-computer">Streaming audio from PulseAudio device to computer</a></li></ol>
+    <h2 id="streaming-video-from-internet-to-devvideo0">Streaming video from internet to /dev/video0</h2><p>For cases where you want to use your desktop to do face-to-face meetings with
+others but don't want to go out and buy a webcam, this is for you.</p><p>Prerequisites:</p><ul><li>A phone</li><li>A linux machine with v4l2loopback installed</li><li>gstreamer</li></ul><p>To start, install an app on your phone that streams video from the phone's IP
+address (for Android users, there is IP Webcam). Start the server up. Pay
+attention to the URL that streams raw video (for IP Webcam, it is <code>/video</code>).</p><p>To activate the v4l2loopback kernel module, run the following command:</p><pre><code class="bash">sudo modprobe v4l2loopback
+</code></pre><p>You may notice that it automatically creates a new loopback device (usually
+<code>/dev/video0</code> if you don't have other webcams plugged in).</p><p>Run gstreamer:</p><pre><code class="bash">gst-launch-0.10 souphttpsrc location="http://&lt;URL&gt;/video" is-live=true !
+	multidec ! decodebin ! v4l2sink device=/dev/video0
+</code></pre><p><strong>Note:</strong> You can replace the video URL with any video you like and have that
+video stream into <code>/dev/video0</code>.</p><h2 id="streaming-audio-from-internet-to-computer">Streaming audio from internet to computer</h2><p>For cases where you don't just want video from your phone, but audio as well,
+this is for you.</p><p>Prerequisites:</p><ul><li>Everything above that concerns a phone and gstreamer</li></ul><p>This time you don't need to use v4l2loopback since we are streaming the audio
+directly to our device. You will be able to hear the audio in your headphones.</p><p>After setting up the server for your phone, pay attention to the URL for the
+audio streams (there are 2/3 for IP Webcam: <code>/audio.wav</code>, <code>/audio.opus</code>,
+<code>/audio.aac</code>, depending on if your device supports them; we will use
+<code>/audio.wav</code>).</p><p>Run gstreamer:</p><pre><code class="bash">gst-launch-0.10 souphttpsrc location="http://&lt;URL&gt;/audio.wav" is-live=true !
+	decodebin ! autoaudiosink
+</code></pre><h2 id="streaming-audio-from-pulseaudio-device-to-computer">Streaming audio from PulseAudio device to computer</h2><p>For the cases where everyone tells you to use
+<a href="https://meet.google.com">meet.google.com</a> for meetings and you have a USB microphone
+and want to join but for some reason Google doesn't recognize your USB
+microphone but for some other reason recognizes the sounds your device makes
+(system monitor) <strong>even though</strong> other sites that test microphone have no
+trouble recognizing both the system monitor and the USB microphone at the same
+time.</p><p>Prerequisites:</p><ul><li>A USB microphone</li><li>PulseAudio system</li><li>gstreamer</li></ul><p>Plug in your microphone. We have to find the device's name. Run the command:</p><pre><code class="bash">pactl list | grep -A2 'Source #' | grep 'Name: ' | cut -d" " -f2
+</code></pre><p>You will see a couple of devices listed. Pick the one you think is correct.
+Usually the correct one is prefixed with <code>alsa_input</code>.</p><pre><code class="console">alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_SUGA_2019_11_14_29386-00.mono-fallback
+alsa_output.pci-0000_00_1b.0.analog-stereo.monitor
+</code></pre><p>Copy the entire string and run the following command:</p><pre><code class="bash">gst-launch-0.10 pulsesrc device="&lt;YOUR DEVICE NAME HERE&gt;" ! autoaudiosink
+</code></pre>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/gstreamer/">gstreamer</a>
+    
+    <a href="/linux/">linux</a>
+    
+    <a href="/cli/">cli</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2020-05-08-gradescope-hw-exploits/">Taking advantage of output dumping for a Gradescope programming assignment</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2020-01-08-the-prophet-tetctf/">The Prophet - TetCTF</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

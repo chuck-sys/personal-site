@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Where did he GO? - Inferno CTF</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="This was also one of the easier ones. As you can tell, I&#39;m not that good at
+these things. I also have never scripted in go before. Here&#39;s what happened.The program asked for a password, and if the password was correct, we would get
+a nice success message. Looking into the program, we see that the input is
+checked against an obfuscated string of bytes. The input is run through 2
+functions:">
+
+<meta property="og:description" content="This was also one of the easier ones. As you can tell, I&#39;m not that good at
+these things. I also have never scripted in go before. Here&#39;s what happened.The program asked for a password, and if the password was correct, we would get
+a nice success message. Looking into the program, we see that the input is
+checked against an obfuscated string of bytes. The input is run through 2
+functions:">
+
+<meta property="og:url" content="https://cheuksblog.ca/2019-12-31-where-go-infernoctf/" />
+<meta property="og:title" content="Where did he GO? - Inferno CTF" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2019-12-31-where-go-infernoctf/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">December 31, 2019</div>
+        
+    </div>
+    <h2>Where did he GO? - Inferno CTF</h2>
+</div>
+<div>
+    
+    <p>This was also one of the easier ones. As you can tell, I'm not that good at
+these things. I also have never scripted in go before. Here's what happened.</p><p>The program asked for a password, and if the password was correct, we would get
+a nice success message. Looking into the program, we see that the input is
+checked against an obfuscated string of bytes. The input is run through 2
+functions:</p><pre><code class="go">func jai_ram_ji_ki(s string) string {
+	chars := []rune(s)
+	for i, j := 0, len(words) - 1; i &lt; j; i, j = i + 1, j - 1 {
+		chars[i], chars[j] = chars[j], chars[i]
+	}
+	return string(chars)
+}
+
+func mandir_wahi_banega(s string) string {
+	words := strings.Fields(s)
+	for i, j := 0, len(words) - 1; i &lt; j; i, j = i + 1, j - 1 {
+		words[i], words[j] = jai_ram_ji_ki(words[j]), jai_ram_ji_ki(words[i])
+	}
+	return strings.Join(words, "_")
+}
+
+jai_ram_ji_ki(mandir_wahi_banega(string(user_input)))
+</code></pre><p>Let's see what would happen if we simply printed the encrypted bytes as a
+string:</p><pre><code class="go">fmt.Println(ency)
+//!!tA3rG_s1_gn1MMaRg0rP_0g
+</code></pre><p>This looks awfully like some kind of flag. Let's see what happens when we
+reverse it (using <code>jai_ram_ji_ki</code>):</p><pre><code class="go">fmt.Println(jai_ram_ji_ki(ency))
+//g0_Pr0gRaMM1ng_1s_Gr3At!!
+</code></pre><p>And whaddyaknow, that's the flag!</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/go/">go</a>
+    
+    <a href="/ctf/">ctf</a>
+    
+    <a href="/writeup/">writeup</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2020-01-08-the-prophet-tetctf/">The Prophet - TetCTF</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2019-12-30-7110-otw-advent2019-ctf/">7110 - OverTheWire Advent 2019 CTF</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

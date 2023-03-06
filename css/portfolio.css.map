@@ -1,16 +1,1 @@
-{
-	"version": 3,
-	"file": "portfolio.css",
-	"sources": [
-		"portfolio.scss",
-		"_sass/_colors.scss",
-		"_sass/_devices.scss"
-	],
-	"sourcesContent": [
-		"@import \"colors\",\n        \"devices\";\n\nh1, h2, h3, h4, h5, h6 {\n    margin-top: 4em;\n    color: #5fa7aa;\n}\n\nh1 {\n    font-size: 2em;\n\n    &:first-child {\n        margin-top: 0;\n    }\n}\n",
-		"// Let's use gruvbox dark palette\n$bg0:           #282828;\n$bg-red:        #cc241d;\n$bg-orange:     #d65d0e;\n$bg-green:      #98971a;\n$bg-yellow:     #d79921;\n$bg-blue:       #458588;\n$bg-purple:     #b16286;\n$bg-aqua:       #689d6a;\n$bg-gray:       #a89984;\n\n$fg1:           #ebdbb2;\n$fg-gray:       #928374;\n$fg-red:        #fb4934;\n$fg-orange:     #fe8019;\n$fg-green:      #b8bb26;\n$fg-yellow:     #fabd2f;\n$fg-blue:       #83a598;\n$fg-purple:     #d3869b;\n$fg-aqua:       #8ec07c;\n\n$bg0-h:         #1d2021;\n$bg1:           #3c3836;\n$bg2:           #504945;\n$bg3:           #665c54;\n$bg4:           #7c6f64;\n\n$gray:          #928374;\n\n$bg0-s:         #32302f;\n$fg4:           #a89984;\n$fg3:           #bdae93;\n$fg2:           #d5c4a1;\n$fg0:           #fbf1c7;\n",
-		"$on-palm:          600px;\n$on-laptop:        800px;\n\n// Using media queries with like this:\n// @include media-query($on-palm) {\n//     .wrapper {\n//         padding-right: $spacing-unit / 2;\n//         padding-left: $spacing-unit / 2;\n//     }\n// }\n@mixin media-query($device) {\n    @media screen and (max-width: $device) {\n        @content;\n    }\n}\n\n"
-	],
-	"names": [],
-	"mappings": "AAGA,AAAA,EAAE,CAAE,EAAE,CAAE,EAAE,CAAE,EAAE,CAAE,EAAE,CAAE,EAAE,AAAC,CACnB,UAAU,CAAE,GAAG,CACf,KAAK,CAAE,OAAO,CACjB,AAED,AAAA,EAAE,AAAC,CACC,SAAS,CAAE,GAAG,CAKjB,AAND,AAGI,EAHF,CAGI,WAAW,AAAC,CACV,UAAU,CAAE,CAAC,CAChB"
-}
+{"version":3,"sourceRoot":"","sources":["portfolio.scss"],"names":[],"mappings":"AAGA;EACI;EACA;;;AAGJ;EACI;;AAEA;EACI","file":"portfolio.css"}

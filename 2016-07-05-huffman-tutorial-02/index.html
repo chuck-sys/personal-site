@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Huffman Tutorial Part 2</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="What we are trying to do, is to take the character frequencies of the file, and
+convert all of it into an easily traversable tree to look things up quickly.
+Then, we are going to go through the whole tree, and construct a map to map
+every character to a string of binary digits.Character Frequencies">
+
+<meta property="og:description" content="What we are trying to do, is to take the character frequencies of the file, and
+convert all of it into an easily traversable tree to look things up quickly.
+Then, we are going to go through the whole tree, and construct a map to map
+every character to a string of binary digits.Character Frequencies">
+
+<meta property="og:url" content="https://cheuksblog.ca/2016-07-05-huffman-tutorial-02/" />
+<meta property="og:title" content="Huffman Tutorial Part 2" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2016-07-05-huffman-tutorial-02/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">July 5, 2016</div>
+        
+    </div>
+    <h2>Huffman Tutorial Part 2</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#character-frequencies">Character Frequencies</a></li><ol><li><a href="#end-of-file">End of File</a></li></ol><li><a href="#tree-creation">Tree Creation</a></li><li><a href="#map-construction">Map Construction</a></li><li><a href="#assignment-for-this-part">Assignment for This Part</a></li></ol>
+    <p>What we are trying to do, is to take the character frequencies of the file, and
+convert all of it into an easily traversable tree to look things up quickly.
+Then, we are going to go through the whole tree, and construct a map to map
+every character to a string of binary digits.</p><h2 id="character-frequencies">Character Frequencies</h2><p>There are 2 ways we can go about this. There are little differences between the
+two.</p><ol><li>Have a vector of Huffman trees of depth 1 - just to help with the storage</li><li>Have a map mapping a character to a number - a literal character frequency
+map</li></ol><p>I went with choice 1 because I didn't want to convert maps into vectors, sort
+said vectors, and start generating the tree. It is similar for both in that you
+will still have to write a custom sorting function.</p><p>The <code>tree</code> that I'm talking about is actually a node with 2 children:</p><pre><code class="cpp">#include &lt;string&gt;
+
+struct tree {
+    std::string val;
+    unsigned freq;
+
+    tree* lhs;
+    tree* rhs;
+};
+</code></pre><p>More specifically, a binary tree. Because of the nature of the Huffman tree,
+either both of its children will be <code>nullptr</code>, or neither. That is because we
+will be adding them by pairing them up.</p><h3 id="end-of-file">End of File</h3><p>As mentioned in <a href="/huffman/2016/07/05/huffman-tutorial-00.html">Part 0</a>, there are 2 solutions that I know of to denote
+the end of file prematurely. Of course, if you don't care about the program
+reading the extra bits and interpreting them as garbage data, then go ahead,
+don't do anything. If not, read on....</p><p>Of course, by putting it here, it means that it is for <strong>option #2</strong>, where you
+have the pseudo end-of-file character. Obviously, this is the part where you
+insert said character: after reading the file, and before creating the tree. For
+me, I used <code>char(254)</code>, literally hard-coding it. But I did say that it is for
+ASCII only, did I? For a more elegant solution, I suggest having a set of all
+ASCII characters used in file subtracted from a set of all ASCII characters .
+That way, you will be sure that the character the program chooses has to be
+unique.</p><h2 id="tree-creation">Tree Creation</h2><p>After sorting the character frequencies by one way or another, it will come time
+to start reducing that vector of character frequencies to a tree! Here is an nice
+overview of how you should do it:</p><ol><li>Begin with vector of character frequencies (tree depth 1)</li><li>Is there only one item in the vector? <em>That item is the tree!</em></li><li>Take the 2 smallest ones (smallest frequencies) and combine them</li><li>Erase the 2 smallest ones from the vector</li><li>Insert the combined one into the vector in the correct position such that the
+vector remains sorted</li><li>Go to step #2</li></ol><p>By keeping the vector sorted by character frequency, you make it easier to take
+the 2 smallest items from the vector (normally, just the first 2, depending on
+which way you sort it). Inserting is also easy with a quick insertion sort.</p><h2 id="map-construction">Map Construction</h2><p>:confetti_ball: Congradulations! You now have a Huffman tree! :confetti_ball:</p><p>So. How much do you enjoy recursion?</p><p>I remember my Computer Programming teacher teaching me about trees: the only
+way to traverse through them is by recursion.</p><p>The task at hand is not just recursion, but recursion with an accumulator. Just
+a tad more difficult. Here is the algorithm that I've come up with:</p><ol><li>Begin at root of the tree with a blank map and blank accumulator</li><li>Am I on a leaf node? If so...
+<ol><li>Map the value of accumulator to the character on leaf</li><li>Return</li></ol></li><li>If not...
+<ol><li>Recurse (step #2) onto left branch and add <code>0</code> to accumulator</li><li>Recurse (step #2) onto right branch and add <code>1</code> to accumulator</li></ol></li></ol><p>Well, I did say I wasn't going into the code... much.</p><h2 id="assignment-for-this-part">Assignment for This Part</h2><ul><li>take the character frequencies of characters in file and store them</li><li>make a way to sort said frequencies</li><li>append pseudo end-of-file character to character frequencies</li><li>make the tree structure</li><li>:star: reduce the character frequencies into a single tree and store it</li><li>:star2: create a map associating specific characters with corresponding bit
+sequence</li></ul><p>(:star: denotes a challenging task. :star2: denotes an even more challenging
+task.)</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/compression/">compression</a>
+    
+    <a href="/Huffman/">Huffman</a>
+    
+    <a href="/encoder/">encoder</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+    <a href="/decoder/">decoder</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2016-07-05-huffman-tutorial-05/">Huffman Tutorial Part 5</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2016-07-05-huffman-tutorial-01/">Huffman Tutorial Part 1</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Huffman Tutorial Part 3</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="In this part, we&#39;ll figure out how to sketch headers for your Huffman
+program!Huffman Headers">
+
+<meta property="og:description" content="In this part, we&#39;ll figure out how to sketch headers for your Huffman
+program!Huffman Headers">
+
+<meta property="og:url" content="https://cheuksblog.ca/2016-07-05-huffman-tutorial-03/" />
+<meta property="og:title" content="Huffman Tutorial Part 3" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2016-07-05-huffman-tutorial-03/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">July 5, 2016</div>
+        
+    </div>
+    <h2>Huffman Tutorial Part 3</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#huffman-headers">Huffman Headers</a></li><ol><li><a href="#header-format">Header Format</a></li><ol><li><a href="#limitations">Limitations</a></li></ol></ol><li><a href="#assignment-for-this-part">Assignment for This Part</a></li></ol>
+    <p>In this part, we'll figure out how to sketch headers for <strong>your</strong> Huffman
+program!</p><h2 id="huffman-headers">Huffman Headers</h2><blockquote><p>Ha! Alliteration!</p></blockquote><p>There are 2 options for storing the tree information:</p><ol><li>Use character frequencies</li><li>Use the actual tree</li></ol><p>If you use character frequencies, the header should be smaller than the other
+option, which is the actual tree. Of course, you would have to completely
+regenerate the tree from the character frequencies when you decode it. <em>This is
+an example of sacrificing speed for space.</em></p><p>If you use the actual tree, the header should be a lot bigger, since there are
+lots of nodes (branches, leaves) on the tree. On the other hand, you won't need
+to regenerate the tree. <em>This is an example of sacrificing space for speed.</em></p><p>For the headers, you won't want them to be too big - they are already big
+enough and take up 70-80% of small, compressed files. You also don't want them
+to be too small - it would limit you. Which is why I chose option #1.</p><h3 id="header-format">Header Format</h3><p>Here is the header format that I use:</p><table><thead><tr><th>Name</th><th>Size</th><th>Note</th></tr></thead><tbody><tr><td>Size</td><td>2 bytes</td><td>The total size of the remaining header</td></tr><tr><td>Data</td><td>????</td><td>The character and frequencies</td></tr></tbody></table><p>Here is the format for an entry in the data:</p><table><thead><tr><th>Name</th><th>Size (bytes)</th><th>Note</th></tr></thead><tbody><tr><td>Character</td><td>1</td></tr><tr><td>Frequency</td><td>4</td><td>The number of times a character appears</td></tr></tbody></table><p>The total size of one entry is 5 bytes.</p><h4 id="limitations">Limitations</h4><p>Because I set the letter frequency to be 4 bytes in length, this system can
+safely handle ~4GB of any character. According to the standard distribution of
+the English language, having the letter 'e' appear 12.702% means that the
+average maximum file size this program can handle is ~31GB. That, of course, is
+not accounting for the space (<code></code>) character, which appears more often.
+Counting spaces, the system can handle ~21GB of plain-text.</p><blockquote><p>Now, where can I find a 21GB plain-text file to test it on?</p></blockquote><h2 id="assignment-for-this-part">Assignment for This Part</h2><ul><li>:star: find/create a header format that best suits your purpose</li><li>document said format with tons of details</li><li>implement said format (no need for the binary data, just the header) by
+writing the header to a file</li><li>check the correctness of the format using binary/hex viewing tools such as
+<code>xxd</code> (debugging, basically)</li></ul><p>(:star: denotes a challenging task. :star2: denotes an even more challenging
+task.)</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/compression/">compression</a>
+    
+    <a href="/Huffman/">Huffman</a>
+    
+    <a href="/encoder/">encoder</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+    <a href="/data/">data</a>
+    
+    <a href="/headers/">headers</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2016-07-05-huffman-tutorial-00/">Huffman Tutorial Part 0</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2016-07-05-huffman-tutorial-05/">Huffman Tutorial Part 5</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

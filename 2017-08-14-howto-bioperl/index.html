@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: How to Obtain Cropped Nucleotide Sequences and More</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="In my opinion, there isn&#39;t much documentation on the BioPerl site: just vague
+examples and whatnot.Say for instance you want to get the entire nucleotide sequence of a particular
+organism, but it must be split up because you only want to deal with the
+proteins, and not the entire organism. So less like this:">
+
+<meta property="og:description" content="In my opinion, there isn&#39;t much documentation on the BioPerl site: just vague
+examples and whatnot.Say for instance you want to get the entire nucleotide sequence of a particular
+organism, but it must be split up because you only want to deal with the
+proteins, and not the entire organism. So less like this:">
+
+<meta property="og:url" content="https://cheuksblog.ca/2017-08-14-howto-bioperl/" />
+<meta property="og:title" content="How to Obtain Cropped Nucleotide Sequences and More" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2017-08-14-howto-bioperl/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">August 14, 2017</div>
+        
+    </div>
+    <h2>How to Obtain Cropped Nucleotide Sequences and More</h2>
+</div>
+<div>
+    
+    <p>In my opinion, there isn't much documentation on the BioPerl site: just vague
+examples and whatnot.</p><p>Say for instance you want to get the entire nucleotide sequence of a particular
+organism, but it must be split up because you only want to deal with the
+proteins, and not the entire organism. So less like this:</p><pre><code class="fasta">&gt;NC_002695.1 Escherichia coli O157:H7 str. Sakai, complete genome
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTCTCTGACAGCAGC
+TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+ATTACCACCACCATCACCACCACCATCACCATTACCATTACCACAGGTAACGGTGCGGGCTGACGCGTAC
+AGGAAACACAGAAAAAAGCCCGCACCTGACAGTGCGGGCTTTTTTTTCGACCAAAGGTAACGAGGTAACA
+ACCATGCGAGTGTTGAAGTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGGGTTGCCGATA
+TTCTGGAAAGCAATGCCAGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCA
+CCTGGTGGCGATGATTGAAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGT
+ATTTTTGCCGAACTTCTGACGGGACTCGCCGCCGCCCAGCCGGGATTCCCGCTGGCGCAATTGAAAACTT
+TCGTCGACCAGGAATTTGCCCAAATAAAACATGTCCTGCATGGCATTAGTTTGTTAGGGCAGTGCCCGGA
+TAGCATTAACGCTGCGCTGATTTGCCGTGGCGAGAAAATGTCGATCGCCATTATGGCCGGCGTATTAGAA
+GCGCGCGGTCACAACGTTACCGTTATCGATCCGGTCGAAAAACTGCTGGCAGTGGGGCATTACCTCGAAT
+CTACTGTCGATATTGCAGAGTCCACCCGCCGTATTGCGGCAAGTCGTATTCCGGCTGATCACATGGTGCT
+GATGGCAGGTTTCACCGCCGGTAATGAAAAAGGCGAACTGGTGGTACTTGGACGCAACGGTTCCGACTAC
+TCCGCGGCGGTGCTGGCTGCCTGTTTACGCGCCGATTGTTGCGAGATTTGGACGGACGTTGACGGGGTAT
+ATACCTGCGACCCGCGTCAGGTGCCCGATGCGAGGTTGTTGAAATCGATGTCCTACCAGGAAGCGATGGA
+GCTTTCCTACTTCGGCGCTAAAGTTCTTCACCCCCGCACCATTACCCCCATCGCCCAGTTCCAGATCCCT
+TGCCTGATTAAAAATACCGGAAATCCTCAAGCTCCAGGTACGCTCATTGGTGCCAGTCGTGATGAAGACG
+
+...
+</code></pre><p>And more like this:</p><pre><code class="fasta">&gt;SDY_PA01
+ATGTCTGAATTAGTTGTGTTTAAAGCAAATGAATTAGCAGTAAGCCGTTATGATCTAACTGAACATGAAA
+CCAAGCTAATTCTGTTTTGCGTTGCAAAGTTGAACCCTACAATTGAAAACCCAACAAGGGATGAATTAAC
+AGTTAAATTCTCATGTTCTGAATATGCACGCACTATGGGCTTAAGTTATGAAAATGCTTGGGGAAGATTG
+AACAGTGCAACTAGTGATTTATTTAAACGCTCTGTTGAATTAATTTATCCTACAGGAGCAGTTTCTAAAC
+GAATTTTCAATTGGACGGAATACGCTGAGTTCAATAGAGAAGAACAAACTGTAACATTAGTATTTAGCTC
+ATATATTCAACCACTTTTATTTCATTTAAAAAAATTCATTAAATACAACCTTGAGCATGTTAAAGCCTTT
+GAAAATAAATACTCAATGCGAATATATGAATGGTTACTAAAGGAGCTTTCACAAAGAAAAACGCATAGGG
+GAAACATTGAGATAAGTATCAAGGAATTTAAGTTTATGCTCATGCTTGAAAAAAACTACCCTTTATATGC
+AGAATTGAATCGCTGGATCCTAAAACCAGTTACAAATGACTTAAACACTTACAGCAATATGAAGTTGACT
+ATTGAAAAACGCGGTCGTCCTGCTGACACACTGATCTTTCAAGTTGAACTGGATAAACAAATTGACCTTG
+TGACTGAACTAGCAAAAGATCCCGCATCAAAAAAAGAAGATAAGACAATCCGTTTAACGCCTGAAAATCG
+TCTTCATGAGGGGCTAAAAACAACATTGCATGATGCTTTAACTGCAAAAATTCAACTGACTAGTTTTGAA
+GCAAAATTCCTGAGCGATATGCAAAGCAAGTACGATCTTAACGGCTCATTTACATGGCTGACTCAAAAGC
+AACGAACTACGCTAGAGAAAATTCTGGCTAAATACGGGCGGATATGA
+&gt;SDY_PA02
+GTGGCTTCTGTTTCTATCAACTGTCCCTCCTGTTCAGCTACTGACGGGGGGGTGCGTAACGGCAAAAGCA
+CTGCCGGACATCAGCGCTATCTCTGCTCTCACTGCCGTAAAACATGGCAACTGCAGTTCACTTACACCGC
+TTCTCAACCCGGTACGCACCAGAAAATCATTGATATGGCCATGAATGGCGTTGGATGCCGGGCAACTGCA
+CGCATTATGGGCGTTAGCCTCAACACGATTTTACGTCACTTAAAAAACTCAGGCCGCAGTCGGTAA
+&gt;SDY_PA03
+ATGGACGAACAGTGGGGATACGTCGGGGCTAAATCGCGCCAGCGCTGGCTGTTTTACGCGTATGACAGGC
+TCCGGAAGACGGTTGTTGCGCACGTATTCGGTGAACGCACTATGGCGACGCTGGGGCGTCTTATGAGCCT
+GCTGTCCCCCTTTGACGTGGTGATATGGATGACGGATGGCTGGCCGCTGTATGAATCCCGCCTGAAGGGA
+AAGCTGCACGTAATCAGCAAGCGATATACGCAGCGAATTGAGCGGCATAACCTGAATCTGAGGCAGCACC
+TGGCACGGCTGGGACGGAAGTCGCTGTCGTTCTCAAAATCGGTGGAGCTGCATGACAAAGTCATCGGGCA
+TTATCTGAACATAAAACACTATCAATAA
+</code></pre><p>As you may or may not notice, these are 2 completely different organisms, but
+you get the drift.</p><h2 id="pre-requisites">Pre-requisites</h2><p>BioPerl must be installed, along with Perl.</p><h2 id="disclaimers">Disclaimer(s)</h2><p>I don't do Perl. I don't like it that much, and I'm not very experienced in it.
+I also don't do Biology.</p><h2 id="the-code">The Code</h2><p>Start your file with the basics:</p><pre><code class="perl">#!/usr/bin/env perl
+use strict;
+use warnings;
+
+# We'll be getting nucleotides from GenBank database (NCBI)
+use Bio::DB::GenBank;
+use Bio::DB::Query::GenBank;
+</code></pre><p>To specify the specific sequence you want to get, BioPerl recommends creating
+a query object.</p><pre><code class="perl">my $query = "NC_002695 [ACCN] OR NC_002127 [ACCN] OR NC_002128 [ACCN]";
+my $query_obj = Bio::DB:Query::GenBank-&gt;new(-db =&gt;    'nucleotide',
+                                            -query =&gt; $query);
+</code></pre><p>I will be using accesion numbers to get the specific sequences. Note that the
+binary operators <code>OR</code> (other binary operators include <code>AND</code>) must be in
+uppercase. For a complete list of query fields, see <a href="https://www.ncbi.nlm.nih.gov/entrez/query/static/help/Summary_Matrices.html#Search_Fields_and_Qualifiers">this</a>.</p><pre><code class="perl"># Start querying
+my $gb = Bio::DB:GenBank-&gt;new;
+my $seq_objs = $gb-&gt;get_Stream_by_query($query_obj);
+
+# Iterate through all the sequences gotten
+while (my $seq_obj = $seq_objs-&gt;next_seq) {
+    # Iterate through all the features
+    for my $feat_obj ($seq_obj-&gt;get_SeqFeatures) {
+        # Only print features with primary tag "CDS", "protein_id", and
+        # "locus_tag" (I'm not sure what "CDS" stands for)
+        if ($feat_obj-&gt;primary_tag eq "CDS" and
+            $feat_obj-&gt;has_tag("protein_id") and
+            $feat_obj-&gt;has_tag("locus_tag")) {
+                print "&gt;", $feat_obj-&gt;get_tag_values("locus_tag"), "\n";
+                print $feat_obj-&gt;spliced_seq-&gt;seq, "\n";
+        }
+    }
+}
+</code></pre><p>To explain the above code a bit more in depth, here is the raw text of a
+GenBank file, copied straight off of the NCBI database, features only:</p><pre><code class="genbank">FEATURES             Location/Qualifiers
+     source          1..5498450
+                     /organism="Escherichia coli O157:H7 str. Sakai"
+                     /mol_type="genomic DNA"
+                     /strain="Sakai"
+                     /sub_strain="RIMD 0509952"
+                     /serovar="O157:H7"
+                     /db_xref="taxon:386585"
+     misc_feature    1..5498450
+                     /note="REFSEQ gene predictions performed by GeneMark
+                     2.4/GeneMark.hmm 2.0 with comparison to original submitter
+                     provided annotation."
+     gene            190..273
+                     /gene="thrL"
+                     /locus_tag="ECs0001"
+                     /db_xref="GeneID:913387"
+     CDS             190..273
+                     /gene="thrL"
+                     /locus_tag="ECs0001"
+                     /note="involved in threonine biosynthesis; controls the
+                     expression of the thrLABC operon"
+                     /codon_start=1
+                     /transl_table=11
+                     /product="thr operon leader peptide"
+                     /protein_id="NP_308028.1"
+                     /db_xref="GeneID:913387"
+     gene            354..2816
+                     /gene="thrA"
+                     /locus_tag="ECs0002"
+                     /db_xref="GeneID:913388"
+</code></pre><p>There seems to be only one method of distinguishing genes that are proteins
+from genes that have nothing to do with the proteins: in the CDS, there is one
+tag "protein_id" that only proteins have (it corresponds to the protein's
+protein product). Genes that aren't proteins don't have this tag. Using this
+"distinguishing" feature, I was able to filter out all the genes that aren't
+proteins.</p><p>Our research heavily used the locus tag of proteins, but not the protein
+product as much.</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/perl/">perl</a>
+    
+    <a href="/bioperl/">bioperl</a>
+    
+    <a href="/bioinformatics/">bioinformatics</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2017-12-19-googletest-tutorial/">Google Test Basic Tutorial</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2017-06-28-cw-fire/">[Writing] Fire</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

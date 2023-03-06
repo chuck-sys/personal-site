@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: NCURSES Terminal Text Editor Tutorial Part 2</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="Welcome BackLast time, we finished the basic skeleton, and now it is time to implement some
+functions! Let&#39;s do some easy ones first.">
+
+<meta property="og:description" content="Welcome BackLast time, we finished the basic skeleton, and now it is time to implement some
+functions! Let&#39;s do some easy ones first.">
+
+<meta property="og:url" content="https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-02/" />
+<meta property="og:title" content="NCURSES Terminal Text Editor Tutorial Part 2" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-02/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">February 1, 2015</div>
+        
+    </div>
+    <h2>NCURSES Terminal Text Editor Tutorial Part 2</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#welcome-back">Welcome Back</a></li><li><a href="#the-buffer-class">The Buffer Class</a></li><li><a href="#an-abrupt-end">An Abrupt End</a></li></ol>
+    <h2 id="welcome-back">Welcome Back</h2><p>Last time, we finished the basic skeleton, and now it is time to implement some
+functions! Let's do some easy ones first.</p><h2 id="the-buffer-class">The Buffer Class</h2><p>Create a file <code>Buffer.cpp</code>. This all should be fairly straightforward and easy
+to understand. We'll set up first.</p><pre><code class="cpp">#include "Buffer.h"
+
+Buffer::Buffer() {}
+</code></pre><p>Let's have fun with recursion now, and do the <code>remTabs(string)</code> function!</p><pre><code class="cpp">string Buffer::remTabs(string line)
+{
+    int tab = line.find("\t");
+    if(tab == line.npos)
+        return line;
+    else
+        return remTabs(line.replace(tab, 1, "    "));
+}
+</code></pre><p>Keep in mind that there are 4 spaces in the string. This function recursively
+finds a tab in a line. When a tab is found, it goes again until no more tabs
+could be found, then returns the line.</p><p>Now for some helper functions for line operations. These are not really
+necessary but are asthetically pleasing should you use them in your <code>Editor.cpp</code>
+file (which you will). It makes your code there more readable (I think).</p><pre><code class="cpp">void Buffer::insertLine(string line, int n)
+{
+    line = remTabs(line);                   // Conversion (happens every time)
+    lines.insert(lines.begin()+n, line);
+}
+
+void Buffer::appendLine(string line)
+{
+    line = remTabs(line);
+    lines.push_back(line);
+}
+
+void Buffer::removeLine(int n)
+{
+    lines.erase(lines.begin()+n);
+}
+</code></pre><h2 id="an-abrupt-end">An Abrupt End</h2><p>And that's it till next time! You are ready for Part 3!</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/ncurses/">ncurses</a>
+    
+    <a href="/tutorial/">tutorial</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+    <a href="/editor/">editor</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2015-02-01-ncurses-editor-tutorial-01/">NCURSES Terminal Text Editor Tutorial Part 1</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2015-01-26-wallclimbing-is-tiring/">Wallclimbing is tiring</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

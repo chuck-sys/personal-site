@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Python global variables vs classes</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="In programming class, the guys sitting next to me found this amazing thing,
+where you could setup a static class, put variables into it, and treat it as a
+normal variables, so that in functions, you do not need to call it via global
+keyword. Example:">
+
+<meta property="og:description" content="In programming class, the guys sitting next to me found this amazing thing,
+where you could setup a static class, put variables into it, and treat it as a
+normal variables, so that in functions, you do not need to call it via global
+keyword. Example:">
+
+<meta property="og:url" content="https://cheuksblog.ca/2015-01-20-python-global-variables-vs-classes/" />
+<meta property="og:title" content="Python global variables vs classes" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2015-01-20-python-global-variables-vs-classes/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">January 20, 2015</div>
+        
+    </div>
+    <h2>Python global variables vs classes</h2>
+</div>
+<div>
+    
+    <p>In programming class, the guys sitting next to me found this amazing thing,
+where you could setup a static class, put variables into it, and treat it as a
+normal variables, so that in functions, you do not need to call it via <code>global</code>
+keyword. Example:</p><pre><code class="python"># The 'global' class
+class glo:
+    val = 0
+
+def addone(): return glo.val+1
+
+glo.val = addone()
+
+print glo.val
+</code></pre><p>Outputs:</p><pre><code>1
+</code></pre><p>I decided to test to see if using the static class as a 'global variable' really
+was more efficient than using global variables in functions.</p><pre><code class="python">import time
+
+# Static 'global' class
+class glo:
+    val = 0
+
+gloval = 0          # A global variable
+
+# For timing
+classacctime = 0
+gloacctime = 0
+
+# For testing
+trytimes = 100
+upto = int(1e4)
+
+def addoneclass():
+    # Adds one to glo.val
+    glo.val += 1
+
+def addonevar():
+    # Adds one to gloval
+    global gloval
+    gloval += 1
+
+# Begin testing for class variable
+for trys in xrange(trytimes):
+    begintime = time.time()
+    for i in xrange(upto):
+        addoneclass()
+    glo.val = 0             # Reset
+    classacctime += time.time()-begintime
+
+# Begin testing for global variable
+for trys in xrange(trytimes):
+    begintime = time.time()
+    for i in xrange(upto):
+        addonevar()
+    gloval = 0              # Reset
+    gloacctime += time.time()-begintime
+
+# Print results
+print "Class Test: ave: %fs, total: %fs" % (classacctime/trytimes, classacctime)
+print "Variables Test: ave: %fs, total: %fs" % (gloacctime/trytimes, gloacctime)
+</code></pre><p>The above code gave me the output:</p><pre><code class="sh">Class Test: ave: 0.009418s, total: 0.941771s
+Variables Test: ave: 0.007923s, total: 0.792300s
+</code></pre><h3 id="conclusion">Conclusion</h3><p>Don't listen to everything your friends have to say. Test first.</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/testing/">testing</a>
+    
+    <a href="/question/">question</a>
+    
+    <a href="/python/">python</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2015-01-26-wallclimbing-is-tiring/">Wallclimbing is tiring</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2015-01-19-my-way-of-overcoming-procrastination/">My way of Overcoming Procrastination</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

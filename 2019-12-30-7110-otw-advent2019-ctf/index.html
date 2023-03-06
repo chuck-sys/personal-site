@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: 7110 - OverTheWire Advent 2019 CTF</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="This one was one of the easier ones. We are given some .txt files, .csv
+files, and a single .h C header file. We see that the .csv files contain
+keylogging data, where the first column is a timestamp and the second column is
+the key that was pressed. From these .csv files, we are supposed to figure
+out what Santa typed.The .csv files correspond to the .txt files (e.g. sms1.csv corresponds to
+sms1.txt), and we are supposed to decode sms4.csv. Though we are not
+completely sure what the function keys correspond to (i.e. MENU_LEFT,
+MENU_RIGHT, MENU_UP, MENU_DOWN), we can still try to decode the file. And
+so we write the following Python code:">
+
+<meta property="og:description" content="This one was one of the easier ones. We are given some .txt files, .csv
+files, and a single .h C header file. We see that the .csv files contain
+keylogging data, where the first column is a timestamp and the second column is
+the key that was pressed. From these .csv files, we are supposed to figure
+out what Santa typed.The .csv files correspond to the .txt files (e.g. sms1.csv corresponds to
+sms1.txt), and we are supposed to decode sms4.csv. Though we are not
+completely sure what the function keys correspond to (i.e. MENU_LEFT,
+MENU_RIGHT, MENU_UP, MENU_DOWN), we can still try to decode the file. And
+so we write the following Python code:">
+
+<meta property="og:url" content="https://cheuksblog.ca/2019-12-30-7110-otw-advent2019-ctf/" />
+<meta property="og:title" content="7110 - OverTheWire Advent 2019 CTF" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2019-12-30-7110-otw-advent2019-ctf/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">December 30, 2019</div>
+        
+    </div>
+    <h2>7110 - OverTheWire Advent 2019 CTF</h2>
+</div>
+<div>
+    
+    <p>This one was one of the easier ones. We are given some <code>.txt</code> files, <code>.csv</code>
+files, and a single <code>.h</code> C header file. We see that the <code>.csv</code> files contain
+keylogging data, where the first column is a timestamp and the second column is
+the key that was pressed. From these <code>.csv</code> files, we are supposed to figure
+out what Santa typed.</p><p>The <code>.csv</code> files correspond to the <code>.txt</code> files (e.g. <code>sms1.csv</code> corresponds to
+<code>sms1.txt</code>), and we are supposed to decode <code>sms4.csv</code>. Though we are not
+completely sure what the function keys correspond to (i.e. <code>MENU_LEFT</code>,
+<code>MENU_RIGHT</code>, <code>MENU_UP</code>, <code>MENU_DOWN</code>), we can still try to decode the file. And
+so we write the following Python code:</p><pre><code class="python">import sys
+
+KS = {
+    0: " 0",
+    1: ".,'?!\"1-()@/:",
+    2: "abc2",
+    3: "def3",
+    4: "ghi4",
+    5: "jkl5",
+    6: "mno6",
+    7: "pqrs7",
+    8: "tuv8",
+    9: "wxyz9",
+    10: "@/:_;+&amp;%*[]{}",
+    11: ['T9', 'T9_CAPS', 'ABC', 'ABC_CAPS'],
+    100: ['LEFT' * i for i in range(1, 20)],
+    101: ['RIGHT' * i for i in range(1, 20)],
+    102: ['UP' * i for i in range(1, 20)],
+    103: ['DOWN' * i for i in range(1, 20)],
+    104: ['CALL_ACCEPT' * i for i in range(1, 20)],
+    105: ['CALL_REJECT' * i for i in range(1, 20)]
+}
+
+strokes = []
+
+with open(sys.argv[1], 'r') as f:
+    strokes = list(map(lambda s: (int(s.split(',')[0]), int(s.split(',')[1])),
+                       f.readlines()))
+
+def process(key, times):
+    global KS
+    return KS[key][(times - 1) % len(KS[key])]
+
+last_ts, last_key = strokes[0]
+repeat = 1
+for ts, key in strokes[1:]:
+    if last_key != key:
+        # The keys changed; output
+        print(process(last_key, repeat), end='')
+        repeat = 1
+        last_ts = ts
+        last_key = key
+    elif last_key == key:
+        # The same key
+        repeat += 1
+        last_ts = ts
+    else:
+        # W
+        print(f'\nWATT (ts={ts}, key={key})\n')
+</code></pre><p>In essence, we look up a character based on the number of times we see it
+repeated. Let's try running it:</p><pre><code class="console">$ python analyze.py sms1.csv
+LEFTLEFTLEFTLEFTT9_CAPSrudolf where are you bsLEFTLEFT0m, .l ,p
+
+$ cat sms1.txt
+date: 1999-11-23 03:01:10
+to: 00611015550117
+text: rudolf where are you brrr
+</code></pre><p>If you recall, we were also given the timestamps of each keystroke. Remember
+that if you pressed a key and waited long enough, the key would be printed and
+you could press another key (even if it is the same key). So we add this delay
+into play:</p><pre><code class="python"># ...
+TS_DELTA = 900
+# ...
+elif last_key == key and ts - last_ts &lt;= TS_DELTA:
+	# ...
+elif last_key == key and ts - last_ts &gt;= TS_DELTA:
+	# The same key but more time has passed
+	print(process(last_key, repeat), end='')
+	repeat = 1
+	last_ts = ts
+# ...
+</code></pre><p>We set a constant <code>TS_DELTA</code> as a threshold, equal to 900 ms. We run the
+program again and see the results:</p><pre><code class="console">$ python analyze.py sms1.csv
+LEFTLEFTLEFTLEFTT9_CAPSrudolf where are you brrrLEFTLEFT0m, .l ,p
+</code></pre><p>Let's see if we can do the same with <code>sms4.csv</code>:</p><pre><code class="console">$ # Line-breaks for your sanity
+$ python analyze.py sms4.csv
+LEFTLEFTLEFTLEFTT9_CAPSalright pal hersUPeDOWN ye flag good lucj enterUPUPUPUPUPUPUPDOWNRIGHTk
+DOWNDOWNDOWNDOWNDOWNDOWNing it with those hooves lol its
+aotw{l3ts_dr1nk_s0m3_eggnogRIGHTRIGHT0g_y0u_cr4zy_d33r}LEFTLEFT0m.. .l ,p
+</code></pre><p>We seem to be very close to the answer. We see that the flag is split up by two
+<code>RIGHT</code>s. The characters at the left and the right of the delimiter are similar
+to each other. From this, we deduce that the <code>MENU_RIGHT</code> button acts as a
+backspace. We make these alterations to the code:</p><pre><code class="python"># ...
+KS = {
+	# ...
+	101: ['\b' * i for i in range(1, 20)],
+	# ...
+}
+# ...
+</code></pre><p><code>\b</code> is an escape sequence that brings the pointer backwards by 1 character.</p><pre><code class="console">$ # Line breaks for your sanity
+$ python analyze.py sms4.csv
+LEFTLEFTLEFTLEFTT9_CAPSalright pal hersUPeDOWN ye flag good lucj
+enterUPUPUPUPUPUPUPDOWkDOWNDOWNDOWNDOWNDOWNDOWNing it with those hooves lol its
+aotw{l3ts_dr1nk_s0m3_eggn0g_y0u_cr4zy_d33r}LEFTLEFT0m.. .l ,p
+</code></pre><p>Also you can see that the <code>MENU_UP</code> and <code>MENU_DOWN</code> both correspond to moving
+the pointer to the left and to the right, but since it doesn't concern the
+flag, we don't need to worry about them. It is left as an exercise to the
+reader to modify the above code so that it takes <code>MENU_UP</code> and <code>MENU_DOWN</code> into
+account.</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/python/">python</a>
+    
+    <a href="/ctf/">ctf</a>
+    
+    <a href="/writeup/">writeup</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2019-12-31-where-go-infernoctf/">Where did he GO? - Inferno CTF</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2018-12-06-gh-jekyll-plugs/">Github Jekyll Plugins</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

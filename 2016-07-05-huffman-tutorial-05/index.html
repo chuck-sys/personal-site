@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Huffman Tutorial Part 5</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="If you have arrived at this point, it is assumed that you have slaved through
+the parts previous to this one in the series. You may have spent a lot of time -
+ranging from a week to half a month - on this (rather large) endeavor. And if
+you have made it through, :confetti_ball: CONGRATULATIONS :confetti_ball:!
+Good work. Now, here is a way to test that your encoder works: by decoding it!Quick Run-Down of How it Works">
+
+<meta property="og:description" content="If you have arrived at this point, it is assumed that you have slaved through
+the parts previous to this one in the series. You may have spent a lot of time -
+ranging from a week to half a month - on this (rather large) endeavor. And if
+you have made it through, :confetti_ball: CONGRATULATIONS :confetti_ball:!
+Good work. Now, here is a way to test that your encoder works: by decoding it!Quick Run-Down of How it Works">
+
+<meta property="og:url" content="https://cheuksblog.ca/2016-07-05-huffman-tutorial-05/" />
+<meta property="og:title" content="Huffman Tutorial Part 5" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2016-07-05-huffman-tutorial-05/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">July 5, 2016</div>
+        
+    </div>
+    <h2>Huffman Tutorial Part 5</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#quick-run-down-of-how-it-works">Quick Run-Down of How it Works</a></li><li><a href="#testing">Testing</a></li><li><a href="#assignment-for-this-part">Assignment for This Part</a></li><li><a href="#final-words">Final Words</a></li></ol>
+    <p>If you have arrived at this point, it is assumed that you have slaved through
+the parts previous to this one in the series. You may have spent a lot of time -
+ranging from a week to half a month - on this (rather large) endeavor. And if
+you have made it through, :confetti_ball: <strong>CONGRATULATIONS</strong> :confetti_ball:!
+Good work. Now, here is a way to test that your encoder works: by decoding it!</p><h2 id="quick-run-down-of-how-it-works">Quick Run-Down of How it Works</h2><p>Should be rather straightforward:</p><ol><li>Read the binary</li><li>Take up the header information</li><li>Using the header information, (re)construct the Huffman tree</li><li>Using the Huffman tree, construct a map mapping the binary digits to a
+character</li><li>Using said map, iterate through the leftover binary data, and write
+the characters to stream (whether it be output or file)</li><li>Close the streams</li></ol><p>Because of <abbr title="Don't Repeat Yourself">DRY</abbr> principles, you
+should reuse the code you wrote in your Huffman compression program (in
+<code>C/C++</code>'s case, use <code>#include</code> or something - try to avoid copying and
+pasting). This goes for (most likely) steps #3-4.</p><h2 id="testing">Testing</h2><p>Should also be quite self-explanatory: you want to see if your Huffman
+compressor/decompresser works, you run a plain-text file through the
+compressor, producing a binary file. You run said binary file through the
+decompresser, producing a plain-text file. You then proceed to check if the
+plain-text file you produced is the same with the original file.</p><p><code>valgrind</code> is your friend.</p><h2 id="assignment-for-this-part">Assignment for This Part</h2><ul><li>:star: create Huffman decompresser with code reuse</li><li>:star: finish Huffman compressor/decompresser</li></ul><p>(:star: denotes a challenging task. :star2: denotes an even more challenging
+task.)</p><h2 id="final-words">Final Words</h2><p>Wasn't that fun? This project teaches you about the applications of binary
+trees, the recursion that comes with it, and a little bit of bit manipulation.</p><p>For some reason, I like it. In fact, I like doing things that involve
+(low-level) bit manipulations (like Huffman and <a href="https://github.com/cheukyin699/chip-8-tools">Chip-8 emulators</a>). Ha,
+the only thing I seem to dislike about it is when I found out about
+endianness - the differences between big and little endian. Some systems (like
+mine) used little endian, meaning that some data-types (such as words) are
+stored with the least significant byte in the smallest address:</p><pre><code>Original Data: 0xABCDEF
+
+LITTLE ENDIAN
+-------------
+Address: 0000 | 0001 | 0002
+Data:      EF |   CD |   AB
+
+BIG ENDIAN
+----------
+Address: 0000 | 0001 | 0002
+Data:      AB |   CD |   EF
+</code></pre><p>Hmmm... this sounds interesting. It is something that I know about, that I have
+a little experience in. Looks like an idea for the next tutorial/walkthrough....</p><p>Anyways, I hope you had as much fun making this project as I did! Hopefully,
+your teacher would award you properly, or, if not applicable, <em>you</em> would
+reward yourself with a nice healthy burst of dopamine. <em>~Niiiiiicce</em>.</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/Huffman/">Huffman</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+    <a href="/decompression/">decompression</a>
+    
+    <a href="/decoder/">decoder</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2016-07-05-huffman-tutorial-03/">Huffman Tutorial Part 3</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2016-07-05-huffman-tutorial-02/">Huffman Tutorial Part 2</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

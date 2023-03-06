@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: NCURSES Terminal Text Editor Tutorial Part 3</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="Welcome BackLast time we left off, we finished the Buffer class. Here comes the fun stuff:
+Doing the functions for the Editor class! What fun! We will start immediately!">
+
+<meta property="og:description" content="Welcome BackLast time we left off, we finished the Buffer class. Here comes the fun stuff:
+Doing the functions for the Editor class! What fun! We will start immediately!">
+
+<meta property="og:url" content="https://cheuksblog.ca/2015-02-04-ncurses-editor-tutorial-03/" />
+<meta property="og:title" content="NCURSES Terminal Text Editor Tutorial Part 3" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2015-02-04-ncurses-editor-tutorial-03/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">February 4, 2015</div>
+        
+    </div>
+    <h2>NCURSES Terminal Text Editor Tutorial Part 3</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#welcome-back">Welcome Back</a></li><li><a href="#implementing-the-editor-class">Implementing the Editor class</a></li><li><a href="#basic-input-handling">Basic Input Handling</a></li><li><a href="#moving-it-x2">Moving it x2</a></li><li><a href="#time-to-wrap-it-up">Time to Wrap it up</a></li></ol>
+    <h2 id="welcome-back">Welcome Back</h2><p>Last time we left off, we finished the <code>Buffer</code> class. Here comes the fun stuff:
+Doing the functions for the <code>Editor</code> class! What fun! We will start immediately!</p><h2 id="implementing-the-editor-class">Implementing the Editor class</h2><p>Create file <code>Editor.cpp</code>. Add some includes.</p><pre><code class="cpp">#include "Editor.h"
+
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;          // If you are not using C++11; We'll get to that later!
+</code></pre><p>Let's start off with the default constructor. For me, I want the default
+constructor to initialize the x and y coordinates, and also the mode to normal
+<code>'n'</code>. I will want the status to be <code>'Normal Mode'</code> and the filename to be
+<code>'untitled'</code>. I also need to initialize the <code>Buffer</code> variable.</p><pre><code class="cpp">Editor::Editor()
+{
+    x=0;y=0;mode='n';
+    status = "Normal Mode";
+    filename = "untitled";
+
+    /* Initializes buffer and appends line to
+        prevent seg. faults */
+    buff = new Buffer();
+    buff-&gt;appendLine("");
+}
+</code></pre><p>If they give it a filename, read it into the buffer.</p><pre><code class="cpp">Editor::Editor(string fn)
+{
+    x=0;y=0;mode='n';
+    status = "Normal Mode";
+    filename = fn;
+
+    buff = new Buffer();
+
+    ifstream infile(fn.c_str());
+    if(infile.is_open())
+    {
+        while(!infile.eof())
+        {
+            string temp;
+            getline(infile, temp);
+            buff-&gt;appendLine(temp);
+        }
+    }
+    else
+    {
+        cerr &lt;&lt; "Cannot open file: '" &lt;&lt; fn &lt;&lt; "'\n";
+        buff-&gt;appendLine("");
+    }
+}
+</code></pre><p>Now that we have done all that, it is time for us to get on with the core
+functions, starting with <code>Editor::updateStatus()</code>.</p><pre><code class="cpp">void Editor::updateStatus()
+{
+    switch(mode)
+    {
+    case 'n':
+        // Normal mode
+        status = "Normal Mode";
+        break;
+    case 'i':
+        // Insert mode
+        status = "Insert Mode";
+        break;
+    case 'x':
+        // Exiting
+        status = "Exiting";
+        break;
+    }
+    status += "\tCOL: " + tos(x) + "\tROW: " + tos(y);
+}
+</code></pre><blockquote><p>Wait! We haven't defined <code>tos(int)</code> yet!!!</p></blockquote><p>Just use stringstream!</p><pre><code class="cpp">string Editor::tos(int i)
+{
+    stringstream ss;
+    ss &lt;&lt; i;
+    return ss.str();
+}
+</code></pre><p>Note that this isn't necessary if you have C++11 - you just use
+<code>std::to_string(int)</code>. My school doesn't have it so I had to compensate.</p><h2 id="basic-input-handling">Basic Input Handling</h2><p>My input handler handles all inputs in normal mode as well as insert mode (but
+not exit mode, because you are exiting the program). This may be confusing
+because there are a bunch of switches, and you may be right. You could separate
+the input handler into two different functions - one for handling inputs in
+normal mode, the other handling inputs in insert mode.</p><pre><code class="cpp">void Editor::handleInput(int c)
+{
+    switch(c)
+    {
+    case KEY_LEFT:
+        moveLeft();
+        return;
+    case KEY_RIGHT:
+        moveRight();
+        return;
+    case KEY_UP:
+        moveUp();
+        return;
+    case KEY_DOWN:
+        moveDown();
+        return;
+    }
+    switch(mode)
+    {
+    case 'n':
+        switch(c)
+        {
+        case 'x':
+            // Press 'x' to exit
+            mode = 'x';
+            break;
+        case 'i':
+            // Press 'i' to enter insert mode
+            mode = 'i';
+            break;
+        case 's':
+            // Press 's' to save the current file
+            saveFile();
+            break;
+        }
+        break;
+    case 'i':
+        switch(c)
+        {
+        case 27:
+            // The Escape/Alt key
+            mode = 'n';
+            break;
+        case 127:
+        case KEY_BACKSPACE:
+            // The Backspace key
+            if(x == 0 &amp;&amp; y &gt; 0)
+            {
+                x = buff-&gt;lines[y-1].length();
+                // Bring the line down
+                buff-&gt;lines[y-1] += buff-&gt;lines[y];
+                // Delete the current line
+                deleteLine();
+                moveUp();
+            }
+            else
+            {
+                // Removes a character
+                buff-&gt;lines[y].erase(--x, 1);
+            }
+            break;
+        case KEY_DC:
+            // The Delete key
+            if(x == buff-&gt;lines[y].length() &amp;&amp; y != buff-&gt;lines.size() - 1)
+            {
+                // Bring the line down
+                buff-&gt;lines[y] += buff-&gt;lines[y+1];
+                // Delete the line
+                deleteLine(y+1);
+            }
+            else
+            {
+                buff-&gt;lines[y].erase(x, 1);
+            }
+            break;
+        case KEY_ENTER:
+        case 10:
+            // The Enter key
+            // Bring the rest of the line down
+            if(x &lt; buff-&gt;lines[y].length())
+            {
+                // Put the rest of the line on a new line
+                buff-&gt;insertLine(buff-&gt;lines[y].substr(x, buff-&gt;lines[y].length() - x), y + 1);
+                // Remove that part of the line
+                buff-&gt;lines[y].erase(x, buff-&gt;lines[y].length() - x);
+            }
+            else
+            {
+                buff-&gt;insertLine("", y+1);
+            }
+            x = 0;
+            moveDown();
+            break;
+        case KEY_BTAB:
+        case KEY_CTAB:
+        case KEY_STAB:
+        case KEY_CATAB:
+        case 9:
+            // The Tab key
+            buff-&gt;lines[y].insert(x, 4, ' ');
+            x += 4;
+            break;
+        default:
+            // Any other character
+            buff-&gt;lines[y].insert(x, 1, char(c));
+            x++;
+            break;
+        }
+        break;
+    }
+}
+</code></pre><p>Whew! That sure was a lot of code! There is still a lot of stuff to implement!
+Let's do the <code>move&lt;Direction&gt;()</code> code first!</p><h2 id="moving-it-x2">Moving it x2</h2><pre><code class="cpp">void Editor::moveLeft()
+{
+    if(x-1 &gt;= 0)
+    {
+        x--;
+        move(y, x);
+    }
+}
+
+void Editor::moveRight()
+{
+    if(x+1 &lt; COLS &amp;&amp; x+1 &lt;= buff-&gt;lines[y].length())
+    {
+        x++;
+        move(y, x);
+    }
+}
+
+void Editor::moveUp()
+{
+    if(y-1 &gt;= 0)
+        y--;
+    if(x &gt;= buff-&gt;lines[y].length())
+        x = buff-&gt;lines[y].length();
+    move(y, x);
+}
+
+void Editor::moveDown()
+{
+    if(y+1 &lt; LINES-1 &amp;&amp; y+1 &lt; buff-&gt;lines.size())
+        y++;
+    if(x &gt;= buff-&gt;lines[y].length())
+        x = buff-&gt;lines[y].length();
+    move(y, x);
+}
+</code></pre><p>Pretty straight forward, although I think I need to do a bit of explaining on
+the <code>if(x &gt;= buff-&gt;lines[y].length())</code> part. You see, if it didn't have that,
+then when the user goes up or down, if the current line of text was longer than
+the one above/below it, then the cursor would be 'dangling in midair', so to
+speak. This little if-statement snaps the cursor to the end of the next/previous
+line if it were to be shorter than the current one.</p><h2 id="time-to-wrap-it-up">Time to Wrap it up</h2><p>Ha! You thought that I would do all of this in only a three-parter :trollface: ?
+There are still more to implement, though we are past the half-way point
+already. We still need the most important function: <code>Editor::printBuff()</code>, which
+is the function that actually lets you see the buffered text! I hope I will see
+you in <strong>Part 4</strong>!</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/ncurses/">ncurses</a>
+    
+    <a href="/tutorial/">tutorial</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+    <a href="/editor/">editor</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2015-02-07-ncurses-editor-tutorial-04/">NCURSES Terminal Text Editor Tutorial Part 4</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2015-02-01-ncurses-editor-tutorial-01/">NCURSES Terminal Text Editor Tutorial Part 1</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

