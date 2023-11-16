@@ -250,4 +250,4 @@ moving?
 [circledocs]: https://www.sfml-dev.org/documentation/2.4.2/classsf_1_1CircleShape.php
 [r01]: /res/images/raycasting-1.png
 [r02]: /res/images/raycasting-2.png
-[code]: https://github.com/cheukyin699/raycasting-tutorial1
+[code]: https://github.com/chuck-sys/raycasting-tutorial1

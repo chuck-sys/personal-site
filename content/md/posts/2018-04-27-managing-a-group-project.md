@@ -118,7 +118,7 @@ Unity is such a git-hostile environment that, even if my group was experienced
 in git, we would still be having trouble with it. I need to learn to assign
 tasks to the group better, and learn to trust them more.
 
-[github]: https://github.com/cheukyin699/operation-omega
+[github]: https://github.com/chuck-sys/operation-omega
 [teaser]: https://youtu.be/LoFFHOdB3xo
 [graph1]: /res/images/time-week.png
 [graph2]: /res/images/total-spent.png

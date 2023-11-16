@@ -78,4 +78,4 @@ Anyways, I hope you had as much fun making this project as I did! Hopefully,
 your teacher would award you properly, or, if not applicable, *you* would
 reward yourself with a nice healthy burst of dopamine. *~Niiiiiicce*.
 
-[c8]: https://github.com/cheukyin699/chip-8-tools
+[c8]: https://github.com/chuck-sys/chip-8-tools

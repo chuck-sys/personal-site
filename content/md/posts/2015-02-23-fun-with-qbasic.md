@@ -7,7 +7,7 @@ So I had a rough day with windows (I can no longer use it without safe mode,
 would fix later), so I wanted to have some fun, so I went with a qbasic tutorial
 and made this colorful thing:
 
-<script src="https://gist.github.com/cheukyin699/345c3ab4554d2606d8e554b4e824f86d.js"></script>
+<script src="https://gist.github.com/chuck-sys/345c3ab4554d2606d8e554b4e824f86d.js"></script>
 
 ***Ah, how I just love vim's `gU`...***
 

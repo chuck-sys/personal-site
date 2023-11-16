@@ -71,7 +71,7 @@ Congratulations! You've got the basics! Now, just rinse and repeat with your new
 lines AM' and M'B! Recursion works wonders, doesn't it! Here is an
 implementation of this basic lightning thingy in Python and pygame!
 
-<script src="https://gist.github.com/cheukyin699/f73c0bf96304ffb18d38.js"></script>
+<script src="https://gist.github.com/chuck-sys/f73c0bf96304ffb18d38.js"></script>
 
 This little thing has the lightning originate from the middle of the window and
 arc out to attack your cursor if you click on the screen. I made this to test

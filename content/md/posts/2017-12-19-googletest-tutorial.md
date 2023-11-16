@@ -235,5 +235,5 @@ of testing, `make test` would work nicely as well.
 [git]: https://git-scm.com/
 [ghub]: https://github.com/
 [gtest]: https://github.com/google/googletest
-[sample-project]: https://github.com/cheukyin699/simple-library
+[sample-project]: https://github.com/chuck-sys/simple-library
 

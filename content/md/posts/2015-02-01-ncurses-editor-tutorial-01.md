@@ -229,5 +229,5 @@ Okay, we are done the basic skeleton of the TE! Over the course of the other
 tutorials, you will be filling in the gaps - implementing every function that
 was declared here. You are now ready for Part 2!
 
-[1]: https://github.com/cheukyin699/ceditor-test/
+[1]: https://github.com/chuck-sys/ceditor-test/
 [2]: /res/tutorials/ncurses-ced-tut.tar.gz

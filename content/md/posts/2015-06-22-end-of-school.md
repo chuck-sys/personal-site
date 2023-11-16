@@ -24,5 +24,5 @@ even twice per week. Time isn't an issue, but I don't know.
 Have a nice day!
 
 [1]: https://www.coursera.org
-[2]: https://github.com/cheukyin699/chip-8-tools
+[2]: https://github.com/chuck-sys/chip-8-tools
 [3]: /procrastination/2015/01/19/my-way-of-overcoming-procrastination.html

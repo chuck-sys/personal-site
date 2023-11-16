@@ -206,12 +206,12 @@ project by clicking [this link][day9link].
 [d8]: #day-8
 [d9]: #day-9
 
-[day1link]: https://github.com/cheukyin699/tinybasic/tree/2c0dd49ce8e9ba0adcabd3b41826f07c80ee4542
-[day2link]: https://github.com/cheukyin699/tinybasic/tree/f53901673056ea5dccff79a4da038bb9600c701e
-[day3link]: https://github.com/cheukyin699/tinybasic/tree/3879340675819559ba8f954a002db06ad572beda
-[day4link]: https://github.com/cheukyin699/tinybasic/tree/2b7c228e2682cc4830e38b0d4655516146afd4df
-[day5link]: https://github.com/cheukyin699/tinybasic/tree/008bf20699e3d134373e0595dabcfcb7192d5aca
-[day6link]: https://github.com/cheukyin699/tinybasic/tree/0b1471f6488095a07fa615abc5b8f159ee8eac9c
-[day7link]: https://github.com/cheukyin699/tinybasic/tree/20bf409279e429f82eaea5a1d705489e998a7412
-[day8link]: https://github.com/cheukyin699/tinybasic/tree/b969b3ec20c7b944a85cbebdd22212dd8e4415ff
-[day9link]: https://github.com/cheukyin699/tinybasic
+[day1link]: https://github.com/chuck-sys/tinybasic/tree/2c0dd49ce8e9ba0adcabd3b41826f07c80ee4542
+[day2link]: https://github.com/chuck-sys/tinybasic/tree/f53901673056ea5dccff79a4da038bb9600c701e
+[day3link]: https://github.com/chuck-sys/tinybasic/tree/3879340675819559ba8f954a002db06ad572beda
+[day4link]: https://github.com/chuck-sys/tinybasic/tree/2b7c228e2682cc4830e38b0d4655516146afd4df
+[day5link]: https://github.com/chuck-sys/tinybasic/tree/008bf20699e3d134373e0595dabcfcb7192d5aca
+[day6link]: https://github.com/chuck-sys/tinybasic/tree/0b1471f6488095a07fa615abc5b8f159ee8eac9c
+[day7link]: https://github.com/chuck-sys/tinybasic/tree/20bf409279e429f82eaea5a1d705489e998a7412
+[day8link]: https://github.com/chuck-sys/tinybasic/tree/b969b3ec20c7b944a85cbebdd22212dd8e4415ff
+[day9link]: https://github.com/chuck-sys/tinybasic
