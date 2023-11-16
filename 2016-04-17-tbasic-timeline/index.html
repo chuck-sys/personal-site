@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>Cheuk&#39;s Blog: Tiny BASIC Development - Timeline</title>
     
-<meta name="keywords" content="terminal,ncurses,ocaml,how-to,GNOME,imagemagick,testing,spoilers,neovim,github,jekyll,installation,config,tutorial,lightning,graphics,review,compression,transparent,tokenizer,group,exercise,Huffman,updates,games,project,gstreamer,easy,i3,wallclimbing,linux,encoder,interpretor,deemo,fun,rest,assignment,computer,perl,racket,TinyBASIC,writing,challenge,movie,unity,go,cli,bits,music,c++,status,dosbox,question,programming,death,chip8,visual,plane,apps,ruby,theory,amy tan,overcome,phone,ACE,vim,decompression,arch,flask,compton,qbasic,scrabble,pygame,python,emulator,bioperl,lambda,data,assembler,ray casting,bioinformatics,ctf,decoder,plugins,procrastination,journal,writeup,school,fire,cursive,basic,editor,Xorg,headers">
+<meta name="keywords" content="ncurses,GNOME,imagemagick,testing,installation,tutorial,lightning,graphics,tokenizer,group,Huffman,updates,project,i3,linux,interpretor,fun,rest,computer,TinyBASIC,unity,music,c++,status,dosbox,programming,chip8,visual,theory,decompression,compton,qbasic,pygame,python,emulator,assembler,ray casting,decoder,school,basic,editor">
 
 <meta name="description" content="Day 1">
 
@@ -53,7 +53,7 @@ because they may be a bit tricky to implement.  In general, I don't think I'd
 want to deal with parentheses.  We'll see.</p><p>On another hand, I finally 'modularized' the <code>handleInput</code> function. I split the
 commands into their corresponding functions, if they were too long, of course.
 There is a general rule I've heard about, stating functions are only good if
-they are short and fit onto 1 page.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/2c0dd49ce8e9ba0adcabd3b41826f07c80ee4542">link</a> to the furthest I've worked on at that time.</p><h1 id="day-2">Day 2</h1><p>I have completely rewritten the tokenizer :tada: :confetti_ball:! It currently
+they are short and fit onto 1 page.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/2c0dd49ce8e9ba0adcabd3b41826f07c80ee4542">link</a> to the furthest I've worked on at that time.</p><h1 id="day-2">Day 2</h1><p>I have completely rewritten the tokenizer :tada: :confetti_ball:! It currently
 parses <code>A&gt;B</code> correctly into <code>A</code>, <code>&gt;</code>, and <code>B</code>, due to the greedy algorithm I
 used. It basically takes the whole string and checks if it is a token, then
 takes a substring (size-1) and checks if it is a token, and so on, until you hit
@@ -61,16 +61,16 @@ a substring of size 1 (normally meaning binary operator or variable). If it
 isn't a token, throw an error.  Unfortunately, this greedy algorithm ups the
 complexity of the function to <code>O(n!), n = len(line)</code>, making it fairly
 inefficient. But hey, there is more correctness, and that's something! It will
-be optimized later.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/f53901673056ea5dccff79a4da038bb9600c701e">link</a> to the furthest I've worked on at that time.</p><h1 id="day-3">Day 3</h1><p>This is the day I worked on small bug fixes and a feature implementation. I
+be optimized later.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/f53901673056ea5dccff79a4da038bb9600c701e">link</a> to the furthest I've worked on at that time.</p><h1 id="day-3">Day 3</h1><p>This is the day I worked on small bug fixes and a feature implementation. I
 added a very concise help-screen which functions more or less like a
 minimalistic cheat-sheet, and added another include statement for the (school)
 computer I was working on. I also removed some <code>std::endl</code>s here and there.
 Another command I added was the <code>edit</code> command, allowing you to overwrite the
 current line with a new one.</p><p>I still need to work on optimizations for the tokenizer - if it takes that long,
-the interpreting would take <strong>FOREVER</strong>.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/3879340675819559ba8f954a002db06ad572beda">link</a> to the furthest I've worked on at that time.</p><h1 id="day-4">Day 4</h1><p>A test was finally added to help me in testing. It is written in C++ such that
+the interpreting would take <strong>FOREVER</strong>.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/3879340675819559ba8f954a002db06ad572beda">link</a> to the furthest I've worked on at that time.</p><h1 id="day-4">Day 4</h1><p>A test was finally added to help me in testing. It is written in C++ such that
 it needs to be compiled into an executable before using. Thus, a new make rule
 was created to satisfy such a need. Plans are to have a test for every
-component, and to compare the results of consecutive tests to a file.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/2b7c228e2682cc4830e38b0d4655516146afd4df">link</a> to the furthest I've worked on at that time.</p><h1 id="day-5">Day 5</h1><p>Today, I did it. I did some optimizations for the tokenizer!  Further
+component, and to compare the results of consecutive tests to a file.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/2b7c228e2682cc4830e38b0d4655516146afd4df">link</a> to the furthest I've worked on at that time.</p><h1 id="day-5">Day 5</h1><p>Today, I did it. I did some optimizations for the tokenizer!  Further
 optimizations are probably needed, but I have 2 of them down for the count! The
 change also set up the playing field for future optimizations. It now checks if
 the first letter of the given line is a number, and if it is, it takes all
@@ -88,13 +88,13 @@ over time, though.</p><p>The next thing that I should be working on (after the o
 course) is the parser - the thing that turns the list of tokens the tokenizer
 outputs, into an Abstract Syntax Tree. Hopefully, I'll know enough about this
 that the conversion would go smoothly. If not, well, I've got some quick
-learning to do.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/008bf20699e3d134373e0595dabcfcb7192d5aca">link</a> to the furthest I've worked on at that time.</p><h1 id="day-6">Day 6</h1><p>I finished up the optimizations. Now, after checking for numbers and strings, we
+learning to do.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/008bf20699e3d134373e0595dabcfcb7192d5aca">link</a> to the furthest I've worked on at that time.</p><h1 id="day-6">Day 6</h1><p>I finished up the optimizations. Now, after checking for numbers and strings, we
 have ruled out everything but the keywords and variables. We know that keywords
 are supposed to be at most 6 characters at length, so I added that as a
 constant, and made it so that after the inital first check, if it couldn't find
 anything, it will reduce the size of the string it is looking at to start
 looking for the keyword, and afterwards, binary operators, and finally
-variables.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/0b1471f6488095a07fa615abc5b8f159ee8eac9c">link</a> to the furthest I've worked on at that time.</p><h1 id="day-7">Day 7</h1><blockquote><p>Eagle-eyed viewers may notice that I have actually skipped a day - the WIP day
+variables.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/0b1471f6488095a07fa615abc5b8f159ee8eac9c">link</a> to the furthest I've worked on at that time.</p><h1 id="day-7">Day 7</h1><blockquote><p>Eagle-eyed viewers may notice that I have actually skipped a day - the WIP day
 in-between this and the last. My reasoning: it is WIP, and the rest was done
 this day - today.</p></blockquote><p>Since it is spring break, I decided to finish up the parser. Well, I did just
 that. Unfortunately, there are bugs. One of them is that if you type multiple
@@ -114,7 +114,7 @@ statement, and what kind it is - say a "PRINT" token - and then calls another
 function to parse the list of expressions, which, in turn calls the function to
 parse a single expression, and so on.</p><p>Since it turned out to be a learning experience, I'm planning to go straight
 ahead and write the interpreter, even though there is a known bug AND a memory
-leak issue.</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/20bf409279e429f82eaea5a1d705489e998a7412">link</a> to the furthest I've worked on at that time.</p><h1 id="day-8">Day 8</h1><p>Wow, the interpreter is finished, and from preliminary testing, it works fine!
+leak issue.</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/20bf409279e429f82eaea5a1d705489e998a7412">link</a> to the furthest I've worked on at that time.</p><h1 id="day-8">Day 8</h1><p>Wow, the interpreter is finished, and from preliminary testing, it works fine!
 There probably are more things that I'll have to test because manual testing can
 only get you to some places, but it seems to work out nicely. The memory leak
 issue is still there, lurking. I spent another hour of my time trying to wring
@@ -126,10 +126,10 @@ statement, I also had to add a stack for all the return statements.  Anyways,
 this one took me a lot less time to implement, and a bit less time to think
 through, too.</p><p>Next, I can either work on small bug fixes and adding more tests, or jump ahead
 to the C compiler.  I think I have time for both. At least if I get the compiler
-working, there won't be that many memory leaks, right?</p><p>Here is a <a href="https://github.com/cheukyin699/tinybasic/tree/b969b3ec20c7b944a85cbebdd22212dd8e4415ff">link</a> to the furthest I've worked on at that time.</p><h1 id="day-9">Day 9</h1><p>I considered for a while, and decided to end my project due to a lack of
+working, there won't be that many memory leaks, right?</p><p>Here is a <a href="https://github.com/chuck-sys/tinybasic/tree/b969b3ec20c7b944a85cbebdd22212dd8e4415ff">link</a> to the furthest I've worked on at that time.</p><h1 id="day-9">Day 9</h1><p>I considered for a while, and decided to end my project due to a lack of
 interest and/or contentment.  All necessary features were implemented (just not
 thoroughly tested).</p><p>I may add to it from time to time, and you could find the latest updates to this
-project by clicking <a href="https://github.com/cheukyin699/tinybasic">this link</a>.</p>
+project by clicking <a href="https://github.com/chuck-sys/tinybasic">this link</a>.</p>
 </div>
 
 <div id="post-tags">
@@ -153,13 +153,13 @@ project by clicking <a href="https://github.com/cheukyin699/tinybasic">this link
   <span class="prev">
   
     <span>Prev</span>
-    <a href="/2016-07-05-huffman-tutorial-04/">Huffman Tutorial Part 4</a>
+    <a href="/2016-07-05-huffman-tutorial-05/">Huffman Tutorial Part 5</a>
   
   </span>
   <span class="next">
   
     <span>Next</span>
-    <a href="/2016-01-15-arch-d4/">Arch Linux Day 4: Switching Over to neovim</a>
+    <a href="/2015-12-28-arch-d3/">Arch Linux Day 3: Switching Over to i3</a>
   
   </span>
 </footer>
