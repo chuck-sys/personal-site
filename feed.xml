@@ -1,18 +1,108 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><atom:link href="https://cheuksblog.ca/" rel="self" type="application/rss+xml"/><title>Cheuk's Blog</title><link>https://cheuksblog.ca/</link><description>Things that I am learning about</description><lastBuildDate>Thu, 16 Nov 2023 13:07:39 -0800</lastBuildDate><generator>clj-rss</generator><item><guid>https://cheuksblog.ca/2018-04-27-managing-a-group-project/</guid><link>https://cheuksblog.ca/2018-04-27-managing-a-group-project/</link><title>On Managing a Group Project</title><description>The semester ended, and I just finished a reasonably large group project on
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><atom:link href="https://cheuksblog.ca/" rel="self" type="application/rss+xml"/><title>Cheuk's Blog</title><link>https://cheuksblog.ca/</link><description>Things that I am learning about</description><lastBuildDate>Thu, 16 Nov 2023 13:16:15 -0800</lastBuildDate><generator>clj-rss</generator><item><guid>https://cheuksblog.ca/2021-04-07-lambda-angstrom2021/</guid><link>https://cheuksblog.ca/2021-04-07-lambda-angstrom2021/</link><title>lambda lambda - angstrom 2021</title><description>lambda lambda [rev 130 points]lambda lambda lambda.... lambda?2692665569775536810618960607010822800159298089096272924hint: Ever hear about lambda calculus?With my 2 semesters worth of experience in programming languages and compiler construction in Racket, I
+thought I had the necessary skills to take this on. Here are the 2 approaches I took:</description><pubDate>Wed, 07 Apr 2021 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2020-05-26-timed-tjctf/</guid><link>https://cheuksblog.ca/2020-05-26-timed-tjctf/</link><title>Timed - tjctf</title><description>This one is a cool blacklist bypass. It's pretty simple. You are presented a
+text interface asking you to enter a python command.</description><pubDate>Tue, 26 May 2020 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2020-05-08-gradescope-hw-exploits/</guid><link>https://cheuksblog.ca/2020-05-08-gradescope-hw-exploits/</link><title>Taking advantage of output dumping for a Gradescope programming assignment</title><description>An old story I've been saving up.So I submitted my CS 221 Intro to Data Structures and Algorithms programming
+assignment and found something very peculiar. I couldn't figure out why one of
+the tests were failing. The test in question was one of those private tests
+that students don't have access to, to prevent students from simply outputting
+the solution when given a certain input. And to that, I was also pretty sure
+that I had followed the assignment to the tee. And thus I wanted to find out
+what was the exact input to the test. Luckily for me, the designer for this
+assignment left out a point to exploit.</description><pubDate>Fri, 08 May 2020 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2020-03-18-gstreamer-tricks/</guid><link>https://cheuksblog.ca/2020-03-18-gstreamer-tricks/</link><title>gstreamer tips and tricks</title><description>Streaming video from internet to /dev/video0For cases where you want to use your desktop to do face-to-face meetings with
+others but don't want to go out and buy a webcam, this is for you.</description><pubDate>Wed, 18 Mar 2020 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2020-01-08-the-prophet-tetctf/</guid><link>https://cheuksblog.ca/2020-01-08-the-prophet-tetctf/</link><title>The Prophet - TetCTF</title><description>This was a fun one. We start off with a web page and get a foothold with an
+arbitrary file read vulnerability, and end it off with a Python Flask Arbitrary
+Code Execution in the web debugger.On the webpage, we are presented with a hyperlink with the text Read some oracle here. Clicking the hyperlink brings us to 5 web pages
+/read/oracle/[1-5].txt. One of them, 1.txt, says the following:</description><pubDate>Wed, 08 Jan 2020 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2019-12-31-where-go-infernoctf/</guid><link>https://cheuksblog.ca/2019-12-31-where-go-infernoctf/</link><title>Where did he GO? - Inferno CTF</title><description>This was also one of the easier ones. As you can tell, I'm not that good at
+these things. I also have never scripted in go before. Here's what happened.The program asked for a password, and if the password was correct, we would get
+a nice success message. Looking into the program, we see that the input is
+checked against an obfuscated string of bytes. The input is run through 2
+functions:</description><pubDate>Tue, 31 Dec 2019 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2019-12-30-7110-otw-advent2019-ctf/</guid><link>https://cheuksblog.ca/2019-12-30-7110-otw-advent2019-ctf/</link><title>7110 - OverTheWire Advent 2019 CTF</title><description>This one was one of the easier ones. We are given some .txt files, .csv
+files, and a single .h C header file. We see that the .csv files contain
+keylogging data, where the first column is a timestamp and the second column is
+the key that was pressed. From these .csv files, we are supposed to figure
+out what Santa typed.The .csv files correspond to the .txt files (e.g. sms1.csv corresponds to
+sms1.txt), and we are supposed to decode sms4.csv. Though we are not
+completely sure what the function keys correspond to (i.e. MENU_LEFT,
+MENU_RIGHT, MENU_UP, MENU_DOWN), we can still try to decode the file. And
+so we write the following Python code:</description><pubDate>Mon, 30 Dec 2019 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2018-12-06-gh-jekyll-plugs/</guid><link>https://cheuksblog.ca/2018-12-06-gh-jekyll-plugs/</link><title>Github Jekyll Plugins</title><description>Here is a list of jekyll plugins that can be used on Github using the static
+site generator Jekyll:</description><pubDate>Thu, 06 Dec 2018 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2018-04-27-managing-a-group-project/</guid><link>https://cheuksblog.ca/2018-04-27-managing-a-group-project/</link><title>On Managing a Group Project</title><description>The semester ended, and I just finished a reasonably large group project on
 Virtual Reality (link here; teaser here). Let's talk about
 what I learned.Stay Silent</description><pubDate>Fri, 27 Apr 2018 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2017-12-19-googletest-tutorial/</guid><link>https://cheuksblog.ca/2017-12-19-googletest-tutorial/</link><title>Google Test Basic Tutorial</title><description>GoalThe goal of this tutorial is to get you up and running with Google Test through
 the examples given. This will be more of a walkthrough integrating Google Test
-into your project.</description><pubDate>Tue, 19 Dec 2017 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2017-05-10-basic-raycasting-tut/</guid><link>https://cheuksblog.ca/2017-05-10-basic-raycasting-tut/</link><title>Basic Raycasting Tutorial</title><description>GoalThis tutorial's goal is to get you acquainted with the idea of ray casting. We
+into your project.</description><pubDate>Tue, 19 Dec 2017 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2017-08-14-howto-bioperl/</guid><link>https://cheuksblog.ca/2017-08-14-howto-bioperl/</link><title>How to Obtain Cropped Nucleotide Sequences and More</title><description>In my opinion, there isn't much documentation on the BioPerl site: just vague
+examples and whatnot.Say for instance you want to get the entire nucleotide sequence of a particular
+organism, but it must be split up because you only want to deal with the
+proteins, and not the entire organism. So less like this:</description><pubDate>Mon, 14 Aug 2017 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2017-06-28-cw-fire/</guid><link>https://cheuksblog.ca/2017-06-28-cw-fire/</link><title>[Writing] Fire</title><description>Cory noticed the ominous black smoke billowing outwards, and decided to run to
+safety. Sadly, his friends had other ideas."This will look great as my profile picture!" Dave smiled.</description><pubDate>Wed, 28 Jun 2017 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2017-05-10-basic-raycasting-tut/</guid><link>https://cheuksblog.ca/2017-05-10-basic-raycasting-tut/</link><title>Basic Raycasting Tutorial</title><description>GoalThis tutorial's goal is to get you acquainted with the idea of ray casting. We
 will focus on the most basic method for ray casting: using a combination of unit
 vectors, vector addition, and lots and lots of iteration. Sounds fun? Let's dive
-in.</description><pubDate>Wed, 10 May 2017 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-05/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-05/</link><title>Huffman Tutorial Part 5</title><description>If you have arrived at this point, it is assumed that you have slaved through
+in.</description><pubDate>Wed, 10 May 2017 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-00/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-00/</link><title>Huffman Tutorial Part 0</title><description>IntroductionAre you curious in how compression systems work? Do you want to know how to
+compress and decompress files? Has your high school teacher assigned you the
+oh-so-complicated Huffman compression project? If you answer yes to any of these
+questions, good for you!</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-03/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-03/</link><title>Huffman Tutorial Part 3</title><description>In this part, we'll figure out how to sketch headers for your Huffman
+program!Huffman Headers</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-05/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-05/</link><title>Huffman Tutorial Part 5</title><description>If you have arrived at this point, it is assumed that you have slaved through
 the parts previous to this one in the series. You may have spent a lot of time -
 ranging from a week to half a month - on this (rather large) endeavor. And if
 you have made it through, :confetti_ball: CONGRATULATIONS :confetti_ball:!
-Good work. Now, here is a way to test that your encoder works: by decoding it!Quick Run-Down of How it Works</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-04-17-tbasic-timeline/</guid><link>https://cheuksblog.ca/2016-04-17-tbasic-timeline/</link><title>Tiny BASIC Development - Timeline</title><description>Day 1</description><pubDate>Sun, 17 Apr 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-12-28-arch-d3/</guid><link>https://cheuksblog.ca/2015-12-28-arch-d3/</link><title>Arch Linux Day 3: Switching Over to i3</title><description>So for some reason or another, I decided that it was a cool idea to switch from
-GNOME display manager to the i3 window manager. Well, why not?Installation</description><pubDate>Mon, 28 Dec 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-08-10-chip8-great-mate/</guid><link>https://cheuksblog.ca/2015-08-10-chip8-great-mate/</link><title>Chip-8 is Great, Mate!</title><description>Rhyming scheme aside, I'm finally somewhat finished the Chip-8 emulator package
+Good work. Now, here is a way to test that your encoder works: by decoding it!Quick Run-Down of How it Works</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-02/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-02/</link><title>Huffman Tutorial Part 2</title><description>What we are trying to do, is to take the character frequencies of the file, and
+convert all of it into an easily traversable tree to look things up quickly.
+Then, we are going to go through the whole tree, and construct a map to map
+every character to a string of binary digits.Character Frequencies</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-01/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-01/</link><title>Huffman Tutorial Part 1</title><description>SetupLet's start off with a basic setup, which includes a nice directory structure
+and a neat Makefile. What are you looking at me for? Alright, here is my
+setup:</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-07-05-huffman-tutorial-04/</guid><link>https://cheuksblog.ca/2016-07-05-huffman-tutorial-04/</link><title>Huffman Tutorial Part 4</title><description>Ah! Here is the fun part! Actually writing each individual bit into a file! So,
+how does one go about doing it?You Don't</description><pubDate>Tue, 05 Jul 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-04-17-tbasic-timeline/</guid><link>https://cheuksblog.ca/2016-04-17-tbasic-timeline/</link><title>Tiny BASIC Development - Timeline</title><description>Day 1</description><pubDate>Sun, 17 Apr 2016 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2016-01-15-arch-d4/</guid><link>https://cheuksblog.ca/2016-01-15-arch-d4/</link><title>Arch Linux Day 4: Switching Over to neovim</title><description>As if changing over to i3 window manager wasn't enough, I decided to change my
+default editor from vim to neovim. Of course, some things may
+break (which they did).Installing neovim</description><pubDate>Fri, 15 Jan 2016 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-12-28-arch-d3/</guid><link>https://cheuksblog.ca/2015-12-28-arch-d3/</link><title>Arch Linux Day 3: Switching Over to i3</title><description>So for some reason or another, I decided that it was a cool idea to switch from
+GNOME display manager to the i3 window manager. Well, why not?Installation</description><pubDate>Mon, 28 Dec 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-12-15-arch-d2/</guid><link>https://cheuksblog.ca/2015-12-15-arch-d2/</link><title>Arch Linux Day 2: Setting up GNOME</title><description>For this day, I didn't read up on any tutorials or guides. I just followed the
+instructions from this video: From Post Install to Xorg. As a
+result, the rest of this post will mostly be me trying to transcribe the video
+into written (typed) words.Software Installations</description><pubDate>Tue, 15 Dec 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-12-12-arch-d1/</guid><link>https://cheuksblog.ca/2015-12-12-arch-d1/</link><title>Arch Linux Day 1: Installation</title><description>DisclaimerThis is by no means a tutorial or a guide to installing Arch Linux - it is just
+how I did my things. Everything that I do should be taken as (at the most)
+advice. Everything written here should be taken with a grain of salt, as I am
+going off of my memory of what I have done, and may have forgotten things, even
+if it was only a few days since I have actually done the deed. I don't remember
+every command that I execute.</description><pubDate>Sat, 12 Dec 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-12-09-arch-d0/</guid><link>https://cheuksblog.ca/2015-12-09-arch-d0/</link><title>Arch Linux Day 0: Fact-Checking</title><description>PrefaceA few days ago, I was upgrading my Fedora 20 to Fedora 21 as Fedora 20 wasn't
+supported. I finished my upgrade and rebooted my computer. Unfortunately, the
+kernel modules failed to load (for some reason or another), and I was stuck on
+the GNOME login screen with no mouse and no keyboard. I then opted for a fresh
+Fedora 20 install, but I still thought that it was a bit out of date and there
+was going to be not much support coming my way if anything went wrong or awry.
+That was when I started to think about Linux distribution alternatives that I
+could use.</description><pubDate>Wed, 09 Dec 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-11-10-cw-incompetent-misunderstanding/</guid><link>https://cheuksblog.ca/2015-11-10-cw-incompetent-misunderstanding/</link><title>[Writing] An Incompetent Misunderstanding</title><description>The waiter put down his sandwich. The customer prodded it with a fork. "It's
+bloody cold! You make me wait here for a full hour and I get it cold?!" And the
+waiter was apologizing - you could almost see him kneeling on the ground. "I'm
+sorry. So sorry sir...." And he was using the situation towards his advantage.
+"I have had enough of your shenanigans! Don't expect me to give this place even
+an inkling of a positive review!" And with that crude remark, he marched out of
+his seat and slammed the door with the finality of a gavel. The waiter's faint
+protest dimmed to a murmur: "But I thought you said you wanted cold cuts...."</description><pubDate>Tue, 10 Nov 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-10-08-minor-miracle/</guid><link>https://cheuksblog.ca/2015-10-08-minor-miracle/</link><title>[Writing] Minor Miracle</title><description>"Pah!" He spat the mouthful of food out with such momentum that it hit the seat
+in front of him. He didn't expect the burrito to be so spicy, and was now
+gurgling his mouth with water, which didn't seem too effective. He gave what was
+left of his meal back to the flight attendant, and started cleaning up the mess
+that he made. He was so distracted that he zoned out of the conversation."We could play on the slides. That swingset was rusty anyway."</description><pubDate>Thu, 08 Oct 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-09-12-scrabble-strat-staircase/</guid><link>https://cheuksblog.ca/2015-09-12-scrabble-strat-staircase/</link><title>Scrabble Tutorial: Strategies - The Staircase</title><description>IntroductionTo use the strategy that results in a nice staircase formation, you will first
+need a very strong memory of common and uncommon 2-letter words, 3-letter
+words, and sometimes even 4-letter words. This is where you and the opponent
+place tiles (that are often offset by 1) above/below each other, resulting in a
+game of "whoever gets to the triple-word bonus tile is a winner". This type of
+play often results in the 2-pass ending, where both players cannot find a place
+to put tiles, and pass as a result of that (See below).</description><pubDate>Sat, 12 Sep 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-08-23-challenge-e228/</guid><link>https://cheuksblog.ca/2015-08-23-challenge-e228/</link><title>Challenge #228 [Easy] Letters in Alphabetical Order</title><description>So from here on out, I'm going to try and keep up with /r/dailyprogrammer
+and do the challenges (, and post solutions and explanations), in order to
+document my progress and increase my ability to communicate via writing.</description><pubDate>Sun, 23 Aug 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-08-20-scrabble-bingos/</guid><link>https://cheuksblog.ca/2015-08-20-scrabble-bingos/</link><title>Scrabble Tutorial: Prefixes and Suffixes - Bingos</title><description>The easier way to create bingos is to save a prefix/suffix and wait until you
+could append/prepend it to a word. As you can see, blank tiles are immensely
+useful. Say you are currently saving ING. This makes it so that you only need
+to make a 4-letter word with the rest of your tiles instead of a 7 letter word.
+Common beginnings/endings that are easy to make words with are:</description><pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-08-17-scrabble-tile-placement-tut/</guid><link>https://cheuksblog.ca/2015-08-17-scrabble-tile-placement-tut/</link><title>Scrabble Tutorial: Tile Placement</title><description>&lt;side-note&gt;I had to learn this myself: Scrabble move notation. Essentially, how it goes is:</description><pubDate>Mon, 17 Aug 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-08-13-scrabble-2-letter-words/</guid><link>https://cheuksblog.ca/2015-08-13-scrabble-2-letter-words/</link><title>Scrabble Tutorial: 2-Letter Words</title><description>If you know about the 2 letter words, move on. If you don't, MEMORIZE THEM
+ALL.2-letter words are very useful if you want to link your tiles with the tiles on
+board, and gain a few extra points. It can wreck people who don't know them
+(obviously).</description><pubDate>Thu, 13 Aug 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-08-10-chip8-great-mate/</guid><link>https://cheuksblog.ca/2015-08-10-chip8-great-mate/</link><title>Chip-8 is Great, Mate!</title><description>Rhyming scheme aside, I'm finally somewhat finished the Chip-8 emulator package
 that I was working on. Interested people can find the code here. This
-includes:</description><pubDate>Mon, 10 Aug 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-07-06-screen-rest/</guid><link>https://cheuksblog.ca/2015-07-06-screen-rest/</link><title>screen_rest: The Simplest Passive Program to Get Off the Computer</title><description>The program that I've been waiting for, has now come/been made!For the past ... years, my dad has been telling me that after every hour I'm on
+includes:</description><pubDate>Mon, 10 Aug 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-07-29-why-cursive/</guid><link>https://cheuksblog.ca/2015-07-29-why-cursive/</link><title>Why Cursive?</title><description>So, why am I talking about all that cursive stuff that you probably have
+forgotten half of after primary/elementary school?Remember the time when those teachers taught us cursive writing, and told us all
+to go buy and do copybooks? When they told us all that the curvy letters would
+be mandatory for anyone wishing to pursue higher education? As soon as you hit
+high school, you realize that the teachers there don't actually care if you use
+it or not, as long as they can read it. Let that sink in and let's move on....</description><pubDate>Wed, 29 Jul 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-07-10-childhood-breakup/</guid><link>https://cheuksblog.ca/2015-07-10-childhood-breakup/</link><title>[Writing] Childhood Breakup</title><description>"Hey dearest, come here for a second," my mom beckoned me. Honestly, I was
+fairly annoyed, given that I was in the middle of a gym battle, but I came
+anyway."Yeah mom, I'm coming," I replied.</description><pubDate>Fri, 10 Jul 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-07-06-screen-rest/</guid><link>https://cheuksblog.ca/2015-07-06-screen-rest/</link><title>screen_rest: The Simplest Passive Program to Get Off the Computer</title><description>The program that I've been waiting for, has now come/been made!For the past ... years, my dad has been telling me that after every hour I'm on
 the computer, I should commit 15 minutes to doing something else strictly
 NOT computer related. I now have finally created a program to help me:
 screen_rest.</description><pubDate>Mon, 06 Jul 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-06-22-end-of-school/</guid><link>https://cheuksblog.ca/2015-06-22-end-of-school/</link><title>The End of School</title><description>So here I am again, at the end of the school year. Well, almost the end - I
@@ -26,7 +116,73 @@ after that, I am/will be in full control for 2 months, right up till school
 starts again in September.A (programming) project that I am currently working on is a Chip-8
 Emulator. I have expanded it to a Chip-8 toolset, and am currently working
 on the assembler. (Any feedback or suggestions are welcome.) The going is quite
-slow, because of a small amount of procrastination. And studying.</description><pubDate>Mon, 22 Jun 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-04-03-lightning-theory/</guid><link>https://cheuksblog.ca/2015-04-03-lightning-theory/</link><title>Basic Lightning Theory</title><description>IntroductionEvery good game needs good visual effects. Here is how to do basic lightning.
-This only covers 2D lightning, but you could easily extend this to 3D.</description><pubDate>Fri, 03 Apr 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-23-fun-with-qbasic/</guid><link>https://cheuksblog.ca/2015-02-23-fun-with-qbasic/</link><title>Fun with QBasic</title><description>So I had a rough day with windows (I can no longer use it without safe mode,
+slow, because of a small amount of procrastination. And studying.</description><pubDate>Mon, 22 Jun 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-06-15-cw-peripheral-disappointment/</guid><link>https://cheuksblog.ca/2015-06-15-cw-peripheral-disappointment/</link><title>[Writing] Peripheral Disappointment</title><description>Teddy was walking down the lifeless wooden corridor to the pre-trial. It was
+paradoxical, really, that the hallway he was walking through glowed with strong
+ambient-yellow fluorescent lights; the passage was radiating coldness. He knew
+what he was going to do</description><pubDate>Mon, 15 Jun 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-05-30-review-tkrm/</guid><link>https://cheuksblog.ca/2015-05-30-review-tkrm/</link><title>[Review] The Kite Runner (Movie) - A Mistake?</title><description>WARNING: The Kite Runner SPOILERS BELOW.The Kite Runner movie by Marc Forster, an adaptation to the book with the same
+title by Khaled Hosseini, and a feasible alternative to reading the book (or
+SparkNotes). With a $20M budget, this film did quite well in the box office, and
+got an average of 6.5/10 on RottenTomatoes. So, was this movie a mistake?</description><pubDate>Sat, 30 May 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-05-14-the-road-to-be-good/</guid><link>https://cheuksblog.ca/2015-05-14-the-road-to-be-good/</link><title>[Journal] The Road to be Good</title><description>This will be a new kind of post: A journal entry (from my Ink Provoking
+Journal). These are some topics about books, poetry, and all that kind of stuff.
+It will or will not contain a fair bit of spoilers (if it is about some novel).
+This one is based on the book "The Kite Runner". If you haven't read it, read
+it, because it is good, and also because there are some suggestive spoilers in
+the writing. Well, I'm not going to keep you waiting, so here you are!TOPIC</description><pubDate>Thu, 14 May 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-05-03-review-deemo/</guid><link>https://cheuksblog.ca/2015-05-03-review-deemo/</link><title>[Review] But I thought it was a Deemo!</title><description>Never left without saying goodbyeDeemo, the rhythm-tapping mobile game, with a unorthodox storyline:</description><pubDate>Sun, 03 May 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-04-18-mannerism-deflation/</guid><link>https://cheuksblog.ca/2015-04-18-mannerism-deflation/</link><title>Mannerism Deflation</title><description>Having good manners is important to leading a successful social life, and to not
+be a sociopath. You say your amounts of "thanks" and "sorry" every single day.
+Yet, we don't usually think much about saying it. Have we been so used to saying
+these words (pressured by parents) that the words have become the default
+reaction to certain scenarios?Everyone's been taught to say "please" and "thank you" by most parents. They
+tell you to say "sorry" when you have done something wrong, sometimes when it
+isn't even your fault, just to avoid conflicts. This isn't wrong in the
+slightest, but when you grow accustomed, and they come out almost literally at
+any slip of the tongue, you might not be really meaning what you say. This is
+what I mean by "Mannerism Deflation" - the phenomenon of saying "bless you"
+and whatnot increasingly, but the value behind the words decrease.</description><pubDate>Sat, 18 Apr 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-04-03-lightning-theory/</guid><link>https://cheuksblog.ca/2015-04-03-lightning-theory/</link><title>Basic Lightning Theory</title><description>IntroductionEvery good game needs good visual effects. Here is how to do basic lightning.
+This only covers 2D lightning, but you could easily extend this to 3D.</description><pubDate>Fri, 03 Apr 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-03-27-how-to-switch-to-new-samsung-phone/</guid><link>https://cheuksblog.ca/2015-03-27-how-to-switch-to-new-samsung-phone/</link><title>How to Switch From one Samsung Phone to Another</title><description>Download Samsung Smart Switch Mobile This also works for any android
+phone/IOS phone switching to Samsung phone. Download this app for both
+devices. For both phones, press "Android to Galaxy", and hold them close
+together. For the old phone, check the items that you want to send, then
+press "Transfer". If that doesn't transfer, use the "Connect device manually"
+option in the menu. This should take a relatively short amount of time.Switch (micro)SD cards Well, duh...</description><pubDate>Fri, 27 Mar 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-03-22-cw-a-close-call/</guid><link>https://cheuksblog.ca/2015-03-22-cw-a-close-call/</link><title>[Writing] A Close Call</title><description>I finished up my lunch."Hurry up, Bob, you're late!"</description><pubDate>Sun, 22 Mar 2015 00:00:00 -0700</pubDate></item><item><guid>https://cheuksblog.ca/2015-03-04-cw-the-old-video/</guid><link>https://cheuksblog.ca/2015-03-04-cw-the-old-video/</link><title>[Writing] The Old Video</title><description>"You'd think they'd know better than to ask ME to do it." Bob thought aloud. "If
+my dad just passed away, that would be like rubbing salt into a wound, except it
+is. But they want to see it, so I'll let it be." Bob opened up his computer and
+began traversing through directories, scanning for any pictures, videos that had
+his dad (and preferably him) in it and started putting them all into a folder,
+in which he would create a video montage in memory of his father. It was lonely
+enough in the house after his mother passed away, but now, without his father,
+he was completely alone.He finished copying the files into the folder, and clicked on his favourite
+video editor. The memories of their past adventures and mishaps flooded through
+his mind, but he cleared his head after the program had finished loading. He
+began inspecting the photos and videos one by one.</description><pubDate>Wed, 04 Mar 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-23-fun-with-qbasic/</guid><link>https://cheuksblog.ca/2015-02-23-fun-with-qbasic/</link><title>Fun with QBasic</title><description>So I had a rough day with windows (I can no longer use it without safe mode,
 would fix later), so I wanted to have some fun, so I went with a qbasic tutorial
-and made this colorful thing:</description><pubDate>Mon, 23 Feb 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-01/</guid><link>https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-01/</link><title>NCURSES Terminal Text Editor Tutorial Part 1</title><description>IntroductionI am using vim right now, and a few days ago, I thought to myself:</description><pubDate>Sun, 01 Feb 2015 00:00:00 -0800</pubDate></item></channel></rss>
+and made this colorful thing:</description><pubDate>Mon, 23 Feb 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-07-ncurses-editor-tutorial-04/</guid><link>https://cheuksblog.ca/2015-02-07-ncurses-editor-tutorial-04/</link><title>NCURSES Terminal Text Editor Tutorial Part 4</title><description>Salutations!Just gonna apologize for the weird intros - I'm starting to run out of phrases
+to start the intro. Last time we left off, we finished a bunch of
+implementations such as the input handler, moving directions, etc. Now, we are
+going to finish up everything!</description><pubDate>Sat, 07 Feb 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-04-ncurses-editor-tutorial-03/</guid><link>https://cheuksblog.ca/2015-02-04-ncurses-editor-tutorial-03/</link><title>NCURSES Terminal Text Editor Tutorial Part 3</title><description>Welcome BackLast time we left off, we finished the Buffer class. Here comes the fun stuff:
+Doing the functions for the Editor class! What fun! We will start immediately!</description><pubDate>Wed, 04 Feb 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-01/</guid><link>https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-01/</link><title>NCURSES Terminal Text Editor Tutorial Part 1</title><description>IntroductionI am using vim right now, and a few days ago, I thought to myself:</description><pubDate>Sun, 01 Feb 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-02/</guid><link>https://cheuksblog.ca/2015-02-01-ncurses-editor-tutorial-02/</link><title>NCURSES Terminal Text Editor Tutorial Part 2</title><description>Welcome BackLast time, we finished the basic skeleton, and now it is time to implement some
+functions! Let's do some easy ones first.</description><pubDate>Sun, 01 Feb 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-01-26-wallclimbing-is-tiring/</guid><link>https://cheuksblog.ca/2015-01-26-wallclimbing-is-tiring/</link><title>Wallclimbing is tiring</title><description>Well, what do you know? Wallclimbing is tiring. Our class went wallclimbing
+today. My fingers were sore and are still sore from all that gripping. How are
+those tiny muscles in your fingers supposed to maintain your grip on a round
+hand-hold? A major workout for the whole body, I suppose. It was very fun and
+challenging. This was my first time going up a wall that tall (the ones at the
+gym don't count), with a guy manning the ropes of course. I should think about
+taking up wallclimbing as a hobby.</description><pubDate>Mon, 26 Jan 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-01-20-python-global-variables-vs-classes/</guid><link>https://cheuksblog.ca/2015-01-20-python-global-variables-vs-classes/</link><title>Python global variables vs classes</title><description>In programming class, the guys sitting next to me found this amazing thing,
+where you could setup a static class, put variables into it, and treat it as a
+normal variables, so that in functions, you do not need to call it via global
+keyword. Example:</description><pubDate>Tue, 20 Jan 2015 00:00:00 -0800</pubDate></item><item><guid>https://cheuksblog.ca/2015-01-19-my-way-of-overcoming-procrastination/</guid><link>https://cheuksblog.ca/2015-01-19-my-way-of-overcoming-procrastination/</link><title>My way of Overcoming Procrastination</title><description>Procrastination has become a huge problem in my (high) school career, and
+probably will be.  From school projects to homework assignments to studying for
+tests, I always had been avoiding it until the very last minutes. I don't know
+about you guys, but here are some methods I use to combat procrastination:Make a Day ScheduleI know this sounds really cheesy, but it works. Having a plan of what you
+would be doing for the day helps immensely. I write my schedule on the night
+before the day I am scheduling. It also helps if you have a guy who could
+tell you if you are off track. Make this 'schedule writing' a part of your
+habit, and you won't be procrastinating to write the schedule. Write it
+regularly once or twice and you're good to go. I recommend writing it on a
+small notebook because there are lots of distractions if you write it on
+your computer. Unless you don't want to keep a notebook around/don't have
+one. Just write a schedule and stick with it.Finish all of your work at workAs a student, I don't like doing homework at home because the opportunity
+cost of doing it at home is more significant than doing it at school. That's
+why I do it at school. Then you'll have more time at home to do whatever you
+like.Have self-controlIf you don't have enough self-control, ask someone to watch over you. ahem
+Family &amp; friends ahem. Without sufficient self-control, you may not be
+able to do the (2) items listed above.</description><pubDate>Mon, 19 Jan 2015 00:00:00 -0800</pubDate></item></channel></rss>
