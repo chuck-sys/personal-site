@@ -19,6 +19,8 @@ jobs:
         with:
           key: lein-build
           path: target
+      - uses: actions/setup-node@v4
+      - run: npm ci
       - run: lein run
       - uses: actions/upload-pages-artifact@v3
         with:
