@@ -24,6 +24,7 @@ jobs:
             ~/.m2/repository
             ~/.gitlibs
             ~/.deps.clj
+            target
           key: cljdeps-${{ hashFiles('project.clj') }}
           restore-keys: cljdeps-
       - uses: actions/setup-node@v4
