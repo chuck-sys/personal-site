@@ -5,14 +5,14 @@
 # Links
 
 - [Github](https://github.com/chuck-sys)
-- [Gitlab](https://gitlab.com/chucksys)
 - [LinkedIn](https://www.linkedin.com/in/cheukyin)
 
 # Projects
 
-**[nlclc-stats](https://github.com/NLCLC-CM/stats)** in *ClojureScript* with the *Reagent* framework,
-which are utilities centered around *React*. This is a client-based web app that shows statistics around
-Saturday worship service in our church.
+**[nlclc-stats](https://github.com/NLCLC-CM/stats)** via custom site generation in *Clojure*. This is
+a client-based web app that shows statistics around worship service in our church. This is an experiment
+in the amount of framework you need to build a website, without just typing everything in HTML. Thus, the
+entire site can be viewed without any *Javascript* (though having Javascript would improve functionality).
 
 **[superdiff](https://github.com/chuck-sys/superdiff)** in *Rust*. This is a CLI app that can find
 similarities in file(s). It is mainly used to check for copy-pasted code. We don't use treesitter here
