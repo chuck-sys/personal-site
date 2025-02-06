@@ -15,10 +15,17 @@ jobs:
         with:
           key: site
           path: _site
+      - uses: DeLaGuardo/setup-clojure@13.0
+        with:
+          lein: 2.11.2
       - uses: actions/cache@v4
         with:
-          key: lein-build
-          path: target
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
+          key: cljdeps-${{ hashFiles('project.clj') }}
+          restore-keys: cljdeps-
       - uses: actions/setup-node@v4
       - run: npm ci
       - run: lein run
