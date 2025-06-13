@@ -32,3 +32,9 @@ screen-share software or on some projector.
 **[Tom's Parable](https://github.com/chuck-sys/operation-omega)** in *C#* with *Unity*. This is
 a short Windows-only 3D FPS game where you play the role of a detective. This game was created as a group
 project for the TWU CS course "Intro to VR".
+
+# Publications
+
+Tsang, H. T., Zhong, Y., **Ng, C. Y.**, Otchie, O. W., & Chu, K. W. S. (2025). Scoping Review for Research
+on AI-robotic Pets for Seniors. Proceedings of the ICGAL 2025 Meeting: Multidisciplinary Research and
+Practice in the Age of GenAI, Budapest, Hungary.
