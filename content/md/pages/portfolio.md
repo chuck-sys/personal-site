@@ -9,6 +9,16 @@
 
 # Projects
 
+**[pls](https://github.com/chuck-sys/pls)** in *Rust*. This is yet another PHP language server. It uses
+the `tree-sitter` framework for parsing text into AST. Currently, it only has basic diagnostic features,
+such as syntax checking, undefined variables, duplicate namespaces. Other features such as context-aware
+auto-complete, diagnostics based on a strong type system, intelligent hover text, will be added at a later
+time. I wrote this because other PHP language servers were pretty slow in indexing my files, and usually
+caused noticeable slowdowns whenever I requested any auto-complete. After a few updates, they usually had
+weird quirks such as highlighting large swaths of template files as errors. `pls` is different in that,
+even though there are issues, they are understandable, and they are *my* issues, and therefore I don't
+complain as much about them.
+
 **[nlclc-stats](https://github.com/NLCLC-CM/stats)** via custom site generation in *Clojure*. This is
 a client-based web app that shows statistics around worship service in our church. This is an experiment
 in the amount of framework you need to build a website, without just typing everything in HTML. Thus, the
