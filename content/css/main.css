@@ -118,6 +118,10 @@ pre > code {
   padding-left: 0;
 }
 
+footer {
+    border-top: 1px solid #a89984;
+}
+
 /**
  * Wrapper
  */
@@ -218,7 +222,6 @@ nav a:hover {
 
 .post-foot {
   padding: 1em 0;
-  border-top: 1px solid #a89984;
   display: flex;
   justify-content: space-between;
 }
