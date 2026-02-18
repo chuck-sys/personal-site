@@ -9,6 +9,14 @@
 
 # Projects
 
+**[scrabble-checker](https://github.com/chuck-sys/scrabble-checker-android)** in Kotlin. I first wrote
+this app around 7 years ago following Android 4 best practices, which is extremely outdated. The current
+version uses Jetpack Compose. It maps a custom binary file into memory and does lookups using it (binary
+format is in the README), which is a performance improvement since the original trie implementation has
+a whole bunch of memory overhead on startup because we create the nodes at startup. This also means we are
+working with a 1.0 MB binary file memory footprint instead of the 2.8 MB text file we read and other
+garbage collection overhead. A nice example of optimizing the hell out of a small thing.
+
 **[pls](https://github.com/chuck-sys/pls)** in *Rust*. This is yet another PHP language server. It uses
 the `tree-sitter` framework for parsing text into AST. Currently, it only has basic diagnostic features,
 such as syntax checking, undefined variables, duplicate namespaces. Other features such as context-aware
