@@ -9,7 +9,7 @@
 
 # Projects
 
-**[scrabble-checker](https://github.com/chuck-sys/scrabble-checker-android)** in Kotlin. I first wrote
+**[scrabble-checker](https://github.com/chuck-sys/scrabble-checker-android)** in *Kotlin*. I first wrote
 this app around 7 years ago following Android 4 best practices, which is extremely outdated. The current
 version uses Jetpack Compose. It maps a custom binary file into memory and does lookups using it (binary
 format is in the README), which is a performance improvement since the original trie implementation has
