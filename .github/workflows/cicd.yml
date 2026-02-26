@@ -29,7 +29,7 @@ jobs:
           restore-keys: cljdeps-
       - uses: actions/setup-node@v4
       - run: npm ci
-      - run: clj -X:build
+      - run: clojure -X:build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site/
