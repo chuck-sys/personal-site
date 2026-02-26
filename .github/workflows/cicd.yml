@@ -15,7 +15,7 @@ jobs:
         with:
           key: site
           path: _site
-      - uses: DeLaGuardo/setup-clojure@13
+      - uses: DeLaGuardo/setup-clojure@13.4
         with:
           cli: 1.12.4
       - uses: actions/cache@v4
