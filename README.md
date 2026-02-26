@@ -3,6 +3,8 @@ My personal site.
 # Commands
 
 ```console
-$ lein serve:fast
+$ clojure -X:serve:fast
+...
+$ clojure -X:build
 ...
 ```
