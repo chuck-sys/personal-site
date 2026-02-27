@@ -3,8 +3,9 @@
         compojure/compojure {:mvn/version "1.7.2"}
         ring-server/ring-server {:mvn/version "0.5.0"}
         cryogen-flexmark/cryogen-flexmark {:mvn/version "0.1.5"}
-        cryogen-core/cryogen-core {:mvn/version "0.4.8"}}
+
+        io.github.chuck-sys/cryogen-core {:git/sha "d50ca11be6002fbb322bf53f7a394e52d19a6855"}}
  :aliases {:serve {:exec-fn cryogen.server/-main}
-           :serve:fast {:exec-fn cryogen.server/-main
+           :serve-fast {:exec-fn cryogen.server/-main
                         :exec-args ["fast"]}
            :build {:exec-fn cryogen.core/-main}}}
