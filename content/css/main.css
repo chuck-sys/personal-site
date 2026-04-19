@@ -118,16 +118,12 @@ pre > code {
   padding-left: 0;
 }
 
-footer {
-    border-top: 1px solid #a89984;
-}
-
 /**
  * Wrapper
  */
 .wrapper {
   max-width: -webkit-calc(50em - (30px * 2));
-  max-width: calc(50em - (30px * 2));
+  max-width: calc(50em - 30px * 2);
   margin-right: auto;
   margin-left: auto;
   margin-top: 30px;
@@ -222,6 +218,7 @@ nav a:hover {
 
 .post-foot {
   padding: 1em 0;
+  border-top: 1px solid #a89984;
   display: flex;
   justify-content: space-between;
 }
@@ -263,6 +260,10 @@ nav a:hover {
 }
 .pagination > * {
   margin: 0 1em;
+}
+
+.tech-hovered {
+  text-decoration: #b8bb26 wavy underline;
 }
 
 /*# sourceMappingURL=main.css.map */
